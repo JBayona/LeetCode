@@ -24,6 +24,16 @@ i- recorre inicio, j recorre final
 Debemos empezar con j+1 porque si tenemos una cadena de sólo una letra,
 nos va a arrojar 0, i representa la cadena en donde empieza y j en donde
 termina
+
+Los elementos en el map tienen indices que representan en donde se vió 
+la última vez la letra
+
+Para sacar el max length, i y j se suma y restan como números enteros.
+Para determinar el str, se usa 0-based, el str es s[i]-s[j]
+
+Los números que se almacenan desde el map empezando con 1 es sólo para
+contar el tamaño máximo que llevamos en el substr, por el caso de que sea
+sólo una letra
 */
 var lengthOfLongestSubstring = function(s) {
     var max = 0;
