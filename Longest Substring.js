@@ -20,6 +20,11 @@ rango repetido entre [i,j) con index j', no necesitamos incrementar i poco
 a poco, podemos brincarnos el rango [i,j'] y poner i como j' + 1
 i- recorre inicio, j recorre final
 */
+/*
+Debemos empezar con j+1 porque si tenemos una cadena de sólo una letra,
+nos va a arrojar 0, i representa la cadena en donde empieza y j en donde
+termina
+*/
 var lengthOfLongestSubstring = function(s) {
     var max = 0;
     var map = {};
