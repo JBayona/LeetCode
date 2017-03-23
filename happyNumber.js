@@ -21,7 +21,7 @@ function happyNumber(n){
       }
       n += Math.pow(item,2);
     });
-    n = parseInt(n);
+    n = parseInt(n); //Si es igual a uno significa que es Happy Number
   }
   return n == 1;
 }
