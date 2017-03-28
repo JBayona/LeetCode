@@ -53,7 +53,7 @@ var addTwoNumbers = function(l1, l2) {
 		//Esta verificamos es para contar el acarreo
         val = (val >= 10)? 1 : 0;
 		//Avanzaremos hasta que sea null y ya no entremos al while
-        l1 = l1.next;
+        l1 = l1.next;//Recorremos la lista
         l2 = l2.next;
     } //Hasta este punto ya tenemos formado nuestra lista con la suma
     
