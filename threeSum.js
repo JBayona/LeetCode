@@ -62,7 +62,7 @@ function twoSum(allSol, curSol, startIndex, endIndex, target, nums) {
            //Limpiamos los elementos que agregamos del index final e inicial
            curSol.pop();
            curSol.pop();
-           //Avanzamos ya que vamos a seguir analizando
+           //Avanzamos ya que vamos a seguir analizando,se avanzan ambas posiciones
            start++;
            end--;
            
