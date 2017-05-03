@@ -16,6 +16,7 @@ The median is (2 + 3)/2 = 2.5
 */
 
 var findMedianSortedArrays = function(nums1, nums2) {
+	//Sort the array and check the median element
     var array = [...nums1,...nums2].sort((a,b) => a-b);
     if(array.length%2 == 0){
       return (array[(array.length/2)-1]+array[array.length/2])/2
