@@ -57,6 +57,7 @@ var addTwoNumbers = function(l1, l2) {
         l2 = l2.next;
     } //Hasta este punto ya tenemos formado nuestra lista con la suma
     
+    //If l1 is bigger
     while (l1) {
         val += l1.val;
         node = new ListNode(val % 10);
@@ -66,6 +67,7 @@ var addTwoNumbers = function(l1, l2) {
         l1 = l1.next;
     }
     
+    //If l2 is bigger;
     while (l2) {
         val += l2.val;
         node = new ListNode(val % 10);
