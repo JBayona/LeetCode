@@ -41,12 +41,16 @@ var addTwoNumbers = function(l1, l2) {
         node = new ListNode(val % 10);
         
         if (newHead) {
+            //Siempre que creamos un nuevo nodo, lo ponemos en el next de nuestro final
             newTail.next = node;
+            //actualizamos el newTail ya que hay un nuevo nodo
             newTail = newTail.next; //Esta variable tiene el ultimo nodo
         } else {
 			//En la primera iteracion newHead no esta definido y a partir de ese elemento
 			//Comenzamos a crear los nodos
+            //El newhead es el nodo de nuestra nueva lista, nunca lo movemos
             newHead = node;
+            //El newTail nos apunta al final de nuestra nueva lista
             newTail = node;
         }
         
@@ -57,17 +61,19 @@ var addTwoNumbers = function(l1, l2) {
         l2 = l2.next;
     } //Hasta este punto ya tenemos formado nuestra lista con la suma
     
-    //If l1 is bigger
+    //Si l1 tiene mas elemenros que l2
     while (l1) {
         val += l1.val;
         node = new ListNode(val % 10);
+        //Creamos el nuevo nodo en next
         newTail.next = node;
+        //Actualizamos el final del nodo
         newTail = newTail.next;
         val = (val >= 10)? 1 : 0;
         l1 = l1.next;
     }
     
-    //If l2 is bigger;
+    //Si l2 tiene mas elementos que l1
     while (l2) {
         val += l2.val;
         node = new ListNode(val % 10);
