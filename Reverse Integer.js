@@ -7,17 +7,15 @@ Example2: x = -123, return -321
 
 
 var reverse = function(x) {
-    var isNegative = x < 0 ? true: false,
-    var result = 0,
-    var reminder = 0;
+    var isNegative = x < 0 ? true: false;
+    var result = 0;
     
     if (isNegative) {
         x = x * (-1);
     }
     
     while (x !== 0) {
-        reminder = x % 10;
-        result = result * 10 + reminder;
+        result = result * 10 + x % 10;
         x = Math.floor(x / 10);
     }
     
