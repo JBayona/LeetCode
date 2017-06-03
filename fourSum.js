@@ -36,6 +36,8 @@ function kSum(result, curArr, k, nums, target, startIndex, endIndex) {
         i;
     //K represents the digits we have in our sum
     if (k >= 3) {
+	/*En este loop siempre agregaremos dos elementos a nuestro arreglo actual
+	para hacer sumas con dos digitos*/
         for (i = startIndex; i <= endIndex; i++) {
             if (i > startIndex && nums[i] === nums[i - 1]) {
                 continue;
