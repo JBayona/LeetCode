@@ -8,6 +8,8 @@ Example: 19 is a happy number
 1^2 + 0^2 + 0^2 = 1
 */
 
+//Option 1
+
 function happyNumber(n){
   var store = {};
   //Si no hemos checado el elemento y n no es 1, seguimos iterando
@@ -24,6 +26,28 @@ function happyNumber(n){
     n = parseInt(n); //Si es igual a uno significa que es Happy Number
   }
   return n == 1;
+}
+
+n = 7;
+console.log(happyNumber(n));
+
+//Option 2
+function happyNumber(n){
+  var store = {};
+  while(!(n in store) && n !== 1){ 
+    store[n] = n;
+    n = sumDigits(n);
+  }
+  return n == 1;
+}
+
+function sumDigits(n){
+  var sum = 0;
+  while(n){
+    sum += Math.pow((n%10),2);
+    n = Math.floor(n/10);
+  }
+  return sum;
 }
 
 n = 7;
