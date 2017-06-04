@@ -42,7 +42,7 @@ function kSum(result, curArr, k, nums, target, startIndex, endIndex) {
             if (i > startIndex && nums[i] === nums[i - 1]) {
                 continue;
             }
-            
+            //Agrega dos elementos y ya que se cumple y hace la suma de dos o de uno, se hace el popsss
             curArr.push(nums[i]);
             kSum(result, curArr.concat(), k - 1, nums, target - nums[i], i + 1, endIndex);
             curArr.pop();
