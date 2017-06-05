@@ -31,7 +31,7 @@ function happyNumber(n){
 n = 7;
 console.log(happyNumber(n));
 
-//Option 2
+//Option 2 with functions
 function happyNumber(n){
   var store = {};
   while(!(n in store) && n !== 1){ 
