@@ -41,6 +41,7 @@ function happyNumber(n){
   return n == 1;
 }
 
+//Function that counts the square of each digit
 function sumDigits(n){
   var sum = 0;
   while(n){
