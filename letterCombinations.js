@@ -28,7 +28,8 @@ function combineLettersKey(currentCombinations, index, length, digits, hash){
   var next = [];
   var tmp = '';
   if(index === length) return currentCombinations;
-
+  //Iteramos hasta el arreglo en donde vamos metiendo todas las combinaciones, ahí iremos concatenando todo
+  //Nuestro arreglo de combinaciones lo usamos para meter todo concatenando con lo nuevo de los digitos
   for(var i = 0; i < currentCombinations.length; i++){
     for(var j = 0; j < hash[digits.charAt(index)].length; j++){
       tmp = currentCombinations[i] + hash[digits.charAt(index)][j];
@@ -38,5 +39,5 @@ function combineLettersKey(currentCombinations, index, length, digits, hash){
   return combineLettersKey(next, index+1, length, digits, hash);
 }
 
-digits = "42";
+digits = "23";
 console.log(letterCombinations(digits));
