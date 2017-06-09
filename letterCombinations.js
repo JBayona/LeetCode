@@ -9,7 +9,7 @@ https://leetcode.com/problems/letter-combinations-of-a-phone-number/#/descriptio
 
 var letterCombinations = function(digits) {
   var length = digits.length;
-  var hash = {
+  var hash = {	
     '1' : '',
     '2' : ['a', 'b', 'c'],
     '3' : ['d', 'e', 'f'],
@@ -29,7 +29,7 @@ function combineLettersKey(currentCombinations, index, length, digits, hash){
   var tmp = '';
   if(index === length) return currentCombinations;
 
-  for(var i = 0; i < length; i++){
+  for(var i = 0; i < currentCombinations.length; i++){
     for(var j = 0; j < hash[digits.charAt(index)].length; j++){
       tmp = currentCombinations[i] + hash[digits.charAt(index)][j];
       next.push(tmp);
