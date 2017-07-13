@@ -4,13 +4,12 @@ Merge two sorted linked lists and return it as a new list. The new list should b
 https://leetcode.com/problems/merge-two-sorted-lists/#/description
 */
 
-/**
- * Definition for singly-linked list.
- * function ListNode(val) {
- *     this.val = val;
- *     this.next = null;
- * }
- */
+
+function ListNode(val) {
+     this.val = val;
+    this.next = null;
+}
+
 /**
  * @param {ListNode} l1
  * @param {ListNode} l2
@@ -79,3 +78,7 @@ var mergeTwoLists = function(l1, l2) {
 
     return head;
 };
+
+l1 = new ListNode(5, new ListNode(10, new ListNode(15, new ListNode(40))));
+l2= new ListNode(2, new ListNode(3, new ListNode(20)));
+console.log(mergeTwoLists(l1,l2));
