@@ -5,9 +5,9 @@ https://leetcode.com/problems/merge-two-sorted-lists/#/description
 */
 
 
-function ListNode(val) {
+function ListNode(val, node) {
      this.val = val;
-    this.next = null;
+    this.next = node? node : null;
 }
 
 /**
@@ -15,7 +15,7 @@ function ListNode(val) {
  * @param {ListNode} l2
  * @return {ListNode}
  */
-var mergeTwoLists = function(l1, l2) {
+/*var mergeTwoLists = function(l1, l2) {
     if (!l1) {
         return l2;
     }
@@ -31,7 +31,7 @@ var mergeTwoLists = function(l1, l2) {
         l2.next = mergeTwoLists(l1, l2.next);
         return l2;
     }
-};
+};*/
 
 // iterative solution
 var mergeTwoLists = function(l1, l2) {
