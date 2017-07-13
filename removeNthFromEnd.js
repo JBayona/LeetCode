@@ -9,8 +9,7 @@ function ListNode(val, node){
 }
 
 function removeNthFromEnd(head, n){
-  var dummy = new ListNode(0);
-  dummy.next = head;
+  var dummy = head;
   var p1 = dummy;
   var p2 = dummy;
 
@@ -25,7 +24,7 @@ function removeNthFromEnd(head, n){
   }
 
   p2.next = p2.next.next;
-  return dummy.next;
+  return dummy;
 }
 
 list = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
