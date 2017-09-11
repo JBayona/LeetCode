@@ -1,56 +1,57 @@
 /*
-The count-and-say sequence is the sequence of integers with the first five terms as following:
+Given a collection of distinct numbers, return all possible permutations.
 
-1.     1
-2.     11
-3.     21
-4.     1211
-5.     111221
-1 is read off as "one 1" or 11.
-11 is read off as "two 1s" or 21.
-21 is read off as "one 2, then one 1" or 1211.
-Given an integer n, generate the nth term of the count-and-say sequence.
-
-Note: Each term of the sequence of integers will be represented as a string.
-
-Example 1:
-
-Input: 1
-Output: "1"
-Example 2:
-
-Input: 4
-Output: "1211"
-https://leetcode.com/problems/count-and-say/description/
+For example,
+[1,2,3] have the following permutations:
+[
+  [1,2,3],
+  [1,3,2],
+  [2,1,3],
+  [2,3,1],
+  [3,1,2],
+  [3,2,1]
+]
+https://leetcode.com/problems/permutations/description/
 
 */
 
-var countAndSay = function(n){
-  if(n === 1) return "1";
-  if(n === 2) return "11";
+//Permutacion Heaps Algorithm
 
-  var str = "11";
-  var currentStr = null; 
-  for(let i = 3; i <= n; i++){
-    str = formStr(str);
-  }
-  return str;
-};
+var permute = function(nums){
+  var result = [];
+  heapPermutation(nums, nums.length, nums.length, result);
+  return result;
+}
 
-//String compression
-function formStr(str){
-  var count = 1;
-  var tmp = '';
-  for(var i = 0; i < str.length; i++){
-    if(str[i] === str[i+1]){
-      count++;
-    }else{
-      tmp += count + str[i];
-      count = 1;
+//Generating permutation using Heap Algorithm
+function heapPermutation(a, size, n, result){
+    // if size becomes 1 then prints the obtained
+    // permutation
+    if (size == 1){
+      result.push([...a]);
+      //console.log(a);
     }
-  }
-  return tmp;
-};
 
-n = 6;
-console.log(countAndSay(n));
+    for (var i=0; i<size; i++){
+        heapPermutation(a, size-1, n, result);
+
+        // if size is odd, swap first and last
+        // element
+        if (size % 2 == 1){
+            var temp = a[0];
+            a[0] = a[size-1];
+            a[size-1] = temp;
+        }
+
+        // If size is even, swap ith and last
+        // element
+        else{
+            var temp = a[i];
+            a[i] = a[size-1];
+            a[size-1] = temp;
+        }
+    }
+}
+
+array = [1,2,3];
+console.log(permute(array));
