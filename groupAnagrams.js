@@ -39,5 +39,5 @@ var groupAnagrams = function(strs) {
 
 const sortedWord = word => word.split('').sort().join('');
 
-array = "eat", "tea", "tan", "ate", "nat", "bat"];
+array = ["eat", "tea", "tan", "ate", "nat", "bat"];
 console.log(groupAnagrams(array));
