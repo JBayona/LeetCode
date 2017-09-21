@@ -31,7 +31,7 @@ class Map{
     }
   };
   getKey(key){
-    return this.hashmap[key].val;
+    if((key in this.hashmap)) return this.hashmap[key].val;
   }
   deleteVal(key){
     if(key in this.hashmap){
