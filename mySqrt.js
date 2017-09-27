@@ -11,6 +11,7 @@ var mySqrt = function(x) {
     let pow = 1;
     let result = 1;
     while(result <= x){
+      //Si es exacta regresamos el resultado
       if(result === x){
           return pow;
       }
