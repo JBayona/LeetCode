@@ -29,7 +29,8 @@ var removeDuplicates = function(nums) {
     nums[index] = nums[i];
     index++;
   }
-  return nums;
+  //return nums;
+  return index;
 };
 
 nums = [1,1,1,2,2,3];
