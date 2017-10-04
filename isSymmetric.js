@@ -31,11 +31,11 @@ var isSymmetric = function(root) {
   return checkSymetric(root.left, root.right);
 };
 
-function checkSymetric(a,b){
+function checkSymmetric(a,b){
   if(a === null && b === null) return true;
   if(!a || !b) return false;
   if(a.val !== b.val) return false;
-  return checkSymetric(a.left, b.right) && checkSymetric(a.right, b.left);
+  return checkSymmetric(a.left, b.right) && checkSymmetric(a.right, b.left);
 }
 
 tree = new Tree(1, new Tree(2, new Tree(3), new Tree(4)), new Tree(2, new Tree(4), new Tree(3)));
