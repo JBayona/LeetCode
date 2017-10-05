@@ -24,7 +24,7 @@ function Tree(val, left, right){
   this.right = right || null;
 }
 
-var levelOrder = function(root) {
+var levelOrder = function(tree) {
     if(!tree) return null;
     let currentCount = 0; //Num de elementos del siguiente nivel
     let queue = [];
