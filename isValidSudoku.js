@@ -58,8 +58,8 @@ var isValidSudoku = function(board) {
       count++;
       if(count > 2){
         iSquare += 3;
-        count = 0;
         jSquare = 0;
+        count = 0;
       }else{
         jSquare += 3;
       }
