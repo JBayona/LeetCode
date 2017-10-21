@@ -17,9 +17,9 @@ https://leetcode.com/problems/path-sum/description/
 */
 
 function TreeNode(val, left,right){
-this.val = val;
-this.left = left || null;
-this.right = right || null;
+    this.val = val;
+    this.left = left || null;
+    this.right = right || null;
 }
    
 var hasPathSum = function(root, sum) {
@@ -28,14 +28,14 @@ var hasPathSum = function(root, sum) {
 };
 
 function checkPathSum(node,target, curr){
-if(node === null){
-return false;
-}
-let currSum = curr + node.val;
-if(currSum === target && !node.left && !node.right){
-return true;
-}
-return checkPathSum(node.left,target,currSum) || checkPathSum(node.right,target,currSum);
+    if(node === null){
+        return false;
+    }
+    let currSum = curr + node.val;
+    if(currSum === target && !node.left && !node.right){
+      return true;
+    }
+    return checkPathSum(node.left,target,currSum) || checkPathSum(node.right,target,currSum);
 }
 
 tree = new TreeNode(1);
