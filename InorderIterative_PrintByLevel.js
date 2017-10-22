@@ -27,6 +27,21 @@ function inorderIterative(tree){
   }
 }
 
+function BFS(tree){
+  let queue = [];
+  queue.push(tree);
+  while(queue.length){
+    let node = queue.shift();
+    console.log(node.val);
+    if(node.left){
+      queue.push(node.left);
+    }
+    if(node.right){
+      queue.push(node.right);
+    }
+  }
+}
+
 function printByLevel(tree){
   let currentLevel = 1;
   let currentCount = 0;
@@ -59,6 +74,8 @@ function BSTTree(tree){
   inorderIterative(tree);
   console.log('Print BST By Level');
   printByLevel(tree);
+  console.log('BST');
+  BFS(tree);
 }
 
 tree = new TreeNode(8, new TreeNode(3, new TreeNode(1), new TreeNode(6, new TreeNode(4), new TreeNode(7))), new TreeNode(10,null, new TreeNode(14, new TreeNode(13), new TreeNode(15))));
