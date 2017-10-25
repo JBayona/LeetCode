@@ -32,7 +32,7 @@ http://www.geeksforgeeks.org/diameter-of-a-binary-tree/
   /*Return the max of the following tree
   1) Diameter of the left subtree
   2) Diameter of the right subtree
-  3) Height of left subtree + height right subtre + 1*/
+  3) Height of left subtree + height right subtree + 1*/
   return Math.max((lheight + rheight + 1), Math.max(ldiameter, rdiameter)); 
  }
 
