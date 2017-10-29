@@ -7,6 +7,8 @@ should invalidate the least recently used item before inserting a new item.
 
 Follow up:
 Could you do both operations in O(1) time complexity?
+
+https://leetcode.com/problems/lru-cache/description/
 */
 
 class Node{
