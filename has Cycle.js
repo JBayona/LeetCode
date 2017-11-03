@@ -11,14 +11,14 @@ var hasCycle = function(head) {
     while(slow && (fast && fast.next)){
         slow = slow.next;
         fast = fast.next.next;
-        /*if(slow === fast) break*/
+        /* if(slow === fast) break */
         if(slow === fast){
             return true;
         }
     }
 
     /*
-    //Remover el ciclo si existe
+    //Remover el ciclo si existe, fast es en donde existe el loop
     if(slow === fast){
         slow = head;
         while(show.next !== fast.next){
