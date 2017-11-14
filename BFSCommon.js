@@ -1,3 +1,9 @@
+/*
+Dada una grid con blockers y un punto, determinar
+cual es la distancia mínima de llegar del punto(oro) a
+cualquier otro punto
+*/
+
 class Node{
   constructor(x,y){
     this.x = x;
