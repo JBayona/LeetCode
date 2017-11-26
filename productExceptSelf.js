@@ -13,6 +13,7 @@ https://leetcode.com/problems/product-of-array-except-self/description/
 */
 
 //O(n)
+
 var productExceptSelf = function(nums) {
     let left = [];
     let right = [];
