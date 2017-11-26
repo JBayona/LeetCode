@@ -8,8 +8,8 @@ How many possible unique paths are there?
 https://leetcode.com/problems/unique-paths/description/
 */
 
-//DP
-
+//DP 
+//O(N)
 var uniquePaths = function(m, n) {
 
     if(m === 0 || n === 0) return 0;
