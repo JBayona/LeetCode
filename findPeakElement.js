@@ -47,3 +47,49 @@ var peakFinding = function(array) {
 // array = [1,2,3,4,2,4,6,1,6,8,7];
 array = [1,2];
 console.log(peakFinding(array));
+
+/*Find Peak 2D version*/
+
+var findMax = function(matrix, row, mid, max) {
+  let max_index = 0;
+  for(let i = 0; i < row; i++) {
+    if(max.max < matrix[i][mid]) {
+      max.max = matrix[i][mid];
+      max_index = i; 
+    }
+  }
+  return max_index;
+}
+
+var checkPeak2D = function(matrix, row, column, mid) {
+  //Evaluating maximum of mid column. Max is passed by reference.
+  let max = {max: 0};
+  let max_index = findMax(matrix,row,mid,max);
+
+  /*If we are on first of last column max is the peak*/
+  if(mid === 0 || mid === column-1) return max.max;
+
+  //If mid column maximum is also peak
+  if(max.max >= matrix[max_index][mid-1] && max.max >= matrix[max_index][mid+1]) return max.max;
+
+  //If max is less than its left
+  if(max.max < matrix[max_index][mid-1]) return checkPeak2D(matrix,row,column,mid - Math.floor(mid/2));
+
+  //If max is less than its right
+  if(max.max < matrix[max_index][mid+1]) return checkPeak2D(matrix,row,column,mid + Math.floor(mid/2));
+}
+
+var peakFinding2D = function(matrix){
+  let row = matrix.length;
+  let col = matrix[0].length;
+  let mid = Math.floor(col/2);
+  return checkPeak2D(matrix,row,col,mid);
+}
+
+matrix = [
+            [ 10, 8, 10, 10],
+            [ 14, 13, 12, 11],
+            [ 5, 9, 11, 21 ],
+            [ 16, 17, 19, 20 ],
+          ];
+console.log(peakFinding2D(matrix));
