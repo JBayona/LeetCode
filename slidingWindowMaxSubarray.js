@@ -27,7 +27,7 @@ Array.prototype.front = function() {
 };
 
 Array.prototype.back = function() {
-  return this[this.length-1]
+  return this[this.length-1];
 }
 
 function slidingWindowMax(array, k) {
