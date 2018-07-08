@@ -57,5 +57,5 @@ function dfs(node, helper, result){
     }
 }
 
-tree = new Node(1, new Node(2, null, new Node(5)), new Node(3))
+tree = new Node(1, new Node(2, null, new Node(5)), new Node(3));
 console.log(binaryTreePaths(tree));
