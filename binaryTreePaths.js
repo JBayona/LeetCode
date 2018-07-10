@@ -59,3 +59,41 @@ function dfs(node, helper, result){
 
 tree = new Node(1, new Node(2, null, new Node(5)), new Node(3));
 console.log(binaryTreePaths(tree));
+
+// Opción 3
+
+/*
+         1
+      2     3
+    4  5   6  7
+
+    Result = [1,2,3] [1,2,5] [1,3,6] [1,3,7]
+*/
+
+function Node(val, left=null, right=null) {
+  this.val = val;
+  this.left = left;
+  this.right = right;
+}
+
+var getTreePaths = (node, array) => {
+  if(!node) {
+    console.log(' ');
+    return;
+  }
+  array.push(node.val);
+  if(node.left || node.right) {
+    if(node.left) {
+      getTreePaths(node.left, array);
+    }
+    if(node.right) {
+      getTreePaths(node.right, array)
+    }
+  } else {
+    console.log(array.join('->'));
+  }
+  array.pop();
+}
+
+tree = new Node(1, new Node(2, new Node(4), new Node(5)), new Node(3, new Node(6), new Node(7)));
+console.log(getTreePaths(tree, []));
