@@ -15,6 +15,35 @@ convert("PAYPALISHIRING", 3) should return "PAHNAPLSIIGYIR".
  * @param {number} numRows
  * @return {string}
  */
+
+var convert = function(s, numRows) {
+    let array = new Array(numRows).fill('');
+    let down;
+    // Start the zigzag from top
+    let row = 0;
+    
+    // Corner case, only one line
+    if(numRows === 1) {
+        return s;
+    }
+    
+    for(let i = 0; i < s.length; i++) {
+        // Add the element 
+        array[row] += s[i];
+        
+        // If we reach the top, it´s time to go up
+        if(row === numRows-1) {
+            down = false;
+        // It´s time to go down
+        } else if(row === 0){
+            down = true;
+        }
+        
+        down ? row++ : row--;
+    }
+    return array.join('');
+};
+
 var convert = function(s, numRows) {
     var size = 2 * numRows - 2;
     var len = s.length;
