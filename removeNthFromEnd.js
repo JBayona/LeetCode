@@ -8,24 +8,29 @@ function ListNode(val, node){
   this.next = node ? node : null;
 }
 
-function removeNthFromEnd(head, n){
-  var dummy = head;
-  var p1 = dummy;
-  var p2 = dummy;
-
-  //Move p1 "n" so we will have p1 and p2 "n" nodes of difference
-  for(var i = 0; i < n; i++){
-    p1 = p1.next;
-  }
-
-  while(p1 !== null){
-    p1 = p1.next;
-    p2 = p2.next;
-  }
-
-  p2.next = p2.next.next;
-  return dummy;
-}
+var removeNthFromEnd = function(head, n) {
+    let slow = head;
+    let fast = head;
+    
+    // Move n nodes of difference
+    for(let i = 0; i < n; i++) {
+        fast = fast.next;
+    }
+    
+    // if remove the first node
+    if(fast === null) {
+        head = head.next
+        return head;
+    }
+    
+    while(fast.next) {
+        fast = fast.next;
+        slow = slow.next;
+    }
+    
+    slow.next = slow.next.next;
+    return head;
+};
 
 list = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
 n = 2;
