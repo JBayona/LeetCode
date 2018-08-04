@@ -16,6 +16,34 @@ https://leetcode.com/problems/word-break/description/
 https://www.programcreek.com/2012/12/leetcode-solution-word-break/
 */
 
+// O(n^2) en tiempo y memoria O(n)
+function wordBreak(str, dict) {
+  let n = str.length;
+  if(!str || n === 0) {
+    return false;
+  }
+
+  let dp = new Array(n+1).fill(false);
+  dp[0] = true;
+
+  for(let i = 1; i < n+1; i++) {
+    for(let j = 0; j <= i; j++) {
+      // El dp[j] nos ayuda a identificar si las partes anteriores fueron encontradas, el substring como es 0 based nos ayuda a recortar la cadena correcta
+      if(dp[j] && dict.includes(str.substring(j,i))) {
+        dp[i] = true;
+        break;
+      }
+    }
+  }
+
+  console.log(dp);
+  return dp[n];
+}
+
+str = 'leetcode';
+dict = ['leet', 'code'];
+console.log(wordBreak(str, dict));
+
 var wordBreak = function(str, dic) {
   let pos = new Array(str.length+1).fill(-1);
   pos[0]=0;
