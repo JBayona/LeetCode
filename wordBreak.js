@@ -14,9 +14,11 @@ get the latest changes.
 
 https://leetcode.com/problems/word-break/description/
 https://www.programcreek.com/2012/12/leetcode-solution-word-break/
+
 */
 
 // O(n^2) en tiempo y memoria O(n)
+// Best option.
 function wordBreak(str, dict) {
   let n = str.length;
   if(!str || n === 0) {
