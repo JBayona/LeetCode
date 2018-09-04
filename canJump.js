@@ -1,34 +1,25 @@
 /*
-Given an array of non-negative integers, you are initially positioned at the first index of the array.
+Write a program which takes an array of n integers, where A[i] denotes the maximum you can advance from
+index i abd returns wether it´s possible to advance to the last index starting from the beginning of the
+array.
 
-Each element in the array represents your maximum jump length at that position.
+Solution: It´s natural to try to advance as much as possible but this aproach does not always work, we can
+reach some point where it´s not possible to advance, For example if A = [2,4,1,1,0,2,3] if we vadvance to index 2
+which contains 1, which leads to index 3, after which it cannot make progress. However advancing to index 1, which
+contains a 4 lets us proceed to index 5, from which we can advance to index 6.
 
-Determine if you are able to reach the last index.
-
-For example:
-A = [2,3,1,1,4], return true.
-
-A = [3,2,1,0,4], return false.
-
-
-https://leetcode.com/problems/jump-game/description/
+Los números en el array son el número máximo de posiciones que podemos avanzar, pero no necesariamente las debemos
+usar.
 */
 
-var canJump = function(nums){
-  var len = nums.length;
-  var cover = 0;
-    
-  for(var i = 0; i < len; i++) {
-      if (cover >= i) {
-          cover = Math.max(cover, nums[i] + i);
-          if (cover >= len - 1) {
-              return true;
-          }
-      } else {
-          return false;
-      }
-  }
-}
+var canJump = function(nums) {
+    let max = 0;
+    let lastIndex = nums.length - 1;
+    for(let i = 0; i <= max && max < lastIndex; i++) {
+        max = Math.max(max, nums[i] + i);
+    }
+    return max >= lastIndex;
+};
 
-var array = [2,3,1,1,4];
-console.log(canJump(array));
+  array = [3,3,1,0,2,0,1];
+  console.log(canJump(array));
