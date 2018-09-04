@@ -63,3 +63,50 @@ function reverseArray(array, start, end) {
         end--;
     }
 }
+
+/*
+Complexity O(n)
+Space complexity O(n)
+*/
+function rotateLeft(array, k) {
+    let result = [];
+    k = k%array.length;
+    for(let i = 0; i < array.length; i++) {
+        result[i] = array[k];
+        k++;
+        if(k >= array.length) {
+            k = k - array.length;
+        }
+    }
+    return result;
+}
+
+/*
+Complexity O(n)
+Space complexity O(1)
+*/
+function rotateLeftOnPlace(array, k) {
+    let numSets = gdc(nums.length, k);
+    let index= 0;
+    let tmp = 0;
+    let j = 0;
+    for(let i = 0; i < numSets; i++) {
+        j = i;
+        tmp = nums[i]
+        while(true) {
+            index = (j + k)%nums.length;
+            if(index === i) break;
+            nums[j] = nums[index]; // Shift element to left
+            j = index;
+        }
+        nums[j] = tmp;
+    }
+}
+
+function gcd(a, b) {
+    if(b === 0) {
+        return a;
+    } else {
+        return gcd(b, a%b);
+    }
+}
