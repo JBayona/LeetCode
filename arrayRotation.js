@@ -86,20 +86,20 @@ Complexity O(n)
 Space complexity O(1)
 */
 function rotateLeftOnPlace(array, k) {
-    let numSets = gdc(nums.length, k);
+    let numSets = gdc(array.length, k);
     let index= 0;
     let tmp = 0;
     let j = 0;
-    for(let i = 0; i < numSets; i++) {
+    for(let i = 0; i < arrayets; i++) {
         j = i;
-        tmp = nums[i]
+        tmp = array[i]
         while(true) {
-            index = (j + k)%nums.length;
+            index = (j + k)%array.length;
             if(index === i) break;
-            nums[j] = nums[index]; // Shift element to left
+            array[j] = array[index]; // Shift element to left
             j = index;
         }
-        nums[j] = tmp;
+        array[j] = tmp;
     }
 }
 
