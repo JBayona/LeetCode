@@ -8,7 +8,24 @@ Given input array nums = [1,1,2],
 
 Your function should return length = 2, with the first two elements of nums being 1 and 2 respectively. 
 It doesn't matter what you leave beyond the new length.
+
+https://leetcode.com/problems/remove-duplicates-from-sorted-array/description/
 */
+
+
+var removeDuplicates = function(nums){
+    if(nums.length === 0) {
+        return 0;
+    }
+    let write = 1;
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[write - 1] !== nums[i]) {
+            nums[write++] = nums[i];
+        }
+    }
+    return write;
+};
+
 var removeDuplicates = function(array){
   for(var i = 1; i < array.length; i++){
     if(array[i-1] === array[i]){
