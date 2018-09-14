@@ -6,8 +6,6 @@ https://www.youtube.com/watch?v=BysNXJHzCEs
 
 function longestCommonSubstring(str1, str2) {
   let dp = new Array(str2.length + 1);
-  let maxIndexI = 0;
-  let maxIndexJ = 0;
   let max = 0;
   let result = [];
 
@@ -29,8 +27,6 @@ function longestCommonSubstring(str1, str2) {
         dp[i][j] = dp[i-1][j-1] + 1;
         if(dp[i-1][j-1] + 1 > max) {
           max = dp[i-1][j-1] + 1;
-          maxIndexI = i;
-          maxIndexJ = j;
         }
       } else {
         dp[i][j] = 0;
