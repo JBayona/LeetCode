@@ -55,7 +55,7 @@ function longestPalindrome(str) {
           let j = i + k - 1; 
 
           // checking for sub-string from ith index to 
-          // jth index iff str.charAt(i+1) to  
+          // jth index if str.charAt(i+1) to  
           // str.charAt(j-1) is a palindrome 
           if (table[i + 1][j - 1] && str[i] === str[j]) { 
               table[i][j] = true; 
