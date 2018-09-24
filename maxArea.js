@@ -7,6 +7,32 @@ Note: You may not slant the container and n is at least 2.
 https://leetcode.com/problems/container-with-most-water/description/
 */
 
+// O(N)
+/*Para maximixar el area debemos conservar ya sea el mayor x axis o mayor y
+axis*/
+
+//Two pointers
+var maxArea = function(height) {
+    let max = 0;
+    let i = 0;
+    let j = height.length - 1;
+    let width;
+    
+    while(i < j) {
+        width = j - i;
+        // El menor denota el height que podemos tomar
+        let h = Math.min(height[i], height[j]);
+        max = Math.max(max, width * h);
+        if(height[i] > height[j]) {
+            j--;
+        } else {
+            i++;
+        }
+    }
+    
+    return max;
+};
+
 //O(N^2)
 var maxArea = function(height) {
   let max;
