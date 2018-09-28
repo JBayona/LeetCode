@@ -1,4 +1,5 @@
 /*
+
 Implement regular expression matching with support for '.' and '*'.
 
 '.' Matches any single character.
@@ -19,6 +20,7 @@ isMatch("ab", ".*") → true
 isMatch("aab", "c*a*b") → true
 
 https://leetcode.com/problems/regular-expression-matching/#/description
+
 */
 
 var isMatch = function(s, p) {
