@@ -49,7 +49,7 @@ var removeInvalidParentheses = function(s) {
     return result;
 };
 
-function remove(s, result, last_i, last_j, par, count, removed) {
+function remove(s, result, last_i, last_j, par) {
     let stack = 0;
     for (let i = last_i; i < s.length; ++i) {
         if (s[i] == par[0]) stack++;
