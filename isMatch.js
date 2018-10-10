@@ -54,6 +54,51 @@ var isMatch = function(s, p) {
 
 };
 
+/*
+https://www.youtube.com/watch?v=l3hda49XcDE
+*/
+
+/**
+ * @param {string} s
+ * @param {string} p
+ * @return {boolean}
+ */
+var isMatch = function(s, p) {
+    // s = string, p = pattern
+    let dp = new Array(s.length+1);
+    for(let i = 0; i < dp.length; i++) {
+        dp[i] = new Array(p.length+1).fill(false);
+    }
+    
+    // In case there's empty string for s and p
+    dp[0][0] = true;
+    
+    //Deal with column 0 cases for patterns like a*, a*b* or a*b*c*
+    // To set true or false for the first column
+    for(let i = 1; i < dp[0].length; i++){
+        if(p[i-1] === '*') {
+            dp[0][i] = dp[0][i-2];
+        }
+    }
+    
+    for(let i = 1; i < dp.length; i++) {
+        for(let j = 1; j < dp[0].length; j++) {
+            if(p[j-1] === '.' || p[j-1] === s[i-1]) {
+                dp[i][j] = dp[i-1][j-1];
+            }else if(p[j-1] === '*') {
+                dp[i][j] = dp[i][j-2];
+                if(p[j-2] === '.' || p[j-2] === s[i-1]){
+                    dp[i][j] = dp[i][j] || dp[i-1][j];
+                }
+            }else {
+                dp[i][j] = false;
+            }
+        }
+    }
+    
+    return dp[s.length][p.length]
+};
+
 s = "aab";
 p = "c*a*b";
 console.log(isMatch(s,p));
