@@ -14,6 +14,7 @@ get the latest changes.
 
 https://leetcode.com/problems/word-break/description/
 https://www.programcreek.com/2012/12/leetcode-solution-word-break/
+https://youtu.be/WepWFGxiwRs
 
 */
 
@@ -30,7 +31,8 @@ function wordBreak(str, dict) {
 
   for(let i = 1; i < n+1; i++) {
     for(let j = 0; j <= i; j++) {
-      // El dp[j] nos ayuda a identificar si las partes anteriores fueron encontradas, el substring como es 0 based nos ayuda a recortar la cadena correcta
+      // El dp[j] nos ayuda a identificar si las partes anteriores fueron encontradas,
+      // el substring como es 0 based nos ayuda a recortar la cadena correcta
       if(dp[j] && dict.includes(str.substring(j,i))) {
         dp[i] = true;
         break;
