@@ -1,5 +1,4 @@
 /*
-
 Given an input string, reverse the string word by word.
 
 Example:  
@@ -15,7 +14,6 @@ Follow up: For C programmers, try to solve it in-place in O(1) space.
 
 
 https://leetcode.com/problems/reverse-words-in-a-string/description/
-
 */
 
 
