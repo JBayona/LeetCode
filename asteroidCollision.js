@@ -16,15 +16,17 @@ var asteroidCollision = function(asteroids) {
   let result = [];
   for(let i = 0; i < asteroids.length; i++) {
     collision: {
+      // Here it we have a collision
       while(result.length && asteroids[i] < 0 && result[result.length-1] > 0) {
-        if(Math.abs(result[result.length-1]) < Math.abs(asteroids[i])) {
+        if(Math.abs(result[result.length-1]) < Math.abs(asteroids[i])) { // Asteroid moving to the left will destroy the asteroid if it´s greater
           result.pop();
           continue;
-        } else if (Math.abs(result[result.length-1]) === Math.abs(asteroids[i])) {
+        } else if (Math.abs(result[result.length-1]) === Math.abs(asteroids[i])) { // Both asteroids collapse
           result.pop();
         }
         break collision;
       }
+      // If there´s no collision we add the asteroid regardless the sign (we could have negative numbers at the beginning)
       result.push(asteroids[i]);
     }
   }
@@ -37,3 +39,76 @@ return result;
 // asteroids = [-2, -1, 1, 2];
 asteroids = [-2,-2,1,-2];
 console.log(asteroidCollision(asteroids));
+
+
+
+function Asteroid(mass, direction) {
+  this.mass = mass;
+  this.direction = direction;
+}
+
+
+function countHits(input) {
+let stack = [];
+  
+  for(let i = 0 ; i < input.length; i++) {
+  // There's no collision and we only add the mass to the stack
+  if(input[i].direction >= 0) {
+    stack.push(input[i].mass);
+    } else {
+    let asteroid = input[i];
+      // Remove asteroids while the top of the stack is less than our
+      // current asteroid
+      while(stack.length && stack[stack.length-1] < asteroid.mass) {
+      stack.pop();
+      }
+      // If both asteroids have the same mass
+      if(asteroid.mass === stack[stack.length-1]) {
+      stack.pop();
+      }
+    }
+  }
+  return stack.length;
+}
+
+var case1 = [
+  new Asteroid(1, 1),
+  new Asteroid(5, -1),
+  new Asteroid(7, 1),
+  new Asteroid(3, -1),
+];
+
+var case2 = [
+  new Asteroid(1, 1),
+  new Asteroid(3, 1),
+  new Asteroid(5, 1),
+  new Asteroid(7, -1),
+];
+
+var case3 = [
+  new Asteroid(5, 1),
+  new Asteroid(1, 1),
+  new Asteroid(4, -1),
+];
+
+var case4 = [
+  new Asteroid(1, 1),
+  new Asteroid(5, 1),
+  new Asteroid(4, -1),
+];
+
+function testCase(caseNum, asteroids, expected) {
+  var actual = countHits(asteroids);
+  var output = 'Case ' + caseNum + ': ';
+  if (actual == expected) {
+    output += 'PASSED';
+  } else {
+    output += 'FAILED; got ' + actual + ' expected ' + expected;
+  }
+  console.log(output);
+}
+
+testCase(1, case1, 1);
+testCase(2, case2, 0);
+testCase(3, case3, 1);
+testCase(4, case4, 2);
