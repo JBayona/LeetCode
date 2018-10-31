@@ -45,3 +45,37 @@ function dfs(root, k, hash) {
     hash[root.val] = root;
     return dfs(root.left, k, hash) || dfs(root.right, k, hash);
 }
+
+
+// Op2
+// Time Complexity: O(n), Space Complexity: O(n).
+var findTarget = function(root, k) {
+    let array = [];
+    // Walk inorder
+    inorder(root, array);
+    
+    let i = 0;
+    let j = array.length-1;
+    let tmp = 0;
+    
+    while(i < j) {
+        tmp = array[i] + array[j];
+        if(tmp === k) {
+            return true;
+        }else if(tmp > k) {
+            j--;
+        } else {
+            i++;
+        }
+    }
+    
+    return false;
+};
+
+function inorder(root, array) {
+    if(root) {
+        inorder(root.left, array);
+        array.push(root.val);
+        inorder(root.right, array);
+    }
+}
