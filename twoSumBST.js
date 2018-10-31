@@ -79,3 +79,21 @@ function inorder(root, array) {
         inorder(root.right, array);
     }
 }
+
+
+//Op3
+function findTarget(root, k) {
+    return dfs(root, root,  k);
+}
+    
+function dfs(root, cur, k){
+    if(cur == null) return false;
+    return search(root, cur, k - cur.val) || dfs(root, cur.left, k) || dfs(root, cur.right, k);
+}
+    
+function search(root, cur, value){
+    if(root == null)return false;
+    return (root.val == value) && (root != cur) 
+        || (root.val < value) && search(root.right, cur, value) 
+            || (root.val > value) && search(root.left, cur, value);
+}
