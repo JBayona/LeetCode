@@ -42,6 +42,34 @@ var search = function(nums, target) {
     return -1;
 };
 
+// Recursive
+
+var search = function(nums, target) {
+    let mid = 0;
+    let start = 0;
+    let end = nums.length-1;
+    
+    return binarySearch(start, end, nums, target);
+};
+
+function binarySearch(start, end, nums, target) {
+    
+    // Base Case
+    if(start <= end) {
+        mid = Math.floor((start+end)/2);
+        if(target === nums[mid]) {
+            return mid;
+        }
+        if(target < nums[mid]) {
+            return binarySearch(start, mid-1, nums, target);
+        } else {
+            return binarySearch(mid+1, end, nums, target);
+        }
+    }
+    
+    return -1
+}
+
 array = [1,2,3,4,5,6,7,8,9];
 target = 6;
 console.log(binarySearch(array, target));
