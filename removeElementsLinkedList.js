@@ -28,3 +28,21 @@ var removeElements = function(head, val) {
     
     return dummyNode.next;
 };
+
+// Recursive
+
+var removeElements = function(head, val) {
+    // If we have completed to check the list (base case)
+    if(head === null) {
+        return head;
+    }
+    // If we found the element we don´t conect it
+    if(head.val === val) {
+        head = removeElements(head.next, val);
+    } else {
+        // Connect the next elements.
+        head.next = removeElements(head.next, val)
+    }
+    
+    return head;
+};
