@@ -21,3 +21,20 @@ var findKthLargest = function(nums, k) {
     let sortedArray = nums.sort((a,b) => b-a );
     return sortedArray[k-1];
 };
+
+//O(nlogk)
+// O(nlogk)
+class Solution {
+    public int findKthLargest(int[] nums, int k) {
+        PriorityQueue<Integer> largeK = new PriorityQueue<Integer>(k + 1);
+
+        for(int el : nums) {
+            largeK.add(el);
+            if (largeK.size() > k) {
+                largeK.poll();
+            }
+        }
+
+        return largeK.poll();
+    }
+}
