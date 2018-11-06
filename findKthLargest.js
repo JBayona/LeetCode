@@ -15,15 +15,44 @@ You may assume k is always valid, 1 ≤ k ≤ array's length.
 https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 */
 
+// Quick Select
+//O(N) best case, worst O(N^2)
+var findKthLargest = function(nums, k) {
+    let left = 0;
+    let right = nums.length - 1;
+    while (true) { // this problem guaranteed to have a valid answer
+        let pos = partition(nums, left, right);
+        if (pos == k - 1)   return nums[pos];
+        else if (pos < k - 1)   left = pos + 1;
+        else right = pos - 1;
+    }
+};
 
-// O(nlogn)
+// take pivot, put elements smaller on the left, larger on right
+function partition(nums, left, right) {
+    let pivot = nums[left];
+    let idx = left;
+    swap(nums, idx, right);
+    for (let i = left; i < right; i++) 
+        if (nums[i] > pivot) swap(nums, i, idx++);
+    swap(nums, idx, right);
+    return idx;
+}
+
+function swap(nums, i, j) {
+    let tmp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = tmp;
+}
+
+
+// O(NlogN)
 var findKthLargest = function(nums, k) {
     let sortedArray = nums.sort((a,b) => b-a );
     return sortedArray[k-1];
 };
 
-//O(nlogk)
-// O(nlogk)
+//O(NlogK)
 class Solution {
     public int findKthLargest(int[] nums, int k) {
         PriorityQueue<Integer> largeK = new PriorityQueue<Integer>(k + 1);
