@@ -6,6 +6,26 @@ https://leetcode.com/problems/binary-tree-paths/description/
 
 */
 
+var binaryTreePaths = function(root) {
+  let result = [];
+  dfs(root, '', result);
+  return result;
+};
+
+// Walk preorder
+function dfs(node, tmp, result){
+  // Base case
+  if(!node) return;
+  
+  tmp =  tmp ? tmp + '->' + node.val : node.val;
+  if(!node.left && !node.right){
+    // No es necesario limpiar porque a la vuelta rompera con el base case
+     result.push(tmp);
+  }
+  dfs(node.left, tmp, result);
+  dfs(node.right, tmp, result);
+}
+
 // Opción 1
 function Node(val, left, right){
   this.val = val;
@@ -21,6 +41,7 @@ var binaryTreePaths = function(root) {
     return result;
 };
 
+// Walk inorder
 function dfs(node, helper, result){
     if(node) {
         helper.push(node.val);
