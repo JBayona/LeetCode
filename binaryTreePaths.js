@@ -58,16 +58,16 @@ var binaryTreePaths = function(root) {
 };
 
 // Walk inorder
-function dfs(node, helper, result){
-    if(node) {
-        helper.push(node.val);
-        if(!node.left && !node.right){
-            result.push(helper.join('->'));
-            helper = []
-        }
-        dfs(node.left, helper.concat(), result);
-        dfs(node.right, helper.concat(), result);
-    }
+function dfs(node, tmp, result){
+  // Or (!node) return
+  if(node) {
+      tmp.push(node.val);
+      if(!node.left && !node.right){
+          result.push(tmp.join('->'));
+      }
+      dfs(node.left, tmp.concat(), result);
+      dfs(node.right, tmp.concat(), result);
+  }
 }
 
 // Opción 2
