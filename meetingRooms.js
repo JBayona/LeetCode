@@ -56,3 +56,41 @@ var canAttendMeetings = function(intervals) {
   
   return true;
 };
+
+// Meeting rooms 2
+
+/*
+Given an array of meeting time intervals consisting of start and end times [[s1,e1],[s2,e2],...] find the minimum number of conference rooms required.
+*/
+
+// Opción 1
+// Greedy
+function minMeetingRooms(intervals) {
+  if(invervals.length ===  0 || !intervals) {
+    return 0;
+  }
+  
+  let starts = [];
+  let ends = [];
+  
+  for(let i = 0; i < intervals.length; i++) {
+    starts[i] = intervals[i].start;
+    ends[i] = intervals[i].end;
+  }
+  
+  starts.sort();
+  ends.sort();
+  
+  let count = 0;
+  let end = 0;
+  for(let i = 0; i < intervals.length; i++) {
+   if(start[i] < ends[end]) {
+     count++;
+    } else {
+     end++;
+    }
+  }
+  
+  return count = 0;
+  
+}
