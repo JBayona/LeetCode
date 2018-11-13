@@ -44,6 +44,71 @@ function findKSmallestBST(tree, k){
   return -1;
 }
 
+// Recursion with O(N) in space
+
+var kthSmallest = function(root, k) {
+  let sorted = [];
+  inorder(root, sorted);
+  return sorted[k-1];
+};
+
+function inorder(node, sorted) {
+  if(!node) return;
+  inorder(node.left, sorted);
+  sorted.push(node.val);
+  inorder(node.right, sorted);
+}
+
+// Recursion with constant space
+
+var kthSmallest = function(root, k) {
+  count = k;
+  result = null;
+  inorder(root);
+  return result;
+};
+
+function inorder(node) {
+  if(!node) return;
+  inorder(node.left);
+  
+  count--;
+  if(count===0) {
+      result = node.val;
+      return;
+  }
+  
+  inorder(node.right);
+}
+
+// Iterative
+
+var kthSmallest = function(root, k) {
+  let stack = [];
+  let node = root;
+  while(true) {
+    if(node !== null) {
+      stack.push(node);
+      node = node.left;
+    } else {
+      // No more elements in the stack
+      if(stack.length === 0) {
+          break;
+      }
+      node = stack.pop();
+      --k;
+      if(k === 0) {
+          return node.val;
+      }
+      stack.push(node.right);
+    }
+  }
+  
+  // Element not found
+  return -1;
+};
+
+
 tree = new Node(7, new Node(5, new Node(4, new Node(3)), new Node(6)), new Node(10, new Node(9), new Node(11)));
 k = 4;
 console.log(findKSmallestBST(tree,k));
