@@ -1,23 +1,71 @@
-function TreeNode(val,left,right){
-  this.val = val;
-  this.left = left || null;
-  this.right = right || null;
-}
+/*
+Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
 
-function LCABST(root,n1,n2){
-  if(root === null) return null;
-  /*if n1 and n2 are smaller than root, LCA is in
-  the left side*/
-  if(root.val > n1 && root.val > n2){
-    return LCABST(root.left,n1,n2);
+According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+
+Given binary search tree:  root = [6,2,8,0,4,7,9,null,null,3,5]
+
+        _______6______
+       /              \
+    ___2__          ___8__
+   /      \        /      \
+   0      _4       7       9
+         /  \
+         3   5
+
+https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
+
+https://www.youtube.com/watch?v=TIoCCStdiFo
+
+*/
+
+// Time O(h) with O(h) space for call stack
+var lowestCommonAncestor = function(root, p, q) {
+  // Base Case
+  if(!root) return;
+  
+   /* if p and q are greater than root, LCA is in
+   the right side*/
+  if(root.val < p.val && root.val < q.val) {
+    return lowestCommonAncestor(root.right, p, q);
   }
-  /*If both n1 and n2 are greater than node, LCA is
-  in the right side*/
-  if(root.val < n1 && root.val < n2){
-    return LCABST(root.right,n1,n2);
+  
+  /* if p and q are smaller than root, LCA is in
+   the left side*/
+  if(root.val > p.val && root.val > q.val) {
+    return lowestCommonAncestor(root.left, p, q);
   }
   return root;
 }
+
+// Time O(h) with O(h) space for call stack
+var lowestCommonAncestor = function(root, p, q) {
+  // Base Case
+  if(!root) return;
+  
+  if(root.val > Math.max(p.val, q.val)) {
+    return lowestCommonAncestor(root.left, p, q);
+  } else if(root.val < Math.min(p.val, q.val)) {
+    return lowestCommonAncestor(root.right, p, q);
+  } else{
+    return root;
+  } 
+};
+
+// Time O(h) with O(1)
+// Iterative
+var lowestCommonAncestor = function(root, p, q) {
+  while(root) {
+    if(root.val < p.val && root.val < q.val) {
+        root = root.right;
+    } else if(root.val > p.val && root.val > q.val) {
+        root = root.left;
+    } else {
+        break;
+    }
+  }
+  return root;
+};
 
 
 /*
