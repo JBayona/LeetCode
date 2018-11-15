@@ -57,7 +57,7 @@ var binaryTreePaths = function(root) {
     return result;
 };
 
-// Walk inorder
+// Walk preorder
 function dfs(node, tmp, result){
   // Or (!node) return
   if(node) {
