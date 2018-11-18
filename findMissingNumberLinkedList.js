@@ -8,6 +8,9 @@ function ListNode(val, next) {
   this.next = next || null;
 }
 
+// Time O(N) y O(1)
+// Get the sum of both lists, then find the difference between both lists
+// and that would be missing number
 function findMissingNumberLinkedList(l1, l2) {
   let sum1 = 0;
   let sum2 = 0;
