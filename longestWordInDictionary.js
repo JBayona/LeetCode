@@ -65,6 +65,8 @@ function dfs(node, result) {
     // Generate letters from a - z
     let letter = String.fromCharCode('a'.charCodeAt(0) + i);
     // Check if we have a children and is the ending word (verify all childrens from a - z)
+    // node.children[letter].isEndWord will make sure that we analyze only those who have a
+    // letter in all the words in the array, that's the function of isEndWord
     if(node.children[letter] && node.children[letter].isEndWord) {
       // If yes, check if the word is greter than our current result
       // We make sure will be in lexicographical order as we iterate
