@@ -65,3 +65,37 @@ function insertValue(root, val) {
     return root;
   }
 }
+
+// Iterative
+
+var insertIntoBST = function(root, val) {
+  let newRoot = root;
+  insertValue(root, val);
+  return newRoot;
+};
+
+// Iterative solution
+// O(N) time complexity
+function insertValue(root, val) {
+    let node = root;
+    while(true) {
+        if(val < node.val) {
+            if(node.left) {
+                node = node.left;
+                continue;
+            } else {
+                node.left = new TreeNode(val);
+                break;
+            }
+        } else {
+            if(node.right) {
+                node = node.right;
+                continue;
+            } else {
+                node.right = new TreeNode(val);
+                break;
+            }
+        }
+    }
+    return root;
+}
