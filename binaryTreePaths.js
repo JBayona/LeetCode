@@ -42,6 +42,49 @@ function dfs(node, tmp, result){
   dfs(node.right, tmp, result);
 }
 
+// Iterative preorder traversal
+// Time complexity O(N) -- We touch every single node
+// Space complexity O(N) -- Worst case we can have all nodes in the stack
+function binaryTreePaths(root) {
+
+  if(!root) {
+    return [];
+  }
+
+  let node = root;
+  // Stack to traverse preorder
+  let stack = [];
+  // Result to push the strings
+  let result = [];
+  // Stack of strings
+  let paths = [];
+
+  stack.push(node);
+  paths.push(node.val + '');
+
+  while(stack.length) {
+   let current = stack.pop();
+   // Path is the concatenation in preorder traversal
+   let path = paths.pop();
+
+   // Check if is leaf node
+   if(!current.left && !current.right) {
+    result.push(path.toString()); 
+   }
+
+   if(current.right) {
+    stack.push(current.right);
+    paths.push(path + '->' + current.right.val);
+   }
+   if(current.left) {
+    stack.push(current.left);
+    paths.push(path + '->' + current.left.val);
+   }
+  }
+
+  return result;
+}
+
 // Opción 1
 function Node(val, left, right){
   this.val = val;
