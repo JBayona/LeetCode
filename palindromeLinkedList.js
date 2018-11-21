@@ -81,3 +81,28 @@ function reverseList(list) {
   }
     return prev;
 }
+
+// Option 2
+// Time O(N) Space O(N)
+var isPalindrome = function(head) {
+  let stack = [];
+  let node;
+  
+  node = head;
+  while(node) {
+    stack.push(node.val);
+    node = node.next;
+  }
+  
+  // Check if the list is palindrome with the stack
+  // as the stack pop from the back (last entered)
+  node = head;
+  while(node) {
+    if(node.val !== stack.pop()) {
+        return false;
+    }
+    node = node.next;
+  }
+  
+  return true;
+};
