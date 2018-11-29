@@ -45,9 +45,11 @@ function dfs(grid, row, column, visited){
 
   //Checa todos los vecinos (4 o 8)
   for(let i = 0; i < 8; i++){
-    if(isSafe(grid, row + rowK[i], column + columnK[i], visited)){
-      visited[row + rowK[i]][column + columnK[i]] = true;
-      dfs(grid, row + rowK[i], column + columnK[i], visited);
+    let nextRowk = row + rowK[i];
+    let nextColk = column + columnK[i];
+    if(isSafe(grid, nextRowk, nextColk, visited)){
+      visited[nextRowk][columnK] = true;
+      dfs(grid, nextRowk, columnK, visited);
     }
   }
 }
@@ -55,8 +57,12 @@ function dfs(grid, row, column, visited){
 function isSafe(grid, row, column, visited){
   let ROW = grid.length;
   let COLUMN = grid[0].length;
-  return (row >= 0 && row < ROW) && (column >= 0 && column < COLUMN) 
-        && (grid[row][column] === 1 && !visited[row][column]);
+  return (
+    (row >= 0 && row < ROW) &&
+    (column >= 0 && column < COLUMN) && 
+    grid[row][column] === 1 &&
+    !visited[row][column];
+  )
 }
 
 
