@@ -82,9 +82,6 @@ return start;
 
 };
 
-n = 4;
-console.log(findCelebrity(n));
-
 // Person with 2 is celebrity 
 PERSON = [ 
   [0, 0, 1, 0 ], 
