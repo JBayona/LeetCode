@@ -56,6 +56,35 @@ function knows(a, b) {
     return PERSON[a][b] == 1 ? true : false; 
 }
 
+
+/*Two pointers technique*/
+var findCelebrity = function(n) {
+let start = 0;
+let end = n - 1;
+
+while(start < end) {
+ if(knows(start, end)) {
+  start++;
+ } else {
+  end--;
+ }
+}
+
+// start is our celebrity candidate
+for(let i = 0; i < n; i++) {
+ if(i !== start && (knows(start,i) || !knows(i,start))) {
+  return -1;
+ }
+}
+
+// start is the celebrity
+return start;
+
+};
+
+n = 4;
+console.log(findCelebrity(n));
+
 // Person with 2 is celebrity 
 PERSON = [ 
   [0, 0, 1, 0 ], 
