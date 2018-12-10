@@ -32,6 +32,32 @@ var invertTree = function(root) {
   return root;
 };
 
+// Stack
+// Iterative O(N) space and time
+var invertTree = function(root) {
+  if(!root) {
+      return root;
+  }
+  
+  let stack = [];
+  stack.push(root);
+  while(stack.length) {
+    let current = stack.pop();
+    let left = current.left || null;
+    current.left = current.right;
+    current.right = left;
+    
+    if(current.left) {
+        stack.push(current.left);
+    }
+    if(current.right) {
+        stack.push(current.right);
+    }
+  }
+  
+  return root;
+};
+
 var invertTree = function(root) {
   if(!root) return root;
   let left;
