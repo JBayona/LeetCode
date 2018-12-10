@@ -21,6 +21,18 @@ function TreeNode(val, left, right) {
 }
 
 var invertTree = function(root) {
+  // Base case
+  if(!root) {
+      return null;
+  };
+  // This is to avoid override changes
+  let tmp = root.left;
+  root.left = invertTree(root.right);
+  root.right = invertTree(tmp);
+  return root;
+};
+
+var invertTree = function(root) {
   if(!root) return root;
   let left;
   let right;
