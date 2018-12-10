@@ -66,7 +66,7 @@ var inorderSuccessor = function(root, node) {
 }
 
 function inorder(node, tmp) {
-  f(!node) return;
+  if(!node) return;
 
   inorder(node.left, tmp);
   tmp.push(node);
