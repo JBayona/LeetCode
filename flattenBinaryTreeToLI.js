@@ -69,3 +69,29 @@ function helper(root, prev) {
   prev = root;
   return root;
 }
+
+// Flatten iterative and stack
+// Preorder iterative traversal
+var flatten = function(root) {
+  
+  if(!root) return root;
+  
+  let stack = [];
+  let prev = new TreeNode(-1);
+  
+  stack.push(root);
+  
+  while(stack.length) {
+    let current = stack.pop();
+    prev.right = current;
+    
+    if(current.right) {
+        stack.push(current.right);
+    }
+    if(current.left) {
+        stack.push(current.left);
+    }
+    current.left = null;
+    prev = current;
+  }
+};
