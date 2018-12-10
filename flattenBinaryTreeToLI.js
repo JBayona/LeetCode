@@ -53,3 +53,19 @@ var flatten = function(root) {
   return root;
 };
 
+
+var flatten = function(root) {
+  root = helper(root, null);
+};
+
+function helper(root, prev) {
+  // Base case
+  if(!root) return prev;
+  
+  prev = helper(root.right, prev);
+  prev = helper(root.left, prev);
+  root.right = prev;
+  root.left = null;
+  prev = root;
+  return root;
+}
