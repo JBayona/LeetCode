@@ -66,3 +66,9 @@ function helper(root, count) {
   
   return left + right + 1;
 }
+
+// Opción 3
+var countNodes = function(root) {
+  // La suma del 1 es por el root de ese nodo
+  return root ? countNodes(root.left) + countNodes(root.right) + 1 : 0;
+};
