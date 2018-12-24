@@ -45,3 +45,24 @@ var countNodes = function(root) {
 
   return count;
 };
+
+// Opción 2
+var countNodes = function(root) {
+  return helper(root, 0);
+};
+
+function helper(root, count) {
+  if(!root) {
+      return 0;
+  }
+  let left = 0;
+  let right = 0;
+  if(root.left) {
+    left = helper(root.left, count);
+  }
+  if(root.right) {
+    right = helper(root.right, count);
+  }
+  
+  return left + right + 1;
+}
