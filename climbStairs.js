@@ -5,6 +5,9 @@ Each time you can either climb 1 or 2 steps. In how many distinct ways can you c
 
 Note: Given n will be a positive integer.
 
+https://www.youtube.com/watch?v=CFQk7OQO_xM
+https://www.youtube.com/watch?v=5o-kdjv7FD0
+
 http://www.geeksforgeeks.org/count-ways-reach-nth-stair/
 https://leetcode.com/problems/climbing-stairs/description/
 */
