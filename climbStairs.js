@@ -14,10 +14,10 @@ https://leetcode.com/problems/climbing-stairs/description/
 
 var climbStairs = function(n) {
     var array = [];
-    //Casos Base
+    // Casos Base
     array[0] = 0;
-    array[1] = 1; /*Para llegar al primer escalon sólo tenemos una opción*/
-    array[2] = 2; /*Para el 2, tenemos dos opciones, (1,1) y 2*/
+    array[1] = 1; /* Para llegar al primer escalon sólo tenemos una opción */
+    array[2] = 2; /* Para el 2, tenemos dos opciones, (1,1) y 2 */
     for(let i = 3; i <= n; i++){
       array[i] = array[i - 1] + array[i - 2]; 
     }
