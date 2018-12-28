@@ -1,5 +1,13 @@
 /*
-https://www.geeksforgeeks.org/print-binary-tree-vertical-order-set-2/
+https://www.geeksforgeeks.org/print-a-binary-tree-in-vertical-order-set-3-using-level-order-traversal/
+*/
+
+/*
+Time Complexity of above implementation is O(n Log n). Note that above implementation uses map which is implemented using self-balancing BST.
+
+We can reduce time complexity to O(n) using unordered_map. To print nodes in desired order, we can have 2 variables denoting min and max horizontal distance. We can simply iterate from min to max horizontal distance and get corresponding values from Map. So it is O(n)
+
+Auxiliary Space : O(n)
 */
 
 // Node 
@@ -9,37 +17,90 @@ function Node(val, left, right) {
   this.right = right || null;
 }
 
-/* Keep track of the current level and sotre it in a hash, the
-key is the hd (high distance)*/
-function findDistanceFromRoof(node, hd, hash) {
-
+// function to print vertical order traversal of binary tree
+function verticalTraverse(root) {
   // Base case
-  if(!node) {
+  if(!root) {
     return;
   }
 
-  // Add the values in the hash
-  if(hd in hash) {
-    hash[hd].push(node.val);
-  }else {
-    hash[hd] = [node.val];
+  // Create empty queue for level order traversal 
+  let queue = [];
+
+  // create a map to store nodes at a particular 
+  // horizontal distance 
+  let map = {};
+
+  // map to store horizontal distance of nodes 
+  let hd_node = {};
+
+  // enqueue root 
+  queue.push(root) 
+  // store the horizontal distance of root as 0 
+  hd_node[root.val] = 0
+  
+  map[0] = [root.val] 
+  
+  // loop will run while queue is not empty 
+  while (queue.length) {
+  
+    // dequeue node from queue 
+    temp = queue.pop(); 
+
+    if (temp.left) { 
+      // Enqueue left child 
+      queue.push(temp.left);
+
+      // Store the horizontal distance of left node 
+      // hd(left child) = hd(parent) -1
+      hd_node[temp.left.val] = hd_node[temp.val] - 1;
+      hd = hd_node[temp.left.val] 
+
+      if(!(hd in map)) {
+        map[hd] = [temp.left.val];
+      } else {
+        map[hd].push(temp.left.val);
+      }
+    }
+
+    if (temp.right) {
+      // Enqueue right child 
+      queue.push(temp.right);
+
+      // store the horizontal distance of right child 
+      // hd(right child) = hd(parent) + 1 
+      hd_node[temp.right.val] = hd_node[temp.val] + 1;
+      hd = hd_node[temp.right.val];
+
+      if(!(hd in map)) {
+        map[hd] = [temp.right.val];
+      } else {
+        map[hd].push(temp.right.val);
+      }
+    }
+
   }
-
-  //Visit the left and right subtrees
-  findDistanceFromRoof(node.left, hd - 1, hash);
-  findDistanceFromRoof(node.right, hd + 1, hash);
-}
-
-
-function printVertical(tree) {
-  let hash = {};
-  let level = 0;
-
-  findDistanceFromRoof(tree, level, hash)
-  // Print by level, the orden is not guaranteed
-  for(key in hash){
-    console.log(hash[key].join(' '));
-  }
+    /*
+    0: (3) [1, 6, 5]
+    1: (2) [3, 8]
+    2: [7]
+    3: [9]
+    -1: [2]
+    -2: [4]
+    */
+    console.log(map);
+    /* {1: 0, 2: -1, 3: 1, 4: -2, 5: 0, 6: 0, 7: 2, 8: 1, 9: 3} */
+    console.log(hd_node);
+    // Sort the map according to horizontal distance 
+    sorted_keys = Object.keys(map).map(item => parseInt(item)).sort((a,b) => a - b);
+    
+    //Traverse the sorted map and print nodes at each horizontal distance 
+    for(let i = 0; i < sorted_keys.length; i++) {
+      if(sorted_keys[i] in map) {
+        console.log(map[sorted_keys[i]]);
+      }
+      console.log('\n');
+    }
 }
 
 /*
@@ -49,4 +110,4 @@ function printVertical(tree) {
            8   9
 */
 let tree = new Node(1, new Node(2, new Node(4), new Node(5)), new Node(3, new Node(6, null, new Node(8)), new Node(7, null, new Node(9))));
-printVertical(tree);
+verticalTraverse(tree);
