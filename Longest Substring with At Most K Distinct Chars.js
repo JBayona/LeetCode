@@ -34,11 +34,6 @@ var lengthOfLongestSubstringKDistinct = function(str, k) {
   return result;
 }
 
-str = "karappa";
-k = 2; // appa - result = 4
-k = 3; // arappa - result = 6
-console.log(lengthOfLongestSubstringKDistinct(str, k));
-
 // Time O(N)
 // Space O(N)
 // https://www.youtube.com/watch?v=8AQra0p_HmI
@@ -74,3 +69,8 @@ var lengthOfLongestSubstringKDistinct = function(str, k) {
   }
   return result;
 }
+
+str = "karappa";
+k = 2; // appa - result = 4
+k = 3; // arappa - result = 6
+console.log(lengthOfLongestSubstringKDistinct(str, k));
