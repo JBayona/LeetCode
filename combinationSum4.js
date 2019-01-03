@@ -19,10 +19,11 @@ The possible combination ways are:
 Note that different sequences are counted as different combinations.
 
 Therefore the output is 7.
+
 Follow up:
-What if negative numbers are allowed in the given array?
-How does it change the problem?
-What limitation we need to add to the question to allow negative numbers?
+- What if negative numbers are allowed in the given array?
+- How does it change the problem?
+- What limitation we need to add to the question to allow negative numbers?
 
 https://leetcode.com/problems/combination-sum-iv/
 https://www.programcreek.com/2014/07/leetcode-combination-sum-iv-java/
@@ -54,17 +55,18 @@ dp[4] = 1 + 2 + 4 = 7 (we have no 4 in nums, so dp[4] = 1 + 2 + 4 = 7, not 1 + 1
 /*
 *****Follow Up*****
 
-What if negative numbers are allowed in the given array?
+- What if negative numbers are allowed in the given array?
 Then adding a num to the combination is not guaranteed to be increasing, which means I can add a huge bounch of negative nums
 and add a huge bounch of positive nums to achieve a target sum. 
 eg.target=0:[-1,1],[-1,-1,1,1],[-1,-1,-1,1,1,1]...
 
-How does it change the problem?
+- How does it change the problem?
 We will have lots of lots of possible combinations, even infinity.
 
-What limitation we need to add to the question to allow negative numbers?
+- What limitation we need to add to the question to allow negative numbers?
 For example, each negative num can only be used once, etc.
 */
+
 var combinationSum4 = function(nums, target) {
   if(!nums.length) return 0;
   let dp = new Array(target + 1).fill(0);
