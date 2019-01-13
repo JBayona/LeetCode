@@ -33,7 +33,7 @@ var merge = function(intervals) {
   // Use a comparator
   intervals = intervals.sort((a,b) => a.start - b.start);
 
-
+  // Index is used to control the index of our result array, regardless the current interval array
   for(let i = 0; i < intervals.length; i++) {
    if(!result.length) {
       result.push(intervals[i]);
