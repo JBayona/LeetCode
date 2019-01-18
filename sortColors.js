@@ -17,7 +17,7 @@ Could you come up with an one-pass algorithm using only constant space?
 
 https://leetcode.com/problems/sort-colors/description/
 */
-ç//O(N)
+//O(N) time complexity and O(1) space complexity
 var sortColors = function(nums) {
     //Posicion en donde termian las bolas rojas
     var redEnds = 0;
@@ -50,6 +50,35 @@ function swap(a,b, array){
   array[a] = array[b];
   array[b] = tmp;
 }
+
+// Option 2
+var sortColors = function(nums) {
+    var redEnds = 0;
+    var blueStars = nums.length -1
+
+    //Empieza el loop para ordenar las bolas
+    let i = 0;
+    while(i <= blueStars){
+      if(nums[i] === 0){
+        swap(redEnds, i, nums);
+        redEnds++;
+        i++;
+      }else if(nums[i] === 2){
+        swap(blueStars, i, nums);
+        blueStars--;
+      }else{
+        i++;
+      }
+    }
+    console.log(nums);
+};
+
+function swap(a,b, array){
+  var tmp = array[a];
+  array[a] = array[b];
+  array[b] = tmp;
+}
+
 
 //var array = [0,1,2,2,0,1,2,0,1,1,2];
 var array = [1,2,0];
