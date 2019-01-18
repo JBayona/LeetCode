@@ -79,6 +79,45 @@ function swap(a,b, array){
   array[b] = tmp;
 }
 
+var sortColors = function(nums) {
+  let result = [];
+  let count0 = 0;
+  let count1 = 0;
+  let count2 = 0;
+  let tmp = 0;
+  
+  for(let i = 0; i < nums.length; i++) {
+    if(nums[i] === 0) {
+      count0++;
+    }
+    if(nums[i] === 1) {
+      count1++;
+    }
+    if(nums[i] === 2) {
+      count2++;
+    }
+  }
+
+  // Set 0's
+  for(let i = 0; i < count0; i++) {
+    result[tmp++] = 0;
+  }
+  
+  // Set 1´s
+  for(let i = 0; i < count1; i++) {
+    result[tmp++] = 1;
+  }
+  
+  // Set 2´s
+  for(let i = 0; i < count2; i++) {
+    result[tmp++] = 2;
+  }
+  
+  console.log(result);
+    
+  return result;
+}
+
 
 //var array = [0,1,2,2,0,1,2,0,1,1,2];
 var array = [1,2,0];
