@@ -51,6 +51,7 @@ var numDecodings = function(s) {
     return dp[n];
 };
 
+// Opción 2
 var numDecodings = function(s) {
     memo = {}
     return helper(s, s.length, memo);
@@ -79,6 +80,65 @@ function helper(data, k, memo) {
   }
   memo[k] = result
   return result;
+}
+
+// Opción 3
+var numDecodings = function(s) {
+  let memo = new Array(s.length + 1).fill(-1);
+  return helper(s, 0, memo);
+};
+
+function helper(s, index, memo) {
+
+  // Base case 1: our index get to the string so we can decode it
+  if(index === s.length) {
+    return 1;
+  }
+
+  // We already compute this value
+  if(memo[index] > 0) {
+    return memo[index];
+  }
+
+  /*
+    We don't already know the answer to this subproblem, calculate it
+    by taking the sum of the total ways for a single character decoring
+    or 2 character decoding
+  */
+  let count = 0;
+
+  // Just to be sabe - one character decoding
+  if(index + 1 <= s.length) {
+    let tmp = s.substring(index, index + 1);
+    if(isValid(tmp)) {
+      count += helper(s, index + 1, memo);
+    }
+  }
+
+  // Just to be sabe - two characters decoding
+  if(index + 2 <= s.length) {
+    let tmp = s.substring(index, index + 2);
+    if(isValid(tmp)) {
+      count += helper(s, index + 2, memo);
+    }
+  }
+
+  // Store the value of the subproblem
+  memo[index] = count;
+
+  return count;
+}
+
+function isValid(s) {
+  if(!s) {
+    return false;
+  }
+
+  if(s[0] === '0') {
+    return false;
+  }
+
+  return parseInt(s) >= 1 && parseInt(s) <= 26;
 }
 
 str = "227";

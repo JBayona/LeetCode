@@ -18,6 +18,29 @@ If nums = [1,2,2], a solution is:
 https://leetcode.com/problems/subsets-ii/description/
 */
 
+// Opción 1
+var subsetsWithDup = function(nums) {
+  let result = [];
+  // Sort to make easier to detect duplicates
+  nums.sort((a,b) => a-b);
+  dfs(result, [], 0, nums.length, nums);
+  return result;
+};
+
+function dfs(result, tmp, start, end, nums) {
+  result.push(tmp);
+  for(let i = start; i < end; i++) {
+    // Skip duplicates
+    if(i > start && nums[i] === nums[i-1]) {
+        continue;
+    }
+    tmp.push(nums[i]);
+    dfs(result, tmp.concat(), i + 1, end, nums);
+    tmp.pop();
+  }
+}
+
+// Opción 2
 var subsetsWithDup = function(nums) {
   var result = [];
   if(nums.length === 0) return result;
