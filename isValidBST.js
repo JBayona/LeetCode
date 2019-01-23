@@ -20,6 +20,8 @@ Binary tree [1,2,3], return false.
 https://leetcode.com/problems/validate-binary-search-tree/description/
 */
 
+//Option 1
+
 function Tree(val, left, right){
   this.val = val;
   this.left = left || null;
@@ -35,6 +37,33 @@ function checkBST(node, MIN, MAX){
   if(node.val <= MIN || node.val >= MAX) return false;
   return checkBST(node.left, MIN, node.val) && checkBST(node.right, node.val, MAX);
 }
+
+// Option 2
+
+// Walk inorder + prev value
+let prev = null;
+var isValidBST = function(root) {
+  // Base case
+  if(!root) return true;
+
+  // Left
+  if(root.left) {
+    if(!isValidBST(root.left)) return false;
+  }
+
+  // Action
+  if(prev !== null && prev >= root.val) {
+    return false;
+  }
+
+  // Right
+  if(root.right) {
+    if(!isValidBST(root.right)) return false;
+  }
+
+  return true;
+
+};
 
 tree = new Tree(1,new Tree(1));
 console.log(isValidBST(tree));
