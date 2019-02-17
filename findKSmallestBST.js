@@ -9,6 +9,8 @@ What if the BST is modified (insert/delete operations) often and you
 need to find the kth smallest frequently? How would you optimize the kthSmallest routine?
 
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
+
+https://leetcode.com/problems/kth-smallest-element-in-a-bst/discuss/63783/Two-Easiest-In-Order-Traverse-(Java)
 */
 
 function Node(val,left,right){
