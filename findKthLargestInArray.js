@@ -53,18 +53,37 @@ var findKthLargest = function(nums, k) {
     return sortedArray[k-1];
 };
 
-//O(NlogK)
+
+// Creating a max/min heap cost O(K)
+
+// Time :O(nlogk)
+// Insert/Deletw: O(Log N) where n is the number of nodes/elements
 class Solution {
     public int findKthLargest(int[] nums, int k) {
-        PriorityQueue<Integer> largeK = new PriorityQueue<Integer>(k + 1);
-
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
         for(int el : nums) {
-            largeK.add(el);
-            if (largeK.size() > k) {
-                largeK.poll();
+            minHeap.add(el);
+            if (minHeap.size() > k) {
+                minHeap.poll();
             }
         }
 
-        return largeK.poll();
+        return minHeap.poll();
+    }
+}
+
+// Time :O(nlogk)
+// Insert/Deletw: O(Log N) where n is the number of nodes/elements
+class Solution {
+    public int findKthSmallest(int[] nums, int k) {
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<Integer>((x, y) => y - x);
+        for(int el : nums) {
+            maxHeap.add(el);
+            if (maxHeap.size() > k) {
+                maxHeap.poll();
+            }
+        }
+
+        return maxHeap.poll();
     }
 }
