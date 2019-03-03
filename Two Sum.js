@@ -39,3 +39,33 @@ var twoSum = function(nums, target) {
 nums = [2, 7, 11, 15];
 target = 9;
 console.log(twoSum(nums,target));
+
+var twoSumWithDuplicates = function(array, target) {
+  let map = {};
+  // Result has the indexes of the elements
+  let result = [];
+
+  for(let i = 0; i < array.length; i++) {
+    if(!(array[i] in map)) {
+      // Puede ser también un set
+      // map[array[i]] = new Set();
+      map[array[i]] = [];
+    }
+    map[array[i]].push(i);
+
+    if(target - array[i] in map) {
+      let set = map[target - array[i]];
+      set.forEach((item) => {
+        // Does not allow duplicates numbers, the same index can not be used
+        if(item !== i) {
+            result.push([i, item]);
+        }
+      });
+    }
+  }
+  return result;
+}
+
+array = [2, 4, 3, 4, 4, 6];
+target = 8;
+console.log(twoSumWithDuplicates(array, target));
