@@ -11,7 +11,7 @@ For example consider the following Binary Tree.
                                      7     4
 
   There are 4 leaves, hence 4 root to leaf paths:
-   Path                    Number
+  Path                    Number
   6->3->2                   632
   6->3->5->7               6357
   6->3->5->4               6354
