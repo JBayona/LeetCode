@@ -21,6 +21,8 @@ https://leetcode.com/problems/palindromic-substrings/
 
 NoteL
 Checar el problema de longest common substring y longest common subsequence
+
+https://youtu.be/RGes8vSjw9U
 */
 
 // Idea is start from each index and try to extend palindrome for both odd and even length
