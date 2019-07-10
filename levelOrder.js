@@ -24,6 +24,32 @@ function Tree(val, left, right){
   this.right = right || null;
 }
 
+var levelOrderTransversal = function(root) {
+    // Base case
+    if(!root) {
+        return null;
+    }
+    
+    let queue = [];
+    let result = [];
+    
+    queue.push(root);
+    while(queue.length) {
+        let n = queue.length;
+        for(let i = 0; i < n; i++) {
+            let node = queue.shift();
+            console.log(node.val);
+            if(node.left) {
+                queue.push(node.left);
+            }
+            if(node.right) {
+                queue.push(node.right);
+            }
+        }
+        console.log('\n');
+    }
+};
+
 var levelOrder = function(tree) {
     if(!tree) return null;
     let currentCount = 0; //Num de elementos del siguiente nivel
