@@ -1,5 +1,4 @@
 /*
-
 Print a binary tree in an m*n 2D string array following these rules:
 
 The row number m should be equal to the height of the given binary tree.
@@ -11,7 +10,6 @@ Each unused space should contain an empty string "".
 Print the subtrees following the same rules.
 
 https://leetcode.com/problems/print-binary-tree/
-
 */
 
 function Node(val, left, right) {
