@@ -1,4 +1,5 @@
 /*
+
 Given n, how many structurally unique BST's (binary search trees) that store values 1...n?
 
 For example,
@@ -8,7 +9,6 @@ https://leetcode.com/problems/unique-binary-search-trees/description/
 
 https://www.programcreek.com/2014/05/leetcode-unique-binary-search-trees-java/
 */
-
 
 //DP
 var numTrees = function(n) {
