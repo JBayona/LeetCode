@@ -6,26 +6,26 @@ The tilt of a tree node is defined as the absolute difference between the sum of
 The tilt of the whole tree is defined as the sum of all nodes' tilt.
 
 Example:
+
 Input: 
          1
        /   \
       2     3
+
 Output: 1
+
 Explanation: 
 Tilt of node 2 : 0
 Tilt of node 3 : 0
 Tilt of node 1 : |2-3| = 1
 Tilt of binary tree : 0 + 0 + 1 = 1
-Note:
 
+Note:
 The sum of node values in any subtree won't exceed the range of 32-bit integer.
 All the tilt values won't exceed the range of 32-bit integer.
 
 https://leetcode.com/problems/binary-tree-tilt/
 Binary Tree Tilt - LeetCode
-Level up your coding skills and quickly land a job. This is the best place to expand your knowledge and get prepared for your next interview.
-leetcode.com
-
 */
 
 var findTilt = function(root) {
