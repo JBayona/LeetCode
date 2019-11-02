@@ -16,6 +16,7 @@ function balanceBrackets(str){
 
   /*En la pila solo tenemos parentesis de apertura, cada
   que sea uno de cierre lo sacamos*/
+
   for(var i = 0; i < str.length; i++){
     current = str[i];
     //Si es un parentesis de apertura, lo metemos a la pila
