@@ -33,19 +33,19 @@ https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/
 
 //Op 1
 // Time Complexity: O(n), Space Complexity: O(n).
-var findTarget = function(root, k) {
+var findTarget = function(root, num) {
     let hash = {};
-    return dfs(root, k, hash);
+    return dfs(root, num, hash);
 };
 
-function dfs(root, k, hash) {
+function dfs(root, num, hash) {
     if(!root) return false;
-    let tmp = k - root.val;
+    let tmp = num - root.val;
     if(tmp in hash) {
         return true;
     }
     hash[root.val] = root;
-    return dfs(root.left, k, hash) || dfs(root.right, k, hash);
+    return dfs(root.left, num, hash) || dfs(root.right, num, hash);
 }
 
 
