@@ -1,5 +1,6 @@
  /*
-Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero.
+Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0.
+Find all unique triplets in the array which gives the sum of zero.
 
 Note: The solution set must not contain duplicate triplets.
 
@@ -15,7 +16,7 @@ https://leetcode.com/problems/3sum/#/description
 */
 
 function threeSum(nums) {
-    //Ordena los elementos de menor a mayor
+    //Ordena los elementos de menor a mayor, con esto evitamos números repetidos.
     nums.sort(function(a, b) {
         return a - b;
     });
@@ -66,6 +67,7 @@ function twoSum(allSol, curSol, startIndex, endIndex, target, nums) {
            start++;
            end--;
            
+	   //Aqui hacemos este chequeo para no repetir  analizar los mismos números.
            while (nums[start] === nums[start - 1]) {
                start++;
            }

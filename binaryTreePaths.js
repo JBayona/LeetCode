@@ -2,7 +2,6 @@
 Given a binary tree, return all root-to-leaf paths.
 
 Note: A leaf is a node with no children.
-
 Example:
 
 Input:
@@ -32,7 +31,7 @@ function dfs(node, tmp, result){
   if(!node) return;
   
   // Preorder action
-  tmp =  tmp ? tmp + '->' + node.val : node.val;
+  tmp =  tmp ? tmp + '->' + node.val : node.val.toString();
   if(!node.left && !node.right){
     // No es necesario limpiar porque a la vuelta rompera con el base case
      result.push(tmp);
