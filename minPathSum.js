@@ -41,3 +41,34 @@ var minPathSum = function(grid) {
 
     return grid[ROW - 1][COL - 1]
 };
+
+// DP
+
+var minPathSum = function(grid) {
+    if(grid.length === 0 || grid === null) return 0;
+    
+    const ROW = grid.length;
+    const COL = grid[0].length;
+
+    // Mark the first row
+    for(let i = 1; i < ROW; i++){
+         grid[i][0] = grid[i][0] + grid[i-1][0];
+    }
+    
+    // Mark the first column
+    for(let i = 1; i < COL; i++){
+        grid[0][i] = grid[0][i] + grid[0][i-1];
+    }
+    
+    // if grid is n * 1 or 1 * n, the result is already calculated
+    if (ROW != 1 && COL != 1) {
+        // traverse the entire matrix
+        for (let i = 1; i < ROW; i ++) {
+            for (let j = 1; j < COL; j++) {
+                grid[i][j] += Math.min(grid[i - 1][j], grid[i][j - 1]);
+            }
+        }
+    }
+    
+    return grid[ROW - 1][COL - 1];
+};
