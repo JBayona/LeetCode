@@ -17,6 +17,42 @@ https://www.youtube.com/watch?v=_Lf1looyJMU
 
 */
 
+
+// https://www.youtube.com/watch?v=_Lf1looyJMU
+// https://www.youtube.com/watch?v=KZQCvq2dUY8
+
+// DP
+var maximalSquare = function(matrix) {
+    if(!matrix || matrix.length === 0) {
+        return 0;
+    }
+   
+    let ROW = matrix.length;
+    let COL = matrix[0].length;
+   
+    // Initialize the dp matrix
+    let dp = new Array(ROW + 1);
+    for(let i = 0; i <= ROW; i++) {
+        for(let j = 0; j <= COL; j++) {
+            dp[i] = new Array(COL + 1).fill(0);
+        }
+    }
+   
+    let max = 0;
+    for(let i = 1; i <= ROW; i++) {
+        for(let j = 1; j <= COL; j++) {
+            if(matrix[i-1][j-1] === '1') {
+                dp[i][j] = Math.min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1]) + 1;
+                max = Math.max(max, dp[i][j]);
+            }
+        }
+    }
+   
+    return max * max
+   
+   
+};
+
 var maximalSquare = function(matrix) {
 
     if(matrix.length === 0) {
