@@ -29,6 +29,49 @@ https://leetcode.com/problems/first-missing-positive/description/
 */
 
 // Complejidad O(n) en tiempo y espacio O(1)
+
+
+var firstMissingPositive = function(nums) {
+    let tam = 0;
+    // First step is to place positive numbers to the left
+    for(let i = 0; i < nums.length; i++) {
+        if(nums[i] > 0) {
+          // Swap
+          let tmp = nums[i];
+          nums[i] = nums[tam];
+          nums[tam++] = tmp;
+        }
+    }
+    
+    // Let's mark nums[i] as visited by making nums[nums[i - 1]]
+    // We substract 1 because we are under a 0-index array and we
+    // are only interested in positive numbers, note thar we are
+    // focusing on index, so we are going to mark as negative the numbers
+    // regardless the value, as we are using index values
+    // If the number in the array is still positive, it means we have not
+    // found that value in the array as an index, for instance [3, 4, -1, 1]
+    // will be [3, 4, 1, -1] ather the swap, then by marking as visited
+    // [3, 4, -1, -1] i = 0
+    // [3, 4, -1, -1] i = 1
+    // [-3, 4, -1, -1] i = 2
+    let size = nums.length;
+    for(let i = 0; i < tam; i++) {
+      if(Math.abs(nums[i]) - 1 < size && nums[Math.abs(nums[i]) - 1] > 0) {
+        nums[Math.abs(nums[i]) - 1] = -nums[Math.abs(nums[i]) - 1];
+      }
+    }
+    
+    // Get the index of the first value which is positive
+    for(let i = 0; i < tam; i++) {
+      if(nums[i] > 0) {
+        // 1 is added because we started from 0-index
+        // and we are just looking for positive numbers
+        return i + 1;
+      }
+    }
+    return tam + 1;
+};
+
 var firstMissingPositive = function(array) {
   let tam = 0;
   // Non-negative to the left
