@@ -45,7 +45,6 @@ function dfs(node, tmp, result){
 // Time complexity O(N) -- We touch every single node
 // Space complexity O(N) -- Worst case we can have all nodes in the stack
 function binaryTreePaths(root) {
-
   if(!root) {
     return [];
   }
