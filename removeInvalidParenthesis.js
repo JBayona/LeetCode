@@ -17,7 +17,6 @@ Input: ")("
 Output: [""]
 
 https://leetcode.com/problems/remove-invalid-parentheses/description/
-
 */
 
 /**
