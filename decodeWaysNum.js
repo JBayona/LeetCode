@@ -309,4 +309,114 @@ class Solution {
 
 }
 
+// Op2
+// Space O(1)
+// Time O(N)
+
+import java.io.*;
+
+import java.util.*;
+
+
+/*
+
+A: 1
+
+B: 2
+
+C: 3
+
+...
+
+Z: 26
+
+
+'123' => ABC, LC, AW => 3
+
+
+dp[0] = 1;
+
+dp[1] = dp[0];
+
+
+dp[i-1]
+
+dp[i] 
+
+
+dp[i+1] = dp[i] + dp[i-1]
+
+
+0 -> len
+
+ */
+
+
+// space O(n) where n is the length of the string
+
+// runtime O(n) where n is the length of the string
+
+
+class Solution {
+
+  public static void main(String[] args) {
+
+    int res1 = getDecodeWays("12201");
+
+    System.out.println(res1);
+
+  }
+
+  
+
+  private static int getDecodeWays(String s) {
+
+    if(s.length() == 0)  return 0;
+
+
+    int last1 = 1, last2 = 1;
+
+    for(int i = 0; i < s.length(); i++) {
+
+      int cur = 0;
+
+      // check one digit
+
+      int oneDigit = Integer.parseInt(s.substring(i, i+1));
+
+      if(oneDigit >= 1 && oneDigit <= 9) {
+
+        cur += last1;
+
+      }
+
+      
+
+      // check two digit
+
+      if(i -1 >= 0) {
+
+        int twoDigits = Integer.parseInt(s.substring(i-1, i+1));
+
+        if(twoDigits >= 10 && twoDigits <= 26) {
+
+          cur += last2;
+
+        }
+
+      }
+
+      last2 = last1;
+
+      last1 = cur; 
+
+    } 
+
+    return last1;
+
+  }
+
+
+}
+
 
