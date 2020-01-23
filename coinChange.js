@@ -20,6 +20,21 @@ dp[i] = 1, if i==coin
 otherwise, dp[i]=min(dp[i-coin]+1, dp[i]) if dp[i-coin] is reachable. 
 We initially set dp[i] to be MAX_VALUE.
 
+dp[i] siempre tendrá el número menor de monedas de cada índice y ese
+número nos ayudará para considerar la moneda actual, por ejemplo:
+
+Coins = [2, 3]
+Amount = 7
+
+Para el 7, podemos tener dos combinaciones:
+1. Si tenemos la moneda 2, podemos formar el 7 con la combinación de 5 (2 + 3) y la moneda 2, que son 3 monedas
+2. Si tenemos la moneda 3, podemos formar el 7 con la combinación de 4 (2 + 2) y la moneda 3, que son 3 monedas
+
+En ambas las respuesta es 3 monedas como mínimo. 
+
+dp = [ 0, Infinity, 1, 1, 2, 2, 2, 3 ]
+
+
 https://www.programcreek.com/2015/04/leetcode-coin-change-java/
 */
 
