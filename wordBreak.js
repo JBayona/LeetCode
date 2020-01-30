@@ -47,6 +47,44 @@ function helper(str, array, start) {
   return false;
 }
 
+// Time complexity O(n^2)
+function wordBreak(str, array) {
+  let dp = new Array(str.length + 1).fill(false);
+  // Set the initial state as true to have a state
+  dp[0] = true;
+
+  for(let i = 0; i < str.length; i++) {
+    // We should only be interested in matches position
+    if(!dp[i]) {
+      continue;
+    }
+    for(let j = 0; j < array.length; j++) {
+      let word = array[j];
+      let len = word.length;
+      let end = i + len;
+
+      // We are only interested in those whom can create it
+      if(end > str.length) {
+        continue;
+      }
+
+      // If we already have a match, there´s no need to check again
+      if(dp[end]) {
+        continue;
+      }
+
+      if(str.substring(i, i + len) === word) {
+        dp[i + len] = true;
+      }
+
+    }
+  }
+  return dp[str.length];
+}
+
+str = 'leetcode';
+dict = ['leet', 'code'];
+console.log(wordBreak(str, dict));
 
 // O(n^2) en tiempo y memoria O(n)
 // Best option.
@@ -73,10 +111,6 @@ function wordBreak(str, dict) {
   console.log(dp);
   return dp[n];
 }
-
-str = 'leetcode';
-dict = ['leet', 'code'];
-console.log(wordBreak(str, dict));
 
 var wordBreak = function(str, dic) {
   let pos = new Array(str.length+1).fill(-1);
