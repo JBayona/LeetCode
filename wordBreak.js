@@ -17,6 +17,36 @@ https://www.programcreek.com/2012/12/leetcode-solution-word-break/
 https://youtu.be/WepWFGxiwRs
 
 */
+// Time O(n^2)
+function wordBreak(str, array) {
+  return helper(str, array, 0);
+}
+
+function helper(str, array, start) {
+  // We found the string
+  if(start === str.length) {
+    return true;
+  }
+  // Check the values in the array
+  for(let i = 0; i < array.length; i++) {
+    let word = array[i];
+    let len = word.length;
+
+    // end should be less than the str length cause we can not create it
+    if(start + len > str.length) {
+      // Check the next word in the array
+      continue;
+    }
+
+    if(str.substring(start, start + len) === word) {
+      if(helper(str, array, start + len)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 
 // O(n^2) en tiempo y memoria O(n)
 // Best option.
