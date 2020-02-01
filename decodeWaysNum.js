@@ -28,6 +28,38 @@ Z: 26
 */
 
 
+var numDecodings = function(s) {
+	result = 0;
+	helper(s, 0);
+	return result;
+};
+
+function helper(s, index) {
+    if(index == s.length) {
+        result++;
+        return
+    }
+    
+    // One digit
+    let oneDigit = Number(s.charAt(index));
+    if(oneDigit != 0) {
+        helper(s, index + 1);
+    }
+    
+    // Two digit
+    let twoDigit = s.substring(index, index + 2);
+    
+    // If we have a zero at the beginning, is not valid
+    if(twoDigit.charAt('0') === '0') {
+        return;
+    }
+    
+    if(twoDigit > 0 && twoDigit <= 26) {
+        helper(s, index + 2);
+    }
+}
+
+
 import java.io.*;
 import java.util.*;
 
