@@ -55,6 +55,50 @@ function search(s, k) {
     return  s.length;
 }
 
+// Option 2
+/*
+Divide and conquer method：
+
+1. Scan given string and count the frequency of every character.
+2. If frequency of character s[i] is less than k,that means s[i] is not a part of
+every “Substring with At Least K Repeating Characters”.Return Math.max(divide(start, i - 1), divide(i + 1, end))
+3. If frequency of every character is not less than k, return the length of that string.
+4. Line4: if (end - start + 1 < k) return 0. Will save a lot of time. Give it a try with comment it.
+*/
+var longestSubstring = function (s, k) {
+    
+    function divide(start, end) {
+        if (end - start + 1 < k) return 0   // without this line will be much slower, give it a try.
+        if (start > end) return 0
+
+        const count = {}
+
+        // count the frequency
+        for (let i = start; i <= end; i++) {
+            count[s[i]] = count[s[i]] ? count[s[i]] + 1 : 1
+        }
+
+        // reduce the length of string 
+        while (end - start + 1 >= k && count[s[start]] < k)
+            start++
+        while (end - start + 1 >= k && count[s[end]] < k)
+            end--
+        if (end - start + 1 < k) return 0
+
+        // divede at i: count[s[i]] < k
+        for (let i = start; i <= end; i++) {
+            if (count[s[i]] < k) {
+                return Math.max(divide(start, i - 1), divide(i + 1, end))
+            }
+        }
+
+        // find a Substring with At Least K Repeating Characters
+        return end - start + 1
+    }
+
+    return divide(0, s.length - 1)
+}
+
 s = "weitong";
 k = 2;
 console.log(longestSubstring(s,k))
