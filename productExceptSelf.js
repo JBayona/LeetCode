@@ -67,6 +67,23 @@ var productExceptSelf = function(nums) {
     return result;
 };
 
+// O(n^2)
+
+var productExceptSelf = function(input){
+	let result = [];
+  for(let i = 0; i < input.length; i++) {
+  	let product = 1;
+  	for(let j = 0; j < input.length; j++) {
+    	if(i === j ) {
+      	continue;
+      }
+      product *= input[j];
+    }
+    result[i] = product;
+  }
+  return result;
+}
+
 //left [1,1,2,8]
 //right [40,20,5,1]
 array = [1,2,4,5]; // [40, 20, 10, 8]
