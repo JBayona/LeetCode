@@ -36,31 +36,34 @@ https://leetcode.com/problems/subtree-of-another-tree/
 */
 
 function TreeNode(val, left, right) {
-    this.val = val;
-    this.left = left || null;
-    this.right = right || null;
+  this.val = val;
+  this.left = left || null;
+  this.right = right || null;
 }
 
 var isSubtree = function(s, t) {
-    return traverse(s, t);
+  return traverse(s, t);
 };
 
+
+// Consider every node as root of the subtree considered
 function traverse(s, t) {
-    if(!s) {
-        return false;
-    }
-    
-    return equals(s,t) || traverse(s.left, t) || traverse(s.right, t);
+  if(!s) {
+    return false;
+  }
+  
+  return equals(s,t) || traverse(s.left, t) || traverse(s.right, t);
 }
 
+// Check equality
 function equals(s, t) {
-    if(!s && !t) {
-        return true;
-    }
-    
-    if(!s || !t) {
-        return false;
-    }
-    
-    return s.val === t.val && equals(s.left, t.left) && equals(s.right, t.right);
+  if(!s && !t) {
+    return true;
+  }
+  
+  if(!s || !t) {
+    return false;
+  }
+  
+  return s.val === t.val && equals(s.left, t.left) && equals(s.right, t.right);
 }
