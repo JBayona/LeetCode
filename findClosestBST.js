@@ -72,6 +72,35 @@ function inorder(node, array) {
   inorder(node.right, array);
 }
 
+// Opción 3
+// Iteration
+
+function findDiff(node, n) {
+  let minDiff = Number.MAX_SAFE_INTEGER;
+  let result = node.val;
+
+  while(node) {
+    if(n < node.val) {
+      let diff = Math.abs(n - node.val);
+      if(diff < minDiff) {
+        minDiff = diff;
+        result = node.val;
+      }
+      node = node.left;
+    } else if(n > node.val) {
+      let diff = Math.abs(n - node.val);
+      if(diff < minDiff) {
+        minDiff = diff;
+        result = node.val;
+      }
+      node = node.right;
+    } else {
+      return node.val;
+    }
+  }
+  return result;
+}
+
 /*
          9
      4       17
