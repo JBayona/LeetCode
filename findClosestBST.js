@@ -26,8 +26,9 @@ function helper(node, minDiff, result, n) {
     return;
   }
 
+  // If the number is the same we are currently checking
   if(node.val === n) {
-   result.num = 0;
+   result.num = node.val;
    return;
   }
 
