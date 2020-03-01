@@ -1,5 +1,6 @@
 /*
-Given a binary search tree and a target node K. The task is to find the node with minimum absolute difference with given target value K.
+Given a binary search tree and a target node K. 
+The task is to find the node with minimum absolute difference with given target value K.
 
 https://www.geeksforgeeks.org/find-closest-element-binary-search-tree/
 */
