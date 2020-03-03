@@ -14,6 +14,31 @@ For example, given n = 3, a solution set is:
 https://leetcode.com/problems/generate-parentheses/description/
 */
 
+var generateParenthesis = function(n) {
+    if(n === 0) {
+        return [];
+    }
+    result = [];
+    helper(n, n, '', result);
+    return result;
+};
+
+function helper(left, right, path, result) {
+    // To be valid, left should always be left than right
+    if(left <= right) {
+        if(left === 0 && right === 0) {
+            result.push(path);
+            return;
+        }
+        if(left < 0 || right < 0) {
+            return;
+        }
+        
+        helper(left-1, right, path+'(', result);
+        helper(left, right-1, path+')', result);
+    }
+}
+
 //Iterativo
 
 var generateParenthesis = function(n) {
