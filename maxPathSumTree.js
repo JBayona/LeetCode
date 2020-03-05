@@ -27,6 +27,46 @@ Output: 42
 https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
 */
 
+
+/*
+There are 4 possible ways to get the max path.
+1. Node itself.
+2. Node itself + max path coming from left child.
+3. Node itself + max path coming from right child.
+4. Node itself + max path coming from right child + max path coming from left child.
+*/
+var maxPathSum = function(root) {
+    let result = {val: -10e5};
+    findMaxPathSum(root, result);
+    return result.val;
+};
+
+function findMaxPathSum(node, result) {
+    // Base case
+    if(!node) {
+        return 0;
+    }
+    
+    let left = findMaxPathSum(node.left, result);
+    let right = findMaxPathSum(node.right, result);
+    
+    // Get the max path from the parent call of root.
+    // Could be the single root or the single root + max of left or right
+    let max_single = Math.max(Math.max(left, right) + node.val, node.val);
+    
+    // Max top
+    // Max also could also be a subtree that includes root also
+    let max_top = Math.max(max_single, left + right + node.val);
+    
+    // Update the current max we have found
+    result.val = Math.max(result.val, max_top);
+    
+    // Return result of each subtree so we can compute this process
+    // for all following nodes
+    return max_single;
+}
+
+
 /*
 Retornamos en cada nodo la mayor suma del subtree, hay cuatro formas de obtener el maximo pat
 de cada nodo, la forma de obtebnerla es la siguiente:
