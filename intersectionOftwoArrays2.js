@@ -43,3 +43,43 @@ var intersect = function(nums1, nums2) {
     }
     return result;
 };
+
+// Time O(N)
+var intersect = function(nums1, nums2) {
+    let hash = {};
+    let hash2 = {};
+    let result = [];
+    
+    hash = generateHash(nums1);
+    hash2 = generateHash(nums2);
+    
+    console.log(hash);
+    console.log(hash2);
+    
+    // Get the result
+    for(let num in hash) {
+        if(num in hash2) {
+            let times = Math.min(hash[num], hash2[num]);
+            addTimes(result, times, num);
+        }
+    }
+    return result;
+};
+
+function generateHash(array) {
+    let hash = {};
+    for(let i = 0; i < array.length; i++) {
+        if(array[i] in hash) {
+            hash[array[i]]++;
+        } else {
+            hash[array[i]] = 1;
+        }
+    }
+    return hash;
+}
+    
+function addTimes(array, times, value) {
+    for(let i = 0; i < times; i++) {
+        array.push(value);
+    }
+}
