@@ -37,3 +37,29 @@ matrix =[ [1, 2, 3],
           [7, 8, 9]];
 n = 3;
 console.log(rotate(matrix,n));
+
+// https://www.youtube.com/watch?v=SA867FvqHrM
+
+var rotate = function(matrix) {
+    let n = matrix.length;
+    
+    // Transponse a matrix
+    for(let i = 0; i < n; i++) {
+        for(let j = i; j < n; j++) {
+            let tmp = matrix[i][j];
+            matrix[i][j] = matrix[j][i];
+            matrix[j][i] = tmp;
+        }
+    }
+    
+    //Swap columns
+    for(let i = 0; i < n; i++) {
+        for(let j = 0; j < n/2; j++) {
+            let tmp = matrix[i][j];
+            matrix[i][j] = matrix[i][n-1-j];
+            matrix[i][n-1-j] = tmp;
+        }
+    }
+    
+    console.log(matrix);
+};
