@@ -18,6 +18,37 @@ The value of nodes is between 1 and 100.
 https://leetcode.com/problems/deepest-leaves-sum/
 */
 
+// Opción 1
+
+var deepestLeavesSum = function(root) {
+    deepestNode = -1;
+    sum = 0;
+    preorder(root, 0);
+    return sum;
+};
+
+function preorder(root, level) {
+    if(!root) {
+        return;
+    }
+    
+    if(level > deepestNode) {
+        // We found next higher level, restart.
+        deepestNode = level;
+        sum = 0;
+    }
+    
+    if(level === deepestNode) {
+        // This node is on the current max level - take it into consideration 
+        sum += root.val;
+    }
+    
+    preorder(root.left, level + 1);
+    preorder(root.right, level + 1);
+}
+
+// Opción 2
+
 var deepestLeavesSum = function(root) {
     // Track all nodes by level
     let levels = {};
