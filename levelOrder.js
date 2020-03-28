@@ -24,6 +24,34 @@ function Tree(val, left, right){
   this.right = right || null;
 }
 
+// BFS
+var levelOrder = function(root) {
+    if(!root) {
+        return [];
+    }
+    
+    let tmp = [];
+    let queue = [];
+    let result = [];
+    queue.push(root);
+    while(queue.length) {
+        let size = queue.length;
+        for(let i = 0; i < size; i++) {
+            let node = queue.shift();
+            tmp.push(node.val);
+            if(node.left) {
+                queue.push(node.left);
+            }
+            if(node.right) {
+                queue.push(node.right);
+            }
+        }
+        result.push(tmp);
+        tmp = [];
+    }
+    return result;
+};
+
 var levelOrderTransversal = function(root) {
     // Base case
     if(!root) {
