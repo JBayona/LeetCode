@@ -53,3 +53,35 @@ var findBottomLeftValue = function(root) {
     return result;
 };
 
+// Option 2 - Hash
+
+var findBottomLeftValue = function(root) {
+    let h = findHeight(root);
+    
+    let queue = [];
+    queue.push({data:root, level: 1});
+    while(queue.length) {
+        let current = queue.shift();
+        let node = current.data;
+        let level = current.level;
+        
+        if(node.left === null && node.right === null && level === h) {
+            return node.val;
+        }
+        
+        if(node.left) {
+            queue.push({data: node.left, level: level + 1});
+        }
+        if(node.right) {
+            queue.push({data: node.right, level: level + 1});
+        }
+    }
+};
+
+function findHeight(root){
+    if(!root){
+        return 0;
+    }
+    return Math.max(findHeight(root.left), findHeight(root.right)) + 1;
+}
+
