@@ -26,6 +26,8 @@ The string size will be in the range [1, 100].
 https://leetcode.com/problems/valid-parenthesis-string/
 */
 
+// Time O(N)
+// Space O(N)
 var checkValidString = function(s) {
     let stack = [];
     let stack2 = [];
@@ -54,4 +56,29 @@ var checkValidString = function(s) {
         stack2.pop();
     }
     return !stack.length ? true : false;
+};
+
+// Time O(N)
+// Space O(1)
+var checkValidString = function(s) {
+    let cmax = 0;
+    let cmin = 0;
+    for(let i = 0; i < s.length; i++) {
+        let current = s[i];
+        if(current === '(') {
+            cmax++;
+            cmin++;
+        } else if(current === ')'){
+            cmax--;
+            cmin--;
+        } else {
+            cmax++; // if `*` become `(` then openCount++
+            cmin--; // if `*` become `)` then openCount--
+                    // if `*` become `` then nothing happens
+                    // So openCount will be in new range [cmin-1, cmax+1]
+        }
+        if (cmax < 0) return false; // Don't have enough openCount -> Invalid
+        cmin = Math.max(cmin, 0); // Keep openCount >= 0
+    }
+    return cmin == 0; // Return true if can found `openCount == 0` in range [cmin, cmax]
 };
