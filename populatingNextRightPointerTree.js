@@ -42,3 +42,29 @@ function inorder(node, level) {
     
     inorder(node.right, level + 1);
 }
+
+// No space memory, assuming recursive stack does not count.
+
+var connect = function(root) {
+    dfs(root, null);
+    return root;
+};
+
+// preorder
+function dfs(node, parent) {
+    if(!node) {
+        return;
+    }
+    
+    if(parent) {
+        if(parent.left === node) {
+            node.next = parent.right;
+        } else {
+            node.next = parent.next ? parent.next.left : null;
+        }
+    } else {
+        node.next = null;
+    }
+    dfs(node.left, node);
+    dfs(node.right, node);
+}
