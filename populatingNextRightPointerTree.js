@@ -21,6 +21,52 @@ Recursive approach is fine, you may assume implicit stack space does not count a
 https://leetcode.com/problems/populating-next-right-pointers-in-each-node/
 */
 
+//  BFS
+/*
+        1
+   2          3
+4    5      6   7
+*/
+
+function TreeNode(val, left, right, next) {
+    this.val = val;
+    this.left = left || null;
+    this.right = right || null;
+    this.next = next || null;
+}
+
+var connect = function(root) {
+    if(!root) {
+        return null;
+    }
+    
+    let queue = [];
+    queue.push(root);
+    
+    while(queue.length) {
+        let size = queue.length;
+        let prev = null;
+        for(let i = 0; i < size; i++) {
+            let node = queue.shift();
+            if(!prev) {
+                prev = node;
+            } else {
+                prev.next = node;
+            }
+            if(node.left) {
+                queue.push(node.left);
+            }
+            if(node.right) {
+                queue.push(node.right);
+            }
+        }
+    }
+    return root;
+};
+
+tree = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5)), new TreeNode(3, new TreeNode(6), new TreeNode(7)));
+console.log(connect(tree));
+
 var connect = function(root) {
     visited = {};
     inorder(root, 0);
