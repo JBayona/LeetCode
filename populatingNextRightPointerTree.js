@@ -52,6 +52,7 @@ var connect = function(root) {
                 prev = node;
             } else {
                 prev.next = node;
+                prev = node;
             }
             if(node.left) {
                 queue.push(node.left);
