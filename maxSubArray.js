@@ -11,6 +11,20 @@ var maxSubArray = function(nums) {
     var max = Number.MIN_SAFE_INTEGER;
     var sum = 0;
     for(let i = 0; i < nums.length; i++){
+        sum += nums[i];
+        // We could have negative numbers
+        if(nums[i] > sum){
+            sum = nums[i];
+        }
+        max = Math.max(max, sum);
+    }
+    return max;
+};
+
+var maxSubArray = function(nums) {
+    var max = Number.MIN_SAFE_INTEGER;
+    var sum = 0;
+    for(let i = 0; i < nums.length; i++){
       sum += nums[i];
       if(sum > max){
         max = sum;
