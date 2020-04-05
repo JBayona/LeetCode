@@ -7,6 +7,8 @@ the contiguous subarray [4,-1,2,1] has the largest sum = 6.
 https://leetcode.com/problems/maximum-subarray/description/
 */
 
+// Time O(N)
+// Space O(1).
 var maxSubArray = function(nums) {
     var max = Number.MIN_SAFE_INTEGER;
     var sum = 0;
