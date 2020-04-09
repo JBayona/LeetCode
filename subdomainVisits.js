@@ -39,6 +39,42 @@ var subdomainVisits = function(cpdomains) {
         let number = array[0] * 1;
         let domain = array[1];
         
+        // for(let j = 0; j < subdomains.length; j++) {
+        //     console.log(subdomains.slice(j))
+        // }
+        
+        // Get subdomains
+        let start = 0;
+        let count = 0;
+        let end = domain.split('.').length;
+        let subdomain = domain.substring(start);
+        while(count < end) {
+            subdomain = subdomain.substring(start);
+            if(subdomain in hash) {
+                hash[subdomain] += number;
+            } else {
+                hash[subdomain] = number;
+            }
+            start = subdomain.indexOf('.') + 1;
+            count++;
+        }
+    }
+    
+    // Create the result
+    let result = [];
+    for(let domain in hash) {
+        result.push(`${hash[domain]} ${domain}`);
+    }
+    return result;
+};
+
+var subdomainVisits = function(cpdomains) {
+    let hash = {};
+    for(let i = 0; i < cpdomains.length; i++) {
+        let array = cpdomains[i].split(" ");
+        let number = array[0] * 1;
+        let domain = array[1];
+        
         // Get subdomains
         let subdomains = domain.split(".");
         let start = 0;
