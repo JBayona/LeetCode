@@ -39,6 +39,7 @@ shift[i].length == 2
 https://leetcode.com/explore/challenge/card/30-day-leetcoding-challenge/529/week-2/3299/
 */
 
+// Option 1
 // Using extra space
 var stringShift = function(s, shift) {
     let number = shift.length;
@@ -79,3 +80,8 @@ function rotateRight(array, k) {
   }
   return result;
 }
+
+// Option 2
+// A Simple Solution is to use a temporary string to do rotations. For left rotation, first
+// copy last n-d characters, then copy first d characters in order to the temporary string. For right rotation, first copy
+// last d characters, then copy n-d characters.
