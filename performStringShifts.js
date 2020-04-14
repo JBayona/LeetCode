@@ -85,3 +85,73 @@ function rotateRight(array, k) {
 // A Simple Solution is to use a temporary string to do rotations. For left rotation, first
 // copy last n-d characters, then copy first d characters in order to the temporary string. For right rotation, first copy
 // last d characters, then copy n-d characters.
+
+// Option 3 - in place
+var stringShift = function(s, shift) {
+    let number = shift.length;
+    let array = s.split('');
+    for(let i = 0; i < number; i++) {
+        let instructions = shift[i];
+        let direction = instructions[0];
+        let amount = instructions[1];
+        // Left rotation
+        if(direction === 0) {
+            rotateLeft(array,  amount);
+        } else {
+            rotateRight(array,  amount);
+        }
+    }
+    return array.join('');
+};
+
+function rotateLeft(array, k) {
+    // This may be greater
+    k = k%array.length;
+    reverseArray(array, 0, k-1); // Reverse substring s[0..k-1]
+    reverseArray(array, k, array.length - 1); // Reverse substring s[d..n-1]
+    reverseArray(array, 0, array.length - 1); // Reverse whole string. 
+}
+
+function rotateRight(array, k) {
+    rotateLeft(array, array.length - k) ;
+}
+
+function reverseArray(array, start, end) {
+    while(start < end) {
+        let tmp = array[start];
+        array[start] = array[end];
+        array[end] = tmp;
+        start++;
+        end--;
+    }
+}
+
+/*
+Complexity O(n)
+Space O(1)
+Original List                   : 1 2 3 4 5 6 7
+After reversing all numbers     : 7 6 5 4 3 2 1
+After reversing first k numbers : 5 6 7 4 3 2 1
+After revering last n-k numbers : 5 6 7 1 2 3 4 --> Result
+*/
+var rotateRightInPlace = function(nums, k) {
+    // This may be greater
+    k = k%nums.length;
+    // Reverse all
+    reverseArray(nums, 0, nums.length - 1);
+    // Reverse first k elements
+    reverseArray(nums, 0, k - 1);
+    // Reverse last k elements
+    reverseArray(nums, k, nums.length - 1);
+    console.log(nums);
+};
+
+function reverseArray(array, start, end) {
+    while(start < end) {
+        let tmp = array[start];
+        array[start] = array[end];
+        array[end] = tmp;
+        start++;
+        end--;
+    }
+}
