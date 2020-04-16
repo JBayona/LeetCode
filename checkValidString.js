@@ -49,6 +49,7 @@ var checkValidString = function(s) {
     }
     
     while(stack.length && stack2.length) {
+        // If the index of stack > than index on stack 2 it means we can not use it to close the parenthesis
         if(stack[stack.length-1] > stack2[stack2.length-1]) {
             return false;
         }
