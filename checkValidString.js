@@ -83,3 +83,33 @@ var checkValidString = function(s) {
     }
     return cmin == 0; // Return true if can found `openCount == 0` in range [cmin, cmax]
 };
+
+// Recursion
+var checkValidString = function(s) {
+    return checkValidStringHelper(s, 0, 0);
+};
+
+function checkValidStringHelper(str, index, count)  {
+    //Base case
+    if(str.length === index) {
+        if(count === 0) {
+            return true;
+        }
+        return false;
+    }
+    
+    if(count < 0) {
+        return false;
+    }
+    
+    let char = str[index];
+    if(char === '(') {
+        return checkValidStringHelper(str, index + 1, count + 1);
+    } else if(char === ')') {
+        return checkValidStringHelper(str, index + 1, count - 1);
+    } else if(char === '*') {
+        return checkValidStringHelper(str, index + 1, count + 1) || // ( case
+        checkValidStringHelper(str, index + 1, count - 1) || // ) case
+        checkValidStringHelper(str, index + 1, count); // * case
+    }
+}
