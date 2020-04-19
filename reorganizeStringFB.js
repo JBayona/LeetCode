@@ -54,8 +54,8 @@ var reorganizeString = function(S) {
                 position = 1;
             }
             result[position] = char;
-            // First pass 2, 4, 6, 8, 10, 12
-            // Second pass 1, 3, 5, 7, 9, 11
+            // First pass - 2, 4, 6, 8, 10, 12
+            // Second pass - 1, 3, 5, 7, 9, 11
             position += 2;
         }
     }
