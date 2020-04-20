@@ -36,6 +36,7 @@ function bstFromPreorderUtil(preorder,  start, end) {
     
     let node = new TreeNode(preorder[start]);
     let rightNodeIndex = start;
+    // Find the first node greater then the current node
     while(rightNodeIndex < preorder.length) {
         if(preorder[rightNodeIndex] > node.val) {
             break;
