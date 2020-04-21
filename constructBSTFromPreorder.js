@@ -22,6 +22,7 @@ For example in {10, 5, 1, 7, 40, 50}, 10 is the first element, so we make it roo
 element greater than 10, we find 40. So we know the structure of BST is as following.
 */
 
+// Time O(N)
 var bstFromPreorder = function(preorder) {
     let start = 0;
     let end = preorder.length;
@@ -51,4 +52,32 @@ function bstFromPreorderUtil(preorder,  start, end) {
     node.right = bstFromPreorderUtil(preorder, rightNodeIndex, end);
     return node;
 }
+
+// Iterative
+var bstFromPreorder = function(preorder) {
+    if(!preorder.length) {
+        return null;
+    }
+    
+    let stack = [];
+    let root = new TreeNode(preorder[0]);
+    let node;
+    stack.push(root);
+    
+    for(let i = 1; i < preorder.length; i++) {
+        node = stack[stack.length-1]; // Peek
+        let child = new TreeNode(preorder[i]);
+        while(stack.length && node.val < child.val) {
+            node = stack.pop();
+        }
+        
+        if(node.val < child.val) {
+            node.right = child;
+        } else {
+            node.left = child;
+        }
+        stack.push(child);
+    }
+    return root;
+};
 
