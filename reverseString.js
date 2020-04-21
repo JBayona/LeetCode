@@ -23,3 +23,20 @@ var reverseString = function(s) {
     }
     return reversed.join('');
 };
+
+// Recursion
+var reverseString = function(array) {
+    return reverseStringHelper(array, 0, array.length - 1);
+};
+
+function reverseStringHelper(array, start, end) {
+    // Base case
+    if(start >= end) {
+        return array;
+    }
+    // Shift
+    let tmp = array[start];
+    array[start] = array[end];
+    array[end] = tmp;
+    return reverseStringHelper(array, start + 1, end - 1);
+}
