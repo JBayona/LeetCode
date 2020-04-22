@@ -15,6 +15,39 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 https://leetcode.com/problems/merge-intervals/
 */
 
+// Updated
+
+var merge = function(intervals) {
+  let result = [];
+  let index = null;
+
+  if(!intervals || !intervals.length) {
+        return [];
+    }
+  
+  // Sort using start time as point of sorting
+  // Use a comparator
+  //[0] - Start time
+  //[1] - End time
+  intervals = intervals.sort((a,b) => a[0] - b[0]);
+
+  let pre = intervals[0];
+    for(let i = 0; i < intervals.length; i++){
+      let curr = intervals[i];
+      if(curr[0] > pre[1]) {
+          result.push(pre);
+          pre = curr;
+      } else{
+          let merged = [pre[0], Math.max(pre[1], curr[1])];
+          pre = merged;
+      }
+    }
+  // The missing one
+  result.push(pre);
+
+  return result;
+};
+
 function Interval(start, end) {
   this.start = start;
   this.end = end;
