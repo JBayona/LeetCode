@@ -43,3 +43,38 @@ var maxSlidingWindow = function(nums, k) {
     }
     return result;
 };
+
+// Time O(N)
+// Space O(N)
+
+import java.util.*; 
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums == null || nums.length == 0) {
+            return new int[0];
+        }
+        
+        int[] results = new int[nums.length - k + 1];
+        // By default treemap gives you from less element to greater element but as we set a
+        // reverse order, we are going to get the greater element
+        TreeMap<Integer, Integer> map = new TreeMap<>(Collections.reverseOrder());
+        
+        for(int i = 0; i < nums.length && i < k; i++) {
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        }
+        int index = 0;
+        results[index] = map.firstKey();
+        for(int i = k; i < nums.length; i++) {
+            Integer count = map.get(nums[index]);
+            if(count == 1) {
+                map.remove(nums[index]);
+            } else {
+                map.put(nums[index], count - 1);
+            }
+            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+            index++;
+            results[index] = map.firstKey();
+        }
+        return results;
+    }
+}
