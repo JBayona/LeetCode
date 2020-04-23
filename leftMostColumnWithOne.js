@@ -41,6 +41,33 @@ youtube.com/watch?v=5nB8bQEbLkA
 https://leetcode.com/discuss/interview-question/341247/Facebook-or-Phone-screen-or-Leftmost-column-index-of-1
 */
 
+// Good approach
+var leftMostColumnWithOne = function(binaryMatrix) {
+    if(!binaryMatrix) {
+        return -1;
+    }
+    let dimensions = binaryMatrix.dimensions();
+    let m = dimensions[0];
+    let n = dimensions[1];
+    let result = -1;
+    let row = 0;
+    let col = n-1;
+    
+    // Start on the first row and last column, if we find a "1", we will move to
+    // the left, otherwise if we find a 0, we'll move to the next row (bottom)
+    // Move from top to down and right to left
+    while(row < m && col >= 0) {
+            if(binaryMatrix.get(row, col) == 0) {
+                row++;
+            } else {
+                // we found a 1, save it as the left most
+                result = col;
+                col--;
+            }
+        }
+        return result;
+};
+
 var leftMostColumnWithOne = function(binaryMatrix) {
     let dimensions = binaryMatrix.dimensions();
     let ROW = dimensions[0];
