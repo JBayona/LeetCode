@@ -44,6 +44,35 @@ var maxSlidingWindow = function(nums, k) {
     return result;
 };
 
+// Time O(N*Log(K))
+// Space O(k)
+
+import java.util.*; 
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if(nums == null || nums.length == 0) {
+            return new int[0];
+        }
+        
+        int[] results = new int[nums.length - k + 1];
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((x, y) -> y - x);
+        
+        for(int i = 0; i < nums.length && i < k; i++) {
+            maxHeap.add(nums[i]);
+        }
+        
+        int index = 0;
+        results[index] = maxHeap.peek();
+        for(int i = k; i < nums.length; i++) {
+            maxHeap.remove(nums[index]);
+            maxHeap.add(nums[i]);
+            index++;
+            results[index] = maxHeap.peek();
+        }
+        return results;
+    }
+}
+
 // Time O(N)
 // Space O(N)
 
