@@ -11,6 +11,7 @@ Input: [0,1]
 Output: 0
 
 https://leetcode.com/problems/bitwise-and-of-numbers-range/
+https://leetcode.com/problems/bitwise-and-of-numbers-range/discuss/592288/100-memory!-C%2B%2B-solution-with-explanation
 */
 
 var rangeBitwiseAnd = function(m, n) {
