@@ -27,5 +27,4 @@ var rangeBitwiseAnd = function(m, n) {
         result <<= 1;
     }
     return result;
-    
 };
