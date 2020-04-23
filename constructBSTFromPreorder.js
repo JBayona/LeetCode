@@ -53,6 +53,37 @@ function bstFromPreorderUtil(preorder,  start, end) {
     return node;
 }
 
+// Insert solution
+var bstFromPreorder = function(preorder) {
+    if(preorder === null || preorder.length == 0) return null;
+    let head = new TreeNode(preorder[0]);
+    let aux = head;
+    for(let i = 1; i < preorder.length; i++) {
+        let current = preorder[i];
+        // Return the head to the pointer so we can check where the node belongs to
+        aux = head;
+        bstFromPreorderHelper(current, aux);
+    }
+    return head;
+};
+
+function bstFromPreorderHelper(next, root) {
+    //  Belong to left tree
+    if(next < root.val) {
+        if(root.left == null) {
+            root.left = new TreeNode(next);
+        } else {
+            bstFromPreorderHelper(next, root.left);
+        }
+    } else {
+        if(root.right == null) {
+            root.right = new TreeNode(next);
+        } else {
+            bstFromPreorderHelper(next, root.right);
+        }
+    }
+}
+
 // Iterative
 var bstFromPreorder = function(preorder) {
     if(!preorder.length) {
