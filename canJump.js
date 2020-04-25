@@ -10,13 +10,22 @@ contains a 4 lets us proceed to index 5, from which we can advance to index 6.
 
 Los números en el array son el número máximo de posiciones que podemos avanzar, pero no necesariamente las debemos
 usar, la idea es mantener un máximo y verificar si ese máximo es mayor al index.
+
+https://leetcode.com/problems/jump-game/
+https://leetcode.com/problems/jump-game/discuss/596182/javascript-beats-80.-simple-loop-w-comments
 */
 
 var canJump = function(nums) {
+	// This is the biges jump we can do
     let max = 0;
     let lastIndex = nums.length - 1;
-    for(let i = 0; i <= max && max < lastIndex; i++) {
+    for(let i = 0; i < nums.length; i++) {
+    	// Set new max to be the current max or i + jump size
         max = Math.max(max, nums[i] + i);
+        // if we hit a 0 jump and our max can't cross this, break
+        if(nums[i] === 0 &&  max <= i) {
+        	break;
+        }
     }
     return max >= lastIndex;
 };
