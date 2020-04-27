@@ -68,7 +68,7 @@ var findRedundantConnection = function(edges) {
         let parent1 = findParent(fromNode, parent);
         let parent2 = findParent(toNode, parent);
         
-        // // If both parents are the same, we have found the redundant connection
+        // If both parents are the same, we have found the redundant connection
         // Cuando encuentra que en los dos nodos el root es el mismo
         // entonces esa es la conexión que está de más
         if(parent1 === parent2) {
