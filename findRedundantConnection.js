@@ -75,7 +75,7 @@ var findRedundantConnection = function(edges) {
             return nodes;
         }
         
-        // Union
+        // Union - set boths nodes with one common parent as they are connected
         union(fromNode, toNode, parent);
         console.log(parent); // { '1': 2, '2': 1, '3': 1 }
     }
