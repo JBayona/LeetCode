@@ -19,69 +19,66 @@ https://leetcode.com/problems/word-search/description/
 */
 
 var exist = function(board, word) {
-    let row = board.length;
-    let col = board[0].length;
-    let result = { index: 0};
-    let count = 0;
-    //Lista de adyacencia
-    let visited = [];
-    for(let i = 0; i < row; i++){
-      visited[i] = new Array(col).fill(false);
-    }
-
-    for(let i = 0; i < row; i++){
-      for(let j = 0; j < col; j++){
-        /*Verificamos si la primer letra forma parte de la palabra
-        necesitamos verificar esto en el primer intento para no brincar
-        la primer letra en caso de que sea parte de la palabra*/
-        if(board[i][j] === word[result.index]){
-          visited[i][j] = true;
-          result.index += 1;
-        }
-        dfs(board, i, j, visited, word, result);
-        if(word.length === result.index){
+  if(!board.length) {
+      return false;
+  }
+  
+  for(let i = 0; i < board.length; i++) {
+    for(let j = 0; j < board[i].length; j++) {
+      // Check if we find the first letter of the word
+      if(board[i][j] === word[0]) {
+        if(dfs(board, word, i, j, 0)) {
           return true;
-        }else{
-          result.index = 0;
         }
-        count++;
       }
     }
-    return false;
-    //return count;
+  }
+  return false;
 };
 
-function dfs(grid, row, col, visited, word, result){
-  //Vecinos horizontal y vertical
-  let rowk = [-1, 0, 0, 1];
-  let colK = [0, -1, 1, 0];
-
-  for(let i = 0; i < 4; i++){
-    let tmpRow = row + rowk[i];
-    let tmpCol = col + colK[i];
-    if(isSafe(grid, tmpRow, tmpCol, visited, word, result)){
-      visited[tmpRow][tmpCol] = true;
-      result.index += 1;
-      dfs(grid, tmpRow, tmpCol, visited, word, result);
-    }
+function dfs(board, word, row, col, count) {
+  let ROW = [0, -1, 0, 1];
+  let COL = [-1, 0, 1, 0];
+  
+  // We found the word
+  if(count === word.length) {
+    return true;
   }
+
+  // We are out of limits
+  if(!isSafe(board, word, row, col, count)) {
+    return false;
+  }
+  
+  // The same letter can be used only once
+  let tmp = board[row][col];
+  board[row][col] = ' '; // Just set empty space to not use it again
+
+  let found = dfs(board, word, row + 1, col, count + 1) ||
+              dfs(board, word, row - 1, col, count + 1) ||
+              dfs(board, word, row, col + 1, count + 1) ||
+              dfs(board, word, row, col - 1, count + 1)
+  
+  // Reset the letter
+  board[row][col] = tmp;
+  return found;
 }
 
-function isSafe(grid, row, column, visited, word, result){
-  let ROW = grid.length;
-  let COLUMN = grid[0].length;
-  return (row >= 0 && row < ROW) && (column >= 0 && column < COLUMN) 
-        && (grid[row][column] === word[result.index] && !visited[row][column]);
+function isSafe(board, word, row, col, count) {
+  let ROW = board.length;
+  let COL = board[0].length;
+  return (
+    row >= 0 && row < ROW &&
+    col >= 0 && col < COL &&
+    board[row][col] === word[count]
+  );
 }
 
-/*matrix = [
-    ['A','B','C','E'],
-    ['S','F','C','S'],
-    ['A','D','E','E']
-];*/
-matrix = [
-  ["A", "B"]
+board = [
+    ["A","B","C","E"],
+    ["S","F","C","S"],
+    ["A","D","E","E"]
 ];
-//word = "ABCB";
-word = "BA";
-console.log(exist(matrix, word));
+// word = "ABCCED"
+word = "SEE";
+console.log(exist(board, word));
