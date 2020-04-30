@@ -22,7 +22,7 @@ function inorder(root, node, array) {
         return false;
     }
     
-    // Inser the element into the array
+    // Insert the element into the array
     array.push(root);
     
     // If we find the last node we are done
