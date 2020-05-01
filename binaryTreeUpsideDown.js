@@ -62,10 +62,12 @@ let binaryUpsideDown = function(node) {
         return null;
     }
 
+    // Node is leaf
     if(!node.left && !node.right) {
         return node;
     }
 
+    // Left node is a root
     tree = binaryUpsideDown(node.left);
 
     node.left.left = node.right;
