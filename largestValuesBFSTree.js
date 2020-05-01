@@ -15,6 +15,32 @@ Output: [1, 3, 9]
 https://leetcode.com/problems/find-largest-value-in-each-tree-row/
 */
 
+var largestValues = function(root) {
+    if(!root) {
+        return [];
+    }
+    let queue = [];
+    let result = [];
+    let max = Number.MIN_SAFE_INTEGER;
+    queue.push(root);
+    while(queue.length) {
+        let size = queue.length;
+        for(let i = 0; i < size; i++) {
+            let node = queue.shift();
+            max = Math.max(node.val, max);
+            if(node.left) {
+                queue.push(node.left);
+            }
+            if(node.right) {
+                queue.push(node.right);
+            }
+        }
+        result.push(max);
+        max = Number.MIN_SAFE_INTEGER;
+    }
+    return result;
+};
+
 function Node(val, left, right) {
     this.left = left || null;
     this.right = right || null;
