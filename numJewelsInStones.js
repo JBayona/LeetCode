@@ -26,3 +26,20 @@ var numJewelsInStones = function(J, S) {
     }
     return result;
 };
+
+// Opción 2
+var numJewelsInStones = function(J, S) {
+    let hash = {};
+    let array = J.split('');
+    for(item of array) {
+        hash[item] = true;
+    }
+    
+    let result = 0;
+    for(let i = 0; i < S.length; i++) {
+        if(S[i] in hash) {
+            result++;
+        }
+    }
+    return result;
+};
