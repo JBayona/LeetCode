@@ -25,6 +25,7 @@ Input: n = 3
 Output: 90
 
 https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/
+https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/discuss/589348/Clean-python-code-easy-to-understand-O(n)
 */
 
 class Solution:
