@@ -34,6 +34,7 @@ var merge = function(intervals) {
   let pre = intervals[0];
     for(let i = 0; i < intervals.length; i++){
       let curr = intervals[i];
+      // If there´s no overlap, added
       if(curr[0] > pre[1]) {
           result.push(pre);
           pre = curr;
