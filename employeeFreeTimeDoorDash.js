@@ -71,4 +71,44 @@ function employeeFreeTime(list) {
 list = [[[1,3],[6,7]],[[2,4]],[[2,5],[9,12]]];
 console.log(employeeFreeTime(list));
 
+var employeeFreeTime = function(schedule) {
+    flatten = schedule.reduce((acum, val) => acum.concat(val), []);
+    // console.log(flatten);
+    flatten.sort((a,b) => a.start != b.start ? a.start - b.start : a.end - b.end);
+
+    // console.log('===',flatten);
+
+    let merge = [];
+    let pre = flatten[0];
+    for(let i = 0; i < flatten.length; i++){
+        let curr = flatten[i];
+        if(curr.start > pre.end) {
+            merge.push(pre);
+          pre = curr;
+         } else{
+            let merged = new Interval(pre.start, Math.max(pre.end, curr.end));
+            pre = merged;
+        }   
+    }
+    // The missing one
+    merge.push(pre);
+    // console.log("**",merge);
+
+    // console.log('MERGE');
+    // console.log(merge);
+
+    let result = [];
+    // At the beginning start is the time provided
+    let lastStart = merge.end;
+    for(let i = 0; i < merge.length; i++) {
+      let curr = merge[i];
+      // check if the current is between our boundaries and the current
+      if(lastStart <= curr.start) {
+        result.push(new Interval(lastStart, curr.start));
+      }
+      lastStart = curr.end;
+    }
+    return result;
+};
+
 
