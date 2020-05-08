@@ -28,7 +28,7 @@ function vanity(codes, numbers) {
       }
     }
   }
-  return Array.from(set);.sorted()
+  return Array.from(set).sorted();
 }
 
 def vanity(codes, numbers):
