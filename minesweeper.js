@@ -54,6 +54,69 @@ https://leetcode.com/problems/minesweeper/
 
 */
 
+// Best option
+
+/**
+ * @param {character[][]} board
+ * @param {number[]} click
+ * @return {character[][]}
+ */
+var updateBoard = function(board, click) {
+    let x = click[0];
+    let y = click[1];
+    
+    // If we hit the mine, just changed to 'X' and return the result
+    if(board[x][y] === 'M') {
+        board[x][y] = 'X';
+        return board;
+    }
+    
+    dfs(x, y, board);
+    return board;
+};
+
+function dfs(x, y, board) {
+    // Check if is a valid movement
+    if (!isSafe(board, x, y) || board[x][y] != 'E')  return;
+        
+    let num = getNumsOfBombs(board, x, y);
+    
+    if (num == 0) {
+        board[x][y] = 'B';
+        // Left, right, up, down and all diagonals
+        let ROW = [-1, 0, 1, -1, 1, 0, 1, -1];
+        let COL = [-1, 1, 1, 0, -1, -1, 0, 1];
+        for (let i = 0; i < 8; i++) {
+            let nextRow = x + ROW[i];
+            let nextCol = y + COL[i];
+            dfs(nextRow, nextCol, board);
+        }
+    } else {
+        board[x][y] = num.toString();
+    }
+}
+
+function isSafe(board, x, y) {
+    return (
+        (x >= 0 && x < board.length) &&
+        (y >= 0 && y < board[0].length)
+    );
+}
+
+function getNumsOfBombs(board, row, col) {
+    let ROWK = [1, 0, 1, -1, -1,  0, -1,  1];
+    let COLK = [0, 1, 1, -1,  0, -1,  1, -1];
+    let mines = 0;
+    for(let i = 0; i < 8; i++) {
+        let nextROW = row + ROWK[i];
+        let nextCOL = col + COLK[i];
+        if(isSafe(board, nextROW, nextCOL) && board[nextROW][nextCOL] === 'M') {
+            mines++;
+        }
+    }
+    return mines;
+}
+
 // Option 1
 
 var updateBoard = function(board, click) {
