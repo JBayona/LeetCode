@@ -34,23 +34,36 @@ Output: 3
 https://leetcode.com/problems/find-the-town-judge/
 */
 
-var findJudge = function(N, trust) {
-    // To find the town judge minimum people need to trust N - 1
-    if(trust.length < N - 1) {
-        return -1;
-    }
-    
-    let outtrust = new Array(N+1).fill(0);
-    for(let i = 0; i < trust.length; i++) {
-        let elem = trust[i];
-        outtrust[elem[0]]--;
-        outtrust[elem[1]]++;
-    }
-    
-    for(let i = 1; i <= N ; i++) {
-        if(outtrust[i] === N - 1) {
-            return i;
+/*
+La persona que sea el juez tiene que tener N - 1 votos de confianza, ya que todos confian
+en el, entonces si son 3 personas y entre ellos son 3 votos, 2 personas deben de votar en el
+juez, entonces el juez debe de tener N - 1 votos.
+
+En el loop decrementamos los votos que pueden tener si una persona sale que confia en la otra,
+y al que le confian incrementamos ya que esa es la persona que puede ser el candidato como
+el town of judge.
+
+Ya que hicimos este conteo, finalmente debemos verificar si el número de votos es igual a
+N - 1, si sí, hemos encontrado al juez, en caso contrario no lo hemos encontrado y regresamos
+-1
+*/
+    var findJudge = function(N, trust) {
+        // To find the town judge minimum people need to trust N - 1
+        if(trust.length < N - 1) {
+            return -1;
         }
-    }
-    return -1;
-};
+
+        let outtrust = new Array(N+1).fill(0);
+        for(let i = 0; i < trust.length; i++) {
+            let elem = trust[i];
+            outtrust[elem[0]]--;
+            outtrust[elem[1]]++;
+        }
+
+        for(let i = 1; i <= N ; i++) {
+            if(outtrust[i] === N - 1) {
+                return i;
+            }
+        }
+        return -1;
+    };
