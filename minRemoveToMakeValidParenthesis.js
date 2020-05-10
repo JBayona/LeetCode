@@ -58,6 +58,8 @@ var minRemoveToMakeValid = function(s) {
     }
     
     let result = '';
+    // Ignore the index of the invalid indexes so we can just form
+    // a valid string
     for(let i = 0; i < s.length; i++) {
         if(ilegalIndex.includes(i)) {
             continue;
