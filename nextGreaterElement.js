@@ -32,6 +32,9 @@ var nextGreaterElement = function(nums1, nums2) {
         }
         stack.push(nums2[i]);
     }
+
+    // At this point we have a map with the next greater element
+    // key is the number and value is the next greater element
     
     let result = [];
     for(let i = 0; i < nums1.length; i++) {
