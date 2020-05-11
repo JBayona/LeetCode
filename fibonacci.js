@@ -41,3 +41,18 @@ var fib = function(N) {
   memo[N] = fib(N-1) + fib(N-2);
   return memo[N];
 };
+
+// Iterative
+var fib = function(N) {
+  let first = 1;
+  let second = 0;
+  let tmp = 0;
+
+  while(N >= 0) {
+    tmp = a;
+    first = first + second;
+    second = tmp;
+    N--;
+  }
+  return second;
+}
