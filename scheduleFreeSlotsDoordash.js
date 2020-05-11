@@ -48,7 +48,7 @@ function bookTime(intervals, start, end, duration) {
     if(lastStart <= curr[0] && Math.abs(lastStart-curr[0]) >= duration && curr[0] <= end) {
       result.push([lastStart, curr[0]]);
     }
-    lastStart = curr[1];
+    lastStart = curr[1]; // Math.max(lastStart, curr[1]);
   }
   return result;
 }
