@@ -1,60 +1,64 @@
 /*
-The thief has found himself a new place for his thievery again. There is only one entrance to this area, called the "root."
-Besides the root, each house has one and only one parent house. After a tour, the smart thief realized that "all houses
-in this place forms a binary tree". It will automatically contact the police if two directly-linked houses were broken
-into on the same night.
+If the frog's last jump was k units, then its next jump must be either k - 1, k, or k + 1 units.
+Note that the frog can only jump in the forward direction.
 
-Determine the maximum amount of money the thief can rob tonight without alerting the police.
+Note:
 
+The number of stones is ≥ 2 and is < 1,100.
+Each stone's position will be a non-negative integer < 231.
+The first stone's position is always 0.
 Example 1:
 
-Input: [3,2,3,null,3,null,1]
+[0,1,3,5,6,8,12,17]
 
-     3
-    / \
-   2   3
-    \   \ 
-     3   1
+There are a total of 8 stones.
+The first stone at the 0th unit, second stone at the 1st unit,
+third stone at the 3rd unit, and so on...
+The last stone at the 17th unit.
 
-Output: 7 
-Explanation: Maximum amount of money the thief can rob = 3 + 3 + 1 = 7.
+Return true. The frog can jump to the last stone by jumping 
+1 unit to the 2nd stone, then 2 units to the 3rd stone, then 
+2 units to the 4th stone, then 3 units to the 6th stone, 
+4 units to the 7th stone, and 5 units to the 8th stone.
 Example 2:
 
-Input: [3,4,5,1,3,null,1]
+[0,1,2,3,4,8,9,11]
 
-     3
-    / \
-   4   5
-  / \   \ 
- 1   3   1
+Return false. There is no way to jump to the last stone as 
+the gap between the 5th and 6th stone is too large.
 
-Output: 9
-Explanation: Maximum amount of money the thief can rob = 4 + 5 = 9.
-
-https://leetcode.com/problems/house-robber-iii/
+https://leetcode.com/problems/frog-jump/
 */
 
-var rob = function(root) {
-    // Using the root
-    let op1 = robHelper(root, true);
-    // Not using the root
-    let op2 = robHelper(root, false);
-    return Math.max(op1, op2);
+var canCross = function(stones) {
+  let map = {};
+  // Format out hash
+  for(let i = 0; i < stones.length; i++) {
+      let stone = stones[i];
+      map[stone] = new Set();
+  }
+  
+  // Init
+  map[0].add(0);
+  
+  for(let i = 0; i < stones.length; i++) {
+      let stone = stones[i];
+      // Convert the set into an array
+      let array = Array.from(map[stone].values());
+      
+      // The set has from which rocks we can reach this value
+      for(let i = 0; i < array.length; i++) {
+          let jumps = array[i];
+          // We can only jum k -1, k, k +1
+          for(let i = -1; i < 2; i++) {
+              let units = jumps + i;
+              if((stone + units) in map) {
+                  // We store how many units we need to reach the rock
+                  map[stone + units].add(units);
+              }
+          }
+      }
+  }
+  console.log(map);
+  return map[stones[stones.length-1]].size > 0;
 };
-
-function robHelper(root, flag) {
-    if(!root) {
-        return 0;
-    }
-    
-    // If we use the root, then the next we are not able to use the next left and right values
-    if(flag) {
-        return root.val + robHelper(root.left, !flag) + robHelper(root.right, !flag);
-    } else {
-        // Otherwhise we want the max of using or node using the left and right branches
-        let leftMax = Math.max(robHelper(root.left, !flag), robHelper(root.left, flag));
-        let rightMax = Math.max(robHelper(root.right, !flag), robHelper(root.right, flag));
-        // We should just return that
-        return leftMax + rightMax;
-    }
-}
