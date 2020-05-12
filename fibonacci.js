@@ -49,7 +49,7 @@ var fib = function(N) {
   let tmp = 0;
 
   while(N >= 0) {
-    tmp = a;
+    tmp = first;
     first = first + second;
     second = tmp;
     N--;
