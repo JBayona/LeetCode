@@ -36,12 +36,18 @@ var wordPattern = function(pattern, str) {
     for(let i = 0; i < pattern.length; i++) {
         let patternChar = pattern[i];
         if(!(patternChar in hash)){
+            // If they pattern is already there with a different key
+            // we don't expect to form the pattern
             if(Object.values(hash).includes(strArray[i])) {
+                console.log('REACH HERE');
                 return false;
             } else {
                 hash[patternChar] = strArray[i];
             }
+            console.log(hash);
         } else {
+            // If the parent is different as the one we already expect
+            // we return flase
             if(hash[patternChar] !== strArray[i]) {
                 return false;
             }
