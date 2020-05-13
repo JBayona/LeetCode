@@ -53,3 +53,36 @@ function getHash(str) {
 let s1 = "abcd";
 let s2 = "bdcXa";
 console.log(getDifferentChar(s1,s2));
+
+function getDifferentChar(s1, s2) {
+  if(!s1 || !s2) {
+    return s2[0];
+  }
+
+  if(s2.length > s1.length) {
+    return getDifferentChar(s2, s1);
+  }
+
+  for(let i = 0; i < s1.length; i++) {
+    if(s1[i] !== s2[i]) {
+      return s1[i];
+    }
+  }
+  return null;
+}
+
+// let s1 = "abcd";
+//let s2 = "abXcd";
+
+//let s1 = "Xabcd";
+//let s2 = "abcd";
+
+//let s1 = "abcd";
+//let s2 = "abcd";
+
+//let s1 = "abcd";
+//let s2 = "abcdX";
+
+let s1 = "aaaa";
+let s2 = "aaa";
+console.log(getDifferentChar(s1,s2));
