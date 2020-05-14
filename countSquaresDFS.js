@@ -35,7 +35,8 @@ https://leetcode.com/problems/count-square-submatrices-with-all-ones/
  * @return {number}
  */
 // DP
-// O(M X N)
+// Time O(M X N)
+// Space O(1)
 var countSquares = function(matrix) {
     let count = 0;
     for(let i = 0; i < matrix.length; i++) {
