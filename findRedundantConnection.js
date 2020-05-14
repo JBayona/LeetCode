@@ -67,6 +67,12 @@ var findRedundantConnection = function(edges) {
         let toNode = nodes[1];
         let parent1 = findParent(fromNode, parent);
         let parent2 = findParent(toNode, parent);
+
+        console.log('HERE');
+        console.log('DE ', fromNode);
+        console.log('TO ', toNode);
+        console.log('PARENT 1', parent1);
+        console.log('PARENT 2', parent2);
         
         // If both parents are the same, we have found the redundant connection
         // Cuando encuentra que en los dos nodos el root es el mismo
@@ -80,7 +86,16 @@ var findRedundantConnection = function(edges) {
         console.log(parent); // { '1': 2, '2': 1, '3': 1 }
     }
 };
+/*
+  1
+ / \
+2 - 3
+{1: 1, 2: 2, 3: 3}
+{1: 1, 2: 1, 3: 3}
+{1: 1, 2: 1, 3: 1}
+*/
 
+// Use node A to set it as parent
 function union(nodeA, nodeB, parent) {
     let parentA = findParent(nodeA, parent);
     let parentB = findParent(nodeB, parent);
