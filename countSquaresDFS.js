@@ -32,8 +32,6 @@ Total number of squares = 6 + 1 = 7.
 https://leetcode.com/problems/count-square-submatrices-with-all-ones/
 */
 
- * @return {number}
- */
 // DP
 // Time O(M X N)
 // Space O(1)
