@@ -23,7 +23,7 @@ function getSequences(input) {
         isIncreasing = -1;
       } else if(isIncreasing === 1) {
         result += 1;
-        isIncreasing = 1;
+        isIncreasing = -1;
       }
     } else if(input[i] > input[i-1]) { // Increasing
       if(isIncreasing === 0) {
