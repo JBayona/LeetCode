@@ -41,24 +41,42 @@ var numberToWords = function(num) {
 
   let result = '';
   let i = 0;
-  // Keep looping while we get zero
   while(num > 0) {
-   if(num % 1000 !== 0) {
-    result = helper(num % 1000) + thousands[i] + ' ' + result;
-   }
-   num = Math.floor(num/1000);
-   i++;
+    if(num % 1000 !== 0) {
+      result = helper(num % 1000) + thousands[i] + ' ' + result;
+    }
+    num = Math.floor(num/1000);
+    i++;
   }
 
-  return result.trim(); // Remove trailing spaces
+  return result.trim();
 };
 
+/*
+If we want to extend the number to do it with "and" we should pass the original
+number and then concatenate that number is it's greater or equal than 100
+Example:
+else if(num < 100){
+    let tmp = '';
+    if(original >= 100) {
+        tmp += ' and ';
+    }
+    return tmp + tens[Math.floor(num / 10)] + ' ' + helper(num % 10); // 20, 30, 40, 50, 60, 70, 80, 90
+} 
+*/
+
 function helper(num) {
-  if(num === 0) return ''; // necessary! 50868
-  else if(num < 20) return lessThan20[num] + ' '; // 1 - 19
-  else if(num < 100) return tens[Math.floor(num / 10)] + ' ' + helper(num % 10); // 20, 30, 40, 50, 60, 70, 80, 90
-  else return lessThan20[Math.floor(num / 100)] + ' Hundred ' + helper(num % 100); // > 100
+  if(num === 0){
+        return ''; // necessary! 50868
+    } else if(num < 20){
+        return lessThan20[num] + ' '; // 1 - 19
+    } else if(num < 100){
+        return tens[Math.floor(num / 10)] + ' ' + helper(num % 10); // 20, 30, 40, 50, 60, 70, 80, 90
+    } else {
+        return lessThan20[Math.floor(num / 100)] + ' Hundred ' + helper(num % 100); // > 100
+    }
 }
+
 
 // n = 1234567;
 // n = 1000010;
