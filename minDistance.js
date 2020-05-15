@@ -28,6 +28,18 @@ exection -> execution (insert 'u')
 https://leetcode.com/problems/edit-distance/description/
 */
 
+/*
+   X   h    o.    r.     s.     e
+
+X  0.  1.   2.    3.     4.     5  = 5 operations from null to the string above
+
+r  1   1.   2.    2.     3.     4
+
+o  2   2.   1.    2      3.     4
+
+s  3   3.   2.    2.     2.     3
+
+*/
 var minDistance = function(word1, word2) {
     // create dp table
     let dp = new Array(word1.length + 1);
@@ -35,24 +47,30 @@ var minDistance = function(word1, word2) {
         dp[i] = new Array(word2.length + 1);
     }
     
+    // Fill the first row with 0...word.length as we consoder the null value
     for(let i = 0; i < dp[0].length; i++) {
         dp[0][i] = i;
     }
     
+    // Do the same for the column, fill from 0... word2.length
     for(let i = 0; i < dp.length; i++) {
         dp[i][0] = i;
     }
     
     for(let i = 1; i <= word1.length; i++) {
         for(let j = 1; j <= word2.length; j++) {
+            // If we have the same character, we take it from the diagonal which holds the
+            // minimum value to get that caracter
             if(word1[i-1] === word2[j-1]) {
                 dp[i][j] = dp[i-1][j-1];
             } else {
+                // Otherwise, get the minimum from the left, diagonal and top + 1
                 dp[i][j] = Math.min(dp[i][j-1], dp[i-1][j-1], dp[i-1][j]) + 1
             }
         }
     }
     
+    // the minimum is the final element of our matrix
     return dp[word1.length][word2.length];
 };
 
