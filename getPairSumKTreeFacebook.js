@@ -41,6 +41,44 @@ function getPairK(root, k) {
   return null;
 }
 
+// BFS Option 2
+// BFS
+function getPairK(root, k) {
+  if(!root) {
+    return [];
+  }
+  let set = new Set();
+  let queue = [];
+  queue.push(root);
+  let level = 0;
+  while(queue.length) {
+    let size = queue.length;
+    let values = [];
+    for(let i = 0; i < size; i++) {
+      let node = queue.shift();
+      if(set.has(k - node.val)) {
+        return [node.val, k - node.val];
+      }
+      // console.log(node.val);
+      if(node.left) {
+        queue.push(node.left);
+      }
+      if(node.right) {
+        queue.push(node.right);
+      }
+      values.push(node.val);
+    }
+
+    // For of levels
+    for(let item of values) {
+      if(!set.has(item)) {
+        set.add(item);
+      }
+    }
+  }
+  return null;
+}
+
 /*
             11
      2             8
