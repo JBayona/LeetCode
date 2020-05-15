@@ -79,6 +79,30 @@ function getPairK(root, k) {
   return null;
 }
 
+// DFS
+function getPairK(root, k) {
+  hash = {};
+  return hasValue(root, k, hash);
+}
+
+function hasValue(root, k, hash) {
+  if(!root) {
+    return;
+  }
+  if(hash[k - root.val] >= 1) {
+    return [root.val, k - root.val];
+  }
+  hash[root.val]++;
+  let left = hasValue(root.left, k, hash);
+  if(!left) {
+    let right = hasValue(root.right, k, hash);
+    hash[root.val]--;
+    return right;
+  }
+  hash[root.val]--;
+  return left
+}
+
 /*
             11
      2             8
