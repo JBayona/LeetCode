@@ -8,6 +8,20 @@ https://leetcode.com/problems/maximum-subarray/description/
 */
 
 // Time O(N)
+// Space O(1)
+var maxSubArray = function(nums) {
+    // Kadane's algorithm max sum normal array
+    let currentMax = nums[0];
+    let maxSoFar = nums[0];
+    for(let i = 1; i < nums.length; i++) {
+        currentMax += nums[i];
+        currentMax = Math.max(nums[i], currentMax);
+        maxSoFar = Math.max(currentMax, maxSoFar);
+    }
+    return maxSoFar;
+};
+
+// Time O(N)
 // Space O(1).
 var maxSubArray = function(nums) {
     var max = Number.MIN_SAFE_INTEGER;
