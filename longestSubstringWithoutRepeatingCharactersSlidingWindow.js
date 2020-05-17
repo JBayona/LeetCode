@@ -35,7 +35,7 @@ var lengthOfLongestSubstring = function(s) {
   let end = 0;
   let map = {};
   let result = 0;
-  // Counter es la variable que usamos para
+  // Counter es la variable que usamos para contar los repetidos
   let counter = 0;
     
   while(end < s.length) {
