@@ -29,7 +29,8 @@ function Tree(val, left, right){
 }
 
 var isValidBST = function(root) {
-  return checkBST(root, Number.MAX_SAFE_VALUE, Number.MIN_SAFE_VALUE);
+  if(!root) return true;
+  return checkBST(root, Number.MIN_SAFE_VALUE, Number.MAX_SAFE_VALUE);
 };
 
 function checkBST(node, MIN, MAX){
