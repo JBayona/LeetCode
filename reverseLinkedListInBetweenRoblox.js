@@ -1,56 +1,56 @@
 /*
-Write a class StockSpanner which collects daily price quotes for some stock, and returns
-the span of that stock's price for the current day.
+Given a linked list and n, reverse the list in between, example:
+1 -> 2 -> 3 -> 4 -> 5 -> 6
+n = 3
 
-The span of the stock's price today is defined as the maximum number of consecutive
-days (starting from today and going backwards) for which the price of the stock was less
-than or equal to today's price.
-
-For example, if the price of a stock over the next 7 days were [100, 80, 60, 70, 60, 75, 85]
-then the stock spans would be [1, 1, 1, 2, 1, 4, 6].
-
-Example 1:
-
-Input: ["StockSpanner","next","next","next","next","next","next","next"], [[],[100],[80],[60],[70],[60],[75],[85]]
-Output: [null,1,1,1,2,1,4,6]
-Explanation: 
-First, S = StockSpanner() is initialized.  Then:
-S.next(100) is called and returns 1,
-S.next(80) is called and returns 1,
-S.next(60) is called and returns 1,
-S.next(70) is called and returns 2,
-S.next(60) is called and returns 1,
-S.next(75) is called and returns 4,
-S.next(85) is called and returns 6.
-
-Note that (for example) S.next(75) returned 4, because the last 4 prices
-(including today's price of 75) were less than or equal to today's price.
-
-https://leetcode.com/problems/online-stock-span/
+Result = 3 -> 2 -> 1 -> 6 -> 5 -> 4
 */
 
-var StockSpanner = function() {
-    this.stack = [];
-};
+function Node(val, next) {
+    this.val = val;
+    this.next = next || null;
+}
 
-/** 
- * @param {number} price
- * @return {number}
- */
-StockSpanner.prototype.next = function(price) {
-    let span = 1;
-    // If new price comes, keep popping the stack untill the current price  is >= top price
-    // and accumulate its span
-    while(this.stack.length && price >= this.stack[this.stack.length-1].price) {
-        let pop = this.stack.pop();
-        span += pop.span;
+var reverseList = function(head, n) {
+    let current = head;
+    let newHead;
+  while(current) {
+    // One we find the node
+    if(current.val === n) {
+        let next = current.next;
+        // Remove current reference to split the list
+        current.next = null;
+        // Reverse the first part of the list
+        listFirst = reverseLinkedList(head);
+        // Reverse the second part of the list
+        listSecond = reverseLinkedList(next);
+        let newHead = listFirst;
+        let tmp = listFirst;
+        // Append at the final the last list reversed
+        while(tmp.next) {
+          tmp = tmp.next; 
+        }
+        tmp.next = listSecond
+        return newHead;
     }
-    this.stack.push({price: price, span});
-    return span;
+    // Move pointer forward
+    current = current.next;
+  }
 };
 
-/** 
- * Your StockSpanner object will be instantiated and called as such:
- * var obj = new StockSpanner()
- * var param_1 = obj.next(price)
- */
+function reverseLinkedList(head) {
+    let next = null;
+    let current = head;
+    let prev = null;
+    while(current) {
+        next = current.next;
+        current.next = prev;
+        prev = current;
+        current = next;
+    }
+    return prev;
+}
+
+list = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, new Node(6))))));
+n = 3;
+console.log(reverseList(list,n));
