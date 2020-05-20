@@ -4,6 +4,7 @@ Given an 2-dimensional array of integers, find the size of the largest continuos
 connected of numbers with the same value
 */
 
+// Time Complexity O(N)
 var getMaxBlock = function(grid) {
   let result = 0;
   for(let i = 0; i < grid.length; i++) {
