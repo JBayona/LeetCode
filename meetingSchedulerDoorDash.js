@@ -22,6 +22,7 @@ Output: []
 */
 
 var minAvailableDuration = function(slots1, slots2, duration) {
+    // Sort interval based on start time
     slots1.sort((a, b) => a[0] - b[0]);
     slots2.sort((a, b) => a[0] - b[0]);
     
@@ -32,18 +33,26 @@ var minAvailableDuration = function(slots1, slots2, duration) {
         let free1 = slots1[indexSlot1];
         let free2 = slots2[indexSlot2];
         
+        // If first employee start time is greater, it means that second employee need to find a time later
+        // first employee has time after employee 2
         if(free1[0] > free2[1]) {
             indexSlot2++;
         } else if(free2[0] > free1[1]) {
             indexSlot1++;
         } else {
+            // We could have an overlap here so let's find a good time for both employees
+            // Take the start time where both are available, by getting the max
             let start = Math.max(free1[0], free2[0]);
+            // Tajke the time both employees are available by getting the min
             let end = Math.min(free2[1], free1[1]);
+            // if our time range has at least the required direction we got the result
             if(end - start >= duration) {
                 return [start, start+duration];
+                // We may have the case where second employee does not have the required length per duration and
+                // we need to find a greater interval
             } else if(free1[1] > free2[1]) {
                 indexSlot2++;
-            } else {
+            } else { // Same case but opposite
                 indexSlot1++;
             }
         }
