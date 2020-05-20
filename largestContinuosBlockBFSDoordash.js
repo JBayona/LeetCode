@@ -62,20 +62,20 @@ function isSafe(grid, row, column, visited){
   )
 }
 
-//matriz = [
+//matrix = [
   //[1,2,3],
   //[4,1,6],
   //[4,5,1],
 //]; // Result = 2 for two 4s
-// matriz = [
+// matrix = [
   //[1, 1, 1, 2, 4],
   //[5, 1, 5, 3, 1],
   //[3, 4, 2, 1, 1],
 //] // 4 => 1s
-matriz = [
+matrix = [
 [3, 3, 3, 3, 3, 1],
 [3, 4, 4, 4, 3, 4],
 [2, 4, 3, 3, 3, 4],
 [2, 4, 4, 4, 4, 4],
 ]; // 11 => 4s
-console.log(getMaxBlock(matriz));
+console.log(getMaxBlock(matrix));
