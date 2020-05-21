@@ -13,6 +13,8 @@ Example 2:
 Input: [1,[4,[6]]]
 Output: 27 
 Explanation: One 1 at depth 1, one 4 at depth 2, and one 6 at depth 3; 1 + 4*2 + 6*3 = 27.
+
+https://www.programcreek.com/2014/05/leetcode-nested-list-weight-sum-java/
 */
 function nestedListWeightLevel(list) {
   // Send the list and the first level
