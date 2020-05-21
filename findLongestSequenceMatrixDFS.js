@@ -4,7 +4,7 @@ var findLongestSequence = function(grid) {
    return 0;
   }
 
-  // If the grid is not empry we know at least we have one number
+  // If the grid is not empty we know at least we have one number
   let result = {max: 1};
   let count = 1;
 
