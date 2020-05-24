@@ -14,9 +14,45 @@ Output: "bb"
 https://leetcode.com/problems/longest-palindromic-substring/description/
 */
 
+// Time O(n^2)
+// Space O(1)
+
+// Expand From center (time O(n^2) and space O(1)):
+// Two situations:
+// 1."aba" , the middle element is a char : each char is considered a center for odd palindrome
+// 2."abba", the middle element is not a char : the gap b/n each char is considered
+// a center for even palindrome
+function longestPalindrome(str) {
+  if (!str) {
+    return "";
+  } 
+  if (str.length == 1) {
+    return str;
+  } 
+  let longest = str.substring(0,1);
+  //Search from left 
+  for(let i=0; i < str.length; i++) {
+    let temp = expandAroundCenter(str, i, i); // odd palindrome
+    longest = temp.length > longest.length ? temp : longest;  
+    temp = expandAroundCenter(str, i, i+1); // even palindrome
+    longest = temp.length > longest.length ? temp : longest;
+  }
+  return longest;
+}
+
+function expandAroundCenter(s, low, high) {
+  let L = low;
+  let R = high;
+  while(L >= 0 && R < s.length && s[L] === s[R]) {
+    L--;
+    R++;    
+  }
+  return s.substring(L+1,R);
+}
+
+
 //O(n^2)
 // DP
-
 function longestPalindrome(str) {
   let n = str.length;   // get length of input string 
 
