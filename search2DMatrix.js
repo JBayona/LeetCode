@@ -23,6 +23,26 @@ https://leetcode.com/problems/search-a-2d-matrix-ii/
 
 // Time O(M Log N)
 var searchMatrix = function(matrix, target) {
+    let i = matrix.length - 1;
+    let j = 0;
+    
+    while(i >= 0 && j < matrix[0].length) {
+        let current = matrix[i][j];
+        if(current === target) {
+            return true;
+        }
+        if(current > target) {
+            i--;
+        } else {
+            j++;
+        }
+    }
+    return false;
+};
+
+
+// Time O(M Log N)
+var searchMatrix = function(matrix, target) {
   for(let i = 0; i < matrix.length; i++) {
     let result = binarySearch(matrix[i], target);
     if(result) {
