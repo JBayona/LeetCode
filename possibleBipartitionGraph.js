@@ -24,6 +24,15 @@ Output: false
 https://leetcode.com/problems/possible-bipartition/
 */
 
+/*
+Para este problema podemos particionar un grafo si en los nodos podemos
+marcalos con dos etiquetas diferentes alternas, no debe de haver dos
+etiquetas continuas para que podamos particionar el grafo, por eso usamos
+1 y -1 como etiquetas separadas para poder hacer distinción de los elementos
+si dos nodos conectados tienen la misma etiqueta, eso quiere decir que no
+podemos hacer partición del grafo.
+*/
+
 // DFS
 // Time complexity: O(V+E)
 // Space complexity: O(V)
