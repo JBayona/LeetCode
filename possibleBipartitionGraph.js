@@ -71,3 +71,55 @@ function dfs(graph, colors, node, color) {
     }
     return true;
 }
+
+// BFS
+// Time complexity: O(V+E)
+// Space complexity: O(V)
+var possibleBipartition = function(N, dislikes) {
+    let graph = new Array(N);
+    for(let i = 0; i < graph.length; i++) {
+        graph[i] = [];
+    }
+    
+    // Fill undirected graph
+    for(let d of dislikes) {
+        // Zero index
+        let a = d[0] - 1;
+        let b = d[1] - 1;
+        graph[a].push(b);
+        graph[b].push(a);
+    }
+    // 0 unvisited, 1 group A, -1 group B
+    let colors = new Array(N).fill(0);
+    
+    let queue = [];
+    
+    for(let i = 0; i < N; i++) {
+        // Unvisited nodes
+        if(colors[i] === 0) {
+            queue.push(i);
+            // Mark as visited
+            colors[i] = 1;
+            
+            while(queue.length) {
+                let node = queue.shift();
+                let nextColor = -colors[node];
+                // Look for the connections of the node
+                for(let i = 0; i < graph[node].length; i++) {
+                    let nextNode = graph[node][i];
+                    // Check if it's not visited
+                    if(colors[nextNode] === 0) {
+                        queue.push(nextNode);
+                        // Mark as visited
+                        colors[nextNode] = nextColor;
+                    } else if(colors[node] === colors[nextNode]) {
+                        // If we have the same color as the prev node, it means
+                        // it's not a bipartite graph
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+    return true;
+};
