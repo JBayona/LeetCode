@@ -16,8 +16,9 @@ function findHand(input) {
         for(let j = i +1 ; j < input.length; j++) {
             let second = input[j];
             let third = findCandidate(first, second);
+            let tmpArray = input.slice(j + 1);
             let key = [first, second, third].sort().join('');
-            if(input.includes(third) && !seen.has(key)) {
+            if(tmpArray.includes(third) && !seen.has(key)) {
                 result.push([first, second, third]);
             }
             seen.add(key);
