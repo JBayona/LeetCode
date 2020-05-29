@@ -43,7 +43,7 @@ function getSuit(a,b) {
     let suitA = a[0];
     let suitB = b[0];
 
-    // SAve the first char
+    // Save the first char
     hash[suitA] = 1;
 
     // For B - If suit A and B are the same, the third one should be the same
