@@ -49,10 +49,11 @@ function build(input) {
     let people = input[i].split(',');
     for(let j = 1; j < people.length; j++) {
       if(!(people[0] in hash)) {
-        hash[people[0]] = new Set();
+        hash[people[0]] = [];
       }
-      if(!hash[people[0]].has(people[j])){
-        hash[people[0]].add(people[j]);
+      // If the element is not part of the children
+      if(hash[people[0]].indexOf(people[j]) < 0){
+        hash[people[0]].push(people[j]);
       }
       if(!nonTop.has(people[j])) {
         nonTop.add(people[j]);
@@ -60,10 +61,11 @@ function build(input) {
     }
   }
 
-  console.log(hash);
-  console.log(nonTop);
+  // console.log(hash);
+  // console.log(nonTop);
 
   let top = [];
+  // Find the parent, this is the root
   for(let prop in hash) {
     if(!nonTop.has(prop)) {
       top.push(prop);
@@ -90,12 +92,19 @@ function printTop(top, dict, result, level) {
     return;
   }
   let toPrint = Array.from(dict[top]);
-  toPrint.sort();
 
   for(let p of toPrint) {
     printTop(p, dict, result, level + 1);
   }
 }
+
+let input = [
+'G,H',
+'A,B,C,D',
+'B,E,F',
+'D,G,I',
+]
+build(input);
 
 # Python
 from collections import defaultdict
