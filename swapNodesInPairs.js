@@ -38,5 +38,22 @@ var swapPairs = function(head) {
     return newHead;
 };
 
+// Recursion
+/*
+var swapPairs = function(head) {
+    if (head==null || head.next==null) {
+        return head;
+    }
+       
+   let first = head;
+   let second = head.next;
+   let newHead = second;
+   let temp = second.next;
+   second.next = first;
+   first.next = swapPairs(temp);
+   return newHead;
+};
+*/
+
 let list = new Node(1, new Node(2, new Node(3, new Node(4))));
 console.log(swapPairs(list));
