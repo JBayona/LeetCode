@@ -37,6 +37,32 @@ function TreeNode(val, left, right) {
 }
 
 var longestUnivaluePath = function(root) {
+    if(!root) {
+        return 0;
+    }
+    max = Number.MIN_SAFE_INTEGER;
+    longestUnivaluePathHelper(root, root.val);
+    return max;
+};
+
+function longestUnivaluePathHelper(node, val, count) {
+    if(!node) {
+        return 0;
+    }
+    let leftCount = longestUnivaluePathHelper(node.left, node.val);
+    let rightCount = longestUnivaluePathHelper(node.right, node.val);
+    max = Math.max(leftCount + rightCount, max);
+
+    // This is important as we need to return only the maximum of both plus 1 of the subtrees
+    if(node.val === val) {
+        return Math.max(leftCount, rightCount) + 1;
+    }
+    return 0;
+}
+
+// Another option
+
+var longestUnivaluePath = function(root) {
     console.log(root);
     max = Number.MIN_SAFE_INTEGER;
     longestUnivaluePathHelper(root, root.val, 0);
