@@ -13,6 +13,8 @@ Curent                 Change            Output
 
 // Time O(N + M) N = Current length, M = change length
 // Space O(N + M)
+// Time O(N + M) N = Current length, M = change length
+// Space O(N + M)
 function simplifyPath(current, change) {
   if(!current || !change) {
     return current;
@@ -21,6 +23,7 @@ function simplifyPath(current, change) {
   let stack = [];
   let currentComponents = current.split('/');
   for(let directory of currentComponents) {
+    // While directory is not null
     if(directory) {
       stack.push(directory);
     }
@@ -29,6 +32,7 @@ function simplifyPath(current, change) {
   let changeComponents = change.split('/');
   for(let directory of changeComponents) {
     // Current directory . or empty directory
+    // We don´t need to do anything here
     if(!directory || directory === '.') {
       continue;
     }
@@ -43,8 +47,11 @@ function simplifyPath(current, change) {
     }
   }
 
+  console.log('Path');
+  console.log(stack);
+
   let path = [];
-  // Reverse the order
+  // Format output
   for(let i = 0; i  < stack.length; i++) {
     path.push('/');
     path.push(stack[i]);
@@ -56,9 +63,9 @@ function simplifyPath(current, change) {
 // current = "/";
 // change = "/facebook "; // result => /facebook
 
-// current = "/facebook/anin";
-// change = "../abc/def"; //result => /facebook/abc/def
+current = "/facebook/anin";
+change = "../abc/def"; //result => /facebook/abc/def
 
-current = "/facebook/instagram";
-change = "../../../../."; //result => /
+// current = "/facebook/instagram";
+// change = "../../../../."; //result => /
 console.log(simplifyPath(current, change));
