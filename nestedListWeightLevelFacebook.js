@@ -35,7 +35,7 @@ function helper(nestedList, depth) {
       sum += val * depth;
     }
   }
-  // Return accunulate sum
+  // Return accumulate sum
   return sum;
 }
 
