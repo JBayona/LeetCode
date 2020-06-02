@@ -80,7 +80,7 @@ function getPairK(root, k) {
 }
 
 // DFS
-function getPairK(root, k) {
+/*function getPairK(root, k) {
   hash = {};
   return hasValue(root, k, hash);
 }
@@ -101,7 +101,7 @@ function hasValue(root, k, hash) {
   }
   hash[root.val]--;
   return left
-}
+} */
 
 /*
             11
