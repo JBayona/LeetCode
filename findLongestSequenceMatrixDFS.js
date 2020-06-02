@@ -4,11 +4,6 @@ var findLongestSequence = function(grid) {
    return 0;
   }
 
-  // If the grid is not empty we know at least we have one number
-  let result = {max: 1};
-  let count = 1;
-
-
   let row = grid.length;
   let col = grid[0].length;
 
@@ -17,6 +12,9 @@ var findLongestSequence = function(grid) {
    visited[i] = new Array(col).fill(false);
   }
 
+  // If the grid is not empty we know at least we have one number
+  let result = {max: 1};
+  let count = 1;
   // Run DFS for each cell as we don´t know if we can find a longest sequence with a different path
   for(let i = 0; i < row; i++) {
    for(let j = 0; j < col; j++) {
@@ -76,19 +74,19 @@ function isSafe(row, col, grid, visited) {
 // ];
 // Result = 12 - [1,2,3,4,5,6,7,8,9,10,11,12]
 
-grid = [
-[1,  2,   3, 4],
-[8,  7,   6, 5],
-[9,  10,  11, 12],
-[16, 15,  14, 13]
-];
+// grid = [
+// [1,  2,   3, 4],
+// [8,  7,   6, 5],
+// [9,  10,  11, 12],
+// [16, 15,  14, 13]
+// ];
 // Result = 16 - [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]
 
-// grid = [
-// [1, 2,  3, 5],
-// [2, 10, 4, 10],
-// [9, 10, 5, 6],
-// [8, 7,  6, 7]
-// ];
+grid = [
+[1, 2,  3, 5],
+[2, 10, 4, 10],
+[9, 10, 5, 6],
+[8, 7,  6, 7]
+];
 // Result = 10 - [1,2,3,4,5,6,7,8,9,10]
 console.log(findLongestSequence(grid));
