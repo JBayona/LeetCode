@@ -22,6 +22,7 @@ https://leetcode.com/problems/triangle/
 // Space O(1)
 var minimumTotal = function(triangle) {
   let row = triangle.length;
+  // Process from bottom-up
   for(let i = row - 2; i>= 0; i--) {
     for(let j = 0; j <= i; j++) {
       if(triangle[i+1][j+1] < triangle[i+1][j]) {
