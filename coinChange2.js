@@ -30,6 +30,7 @@ Output: 1
 https://leetcode.com/problems/coin-change-2/
 https://www.youtube.com/watch?v=DJ4a7cmjZY0
 https://www.youtube.com/watch?v=p3WUwdmKRiQ
+https://www.youtube.com/watch?v=9YdGxFgEC1c
 */
 
 var change = function(amount, coins) {
@@ -49,7 +50,11 @@ var change = function(amount, coins) {
         for(let j = 1; j <= amount; j++) {
             // if the coin's value is bigger than amount
             // copy the result from previous row directly.
-            dp[i][j] = dp[i-1][j] + (j >= coins[i-1] ? dp[i][j - coins[i-1]] : 0);
+            if(j >= coins[i-1]) {
+                dp[i][j] = dp[i-1][j] + dp[i][j - coins[i-1]];
+            } else {
+                dp[i][j] = dp[i-1][j];
+            }
         }
     }
 
