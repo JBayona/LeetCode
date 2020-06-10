@@ -61,7 +61,7 @@ function dfs(s, result, tmp, start, map, memo) {
     let reachable = false;
     for(let i = start + 1; i <= s.length; i++) {
         let substr = s.substring(start, i);
-        // Check if is valid word under our dictionary
+        // Check if is valid word based on our dictionary
         if(map.has(substr)) {
             tmp.push(substr);
             reachable = dfs(s, result, tmp, i, map, memo);
