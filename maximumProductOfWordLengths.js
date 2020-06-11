@@ -36,7 +36,8 @@ var maxProduct = function(words) {
         for(let j = i + 1; j < words.length; j++) {
             let flag = false;
             let secondWord = words[j];
-            for(let c of secondWord) {
+            for(let k = 0; k < secondWord.length; k++) {
+                let c = secondWord[k];
                 if(c in map) {
                     flag = true;
                     break;
