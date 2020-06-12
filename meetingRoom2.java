@@ -16,7 +16,7 @@ class Solution {
         PriorityQueue<Interval> minHeap = new PriorityQueue<>((a, b) => a.end - b.end);
         // Add the first meeting into the queue
         minHeap.add(intervals[0]);
-        for(int i = 0; i < intervals.length; i++) {
+        for(int i = 1; i < intervals.length; i++) {
             Interval current = intervals[i];
             Interval earliest = minHeap.remove();
             // There´s no conflict, should be >= as if a meeting is at 2:00pm, another
@@ -29,6 +29,28 @@ class Solution {
             }
             // Add the elemment we removed, back to the heap
             minHeap.add(earliest);
+        }
+        return minHeap.size();
+    }
+}
+
+class Solution {
+    public int minMeetingRooms(Interval [] intervals) {
+        if(intervals === null || intervals.length === 0) {
+            return 0;
+        }
+        // Sort based on interval
+        Arrays.sort(intervals, (a, b) => a.start - b.start);
+        // Will pick the earliest time where a meeting ends
+        PriorityQueue<Interval> minHeap = new PriorityQueue<>((a, b) => a.end - b.end);
+        // Add the first meeting into the queue
+        minHeap.add(intervals[0].end);
+        for(int i = 1; i < intervals.length; i++) {
+            // No conflict
+            if(minHeap.peek() <= intervals[i].start) {
+                minHeap.poll();
+            }
+            minHeap.add(intervals[i].end);
         }
         return minHeap.size();
     }
