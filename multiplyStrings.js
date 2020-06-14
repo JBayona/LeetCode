@@ -20,6 +20,9 @@ https://leetcode.com/problems/multiply-strings/
 https://leetcode.com/problems/multiply-strings/discuss/17605/Easiest-JAVA-Solution-with-Graph-Explanation
 */
 
+// Time O(MN)
+// Space O(M+N)
+// How I'd multiply a string in a paper
 var multiply = function(num1, num2) {
   let m = num1.length;
   let n = num2.length;
