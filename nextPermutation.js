@@ -13,6 +13,83 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 https://leetcode.com/problems/next-permutation/description/
 */
 
+
+// Time O(n)
+/*
+the key to this problem is to realize that the next permutation is to
+find the first decreasing pattern backwards (because the next permutation
+needs to be the smallest number that's larger than the current number).
+i.e. 154231 -> 154312 the first decreasing pattern is from 3 to 2
+
+so the next question is which one we should pick to promote to the more
+significant digit. to satify the definition of the next permutation, we need
+to pick the smallest number that is larger than the one on the digit we are
+trying to promote a new number to. so in the above example, the digit we are
+trying to promote to is index 3(0 from left). so we need to find the smallest
+number on the right side of this digit that is larger than it (we can use the
+binary search here as we know the right side is in ascending order, this is
+because we stop at the first decreasing pattern. but this will not change the
+overall time complexity). so in my solution, i just loop through from the back
+and take the first one that's larger.
+
+once we swap the two, just reverse the array from promotion digit + 1 to the end
+in this case, from 4 to 5
+
+the corner case where is the last permutation, we will know that by realizing
+that the number is perfectly ordered ascending from back to front, so
+we can just reverse.
+*/
+// Time O(N)
+var nextPermutation = function(nums) {
+  if(!nums) {
+      return null;
+  }
+  
+  let left = null;
+  let right = null;
+  // Find left index (first decrease element backwards)
+  for(let i = nums.length - 2; i >= 0; i--) {
+      if(left === null && nums[i] < nums[i + 1]) {
+          left = i;
+          break;
+      }
+  }
+  
+  // Find right index, first greater after the decrease pattern
+  for(let i = nums.length - 1; i >= left; i--) {
+      if(right === null && nums[i] > nums[left]) {
+          right = i;
+          break;
+      }
+  }
+  
+  // If the array is already in decreasing sequence
+  if(right === null) {
+      nums.reverse();
+      return;
+  }
+  // Swap left and right index
+  swap(left, right, nums);
+  // Reverse after left
+  reverse(left + 1, nums);
+}
+
+function swap(start, end, nums) {
+  let tmp = nums[start];
+  nums[start] = nums[end];
+  nums[end] = tmp;
+}
+
+function reverse(start, nums) {
+  let end = nums.length - 1;
+  while(start < end) {
+      swap(start, end, nums);
+      start++;
+      end--;
+  }
+}
+
+// Another option
 var nextPermutation = function(nums){
   var i = nums.length - 2;
   /*Checamos de atras hacia adelante, cada numero en
