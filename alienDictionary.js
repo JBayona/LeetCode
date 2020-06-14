@@ -61,6 +61,8 @@ Time complexity:
 Say the number of characters in the dictionary (including duplicates) is n.
 Building the graph takes O(n). Topological sort takes O(V + E). V <= n.
 E also can't be larger than n. So the overall time complexity is O(n).
+
+https://www.youtube.com/watch?v=LA0X_N-dEsg
 */
 
 function alienOrder(words) {
