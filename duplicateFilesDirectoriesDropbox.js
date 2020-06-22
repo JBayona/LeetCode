@@ -1,35 +1,97 @@
 /*
-Given n orders, each order consist in pickup and delivery services. 
 
-Count all valid pickup/delivery possible sequences such that delivery(i) is always after of pickup(i). 
 
-Since the answer may be too large, return it modulo 10^9 + 7.
+- /foo
+  - /images
+    - /foo.png  <------.
+  - /temp              | same file contents
+    - /baz             |
+      - /that.foo  <---|--.
+  - /bar.png  <--------'  |
+  - /file.tmp  <----------| same file contents
+  - /other.temp  <--------'
+  - /blah.txt
 
- 
+input: "/foo" <-- string, is complete path
+output:
 
-Example 1:
+  [
+     ['/foo/bar.png', '/foo/images/foo.png'],
+     ['/foo/file.tmp', '/foo/other.temp', '/foo/temp/baz/that.foo']
+  ]
 
-Input: n = 1
-Output: 1
-Explanation: Unique order (P1, D1), Delivery 1 always is after of Pickup 1.
-Example 2:
+function isDir(string path) bool {}
+function listDir(string path) []string {} 
+   "/foo" -> "images", "temp", "bar.png", "file.tmp", "other.temp", "blah.txxt"
+function joinPath(string path, string subPath) string {}
+   "/foo", "images" -> "/foo/images"
 
-Input: n = 2
-Output: 6
-Explanation: All possible orders: 
-(P1,P2,D1,D2), (P1,P2,D2,D1), (P1,D1,P2,D2), (P2,P1,D1,D2), (P2,P1,D2,D1) and (P2,D2,P1,D1).
-This is an invalid order (P1,D2,P2,D1) because Pickup 2 is after of Delivery 2.
-Example 3:
 
-Input: n = 3
-Output: 90
-
-https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/
-https://leetcode.com/problems/count-all-valid-pickup-and-delivery-options/discuss/589348/Clean-python-code-easy-to-understand-O(n)
 */
 
-class Solution:
-    def countOrders(self, n: int) -> int:
-        if n == 1:
-            return 1
-        return (math.factorial(2*n) // (2**n)) % (10**9 + 7)
+/*
+[
+     ['/foo/bar.png', '/foo/images/foo.png'],
+     ['/foo/file.tmp', '/foo/other.temp', '/foo/temp/baz/that.foo']
+  ]
+
+*/
+
+/*
+{
+"abc": [/foo/bar.png, '/foo/images/foo.png'],
+"def : ['/foo/file.tmp', /foo/other.temp,/foo/temp/baz/that.foo ]
+}
+*/
+
+const findDuplicate = function(str) {
+    if(!str) {
+      return [];
+    }
+    
+    if(!isDir(str)) {
+      return [];
+    }
+    
+    let hash = {};
+    helper(str, hash);
+    
+    let output = [];
+    for(let content in hash) {
+      output.push(hash[content]);
+    }
+    return output;
+  }
+  
+  function helper(path, hash) {
+    if(!isDir(path)) {
+      return getFileContent(path);
+    }
+    
+    let levels = listDir(path); 
+    for(let level of levels) {
+      let newPath = joinPath(path, level);
+      if(isDir(newPath)) {
+        content = helper(newPath, hash);
+      } else {
+        content = getFileContent(newPath);
+      }
+      if(hash[content]) {
+        hash[content].push(newPath);
+      } else {
+        hash[content] = [newPath];
+      }
+    }
+  }
+  
+  function getFileContent(file) {
+    // Ecrypt file content using MD5, SHA-1, etc etc
+    let key = MD5(file);
+    return key;
+  }
+  
+  /*
+  {
+  "sdgdfg345gfhtdg": [/, /....]
+  }
+  */
