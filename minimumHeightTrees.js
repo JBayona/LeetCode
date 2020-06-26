@@ -12,7 +12,6 @@ You can assume that no duplicate edges will appear in edges. Since all edges are
 [0, 1] is the same as [1, 0] and thus will not appear together in edges.
 
 Example 1 :
-
 Input: n = 4, edges = [[1, 0], [1, 2], [1, 3]]
 
         0
