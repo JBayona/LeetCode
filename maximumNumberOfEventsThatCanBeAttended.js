@@ -35,6 +35,7 @@ var maxEvents = function(events) {
 };
 
 // Option 2 - better performance
+// Better time complexity.
 var maxEvents = function(events) {
     // Sort based on end time, from greater to less value
     events.sort((a, b) => a[1] === b[1] ? a[0] - b[0] : a[1] - b[1]);
