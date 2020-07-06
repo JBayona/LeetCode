@@ -1,5 +1,3 @@
-# Hello World program in Python
-    
 import heapq
 """
 Arr[(i-1)/2] Returns the parent node.
