@@ -8,7 +8,30 @@ The digits are stored such that the most significant digit is at the head of the
 https://leetcode.com/problems/plus-one/description/
 */
 
-//Option 1
+// Option 1
+
+var plusOne = function(digits) {
+  let index = digits.length - 1;
+  // Plus one
+  digits[index]++;
+  // If index is greater than 9
+  while(digits[index] > 9) {
+      digits[index] = 0;
+      // If it's not the first digit, we need to add 1 at the very beginning
+      if(index > 0) {
+          digits[index - 1]++;
+          // Move index
+          index--;
+      } else {
+          digits.unshift(1);
+          break;
+      }
+  }
+  return digits;
+};
+
+
+//Option 2
 
 var plusOne = function(digits) {
 	var len = digits.length,
@@ -35,7 +58,7 @@ var plusOne = function(digits) {
 array = [6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3];
 console.log(plusOne(array));
 
-//Option 2
+//Option 3
 
 var plusOne = function(digits) {
   let result = [];
