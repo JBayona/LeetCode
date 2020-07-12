@@ -23,7 +23,27 @@ Output: 0
 https://leetcode.com/problems/number-of-good-pairs/
 */
 
+// Time O(N)
+// Space O(N)
+var numIdenticalPairs = function(nums) {
+    let result = 0;
+    let hash = {};
+    for(let i = 0; i < nums.length; i++) {
+        let num = nums[i];
+        if(num in hash) {
+            let tmp = hash[num];
+            result += tmp;
+            tmp++;
+            hash[num] = tmp;
+        } else {
+            hash[num] = 1;
+        }
+    }
+    return result;
+};
+
 // Time O(N^2)
+// Space O(1)
 var numIdenticalPairs = function(nums) {
     let result = 0;
     for(let i = 0; i < nums.length; i++) {
