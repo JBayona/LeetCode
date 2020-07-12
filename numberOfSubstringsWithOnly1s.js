@@ -31,6 +31,7 @@ Output: 0
 https://leetcode.com/problems/number-of-substrings-with-only-1s/
 */
 
+// Sliding Window
 // Time O(N)
 // Space O(1)
 var numSub = function(s) {
