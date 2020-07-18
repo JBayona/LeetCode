@@ -17,7 +17,6 @@ The nodes that are a distance 2 from the target node (with value 5)
 have values 7, 4, and 1.
 
 Note that the inputs "root" and "target" are actually TreeNodes.
-
 The descriptions of the inputs above are just serializations of these objects.
 
 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
