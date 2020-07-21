@@ -26,3 +26,6 @@ var getRow = function(rowIndex) {
 
     return res; 
 };
+
+index = 3;
+console.log(getRow(index));
