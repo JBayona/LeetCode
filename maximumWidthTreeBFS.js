@@ -61,34 +61,26 @@ https://leetcode.com/problems/maximum-width-of-binary-tree/
 
 // Time complexity O(N)
 var widthOfBinaryTree = function(root) {
-    if(!root) {
-        return 0;
-    }
+    if (!root) return 0;
     
-    let queue = [];
-    queue.push({node: root, index: 0});
-    let maxWidth = Number.MIN_SAFE_INTEGER;
-    while(queue.length) {
-        let size = queue.length;
-        for(let i = 0; i < size; i++) {
-            let queueNode = queue.shift();
-            let node = queueNode.node;
-            let index = queueNode.index;
-            if(node.left) {
-                queue.push({node: node.left, index: index*2});
-            }
-            if(node.right) {
-                queue.push({ node: node.right, index: 2*index+1});
-            }
-            let left = 0;
-            let right = 0;
-            if(i === 0) { // Mark the leftmost node
-                left = index;
-            }
-            if(i === size - 1) { // Update with the rightmost node
-                maxWidth = Math.max(maxWidth, index - left + 1);
-            }
+    let maxWidth = 0;
+    const queue = [];
+    queue.push([root, 0]);
+    
+    while (queue.length > 0) {
+        const len = queue.length;
+        let node, pos, first;
+        
+        for (let i = 0; i < len; i++) {
+            [node, pos] = queue.shift();
+            
+            if (i === 0) first = pos;
+            if (node.left) queue.push([node.left, pos * 2]);
+            if (node.right) queue.push([node.right, (pos * 2) + 1]);
         }
+        
+        const currWidth = (pos - first + 1) | 0;
+        maxWidth = Math.max(maxWidth, currWidth);
     }
     return maxWidth;
 };
