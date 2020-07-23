@@ -51,3 +51,44 @@ var zigzagLevelOrder = function(root) {
     }
     return result;
 };
+
+// Option 2
+
+var zigzagLevelOrder = function(root) {
+    if(!root) {
+        return [];
+    }
+    let queue = [];
+    let result = [];
+    let flip = false;
+    queue.push(root);
+    
+    while(queue.length) {
+        let size = queue.length;
+        let tmp = [];
+        for(let i = 0; i < size; i++) {
+            if(!flip) {
+                let node = queue.shift();
+                tmp.push(node.val);
+                if(node.left) {
+                    queue.push(node.left);
+                }
+                if(node.right) {
+                    queue.push(node.right);
+                }
+            } else {
+                let node = queue.pop();
+                tmp.push(node.val);
+                if(node.right) {
+                    queue.unshift(node.right);
+                }
+                if(node.left) {
+                    queue.unshift(node.left);
+                }
+            }
+        }
+        flip = !flip;
+        result.push(tmp);
+    }
+    return result;
+};
