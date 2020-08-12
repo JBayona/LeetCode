@@ -11,7 +11,7 @@ var sumEvenGrandparent = function(root) {
     let sum = {val: 0};
     preorder(root, -1, -1, sum);
     return sum.val;
-};
+}
 
 function preorder(node, parent, grandparent, sum) {
     if(!node) {
