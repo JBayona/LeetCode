@@ -12,6 +12,7 @@ Example 1:
 11000
 00011
 00011
+
 Given the above grid map, return 1.
 
 Example 2:
@@ -20,6 +21,7 @@ Example 2:
 10000
 00001
 11011
+
 Given the above grid map, return 3.
 
 Notice that:
