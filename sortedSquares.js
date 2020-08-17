@@ -14,6 +14,30 @@ https://leetcode.com/problems/squares-of-a-sorted-array/
 
 */
 
+// Option 1
+
+var sortedSquares = function(A) {
+    let result = new Array(A.length).fill(0);
+    let left = 0;
+    let right = A.length - 1;
+    let index = A.length - 1;
+    
+    while(left <= right) {
+        let leftSqr = A[left] * A[left];
+        let rightSqr = A[right] * A[right];
+        if(leftSqr < rightSqr) {
+            result[index] = rightSqr;
+            right--;
+        } else {
+            result[index] = leftSqr;
+            left++;
+        }
+        index--;
+    }
+    return result;
+};
+
+// Option 2
 var sortedSquares = function(A) {
     let result = [];
     let j = 0;
