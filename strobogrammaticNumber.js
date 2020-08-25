@@ -29,6 +29,21 @@ var isStrobogrammatic = function(num) {
     return true;
 }
 
+var isStrobogrammatic = function(num) {
+
+    let left = 0;
+    let right = num.length - 1;
+    while(left <= right) {
+        let c = num[left] + '' + num[right];
+        if(c !== '00' && c !== '11' && c !== '88' && c !== '69' && c !== '96') {
+            return false;
+        }
+        left++;
+        right--;
+    }
+    return true;
+}
+
 console.log(isStrobogrammatic('69')); // true
 console.log(isStrobogrammatic('88')); // true
 console.log(isStrobogrammatic('818')); // true
