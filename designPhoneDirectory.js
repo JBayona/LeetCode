@@ -76,6 +76,6 @@ console.log(directory.check(1)); // false
 directory.get(); // 2
 console.log(directory);
 console.log(directory.check(2)); // false
-directory.release(2);
+directory.release(2); // Number 2 is available at this point.
 console.log(directory);
 console.log(directory.check(2)); // true
