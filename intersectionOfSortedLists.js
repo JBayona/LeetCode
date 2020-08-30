@@ -1,3 +1,5 @@
+// Intersection of sorted lists.
+
 function Node(val, next) {
   this.val = val;
   this.next = next;
