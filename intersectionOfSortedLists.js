@@ -2,7 +2,7 @@
 
 function Node(val, next) {
   this.val = val;
-  this.next = next;
+  this.next = next || null;
 }
 
 var getIntersectionNode = function(headA, headB) {
