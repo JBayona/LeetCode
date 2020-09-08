@@ -1,7 +1,6 @@
 // Tree traversal
 
 // Preorder
-
 /*
 It is O (n) where n is the number of nodes in the tree. It is simply because
 the algorithm will need to visit every node exactly once.
