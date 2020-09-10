@@ -14,6 +14,7 @@ Return the minimum number of insertions needed to make s balanced.
 https://leetcode.com/problems/minimum-insertions-to-balance-a-parentheses-string/
 */
 
+// Option 1
 // Time O(N)
 // Space O(N)
 
