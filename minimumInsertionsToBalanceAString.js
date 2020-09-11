@@ -5,7 +5,8 @@ Any left parenthesis '(' must have a corresponding two consecutive right parenth
 Left parenthesis '(' must go before the corresponding two consecutive right parenthesis '))'.
 In other words, we treat '(' as openning parenthesis and '))' as closing parenthesis.
 
-For example, "())", "())(())))" and "(())())))" are balanced, ")()", "()))" and "(()))" are not balanced.
+For example, "())", "())(())))" and "(())())))" are balanced, ")()", "()))" and "(()))" are
+not balanced.
 
 You can insert the characters '(' and ')' at any position of the string to balance it if needed.
 
