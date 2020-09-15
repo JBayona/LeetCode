@@ -1,9 +1,7 @@
 /*
 Write a program to find the node at which the intersection of two singly linked lists begins.
 
-For example, the following two linked lists:
-
-begin to intersect at node c1.
+For example, the following two linked lists: begin to intersect at node c1.
 
 Example 1:
 
