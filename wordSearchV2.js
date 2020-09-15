@@ -11,9 +11,9 @@ Given board =
   ['S','F','C','S'],
   ['A','D','E','E']
 ]
-word = "ABCCED", -> returns true,
-word = "SEE", -> returns true,
-word = "ABCB", -> returns false.
+word = "ABCCED", -> returns true
+word = "SEE", -> returns true
+word = "ABCB", -> returns false
 
 https://leetcode.com/problems/word-search/
 */
