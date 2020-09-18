@@ -36,7 +36,7 @@ var invertTree = function(root) {
 };
 
 // Stack
-// Iterative O(N) space and time
+// Iterative O(N) space and time complexity.
 var invertTree = function(root) {
   if(!root) {
       return root;
