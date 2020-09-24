@@ -73,3 +73,36 @@ var canCompleteCircuit = function(gas, cost) {
     }
     return -1;
 };
+
+/*
+The idea is to have enough gas to reach next station, then we will move to next station.
+Otherwise we will start from next station
+
+First we take 0th station as our starting station
+then, we will fill gas and subtract the cost to reach next station.
+if filled < 0, this means we are lacking of gas to reach the station.
+So, we will start freshly from next station 
+and we will also store the gas required to reach 0th station to ith station 
+because we need to circularly reach the starting station. 
+Instead of traversing again from 0th station 
+if we store gas required to reach 0th station to ith station, 
+if we have enough gas, then we will return starting station,
+Otherwise return -1.
+*/
+
+// Time O(N)
+// Space O(N)
+var canCompleteCircuit = function(gas, cost) {
+    let filled = 0;
+    let required = 0;
+    let result = 0;
+    for(let i = 0; i < gas.length; i++) {
+        filled += gas[i] - cost[i];
+        if(filled < 0) {
+            required += filled;
+            filled = 0;
+            result = i + 1;
+        }
+    }
+    return filled >= Math.abs(required) ? result : -1;
+};
