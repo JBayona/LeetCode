@@ -12,6 +12,8 @@ Explanation: 342 + 465 = 807.
 https://leetcode.com/problems/add-two-numbers/
 */
 
+// Time O(N)
+// Space O(1)
 var addTwoNumbers = function(l1, l2) {
     
     if(!l1) {
