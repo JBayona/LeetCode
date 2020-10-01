@@ -28,6 +28,7 @@ Output: 2.00000
 https://leetcode.com/problems/median-of-two-sorted-arrays/
 */
 
+// Time O(N)
 var findMedianSortedArrays = function(nums1, nums2) {
     let indexA = 0;
     let indexB = 0;
