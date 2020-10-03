@@ -45,11 +45,11 @@ var findMedianSortedArrays = function(nums1, nums2) {
             merged[index++] = nums2[indexB++];
         }
     }
-    
+    // If nums1 array has more elements
     while(indexA < nums1.length) {
         merged[index++] = nums1[indexA++];
     }
-    
+    // If nums2 array has more elements
      while(indexB < nums2.length) {
         merged[index++] = nums2[indexB++];
     }
