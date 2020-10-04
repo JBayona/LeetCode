@@ -11,8 +11,8 @@ dict = ["leet", "code"].
 Return true because "leetcode" can be segmented as "leet code".
 
 UPDATE (2017/1/4):
-The wordDict parameter had been changed to a list of strings (instead of a set of strings). Please reload the code definition to 
-get the latest changes.
+The wordDict parameter had been changed to a list of strings (instead of a set of strings).
+Please reload the code definition to get the latest changes.
 
 https://leetcode.com/problems/word-break/description/
 https://www.programcreek.com/2012/12/leetcode-solution-word-break/
