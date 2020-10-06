@@ -1,18 +1,59 @@
 /*
-Given a string s, find the longest palindromic substring in s. You may assume that the maximum length of s is 1000.
+Given a string s, find the longest palindromic substring in s.
+You may assume that the maximum length of s is 1000.
 
 Example 1:
 
 Input: "babad"
 Output: "bab"
 Note: "aba" is also a valid answer.
-Example 2:
 
+Example 2:
 Input: "cbbd"
 Output: "bb"
 
 https://leetcode.com/problems/longest-palindromic-substring/description/
 */
+
+// Option 1
+
+// Time O(N^2)
+// Space O(1)
+var longestPalindrome = function(s) {
+    let result = '';
+    let max = 0;
+    let mayor = '';
+    
+    for(let i = 0; i < s.length; i++) {
+        // Even length
+        let left = i;
+        let right = i + 1;
+        while(left >= 0 && right < s.length && s[left] === s[right]) {
+            if(right - left + 1 > max) {
+                max = right - left + 1;
+                result = s.substring(left, right + 1);
+            }
+            left--;
+            right++;
+        }
+        
+        // Odd length
+        left = i;
+        right = i;
+        while(left >= 0 && right < s.length && s[left] === s[right]) {
+            if(right - left + 1 > max) {
+                max = right - left + 1;
+                result = s.substring(left, right + 1);
+            }
+            left--;
+            right++;
+        }
+    }
+    console.log(mayor);
+    return result;
+};
+
+// Option 2
 
 // Time O(n^2)
 // Space O(1)
