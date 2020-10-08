@@ -6,6 +6,7 @@ Example 1:
 
 Input: "babad"
 Output: "bab"
+
 Note: "aba" is also a valid answer.
 
 Example 2:
