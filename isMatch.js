@@ -10,6 +10,7 @@ The function prototype should be:
 bool isMatch(const char *s, const char *p)
 
 Some examples:
+
 isMatch("aa","a") → false
 isMatch("aa","aa") → true
 isMatch("aaa","aa") → false
