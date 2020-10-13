@@ -50,6 +50,8 @@ var convert = function(s, numRows) {
         return s;
     }
     
+    // Vamos concatenando por renglones
+    // subiendo y bajando rows
     for(let i = 0; i < s.length; i++) {
         // Add the element 
         array[row] += s[i];
