@@ -21,6 +21,8 @@ Output: 21
 Example 4:
 Input: x = 0
 Output: 0
+
+https://leetcode.com/problems/reverse-integer/
 */
 
 var reverse = function(x) {
