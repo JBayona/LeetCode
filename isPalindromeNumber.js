@@ -30,3 +30,26 @@ https://leetcode.com/problems/palindrome-number/
 var isPalindrome = function(x) {
     return x.toString() === x.toString().split('').reverse().join('');
 };
+
+// No convert to string
+var isPalindrome = function(x) {
+    if(x < 0) {
+        return false;
+    }
+    
+    let tmp = 0;
+    let sum = 0;
+    let n = x;
+    
+    while(n > 0) {
+        tmp = n % 10;
+        sum = (sum * 10) + tmp;
+        n = Math.floor(n / 10);
+    }
+    
+    if(sum === x) {
+        return true;
+    } else {
+        return false;
+    }
+};
