@@ -23,6 +23,34 @@ https://leetcode.com/problems/regular-expression-matching/#/description
 */
 
 var isMatch = function(s, p) {
+    // s - string
+    // p - pattern
+    // If boths string are empty
+    if(p.length === 0) {
+        return s.length === 0;
+    }
+    if(p.length === 1) {
+        return s === p || (p === '.' && s.length === 1);
+    } else {
+        if(s.length === 0) {
+            // if string is cero, we can suppress by using the *
+            // but we need to make sure that we can remove "p"
+            return p[1] === "*" && isMatch(s, p.substring(2));
+        } else {
+            let useFirst = false;
+            if(s[0] === p[0] || p[0] === '.') {
+                if(p[1] === '*') {
+                    useFirst = isMatch(s.substring(1), p);
+                } else {
+                    useFirst = isMatch(s.substring(1), p.substring(1));
+                }
+            }
+            return useFirst || p[1] === '*' && isMatch(s, p.substring(2));
+        }
+    }
+};
+
+var isMatch = function(s, p) {
     var lenS = s.length,
         lenP = p.length;
     
