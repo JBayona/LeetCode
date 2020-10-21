@@ -9,8 +9,10 @@ https://leetcode.com/problems/container-with-most-water/description/
 
 // Time O(N)
 // Space O(1)
-/*Para maximixar el area debemos conservar ya sea el mayor x axis o mayor y
-axis*/
+/*
+Para maximixar el area debemos conservar ya sea el mayor x axis o mayor y
+axis
+*/
 
 //Two pointers
 var maxArea = function(height) {
