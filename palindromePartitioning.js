@@ -56,5 +56,5 @@ const isPalindrome = (str, indexA, indexB) => {
     return true;
 }
 
-str = "aab";
+let str = "aab";
 console.log(partition(str));
