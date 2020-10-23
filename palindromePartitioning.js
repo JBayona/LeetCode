@@ -35,7 +35,7 @@ const findPossiblePalindrome = (str, result, tmp, index) => {
         // the characters from the string
         if(isPalindrome(str, index, i)) {
             // If it's a palindrome, add it to tmp and check all possible combinations
-            // considering the next character of the string
+            // taking the next character of the string
             tmp.push(str.substring(index, i + 1));
             findPossiblePalindrome(str, result, tmp, i + 1);
             // Remove the string that we already check in our combinations
