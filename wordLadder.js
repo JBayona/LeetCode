@@ -13,7 +13,6 @@ You may assume no duplicates in the word list.
 You may assume beginWord and endWord are non-empty and are not the same.
 
 Example 1:
-
 Input:
 beginWord = "hit",
 endWord = "cog",
@@ -24,7 +23,6 @@ Explanation: As one shortest transformation is "hit" -> "hot" -> "dot" -> "dog" 
 return its length 5.
 
 Example 2:
-
 Input:
 beginWord = "hit"
 endWord = "cog"
