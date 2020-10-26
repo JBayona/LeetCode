@@ -55,11 +55,12 @@ function canReach(maze, row, col, destination,visited) {
     for(let i = 0; i < 4; i++) {
         let x = row;
         let y = col;
+        // This will make the thing to move all the way until we reach a wall
         while(x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && !maze[x][y]) {
             x = x + rowK[i];
             y = y + colK[i];
         }
-        // This will make the thing to move all the way until we reach a wall
+        // Try all directions
         x = x - rowK[i];
         y = y - colK[i];
         if(!visited[x][y] && canReach(maze, x, y, destination, visited)) {
