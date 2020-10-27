@@ -11,7 +11,6 @@ You may assume that the borders of the maze are all walls. The start and destina
 represented by row and column indexes.
 
 Example 1
-
 Input 1: a maze represented by a 2D array
 
 0 0 1 0 0
