@@ -47,7 +47,7 @@ var orangesRotting = function(grid) {
     // Fill initial visited
     for(let i = 0; i < ROW; i++) {
         for(let j = 0; j < COL; j++) {
-            if(grid[i][j] === 2 && visited[i][j] === false) {
+            if(grid[i][j] === 2) {
                 queue.push({row: i, col: j});
                 // Set 0 as there's no distance to reach a rotten orange
                 visited[i][j] = 2;
