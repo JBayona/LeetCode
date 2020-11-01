@@ -1,4 +1,6 @@
-// Suppose we have some input data describing a graph of relationships between parents and children over multiple generations. The data is formatted as a list of (parent, child) pairs, where each individual is assigned a unique integer identifier.
+// Suppose we have some input data describing a graph of relationships between parents
+// and children over multiple generations. The data is formatted as a list
+// of (parent, child) pairs, where each individual is assigned a unique integer identifier.
 
 // For example, in this diagram, 6 and 8 have common ancestors of 4 and 14.
 
