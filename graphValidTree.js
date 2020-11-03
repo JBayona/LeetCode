@@ -61,6 +61,8 @@ var validTree = function(n, edges) {
   }
 
   // Check if all the graph is connected
+  // If any node has not been visited, then
+  // the tree is not valid
   for(let i = 0; i < visited.length; i++) {
     if(!visited[i]) {
       return false;
@@ -74,9 +76,9 @@ var validTree = function(n, edges) {
 // Has cycle
 function dfs(graph, visited, node, parent) {
 
-  let sub = graph[node];
-  for(let i = 0; i < sub.length; i++) {
-    let v = sub[i];
+  let children = graph[node];
+  for(let i = 0; i < children.length; i++) {
+    let v = children[i];
     // Ignore if the node is coming from the father i.e [1,0], [0, 1]
     if(v === parent) continue;
     if(!visited[v]) {
