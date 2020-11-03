@@ -18,7 +18,9 @@ https://www.youtube.com/watch?v=ojge0iS19qQ
 https://www.programcreek.com/2014/05/graph-valid-tree-java/
 https://www.youtube.com/watch?v=vsIb9B84Rt8
 
-Para ser un árbol válido debe estar conectado y no debe haber ciclos
+Para ser un árbol válido debe cumplitr con las siguientes características:
+1. Estar conectado.
+2. No debe haber ciclos.
 
 
 Time: O(V) - V number of vertices
