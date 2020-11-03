@@ -26,7 +26,6 @@ Space: O(V)
 */
 
 var validTree = function(n, edges) {
-
   // Corner case
   if(edges.length !== n-1) return false;
 
@@ -45,6 +44,9 @@ var validTree = function(n, edges) {
     graph[from].push(to);
     graph[to].push(from);
   }
+
+  console.log('Graph');
+  console.log(graph);
 
   // Visited edges
   let visited = new Array(n).fill(0);
@@ -88,6 +90,6 @@ function dfs(graph, visited, node, parent) {
 }
 
 n = 5;
-// edges = [[0, 1], [0, 2], [0, 3], [1, 4]];
-edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]];
+edges = [[0, 1], [0, 2], [0, 3], [1, 4]];
+// edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]];
 console.log(validTree(n, edges));
