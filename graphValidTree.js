@@ -18,6 +18,9 @@ https://www.youtube.com/watch?v=ojge0iS19qQ
 https://www.programcreek.com/2014/05/graph-valid-tree-java/
 https://www.youtube.com/watch?v=vsIb9B84Rt8
 
+Multiple approaches:
+https://zhuhan0.blogspot.com/2017/07/leetcode-261-graph-valid-tree.html
+
 Para ser un árbol válido debe cumplitr con las siguientes características:
 1. Estar conectado.
 2. No debe haber ciclos.
@@ -92,7 +95,58 @@ function dfs(graph, visited, node, parent) {
   return false;
 }
 
+// BFS
+// Time: O(V) - V number of vertices
+// Space: O(V)
+var validTree = function(n, edges) {
+  // Corner case
+  if(edges.length !== n-1) return false;
+
+  let graph = [];
+  // Create the graph
+  for(let i = 0; i < n; i++) {
+    graph[i] = [];
+  }
+
+  // Fill the undirected the graph
+  for(let i = 0; i < edges.length; i++) {
+    // Destructuring
+    // Insert both sides as the graph is undirected
+    let [from, to] = edges[i];
+    graph[from].push(to);
+    graph[to].push(from);
+  }
+
+  // Print the graph
+  console.log(graph);
+
+  let queue = [];
+  let visited = new Set();
+
+  queue.push(edges[0][0]);
+  visited.add(edges[0][0]);
+  let nodes = 0;
+  while(queue.length){
+    let node = queue.shift();
+    nodes++;
+    let children = graph[node];
+    for(child of children) {
+      // If the queue has already the node
+      // it means we have a cycle
+      if(queue.includes(child)) {
+        return false;
+      }
+      if(!visited.has(child)) {
+        queue.push(child);
+        visited.add(child);
+      }
+    }
+  }
+  // Check whether all nodes are connected wit this
+  return nodes === n;
+}
+
 n = 5;
-edges = [[0, 1], [0, 2], [0, 3], [1, 4]];
-// edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]];
+edges = [[0, 1], [0, 2], [0, 3], [1, 4]]; // true
+// edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]]; // false
 console.log(validTree(n, edges));
