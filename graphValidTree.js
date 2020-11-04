@@ -21,11 +21,11 @@ https://www.youtube.com/watch?v=vsIb9B84Rt8
 Para ser un árbol válido debe cumplitr con las siguientes características:
 1. Estar conectado.
 2. No debe haber ciclos.
-
-Time: O(V) - V number of vertices
-Space: O(V)
 */
 
+// DFS
+// Time: O(V) - V number of vertices
+// Space: O(V)
 var validTree = function(n, edges) {
   // Corner case
   if(edges.length !== n-1) return false;
