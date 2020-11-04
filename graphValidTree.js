@@ -22,7 +22,6 @@ Para ser un árbol válido debe cumplitr con las siguientes características:
 1. Estar conectado.
 2. No debe haber ciclos.
 
-
 Time: O(V) - V number of vertices
 Space: O(V)
 */
