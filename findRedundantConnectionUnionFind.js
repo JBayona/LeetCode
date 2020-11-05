@@ -33,7 +33,8 @@ The size of the input 2D-array will be between 3 and 1000.
 Every integer represented in the 2D-array will be between 1 and N, where N is the size of the input array.
 
 Update (2017-09-26):
-We have overhauled the problem description + test cases and specified clearly the graph is an undirected graph. For the directed graph follow up please see Redundant Connection II). We apologize for any inconvenience caused.
+We have overhauled the problem description + test cases and specified clearly the graph is an undirected graph.
+For the directed graph follow up please see Redundant Connection II). We apologize for any inconvenience caused.
 
 https://leetcode.com/problems/redundant-connection/
 */
