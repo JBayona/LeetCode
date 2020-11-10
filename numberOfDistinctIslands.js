@@ -1,5 +1,5 @@
 /*
-Given a non-empty 2D arraygridof 0's and 1's, an island is a group of1's (representing land)
+Given a non-empty 2D arraygridof 0's and 1's, an island is a group of 1's (representing land)
 connected 4-directionally (horizontal or vertical.) You may assume all four edges of the
 grid are surrounded by water.
 Count the number of distinct islands. An island is considered to be the same
@@ -51,6 +51,7 @@ function numDistinctIslands(grid) {
     for(let i = 0; i < row; i++) {
         for(let j = 0; j < col; j++) {
             let set = new Set();
+            // Look the initial point of the island
             if(grid[i][j] === 1) {
                 dfs(grid, i, j, i, j, set);
                 // 0_0,1_0,1_1,0_1
