@@ -1,6 +1,7 @@
 /*
 You have a lock in front of you with 4 circular wheels.
-Each wheel has 10 slots: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'. The wheels can rotate freely and wrap around: for example we can turn '9' to be '0', or '0' to be '9'. Each move consists of turning one wheel one slot.
+Each wheel has 10 slots: '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'. The wheels can rotate freely and wrap around: for example we
+can turn '9' to be '0', or '0' to be '9'. Each move consists of turning one wheel one slot.
 
 The lock initially starts at '0000', a string representing the state of the 4 wheels.
 
@@ -37,13 +38,17 @@ Output: -1
 https://leetcode.com/problems/open-the-lock/
 */
 
+// BFS
+// Time O(N)
+// Space O(N)
 var openLock = function(deadends, target) {
+    // These combinations are locked and can not move forward if we reach them
     let set = new Set(deadends);
     let seen = new Set();
-    let map = {};
     let queue = [];
     
     // Firs position
+    // Initial position
     queue.push({combination: '0000', distance: 0});
     // To avoid seen duplicates
     seen.add('0000');
@@ -63,6 +68,7 @@ var openLock = function(deadends, target) {
         }
         
         // We have 4 wheels, try with every wheel
+        // For every combination we do both, increasing one and decreasing one
         for(let i = 0; i < 4; i++) {
             // Get the new combination by increasing one
             let newIncCombination = combination.substring(0, i) + 
