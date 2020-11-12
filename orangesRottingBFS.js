@@ -1,9 +1,9 @@
 /*
 In a given grid, each cell can have one of three values:
 
-the value 0 representing an empty cell;
-the value 1 representing a fresh orange;
-the value 2 representing a rotten orange.
+the value 0 - representing an empty cell;
+the value 1 - representing a fresh orange;
+the value 2 - representing a rotten orange.
 Every minute, any fresh orange that is adjacent (4-directionally) to a rotten
 orange becomes rotten.
 
@@ -49,11 +49,12 @@ var orangesRotting = function(grid) {
     // Fill initial visited
     for(let i = 0; i < ROW; i++) {
         for(let j = 0; j < COL; j++) {
+            // For rotten oranges, we need to identify them
             if(grid[i][j] === 2) {
                 queue.push({row: i, col: j});
                 // Set 0 as there's no distance to reach a rotten orange
                 visited[i][j] = 2;
-            } else if(grid[i][j] === 1){
+            } else if(grid[i][j] === 1){ // Oranges in good state
                 countOranges++;
             }
         }
@@ -76,6 +77,7 @@ var orangesRotting = function(grid) {
             let y = node.col;
             
             // Visit all adjacent nodes
+            // Run BFS from the rotten oranges position
             for(let i = 0; i < 4; i++) {
                 let newRow = x + rowK[i];
                 let newCol = y + colK[i];
@@ -90,7 +92,6 @@ var orangesRotting = function(grid) {
             }
         }
     }
-    
     return countOranges === 0 ? minutesPassed : -1;
 };
 
