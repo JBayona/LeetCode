@@ -1,6 +1,5 @@
 /*
 In a given grid, each cell can have one of three values:
-
 the value 0 - representing an empty cell;
 the value 1 - representing a fresh orange;
 the value 2 - representing a rotten orange.
