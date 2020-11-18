@@ -26,8 +26,8 @@ function helper(root, result) {
   }
   
   result.push(root.val);
-  for(let i = 0; i < root.children.length; i++) {
-    helper(root.children[i], result);
+  for(let children of root.children) {
+    helper(children, result);
   }
 }
 
