@@ -61,18 +61,19 @@ var invertTree = function(root) {
   return root;
 };
 
+// We go from top to bottom of our tree and if we reached the leaf, we do not do anything.
+//If current subtree is not a leaf, we recursively call our function
+// for both its children, first inverting them.
+// Time O(n) where n is the number of nodes
+// Time O(h) where h is the height of the tree, calls to the stack
 var invertTree = function(root) {
-  if(!root) return root;
-  let left;
-  let right;
-  if(root.left) {
-     left = invertTree(root.left);
+  if(!root) {
+      return null;
   }
-  if(root.right) {
-    right = invertTree(root.right);
-  }
-  root.left = right || null;
-  root.right = left || null;
+  let left = invertTree(root.right);
+  let right = invertTree(root.left);
+  root.left = left
+  root.right = right;
   return root;
 };
 
