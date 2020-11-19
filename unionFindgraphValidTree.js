@@ -9,16 +9,16 @@ Given n = 5 and edges = [[0, 1], [1, 2], [2, 3], [1, 3], [1, 4]], return false.
 
 You can assume that no duplicates edges will appear in edges. Since all edges are undirected [0, 1] is the same as [1, 0] and thus will not appear together in edges.
 
-https://leetcode.com/problems/graph-valid-tree/
+-https://leetcode.com/problems/graph-valid-tree/
 
-https://www.youtube.com/watch?v=n_t0a_8H8VY
+-https://www.youtube.com/watch?v=n_t0a_8H8VY
 https://www.youtube.com/watch?v=rFf4mXWbb9U
-https://www.youtube.com/watch?v=ojge0iS19qQ
-https://www.programcreek.com/2014/05/graph-valid-tree-java/
-https://www.youtube.com/watch?v=vsIb9B84Rt8
+-https://www.youtube.com/watch?v=ojge0iS19qQ
+-https://www.programcreek.com/2014/05/graph-valid-tree-java/
+-https://www.youtube.com/watch?v=vsIb9B84Rt8
 
 Multiple approaches:
-https://zhuhan0.blogspot.com/2017/07/leetcode-261-graph-valid-tree.html
+-https://zhuhan0.blogspot.com/2017/07/leetcode-261-graph-valid-tree.html
 
 Para ser un árbol válido debe cumplitr con las siguientes características:
 1. Estar conectado.
