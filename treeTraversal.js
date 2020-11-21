@@ -1,4 +1,4 @@
-// Tree traversal
+// Tree traversals
 
 // Preorder
 /*
