@@ -16,6 +16,7 @@ https://leetcode.com/problems/partition-labels/
 https://www.youtube.com/watch?v=ED4ateJu86I
 */
 
+// Pre-compute first.
 var partitionLabels = function(s) {
   let result = [];
   let lastIndexes = new Array(26).fill(0);
