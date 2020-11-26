@@ -20,7 +20,7 @@ https://leetcode.com/problems/same-tree/description/
  * @return {boolean}
  */
 
- // Opción 1
+ // Option 1
 var isSameTree = function(p, q) {
     if(p === null && q === null) {
         return true;
