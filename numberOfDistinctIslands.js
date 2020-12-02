@@ -7,7 +7,6 @@ as another if and only if one island can be translated (and not rotated or refle
 equal the other.
 
 Example 1:
-
 11000
 11000
 00011
@@ -16,7 +15,6 @@ Example 1:
 Given the above grid map, return 1.
 
 Example 2:
-
 11011
 10000
 00001
