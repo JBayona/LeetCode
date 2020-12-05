@@ -7,7 +7,8 @@ Given "abcabcbb", the answer is "abc", which the length is 3.
 
 Given "bbbbb", the answer is "b", with the length of 1.
 
-Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is a subsequence and not a substring.
+Given "pwwkew", the answer is "wke", with the length of 3. Note that the answer must be a substring, "pwke" is
+a subsequence and not a substring.
 
 Complex O(n)
 */
@@ -35,6 +36,38 @@ Los números que se almacenan desde el map empezando con 1 es sólo para
 contar el tamaño máximo que llevamos en el substr, por el caso de que sea
 sólo una letra
 */
+
+
+// Sliding window
+// Time O(N)
+// Space O(N)
+var lengthOfLongestSubstring = function(s) {
+  let start = 0;
+  let end = 0;
+  let max = 0;
+  let seen = {};
+  while(end < s.length) {
+      let c = s[end];
+      // If we already see the character
+      if(c in seen) {
+          // Remove it and move the left window
+          while(seen[c] > 0) {
+              let left = s[start];
+              delete seen[left];
+              start++;
+          }
+      } else {
+          // Move right window
+          seen[c] = 1;
+          if(end - start + 1 > max) {
+              max = end - start + 1;
+          }
+          end++;
+      }
+  }
+  return max;
+};
+
 var lengthOfLongestSubstring = function(s) {
     var max = 0;
     var map = {};
