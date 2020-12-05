@@ -29,3 +29,27 @@ function inorder(root, arr) {
     arr.push(root.val);
     inorder(root.right, arr);
 }
+
+// Option 2 - Construct on the fly
+
+// Time O(N)
+// Space O(H) where H is the height of the tree
+let curr;
+var increasingBST = function(root) {
+    let resp = new TreeNode(0);
+    // Walk inorder and construct on the fly
+    curr = resp;
+    inorder(root, curr);
+    return resp.right;
+};
+
+function inorder(node) {
+    if(!node) {
+        return;
+    }
+    inorder(node.left);
+    node.left = null;
+    curr.right = node;
+    curr = node;
+    inorder(node.right);
+}
