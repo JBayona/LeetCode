@@ -61,7 +61,7 @@ var ladderLength = function(beginWord, endWord, wordList) {
 
             let charDiff = 0;
             let currentWordList = wordList[i];
-            // Count the number of different chards, it should be one char of difference
+            // Count the number of different chars, it should be one char of difference
             for(let j = 0; j < currentWordList.length; j++) {
                 if(currentWordList[j] !== current.word[j]) {
                     charDiff++;
