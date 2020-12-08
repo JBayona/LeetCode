@@ -30,13 +30,14 @@ https://leetcode.com/problems/median-of-two-sorted-arrays/
 */
 
 // Time O(N)
+// Space O(N)
 var findMedianSortedArrays = function(nums1, nums2) {
     let indexA = 0;
     let indexB = 0;
     let merged = [];
     let index = 0;
     let elements = nums1.length + nums2.length;
-    
+   
     // Merge two arrays
     while(indexA < nums1.length && indexB < nums2.length) {
         if(nums1[indexA] < nums2[indexB]) {
@@ -45,17 +46,20 @@ var findMedianSortedArrays = function(nums1, nums2) {
             merged[index++] = nums2[indexB++];
         }
     }
-    // If nums1 array has more elements
+   
+    // If there's still elements in nums1 array
     while(indexA < nums1.length) {
         merged[index++] = nums1[indexA++];
     }
-    // If nums2 array has more elements
-     while(indexB < nums2.length) {
+   
+    // If there's still elements in nums2 array
+    while(indexB < nums2.length) {
         merged[index++] = nums2[indexB++];
     }
-    
+   
     // Find median
     let mid = 0;
+    // Even number
     if(elements % 2 === 0) {
         mid = Math.floor(elements / 2);
         return (merged[mid - 1] + merged[mid]) / 2;
