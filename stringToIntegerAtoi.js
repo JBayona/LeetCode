@@ -28,33 +28,35 @@ var myAtoi = function(s) {
     
     let sign = 1;
     let result = 0;
-    let i = 0;
+    let index = 0;
     
-    // Remove whitespace
-    while(s[i] === ' ') {
-        i++;
+    // Remove whitespaces, just move until we find a different character
+    while(s[index] === ' ') {
+        index++;
     }
     
-    if(s[i] === '+') {
+    // Check if we have a sign
+    if(s[index] === '+') {
         sign = 1;
-        i++;
-    } else if(s[i] === '-') {
+        index++;
+    } else if(s[index] === '-') {
         sign = -1;
-        i++;
+        index++;
     }
     
-    while(i < s.length) {
+    // Try to convert the number
+    while(index < s.length) {
         // Get the number if found, ignore other and break
         // 0 - 48
-        let tmp = s.charCodeAt(i) - 48;
+        let tmp = s.charCodeAt(index) - 48;
         // If we get a number between 0 and 9 means we are under the boundaries so it's
         // a number and we should consider it, otherwise we need to break the while and return
         // the result
-        if(tmp > 9 || tmp < 0) {
+        if(tmp > 9 || tmp < 0) { // Break the loop is the number is not valid
             break;
         }
         result = (result * 10) + tmp;
-        i++;
+        index++;
     }
     
     if(result > MAX) {
