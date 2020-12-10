@@ -56,3 +56,40 @@ var fourSumCount = function(A, B, C, D) {
     }
     return count;
 };
+
+// Option 2
+
+var fourSumCount = function(A, B, C, D) {
+    return kSumCount([A, B, C, D]);
+};
+
+function kSumCount(lists) {
+    let hash = {};
+    addToHash(lists, hash, 0, 0);
+    return countComplement(lists, hash, lists.length / 2, 0);
+}
+
+function addToHash(lists, hash, index, sum) {
+    if(index === lists.length / 2) {
+        if (sum in hash) {
+            hash[sum]++;
+        } else {
+            hash[sum] = 1;
+        }
+    } else {
+        for(let n of lists[index]) {
+            addToHash(lists, hash, index + 1, sum + n);
+        }
+    }
+}
+
+function countComplement(lists, hash, index, complement) {
+    if(index === lists.length) {
+        return hash[complement] || 0;
+    }
+    let count = 0;
+    for(let n of lists[index]) {
+        count += countComplement(lists, hash, index + 1, complement - n);
+    }
+    return count;
+}
