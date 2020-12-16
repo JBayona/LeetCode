@@ -40,6 +40,35 @@ https://leetcode.com/problems/zigzag-conversion/
 */
 
 var convert = function(s, numRows) {
+    // Array with the number of rows needed
+    let response = new Array(numRows).fill('');
+    // Variable to track in which index of the
+    // array we should concat elements
+    let row = 0;
+    let down = false;
+    if(numRows === 1) {
+        return s;
+    }
+    
+    // Iterate the entire string
+    for(let i = 0; i < s.length; i++) {
+        // Concat each string in a position depending the flow
+        // of the row
+        response[row] += s[i];
+        // If we have reached the bottom, we need to go up
+        if(row === numRows - 1) {
+            down = false;
+        } else if(row === 0) { // Go down if we reached the top
+            down = true;
+        }
+        
+        down ? row++ : row--;
+    }
+    
+    return response.join('');
+};
+
+var convert = function(s, numRows) {
     let array = new Array(numRows).fill('');
     let down;
     // Start the zigzag from top
