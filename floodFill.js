@@ -8,7 +8,8 @@ the flood fill, and a pixel value newColor, "flood fill" the image.
 To perform a "flood fill", consider the starting pixel, plus any pixels
 connected 4-directionally to the starting pixel of the same color as the
 starting pixel, plus any pixels connected 4-directionally to those pixels
-(also with the same color as the starting pixel), and so on. Replace the color of all of the aforementioned pixels with the newColor.)
+(also with the same color as the starting pixel), and so on. Replace the color of all of
+the aforementioned pixels with the newColor.)
 
 At the end, return the modified image.
 
@@ -32,6 +33,42 @@ The value of each color in image[i][j] and newColor will be an integer in [0, 65
 https://leetcode.com/problems/flood-fill/
 https://www.youtube.com/watch?v=TClRuEZ-uDg
 */
+
+// Option 1
+// Time O(N)
+// Space O(N)
+var floodFill = function(image, sr, sc, newColor) {
+    // Check if we need to change some color, if don't
+    // we don't need to change any color
+    if(image[sr][sc] === newColor) {
+        return image;
+    }
+    // DFS
+    fill(image, sr, sc, image[sr][sc], newColor);
+    return image;
+};
+
+function fill(image, row, col, color, newColor) {
+    // Base case
+    if(row < 0 || row >= image.length || col < 0 || col >= image[row].length || image[row][col] !== color) {
+        return;
+    }
+    
+    let rowK = [0, -1, 0, 1];
+    let colK = [-1, 0, 1, 0];
+    
+    // Mark new color
+    image[row][col] = newColor;
+    
+    for(let i = 0; i < 4; i++) {
+        let ROW = row + rowK[i];
+        let COL = col + colK[i];
+        fill(image, ROW, COL, color, newColor);
+    }
+    
+}
+
+// Option 2
 
 var floodFill = function(image, sr, sc, newColor) {
     // Check if we need to change some color, if don't
