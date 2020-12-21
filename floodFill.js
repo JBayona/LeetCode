@@ -69,6 +69,39 @@ function fill(image, row, col, color, newColor) {
 }
 
 // Option 2
+// BFS
+// Time O(N)
+// Space O(N)
+var floodFill = function(image, sr, sc, newColor) {
+    // If we are in the same color we don´t need to do
+    // anything
+    if(image[sr][sc] === newColor) {
+        return image;
+    }
+    
+    let startColor = image[sr][sc];
+    let queue = [];
+    queue.push([sr, sc]);
+    while(queue.length) {
+        let [x, y] = queue.shift();
+        image[x][y] = newColor;
+        if (x + 1 >= 0 && x + 1 < image.length) {
+            image[x+1][y] == startColor && queue.push([x + 1, y]);
+        }
+        if (x - 1 >= 0 && x - 1 < image.length) {
+            image[x-1][y] == startColor && queue.push([x - 1, y]);
+        }
+        if (y - 1 >= 0 && y - 1 < image[0].length) {
+            image[x][y-1] == startColor && queue.push([x, y - 1]);
+        }
+        if (y + 1 >= 0 && y + 1 < image[0].length) {
+            image[x][y+1] == startColor && queue.push([x, y + 1])
+        }
+    }
+    return image;
+};
+
+// Option 3 DFS
 
 var floodFill = function(image, sr, sc, newColor) {
     // Check if we need to change some color, if don't
