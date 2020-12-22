@@ -45,7 +45,7 @@ var isMatch = function(s, p) {
                     useFirst = isMatch(s.substring(1), p.substring(1));
                 }
             }
-            return useFirst || p[1] === '*' && isMatch(s, p.substring(2));
+            return useFirst || (p[1] === '*' && isMatch(s, p.substring(2)));
         }
     }
 };
