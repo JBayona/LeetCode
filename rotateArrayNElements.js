@@ -53,3 +53,11 @@ let rotateArray = function(arr, n) {
   reverseArray(arr, 0, n - 1); // Reverse from 0 to n - 1
   reverseArray(arr, n, len - 1); // Reverse from n to length - 1
 };
+
+let arr = [1, 10, 20, 0, 59, 86, 32, 11, 9, 40];
+
+console.log("Array Before Rotation");
+console.log(arr)
+
+rotateArray(arr, 2);
+
