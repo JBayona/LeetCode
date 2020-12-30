@@ -22,6 +22,7 @@ function lengthOfLongestSubstringTwoDistinct(str) {
   let max = 0;
   let map = {};
   while(right < str.length) {
+    // We need to move the window.
     if(Object.keys(map).length === 3) {
       while(Object.keys(map).length === 3) {
         let c = str.charAt(left);
