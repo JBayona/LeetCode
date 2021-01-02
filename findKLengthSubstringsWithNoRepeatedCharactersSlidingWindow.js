@@ -4,7 +4,6 @@ Given a string S, return the number of substrings of length K with no repeated c
 Example 1:
 Input: S = "havefunonleetcode", K = 5
 Output: 6
-
 Explanation: 
 There are 6 substrings they are : 'havef','avefu','vefun','efuno','etcod','tcode'.
 
