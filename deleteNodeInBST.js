@@ -23,6 +23,7 @@ We could use either the 4 or 19
 - The max of the inorder of the left subtree
 - The min of the inorder of the right subtree
 */
+
 var deleteNode = function(root, key) {
   // Base case
   if(!root) {
