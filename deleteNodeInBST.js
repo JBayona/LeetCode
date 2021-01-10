@@ -10,7 +10,6 @@ If the node is found, delete the node.
 
 https://leetcode.com/problems/delete-node-in-a-bst/
 */
-
 /*
                 20
               /    \
