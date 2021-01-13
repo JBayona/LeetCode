@@ -15,7 +15,6 @@ board = [
   ['i','f','l','v']
 ]
 words = ["oath","pea","eat","rain"]
-
 Output: ["eat","oath"]
 */
 
