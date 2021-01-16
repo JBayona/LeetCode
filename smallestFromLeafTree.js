@@ -10,6 +10,34 @@ lexicographically smaller than "aba".  A leaf of a node is a node that has no ch
 https://leetcode.com/problems/smallest-string-starting-from-leaf/
 */
 
+// Option 1
+var smallestFromLeaf = function(root) {
+    if(!root) {
+        return '';
+    }
+    // Force to be the greates one using z
+    let answer = {result: 'z'};
+    preorder(root, '', answer);
+    return answer.result;
+};
+
+function preorder(node, current, answer) {
+    if(!node) {
+        return;
+    }
+    
+    let convertToChar = String.fromCharCode(node.val + 97);
+    let str = current ?  convertToChar + current : convertToChar;
+    if(!node.left && !node.right) {
+        if(str < answer.result) {
+            answer.result = str;
+        }
+    }
+    preorder(node.left, str, answer);
+    preorder(node.right, str, answer);
+}
+
+// Option 2
 var smallestFromLeaf = function(root) {
     if(!root) {
         return '';
