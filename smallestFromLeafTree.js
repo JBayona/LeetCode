@@ -17,7 +17,7 @@ var smallestFromLeaf = function(root) {
     if(!root) {
         return '';
     }
-    // Force to be the greates one using z
+    // Force to be the greatest one using z
     let answer = {result: 'z'};
     preorder(root, '', answer);
     return answer.result;
