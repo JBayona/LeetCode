@@ -9,6 +9,7 @@ https://leetcode.com/problems/all-paths-from-source-to-target/
 */
 
 // Time O(N)
+// Space O(N)
 var allPathsSourceTarget = function(graph) {
     let result = [];
     dfs(graph, 0, [], result);
