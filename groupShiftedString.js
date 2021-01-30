@@ -9,7 +9,8 @@ Input: ["abc", "bcd", "acef", "xyz", "az", "ba", "a", "z"],
 Output:  [   ["abc","bcd","xyz"],   ["az","ba"],   ["acef"],   ["a","z"] ]
 */
 
-// Time O(m * n)
+// Time O(N * M)
+// Space O(N)
 var groupShiftedStrings = function(list) {
     let groupShifted = {};
 
