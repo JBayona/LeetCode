@@ -45,7 +45,7 @@ var colorBorder = function(grid, r0, c0, color) {
 function dfs(grid, row, col, oldColor, color, visited) {
     let ROW = grid.length;
     let COL = grid[0].length;
-    // Check for boundaries or border
+    // Check for boundaries
     if(row < 0 || col < 0 || row >= ROW || col >= COL || visited[row][col]) {
         return false;
     }
