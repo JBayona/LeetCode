@@ -9,15 +9,14 @@ Given a square at location (r0, c0) in the grid and a color, color the border
 of the connected component of that square with the given color, and return the final grid.
 
 Example 1:
-
 Input: grid = [[1,1],[1,2]], r0 = 0, c0 = 0, color = 3
 Output: [[3, 3], [3, 2]]
-Example 2:
 
+Example 2:
 Input: grid = [[1,2,2],[2,3,2]], r0 = 0, c0 = 1, color = 3
 Output: [[1, 3, 3], [2, 3, 3]]
-Example 3:
 
+Example 3:
 Input: grid = [[1,1,1],[1,1,1],[1,1,1]], r0 = 1, c0 = 1, color = 2
 Output: [[2, 2, 2], [2, 1, 2], [2, 2, 2]]
 
