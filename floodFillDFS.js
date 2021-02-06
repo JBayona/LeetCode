@@ -14,7 +14,6 @@ the aforementioned pixels with the newColor.)
 At the end, return the modified image.
 
 Example 1:
-
 Input: 
 image = [[1,1,1],[1,1,0],[1,0,1]]
 sr = 1, sc = 1, newColor = 2
