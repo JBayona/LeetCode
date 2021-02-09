@@ -5,6 +5,7 @@ those leaves form a leaf value sequence.
 https://leetcode.com/problems/leaf-similar-trees/
 */
 
+// Time O(N)
 var leafSimilar = function(root1, root2) {
     let array = [];
     let arr = [];
