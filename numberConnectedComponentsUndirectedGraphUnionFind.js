@@ -82,6 +82,7 @@ function findParent(node, map) {
     return findParent(map[node], map);
 }
 
+// Option 2
 // DFS
 var countComponents = function(n, edges) {
     let graph = {};
