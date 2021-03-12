@@ -48,7 +48,7 @@ A = 1 * Math.pow(26,1) = 26
 
 A = 65 // ASCII Code
 */
-// Time O(N) where N is the lenght of the string.
+// Time O(N) where N is the length of the string.
 // Space O(1)
 var titleToNumber = function(columnTitle) {
     let index = 0;
