@@ -7,7 +7,7 @@ https://leetcode.com/problems/factorial-trailing-zeroes/
 */
 
 // Number of trailing zeroes is the Power of 10 in the expression or
-//in other words, the number of times N is divisible by 10.
+// in other words, the number of times N is divisible by 10.
 // For a number to be divisible by 10, it should be divisible by 2 & 5.
 
 // If you want to figure out the exact number of zeroes, you would have to check
