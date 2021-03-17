@@ -88,8 +88,8 @@ TweetCounts.prototype.getTweetCountsPerFrequency = function(freq, tweetName, sta
         // count them and move the array until we find an element that does not belong
         // nowInterval + freqTime denotes the different ranges in the result array
         while(index < array.length &&  array[index] < nowInterval + freqTime && array[index] <= endTime) {
-            index++;
-            count++;
+            index++; // Move to the next element in the array
+            count++; // Count the number of elements
         }
         result.push(count);
         nowInterval += freqTime;
