@@ -12,6 +12,7 @@ Output: 5
 https://leetcode.com/problems/sum-of-two-integers/
 */
 
+// Time O(N)
 var getSum = function(a, b) {
     // fill arrays with correct amount of 1's or -1s
     const arrA = new Array(Math.abs(a)).fill(Math.sign(a) > 0 ? 1 : -1)
