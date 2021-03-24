@@ -67,3 +67,14 @@ var reachingPoints = function(sx, sy, tx, ty) {
     }
     return false;
 };
+
+// Option 2
+var reachingPoints = function(sx, sy, tx, ty) {
+    if(sx == tx && sy == ty) {
+        return true;
+    }
+    if(sx > tx || sy > ty) {
+        return false;
+    }
+    return reachingPoints(sx+sy, sy, tx, ty) || reachingPoints(sx, sy+sx, tx, ty);
+};
