@@ -7,7 +7,9 @@ of moves exists to transform the point (sx, sy) to (tx, ty). Otherwise, return F
 Examples:
 Input: sx = 1, sy = 1, tx = 3, ty = 5
 Output: True
+
 Explanation:
+
 One series of moves that transforms the starting point to the target is:
 (1, 1) -> (1, 2)
 (1, 2) -> (3, 2)
