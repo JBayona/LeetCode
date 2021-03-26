@@ -5,6 +5,7 @@ Given a starting point (sx, sy) and a target point (tx, ty), return True if and 
 of moves exists to transform the point (sx, sy) to (tx, ty). Otherwise, return False.
 
 Examples:
+
 Input: sx = 1, sy = 1, tx = 3, ty = 5
 Output: True
 
