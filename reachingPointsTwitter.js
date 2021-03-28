@@ -12,7 +12,6 @@ Output: True
 Explanation:
 
 One series of moves that transforms the starting point to the target is:
-
 (1, 1) -> (1, 2)
 (1, 2) -> (3, 2)
 (3, 2) -> (3, 5)
