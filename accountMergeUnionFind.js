@@ -1,6 +1,7 @@
 /*
-Given a list accounts, each element accounts[i] is a list of strings, where the first element accounts[i][0] is a
-name, and the rest of the elements are emails representing emails of the account.
+Given a list accounts, each element accounts[i] is a list of strings, where the first
+element accounts[i][0] is a name, and the rest of the elements are emails representing
+emails of the account.
 
 Now, we would like to merge these accounts. Two accounts definitely belong to the same person if there
 is some email that is common to both accounts. Note that even if two accounts have the same name, they may
