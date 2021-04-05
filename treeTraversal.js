@@ -103,7 +103,8 @@ function inorderTraversalHelper(root, result) {
 /*
 The idea is to move down to leftmost node using left pointer.
 While moving down, push root and root’s right child to stack. Once we reach leftmost node
-print it if it doesn’t have a right child. If it has a right child, then change root so that the right child is processed before.
+print it if it doesn’t have a right child. If it has a right child, then change root so
+that the right child is processed before.
 */
 var postorderTraversal = function(root) {
     if(!root) {
