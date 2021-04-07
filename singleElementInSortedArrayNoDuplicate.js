@@ -55,7 +55,9 @@ var singleNonDuplicate = function(nums) {
     return nums[left];
 };
 
-var singleNonDuplicate = function(nums) {
+// Time O(N)
+// Space O(N)
+/* var singleNonDuplicate = function(nums) {
     let map = {};
     for(let i = 0; i < nums.length; i++) {
         let item = nums[i];
@@ -72,4 +74,7 @@ var singleNonDuplicate = function(nums) {
             return prop;
         }
     }
-};
+}; */
+
+nums = [1, 1, 2, 2, 3, 3, 4, 5, 5];
+console.log(singleNonDuplicate(nums));
