@@ -27,6 +27,7 @@ function Tree(val, left, right){
   this.right = right || null;
 }
 
+// Recursive.
 var isSymmetric = function(root) {
   if(root === null) return true;
   return checkSymetric(root.left, root.right);
