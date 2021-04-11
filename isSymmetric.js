@@ -40,5 +40,49 @@ function checkSymmetric(a,b){
   return checkSymmetric(a.left, b.right) && checkSymmetric(a.right, b.left);
 }
 
+// Iterative
+var isSymmetric = function(root) {
+  if(!root) {
+      return true;
+  }
+  let queue = [];
+  queue.push(root);
+  
+  
+  while(queue.length) {
+      let n = queue.length;
+      let tmp = [];
+      let values = [];
+      for(let i = 0; i < n; i++) {
+          let node = queue.shift();
+          tmp.push(node.val);
+          
+          let left = node.left ? node.left.val : null;
+          let right = node.right ? node.right.val : null;
+          
+          // Insert both regardless they are null
+          values.push(left);
+          values.push(right);
+          
+          // console.log(node.val);
+          if(node.left) {
+              queue.push(node.left);
+          }
+          if(node.right) {
+              queue.push(node.right);
+          }
+      }
+      
+      let indexA = 0;
+      let indexB = values.length - 1;
+      while(indexA < indexB) {
+          if(values[indexA++] !== values[indexB--]) {
+              return false;
+          }
+      }
+  }
+  return true;
+};
+
 tree = new Tree(1, new Tree(2, new Tree(3), new Tree(4)), new Tree(2, new Tree(4), new Tree(3)));
 console.log(isSymmetric(tree));
