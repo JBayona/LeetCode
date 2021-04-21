@@ -10,7 +10,56 @@ Your algorithm should run in O(n) complexity.
 https://leetcode.com/problems/longest-consecutive-sequence/description/
 */
 
+// Time O(N)
 // Time complexity O(N)
+// Space complexity O(N)
+/*
+Create a hashset with all values. Then iterate over each value in array, and exhause
+all lower and upper values from a number.
+Once we exhausted a numbers, remove them from the set and continue with the next numbers.
+
+O(n) time complexity since each no is only touched twice - once while set creation and other while deletion.
+*/
+var longestConsecutive = function(nums) {
+  let result = 0;
+  let hash = {};
+  
+  // Register the numbers and mark them as not visited
+  for(let num of nums) {
+      hash[num] = false;
+  }
+  
+  let seqCount = 0;
+  for(let num in hash) { // O(N)
+    // Mark as visited
+    hash[num] = true;
+    seqCount = 1;
+    
+    // Exhaust next elements
+    let nextNumber = parseInt(num) + 1;
+    while(nextNumber in hash && hash[nextNumber] === false) { // O(N)
+        hash[nextNumber] = true;
+        seqCount++;
+        nextNumber++;
+    }
+    
+    // Exhaust prev elements
+    let prevNumber = num - 1;
+    while(prevNumber in hash && hash[prevNumber] === false) { // O(N)
+        hash[prevNumber] = true;
+        seqCount++;
+        prevNumber--;
+    }
+    
+    // Update result
+    if(seqCount > result) {
+        result = seqCount;
+    }
+  }
+  return result;
+};
+
+// Time complexity O(N^2)
 // Space complexity O(N)
 var longestConsecutive = function(nums) {
     
