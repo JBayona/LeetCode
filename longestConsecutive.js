@@ -59,6 +59,29 @@ var longestConsecutive = function(nums) {
   return result;
 };
 
+// Time O(NLogN)
+var longestConsecutive = function(nums) {
+  if(!nums.length) {
+      return 0;
+  }
+  
+  nums.sort((a,b) => a - b);
+  
+  let seqCount = 1;
+  let result = 1;
+  for(let i = 1; i < nums.length; i++) {
+      if(nums[i] !== nums[i - 1]) {
+          if(nums[i] === nums[i-1]+1) {
+              seqCount++;   
+          } else {
+              result = Math.max(result, seqCount);
+              seqCount = 1;
+          }
+      }
+  }
+  return Math.max(result, seqCount);
+};
+
 // Time complexity O(N^2)
 // Space complexity O(N)
 var longestConsecutive = function(nums) {
