@@ -10,7 +10,6 @@ Your algorithm should run in O(n) complexity.
 https://leetcode.com/problems/longest-consecutive-sequence/description/
 */
 
-// Time O(N)
 // Time complexity O(N)
 // Space complexity O(N)
 /*
