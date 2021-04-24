@@ -16,7 +16,8 @@ Create a hashset with all values. Then iterate over each value in array, and exh
 all lower and upper values from a number.
 Once we exhausted a numbers, remove them from the set and continue with the next numbers.
 
-O(n) time complexity since each no is only touched twice - once while set creation and other while deletion.
+O(n) time complexity since each no is only touched twice - once while set creation
+and other while deletion.
 */
 var longestConsecutive = function(nums) {
   let result = 0;
