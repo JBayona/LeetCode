@@ -21,6 +21,8 @@ https://leetcode.com/problems/valid-palindrome/description/
  * @param {string} s
  * @return {boolean}
  */
+// Time O(N)
+// Space O(1)
 var isPalindrome = function(s) {
     let left = 0;
     let right = s.length-1;
