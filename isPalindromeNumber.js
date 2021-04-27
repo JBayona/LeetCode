@@ -50,10 +50,5 @@ var isPalindrome = function(x) {
         sum = (sum * 10) + tmp;
         n = Math.floor(n / 10);
     }
-    
-    if(sum === x) {
-        return true;
-    } else {
-        return false;
-    }
+    return sum === x ? true : false;
 };
