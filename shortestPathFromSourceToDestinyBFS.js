@@ -1,74 +1,87 @@
 /*
-Given a sorted linked list, delete all nodes that have duplicate numbers, leaving only distinct numbers from the original list.
+Given a MxN matrix where each element can either be 0 or 1. We need to find
+the shortest path between a given source cell to a destination cell.
+The path can only be created out of a cell if its value is 1.
+We can only move between 1, for 0 it´s not allowed.
 
-For example,
-Given 1->2->3->3->4->4->5, return 1->2->5.
-Given 1->1->1->2->3, return 2->3.
-
-https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/description/
+Expected time complexity is O(MN).
 */
 
-function ListNode(val, next){
-  this.val = val;
-  this.next = next || null;
+function shortestPathBetweenSourceAndDestination(grid, source, destination) {
+  if(!grid.length) {
+    return 0;
+  }
+
+  let visited = new Array(grid.length);
+  let ROW = grid.length;
+  let COL = grid[0].length;
+  for(let i = 0; i < ROW; i++) {
+    visited[i] = new Array(COL).fill(0);
+  }
+
+  let [xStart, yStart] = source;
+  let [xEnd, yEnd] = destination;
+
+  let row = [0, -1, 0, 1];
+  let col = [-1, 0, 1, 0];
+
+  let queue = [];
+  queue.push({x: xStart, y: yStart, distance: 0});
+  while(queue.length) {
+    let node = queue.shift();
+    // If we reach the destination
+    if(node.x === xEnd && node.y === yEnd) {
+      return node.distance;
+    }
+
+    for(let i = 0; i < 4; i++) {
+      let nextRow = row[i] + node.x;
+      let nextCol = col[i] + node.y;
+
+      if(isSafe(grid, nextRow, nextCol, visited)) {
+        // Mark as visited
+        visited[nextRow][nextCol] = 1;
+        queue.push({x: nextRow, y: nextCol, distance: node.distance + 1});
+      }
+    }
+  }
+  // No path found
+  return -1;
 }
 
-// Option 1
-var deleteDuplicates = function(head) {
-  let dummy = new ListNode(0);
-  dummy.next = head;
-  let prev = dummy;
-  let duplicate = false;
-  
-  let current = head;
-  while(current && current.next) {
-      if(current.val !== current.next.val) {
-          if(duplicate) {
-              prev.next = current.next;
-              duplicate = false;
-          } else {
-              prev = current;
-          }
-      } else {
-          duplicate = true;
-      }
-      current = current.next;
-  }
-  
-  // Check the last one
-  if(duplicate) {
-      prev.next = null;
-  }
-  
-  return dummy.next;
-};
 
-// Option 2
-var deleteDuplicates = function(head) {
-  let list = head;
-  let duplicate = null;
+function isSafe(grid, row, col, visited) {
+  let ROW = grid.length;
+  let COL = grid[0].length;
+  return (
+    row >= 0 && row < ROW &&
+    col >= 0 && col < COL &&
+    grid[row][col] &&
+    !visited[row][col]
+  );
+}
 
-  let newHead = new ListNode(0);
-  newHead.next = head;
-  let current = newHead;
-
-  while(list && list.next){
-    if(list.val === duplicate || list.val === list.next.val){
-      duplicate = list.val;
-      current.next = list.next;
-    }else{
-      current = current.next;
-    }
-    list = list.next;
-  }
-
-  //Para la ultima vuelta en caso de fallar
-  if(list && list.val === duplicate){
-    current.next = null;
-  }
-
-  return newHead.next;
-};
-
-list = new ListNode(1, new ListNode(1, new ListNode(1, new ListNode(2))));
-console.log(deleteDuplicates(list));
+/*let grid = [ 
+  [1, 0, 0, 0, 1],
+  [1, 1, 1, 1, 0],
+  [1, 1, 0, 1, 1],
+  [1, 0, 0, 1, 0],
+  [1, 1, 1, 1, 1],
+]*/ // 5
+/*let grid = [ 
+  [1, 1, 1, 1, 1],
+  [0, 0, 0, 0, 1],
+  [0, 1, 1, 1, 1],
+  [1, 1, 0, 0, 0],
+  [1, 1, 0, 0, 0],
+]*/ // 11
+let grid = [ 
+  [1, 1, 0, 1, 1],
+  [0, 0, 0, 0, 1],
+  [0, 0, 1, 1, 1],
+  [1, 0, 0, 0, 0],
+  [1, 1, 0, 0, 0],
+] // 11
+let source = [0,0];
+let destination = [4,1];
+console.log(shortestPathBetweenSourceAndDestination(grid, source, destination));
