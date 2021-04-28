@@ -61,13 +61,13 @@ function isSafe(grid, row, col, visited) {
   );
 }
 
-/*let grid = [ 
+let grid = [ 
   [1, 0, 0, 0, 1],
   [1, 1, 1, 1, 0],
   [1, 1, 0, 1, 1],
   [1, 0, 0, 1, 0],
   [1, 1, 1, 1, 1],
-]*/ // 5
+] // 5
 /*let grid = [ 
   [1, 1, 1, 1, 1],
   [0, 0, 0, 0, 1],
@@ -75,13 +75,13 @@ function isSafe(grid, row, col, visited) {
   [1, 1, 0, 0, 0],
   [1, 1, 0, 0, 0],
 ]*/ // 11
-let grid = [ 
+/*let grid = [ 
   [1, 1, 0, 1, 1],
   [0, 0, 0, 0, 1],
   [0, 0, 1, 1, 1],
   [1, 0, 0, 0, 0],
   [1, 1, 0, 0, 0],
-] // -1
+]*/ // -1
 let source = [0,0];
 let destination = [4,1];
 console.log(shortestPathBetweenSourceAndDestination(grid, source, destination));
