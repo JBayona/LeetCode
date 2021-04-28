@@ -5,6 +5,7 @@ The path can only be created out of a cell if its value is 1.
 We can only move between 1, for 0 it´s not allowed.
 
 Expected time complexity is O(MN).
+
 """
 
 def shortest_path_between_source_and_destination(grid, source, destination):
