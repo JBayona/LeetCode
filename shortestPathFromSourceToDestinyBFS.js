@@ -81,7 +81,7 @@ let grid = [
   [0, 0, 1, 1, 1],
   [1, 0, 0, 0, 0],
   [1, 1, 0, 0, 0],
-] // 11
+] // -1
 let source = [0,0];
 let destination = [4,1];
 console.log(shortestPathBetweenSourceAndDestination(grid, source, destination));
