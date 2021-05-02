@@ -44,6 +44,7 @@ function dfs(board, word, row, col, count) {
   let COL = [-1, 0, 1, 0];
   
   // We found the word
+  // Break condition
   if(count === word.length) {
     return true;
   }
