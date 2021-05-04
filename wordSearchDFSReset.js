@@ -6,7 +6,6 @@ The word can be constructed from letters of sequentially adjacent cell, where
 cell may not be used more than once.
 
 For example,
-
 Given board =
 [
   ['A','B','C','E'],
