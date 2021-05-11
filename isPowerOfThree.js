@@ -37,3 +37,20 @@ var isPowerOfThree = function(n) {
     }
     return n === 1;
 };
+
+// Option 2
+/*
+Approach 1: Logarithms -
+We can take advantage of the natural mathematical properties of logarithms to
+find our solution. If n is a power of 3, then 3^x = n. This can be rewritten as
+log3 n = x, where x will be an integer if n is a power of 3.
+
+Since most programming languages can't natively do log3 calculations, we can take
+advantage of another property of logarithms: log3 n can be rewritten as log n / log 3. This will
+produce a slight amount of floating point error, but any value that is within a close
+margin (1e-10) while n is constrained to an int will be a correct.
+*/
+var isPowerOfThree = function(n) {
+    let a = Math.log(n) / Math.log(3)
+    return Math.abs(a - Math.round(a)) < 1e-10
+};
