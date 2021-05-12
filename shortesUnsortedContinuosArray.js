@@ -51,6 +51,29 @@ var findUnsortedSubarray = function(nums) {
     return leftIndex < rightIndex ? rightIndex - leftIndex + 1 : 0;
 };
 
+// Option 2
+var findUnsortedSubarray = function(nums) {
+    let left = 0;
+    let right = nums.length - 1;
+    
+    // Copy the array
+    let sorted = nums.concat().sort((a, b) => a - b);
+    
+    while(left < right) {
+        if(nums[left] === sorted[left]) {
+            left++;
+            continue;
+        } else if(nums[right] === sorted[right]) {
+            right--;
+            continue;
+        } else {
+            break;
+        }
+    }
+    return right - left === 0 ? 0 : right - left + 1;
+};
+
+// Option 3
 var findUnsortedSubarray = function(nums) {
     let indexStart = 0;
     let indexEnd = 0;
