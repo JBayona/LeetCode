@@ -21,6 +21,36 @@ Output: 0
 https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
 */
 
+// Option 1
+// Time O(N)
+// Space O(1)
+var findUnsortedSubarray = function(nums) {
+    // To avoid results where the arrays are the same
+    let rightIndex = 0;
+    let leftIndex = nums.length - 1;
+    let prev = nums[0];
+    
+    // Get the right boundary
+    for(let i = 1; i < nums.length; i++) {
+        if(nums[i] < prev) {
+            rightIndex = i;
+        } else {
+            prev = nums[i];
+        }
+    }
+    
+    // Get the left boundary
+    prev = nums[nums.length -1];
+    for(let i = nums.length - 2; i >= 0; i--) {
+        if(nums[i] > prev) {
+            leftIndex = i;
+        } else {
+            prev = nums[i];
+        }
+    }
+    return leftIndex < rightIndex ? rightIndex - leftIndex + 1 : 0;
+};
+
 var findUnsortedSubarray = function(nums) {
     let indexStart = 0;
     let indexEnd = 0;
