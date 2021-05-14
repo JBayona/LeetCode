@@ -25,6 +25,35 @@ Output: 0
 https://leetcode.com/problems/longest-substring-without-repeating-characters/
 */
 
+
+// Sliding window
+// Time O(N)
+// Space O(N)
+var lengthOfLongestSubstring = function(s) {
+    let start = 0;
+    let end = 0;
+    let max = 0;
+    let seen = {};
+    while(end < s.length) {
+        let c = s[end];
+        // If we already see the character
+        if(c in seen) {
+            // Remove it and move the left window
+            let left = s[start];
+            delete seen[left];
+            start++;
+        } else {
+            // Move right window
+            seen[c] = 1;
+            if(end - start + 1 > max) {
+                max = end - start + 1;
+            }
+            end++;
+        }
+    }
+    return max;
+  };
+
 // Option 1
 // Sliding window
 // Time O(N)
