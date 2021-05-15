@@ -24,7 +24,6 @@ Output: 0
 https://leetcode.com/problems/longest-substring-without-repeating-characters/
 */
 
-
 // Sliding window
 // Time O(N)
 // Space O(N)
