@@ -14,6 +14,50 @@ Explanation: 342 + 465 = 807.
 https://leetcode.com/problems/add-two-numbers/
 */
 
+// Option 1
+var addTwoNumbers = function(l1, l2) {
+    
+    if(!l1) {
+        return l2;
+    }
+    
+    if(!l2) {
+        return l1;
+    }
+    
+    let val = 0;
+    let newHead = new ListNode(0);
+    let newTail = newHead;
+    let carry = 0;
+    while(l1 || l2) {
+        let sumDigits = carry;
+        if(l1) {
+            sumDigits += l1.val;
+        }
+        if(l2) {
+            sumDigits += l2.val;
+        }
+        carry = sumDigits >= 10 ? 1 : 0;
+        newTail.next = new ListNode(sumDigits % 10);
+        
+        // Move pointers
+        if(l1) {
+            l1 = l1.next;
+        }
+        if(l2) {
+            l2 = l2.next;
+        }
+        newTail = newTail.next;
+    }
+    
+    // Last carry
+    if(carry) {
+        newTail.next = new ListNode(1);
+    }
+    
+    return newHead.next;
+};
+
 // Time O(N)
 // Space O(1)
 var addTwoNumbers = function(l1, l2) {
