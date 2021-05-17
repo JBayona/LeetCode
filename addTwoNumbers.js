@@ -58,6 +58,7 @@ var addTwoNumbers = function(l1, l2) {
     return newHead.next;
 };
 
+// Option 2
 // Time O(N)
 // Space O(1)
 var addTwoNumbers = function(l1, l2) {
