@@ -12,6 +12,25 @@ integer in the range [30, 100].
 https://leetcode.com/problems/daily-temperatures/
 */
 
+// Same deal as the "next larger element" problem.
+var dailyTemperatures = function(temperatures) {
+    let stack = [];
+    let result = new Array(temperatures.length).fill(0);
+    
+    for(let i = 0; i < temperatures.length; i++) {
+        // Find the first greater element
+        while(stack.length && temperatures[stack[stack.length - 1]] < temperatures[i]) {
+            // This index has the position of the current element we are analyzing
+            // temperatures[i] is the greater element so doing i - index will get
+            // how many items we check in order to get the first greater
+            let index = stack.pop();
+            result[index] = i - index;
+        }
+        stack.push(i);
+    }
+    return result;
+};
+
 // Time O(N^2)
 // Time O(1)
 var dailyTemperatures = function(temperatures) {
