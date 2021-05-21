@@ -12,6 +12,7 @@ integer in the range [30, 100].
 https://leetcode.com/problems/daily-temperatures/
 */
 
+// Stack.
 // Same deal as the "next larger element" problem.
 var dailyTemperatures = function(temperatures) {
     let stack = [];
