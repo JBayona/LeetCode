@@ -34,7 +34,6 @@ var dailyTemperatures = function(temperatures) {
 
 // Brute Force.
 // Time O(N^2)
-// Time O(1)
 var dailyTemperatures = function(temperatures) {
     let result = new Array(temperatures.length).fill(0);
     for(let i = 0; i < temperatures.length; i++) {
