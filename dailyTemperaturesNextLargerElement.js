@@ -32,7 +32,7 @@ var dailyTemperatures = function(temperatures) {
     return result;
 };
 
-// Brute Force.
+// Brute Force
 // Time O(N^2)
 var dailyTemperatures = function(temperatures) {
     let result = new Array(temperatures.length).fill(0);
