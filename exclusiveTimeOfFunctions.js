@@ -16,8 +16,8 @@ Return the exclusive time of each function, sorted by their function id.
 https://leetcode.com/problems/exclusive-time-of-functions/
 */
 
-// Time O(N)
-// Space O(N)
+// Time O(N).
+// Space O(N).
 var exclusiveTime = function(n, logs) {
     let stack = [];
     let result = new Array(n).fill(0);
