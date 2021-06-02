@@ -40,3 +40,25 @@ function dfs(root, depth, hash, result) {
     dfs(root.right, depth + 1, hash, result);
     dfs(root.left, depth + 1, hash, result);
 }
+
+// DFS Postorder
+let lastLevel = -1;
+var rightSideView = function(root) {
+    let result = [];
+    if(!root) {
+        return [];
+    }
+    dfs(root, 0, result);
+    return result;
+};
+
+function dfs(root, level, result) {
+    if(!root) {
+        return;
+    }
+    if(level === result.length) {
+        result.push(root.val);
+    }
+    dfs(root.right, level + 1, result);
+    dfs(root.left, level + 1, result);
+}
