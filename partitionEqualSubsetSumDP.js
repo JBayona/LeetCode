@@ -42,6 +42,7 @@ function dfs(nums, sum, index, memo) {
     }
     // Either include the current element or skip it
     let res = dfs(nums, sum - nums[index], index + 1, memo) || dfs(nums, sum, index + 1, memo);
+    // Save the result from computations.
     memo[`${index}-${sum}`] = res;
     return res;
 }
