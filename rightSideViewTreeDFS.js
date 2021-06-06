@@ -18,6 +18,8 @@ https://leetcode.com/problems/binary-tree-right-side-view/
 */
 
 // DFS Postorder
+// Time O(N)
+// Space O(1)
 var rightSideView = function(root) {
     let hash = {};
     let result = [];
@@ -42,6 +44,8 @@ function dfs(root, depth, hash, result) {
 }
 
 // DFS Postorder
+// Time O(N)
+// Space O(1)
 let lastLevel = -1;
 var rightSideView = function(root) {
     let result = [];
