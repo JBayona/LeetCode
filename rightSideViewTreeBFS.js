@@ -35,6 +35,7 @@ var rightSideView = function(root) {
             if(node.right) {
                 queue.push(node.right);
             }
+	    // Right Side View.
             if(i === size - 1) {
                 result.push(node.val);
             }
