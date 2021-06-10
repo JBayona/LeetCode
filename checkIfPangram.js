@@ -30,3 +30,9 @@ var checkIfPangram = function(sentence) {
     
     return count === 26 ? true : false;
 };
+
+// Option 2
+var checkIfPangram = function(sentence) {
+    let set = new Set([...sentence]);
+    return set.size === 26 ? true : false;
+};
