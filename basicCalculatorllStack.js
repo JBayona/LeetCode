@@ -17,7 +17,6 @@ Input: " 3+5 / 2 "
 Output: 5
 
 Note:
-
 You may assume that the given expression is always valid.
 Do not use the eval built-in library function.
 
