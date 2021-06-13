@@ -15,6 +15,32 @@ https://leetcode.com/problems/permutations/description/
 
 */
 
+// Option 1
+// Backtrack
+// Backtracking
+var permute = function(nums) {
+  let result = [];
+  let tmp = [];
+  let start = 0;
+  let end = nums.length;
+  helper(tmp, result, nums);
+  return result;
+};
+
+function helper(tmp, result, nums) {
+  if(tmp.length == nums.length) {
+      result.push(tmp);
+      return;
+  }
+  for(let i = 0; i < nums.length; i++) {
+      if(!tmp.includes(nums[i])) {
+          tmp.push(nums[i]);
+          helper(tmp.concat(), result, nums);
+          tmp.pop();
+      }
+  }
+}
+
 //Permutacion Heaps Algorithm
 
 var permute = function(nums){
