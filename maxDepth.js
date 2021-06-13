@@ -21,7 +21,7 @@ function Tree(val, left, right){
 
 function getHeight(t){
   if(t === null){
-    return -1;
+    return 0;
   }
   let leftHeigth = getHeight(t.left);
   let rightHeigth = getHeight(t.right);
