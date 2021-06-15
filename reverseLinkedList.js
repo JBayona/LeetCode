@@ -7,6 +7,8 @@ function ListNode(val, next){
   this.next = next || null;
 }
 
+// Iterative
+// Time O(N)
 function reverseList(list){
   let current = list;
   let prev = null;
