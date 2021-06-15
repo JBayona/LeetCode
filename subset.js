@@ -21,6 +21,31 @@ https://leetcode.com/problems/subsets/description/
 
 */
 
+// Option 1
+// Backtrack
+var subsets = function(nums) {
+  if(nums.length === 0) return result;
+  //In case is not sorted
+  /*Asi no habra duplicados*/
+  nums.sort((a,b) => a-b);
+  let tmp = [];
+  let result = [];
+  let index = 0;
+  helper(index, tmp, result, nums);
+  return result;
+};
+
+function helper(index, tmp, result, nums) {
+  // Add the element of the subset
+  result.push(tmp);
+  for(let i = index; i < nums.length; i++) {
+      tmp.push(nums[i]);
+      helper(i+1, tmp.concat(), result, nums);
+      tmp.pop();
+  }
+}
+
+// Option 2
 var subsets = function(nums) {
   var result = [];
   if(nums.length === 0) return result;
