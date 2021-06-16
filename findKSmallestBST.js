@@ -13,6 +13,29 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/discuss/63783/Two-Easiest-In-Order-Traverse-(Java)
 */
 
+// Heap Java
+/*
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b-a);
+        preorder(root, maxHeap, k);
+        return maxHeap.poll();
+    }
+    
+    public void preorder(TreeNode node, Queue<Integer> maxHeap, int k) {
+        if(node == null) { 
+            return;
+        }
+        maxHeap.add(node.val);
+        if(maxHeap.size() > k) {
+            maxHeap.poll();
+        }
+        preorder(node.left, maxHeap, k);
+        preorder(node.right, maxHeap, k);
+    }
+}
+*/
+
 function Node(val,left,right){
   this.val = val;
   this.left = left || null;
@@ -47,7 +70,6 @@ function findKSmallestBST(tree, k){
 }
 
 // Recursion with O(N) in space
-
 var kthSmallest = function(root, k) {
   let sorted = [];
   inorder(root, sorted);
