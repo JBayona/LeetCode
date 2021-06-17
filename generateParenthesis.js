@@ -14,27 +14,24 @@ https://leetcode.com/problems/generate-parentheses/description/
 */
 
 var generateParenthesis = function(n) {
-    if(n === 0) {
-        return [];
-    }
-    result = [];
+    let result = [];
     helper(n, n, '', result);
     return result;
 };
 
-function helper(left, right, path, result) {
+function helper(open, close, str, result) {
     // To be valid, left should always be left than right
-    if(left <= right) {
-        if(left === 0 && right === 0) {
-            result.push(path);
+    if(open <= close) {
+        if(open === 0 && close === 0) {
+            result.push(str);
             return;
         }
-        if(left < 0 || right < 0) {
+        // No need to keep recursion if the count is less than zero
+        if(open < 0 || close < 0) {
             return;
         }
-        
-        helper(left-1, right, path+'(', result);
-        helper(left, right-1, path+')', result);
+        helper(open - 1, close, str + '(', result);
+        helper(open, close - 1, str + ')', result);
     }
 }
 
