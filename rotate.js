@@ -7,6 +7,7 @@ edge and the left edge to the top edge.
 Swap index by index - Complex O(N^2)
 */
 
+// In place.
 function rotate(matrix, n){
   for(var i = 0; i < n/2; i++){
     var first = i;
