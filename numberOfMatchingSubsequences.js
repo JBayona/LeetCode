@@ -43,3 +43,31 @@ var isSubsequence = function(s, t) {
     }
     return false;
 }
+
+// Option 2
+var numMatchingSubseq = function(s, words) {
+    let result = 0;
+    for(let word of words) {
+        let start = 0;
+        let found = true;
+        for(c of word) {
+            let location = find(c, s, start);
+            // Not found
+            if(location < 0) {
+                found = false;
+                break;
+            }
+            start = location + 1;
+        }
+        if(found) {
+            result++;
+        }
+    }
+    return result;
+};
+
+function find(subsequence, str, start) {
+    let init = start || 0;
+    let s = str.slice(init);
+    return s.search(subsequence);
+}
