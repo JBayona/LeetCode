@@ -67,6 +67,7 @@ var numMatchingSubseq = function(s, words) {
     return result;
 };
 
+// Find match based on initial position to end of string.
 function find(subsequence, str, start) {
     let init = start || 0;
     let s = str.slice(init);
