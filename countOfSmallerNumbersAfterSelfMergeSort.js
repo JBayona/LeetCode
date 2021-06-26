@@ -23,6 +23,8 @@ Output: [0,0]
 https://leetcode.com/problems/count-of-smaller-numbers-after-self/
 */
 
+// Time O(N*Log N)
+// Space O(N)
 var countSmaller = function(nums) {
     let result = [];
     let originalIndex = nums.map((n, index) => index);
