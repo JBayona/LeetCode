@@ -16,7 +16,6 @@ invalid IPv6 address.
 
 Besides, extra leading zeros in the IPv6 is also invalid. For example, the address
 02001:0db8:85a3:0000:0000:8a2e:0370:7334 is invalid.
-
 Note: You may assume there is no extra space or special characters
 in the input string.
 
