@@ -21,7 +21,7 @@ https://leetcode.com/problems/max-consecutive-ones-iii/
 // Sliding Window
 // Time Complexity O(N)
 // Space complexity O(1)
-var longestOnes = function(nums, k) {
+/*var longestOnes = function(nums, k) {
     let left = 0;
     let right = 0;
     let result = 0;
@@ -46,4 +46,35 @@ var longestOnes = function(nums, k) {
     }
     // Return the window increase
     return right - left;
+};*/
+
+// Option 2
+// Sliding Window
+// Time Complexity O(N)
+// Space complexity O(1)
+var longestOnes = function(nums, k) {
+    let left = 0;
+    let right = 0;
+    let result = 0;
+    while(right < nums.length) {
+        if(nums[right] === 0) {
+            if(k === 0) {
+                // Move left window if is 1 as we already count them
+                while(nums[left] === 1) {
+                    left++;
+                }
+                left++;
+            } else {
+                k--;
+            }
+        }
+        result = Math.max(right - left + 1, result);
+        right++;
+    }
+    return result;
 };
+
+// nums = [0,0,1,1,0,0,1,1,1,0,1,1,0,0,0,1,1,1,1];
+nums = [0,0,0,0,0,0,0,0,1,1,1,1];
+k = 3;
+console.log(longestOnes(nums, k));
