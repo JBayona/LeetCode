@@ -17,7 +17,6 @@ Bolded numbers were flipped from 0 to 1. The longest subarray is underlined.
 https://leetcode.com/problems/max-consecutive-ones-iii/
 */
 
-// Option 1
 // Sliding Window
 // Time Complexity O(N)
 // Space complexity O(1)
