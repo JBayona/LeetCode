@@ -20,7 +20,7 @@ https://leetcode.com/problems/max-consecutive-ones-iii/
 // Sliding Window
 // Time Complexity O(N)
 // Space complexity O(1)
-/*var longestOnes = function(nums, k) {
+var longestOnes = function(nums, k) {
     let left = 0;
     let right = 0;
     let result = 0;
@@ -45,7 +45,7 @@ https://leetcode.com/problems/max-consecutive-ones-iii/
     }
     // Return the window increase
     return right - left;
-};*/
+};
 
 // Option 2
 // Sliding Window
