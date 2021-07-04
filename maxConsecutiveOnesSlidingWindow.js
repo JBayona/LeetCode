@@ -37,7 +37,7 @@ var longestOnes = function(nums, k) {
                 k++;
             }
             // Otherwise we just need to move our left window
-            // even if the number is 1
+            // we found 1s.
             left++;
         }
         // Always move right
