@@ -22,7 +22,7 @@ https://leetcode.com/problems/two-sum/
 """
 from typing import List
 
-def twoSum(nums, target):
+def twoSum(nums: List[int], target: int) -> List[int]:
     map = {}
     for i, v in enumerate(nums):
         complement = target - v
