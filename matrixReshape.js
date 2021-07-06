@@ -16,7 +16,8 @@ https://leetcode.com/problems/reshape-the-matrix/
 var matrixReshape = function(mat, r, c) {
     let row = mat.length;
     let col = mat[0].length;
-    
+   
+    // Validation 
     if((row * col !== r * c) || (row === r && col === c)) {
         return mat;
     }
