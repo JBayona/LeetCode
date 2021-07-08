@@ -68,3 +68,20 @@ class Solution(object):
             return merged[len(merged)/2]
         else:
             return ((merged[len(merged)/2] + merged[len(merged)/2 - 1])) / 2.0
+        
+# Option 1
+# Time log(M+N) + O(N+M)
+# Space O(N+M)
+class Solution:
+    def findMedianSortedArrays(self, nums1, nums2):
+        total = sorted(nums1 + nums2)
+        
+        if not total:
+            return 0
+        elif len(total) == 1:
+            return total[0]
+        
+        if len(total) % 2 != 0:
+            return total[int(len(total)/2)]
+        else:
+            return (total[int(len(total)/2 - 1)] + total[int(len(total)/2)]) / 2
