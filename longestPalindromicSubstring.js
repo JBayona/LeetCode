@@ -16,8 +16,34 @@ Output: "bb"
 https://leetcode.com/problems/longest-palindromic-substring/description/
 */
 
-// Option 1
+// Improvement
+// Time O(N^2)
+// Space O(1)
+// Expand substring
+var longestPalindrome = function(s) {
+  let result = {max: 0, longest: ''};
+  for(let i = 0; i < s.length; i++) {
+    // Even length
+    getLongestSubstring(i, i + 1, s, result);
+    // Odd length
+    getLongestSubstring(i, i, s, result); 
+  }
+  return result.longest;
+};
 
+const getLongestSubstring = (l, r, s, result) => {
+  while(l >= 0 && r < s.length && s[l] === s[r]) {
+    if(r - l + 1 > result.max) {
+      result.max = r - l + 1;
+      result.longest = s.substring(l, r + 1);
+    }
+    l--;
+    r++;
+  }
+}
+
+
+// Option 1
 // Time O(N^2)
 // Space O(1)
 var longestPalindrome = function(s) {
