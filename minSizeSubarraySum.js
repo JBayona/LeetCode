@@ -15,23 +15,27 @@ If you have figured out the O(n) solution, try coding another solution of which 
 https://leetcode.com/problems/minimum-size-subarray-sum/
 */
 
-var minSubArrayLen = function(s, nums) {
-    if(!nums || !nums.length) {
+// Sliding window
+// Time O(N)
+var minSubArrayLen = function(target, nums) {
+    if(!nums.length) {
         return 0;
     }
-    let sum = 0;
-    let i = 0;
-    let j = 0;
+    
+    let start = 0;
+    let end = 0;
     let min = Number.MAX_SAFE_INTEGER;
-    
-    
-    while(j < nums.length) {
-        sum += nums[j++];
-        while(sum >= s) {
-            min = Math.min(min, j - i);
-            sum -= nums[i++];
+    let sum = 0;
+    while(end < nums.length) {
+        sum += nums[end];
+        // If we reach the goal
+        while(sum >= target) {
+            min = Math.min(end - start + 1, min);
+            sum -= nums[start];
+            start++;
         }
+        // Increase end window
+        end++;
     }
-    
-    return min === Number.MAX_SAFE_INTEGER ? 0 : min;  
+    return min !== Number.MAX_SAFE_INTEGER ? min : 0;
 };
