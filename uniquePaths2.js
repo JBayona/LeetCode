@@ -74,3 +74,62 @@ var uniquePathsWithObstacles = function(obstacleGrid) {
     
     return dp[m-1][n-1];
 };
+
+
+// Option 3
+// DFS + Memoization
+var uniquePathsWithObstacles = function(obstacleGrid) {
+    let m = obstacleGrid.length;
+    let n = obstacleGrid[0].length;
+    
+    // Edge cases
+    if(
+        obstacleGrid == null || m == 0 || n == 0 ||
+        obstacleGrid[m - 1][n - 1] == 1 || obstacleGrid[0][0] == 1
+    ) {
+        return 0;
+    }
+    
+    
+    let memo = new Array(m);
+    let visited = new Array(m);
+    for(let i = 0; i < m; i++) {
+        visited[i] = new Array(n).fill(0);
+        memo[i] = new Array(n).fill(null);
+    }
+    
+    // Record the last element, otherewise it will break
+    memo[m-1][n-1] = 1;
+    dfs(obstacleGrid, visited, 0, 0, memo);
+    return memo[0][0];
+};
+
+function dfs(matrix, visited, row, col, memo) {
+    if(!isSafe(matrix, visited, row, col)) {
+        return 0;
+    } else if(memo[row][col] != null) {
+        return memo[row][col];
+    }
+    console.log('ENTRA');
+    let count = 0;
+    // Mark it as visited
+    visited[row][col] = 1;
+    count += dfs(matrix, visited, row + 1, col, memo);
+    count += dfs(matrix, visited, row, col + 1, memo);
+    // Reset
+    visited[row][col] = 0;
+    
+    memo[row][col] = count;
+    return count;
+}
+
+function isSafe(matrix, visited, row, col) {
+    let ROW = matrix.length;
+    let COL = matrix[0].length;
+    return (
+        row >= 0 && row < ROW &&
+        col >= 0 && col < COL &&
+        visited[row][col] !== 1 &&
+        matrix[row][col] !== 1
+    )
+}
