@@ -110,7 +110,6 @@ function dfs(matrix, visited, row, col, memo) {
     } else if(memo[row][col] != null) {
         return memo[row][col];
     }
-    console.log('ENTRA');
     let count = 0;
     // Mark it as visited
     visited[row][col] = 1;
