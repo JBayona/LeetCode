@@ -80,7 +80,6 @@ var uniquePathsWithObstacles = function(obstacleGrid) {
 var uniquePathsWithObstacles = function(obstacleGrid) {
     let m = obstacleGrid.length;
     let n = obstacleGrid[0].length;
-    
     // Edge cases
     if(
         obstacleGrid == null || m == 0 || n == 0 ||
