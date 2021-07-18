@@ -7,7 +7,6 @@ An obstacle and space is marked as 1 and 0 respectively in the grid.
 
 https://leetcode.com/problems/unique-paths-ii/
 */
-
 // DP
 // Bottom-up
 var uniquePathsWithObstacles = function(obstacleGrid) {
