@@ -42,3 +42,34 @@ var detectCycle = function(head) {
     }
     return slow;
 };
+
+// Option 2
+var detectCycle = function(head) {
+    // There´s no head
+    if(!head || !head.next) {
+        return null;
+    }
+    let slow = head;
+    let fast = head;
+    let hasCycle = false;
+    while(slow && (fast && fast.next)){
+        slow = slow.next;
+        fast = fast.next.next;
+        // We detect a cycle
+        if(slow == fast) {
+            hasCycle = true;
+            break;
+        }
+    }
+    
+    // If we find a cycle
+    if(hasCycle) {
+        // Set fast to the head and try to meet slow
+        slow = head;
+        while(slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+    }
+    return hasCycle ? slow : null;
+};
