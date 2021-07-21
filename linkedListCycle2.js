@@ -73,3 +73,19 @@ var detectCycle = function(head) {
     }
     return hasCycle ? slow : null;
 };
+
+// Option 3
+var detectCycle = function(head) {
+    if(head == null || head.next == null) {
+        return null;
+    }
+    let hash = {};
+    while(head) {
+        if(head in hash) {
+            return head;
+        }
+        hash[head] = head.val;
+        head = head.next;
+    }
+    return null;
+};
