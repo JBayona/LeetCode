@@ -1,5 +1,6 @@
 /*
 Given a binary tree, define the path from the route to the given node
+
 The result will be an array with the path.
 */
 
