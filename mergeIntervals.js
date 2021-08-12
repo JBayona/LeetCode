@@ -22,8 +22,8 @@ var merge = function(intervals) {
   let index = null;
 
   if(!intervals || !intervals.length) {
-        return [];
-    }
+    return [];
+  }
   
   // Sort using start time as point of sorting
   // Use a comparator
