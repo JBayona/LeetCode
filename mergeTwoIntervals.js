@@ -71,7 +71,6 @@ function mergeIntervals(res, lastInterval, current) {
   lastInterval[1] = Math.max(lastInterval[1], current[1]);
   return lastInterval;
 }
-
 // intervalA = [[1,5], [10,14], [16,18]];
 // intervalB = [[2,6], [8,10], [11,20]];
 // [1,6], [8, 20]
