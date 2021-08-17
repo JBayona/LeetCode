@@ -6,7 +6,6 @@ A naive method can combine the two list, and sort and apply merge interval in th
 For example,
 A: [1,5], [10,14], [16,18]
 B: [2,6], [8,10], [11,20]
-
 output [1,6], [8, 20]
 
 */
