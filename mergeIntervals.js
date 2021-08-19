@@ -152,6 +152,7 @@ var merge = function(intervals) {
 };
 
 // intervals = [new Interval(1,4), new Interval(0,2), new Interval(3,5)]; // [0,5]
-// intervals = [new Interval(1,3), new Interval(2,6), new Interval(8,10), new Interval(15,18)]; //[[1,6],[8,10],[15,18]]
+// intervals = [new Interval(1,3), new Interval(2,6), new Interval(8,10), new Interval(15,18)]; 
+//[[1,6],[8,10],[15,18]]
 intervals = [new Interval(1,4), new Interval(4,5)]; //[[1,5]]
 console.log(merge(intervals));
