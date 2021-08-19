@@ -12,13 +12,16 @@ https://leetcode.com/problems/maximum-subarray/description/
 var maxSubArray = function(nums) {
     // Kadane's algorithm max sum normal array
     let currentMax = nums[0];
-    let maxSoFar = nums[0];
+    let result = nums[0];
     for(let i = 1; i < nums.length; i++) {
         currentMax += nums[i];
+        // Current max could be either the sum or the current
+        // number in case it´s greater than previous sum
         currentMax = Math.max(nums[i], currentMax);
-        maxSoFar = Math.max(currentMax, maxSoFar);
+        // Update our result
+        result = Math.max(currentMax, result);
     }
-    return maxSoFar;
+    return result;
 };
 
 // Time O(N)
