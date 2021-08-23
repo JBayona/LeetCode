@@ -24,6 +24,25 @@ To find the max we have three choices:
 
 https://www.youtube.com/watch?v=vtJvbRlHqTA
 */
+// Time O(N)
+// Space O(1)
+var maxProduct = function(nums) {
+    let maxVal = nums[0];
+    let minVal = nums[0];
+    let result = nums[0];
+    
+    // Track both, minimum and maximum numbers
+    for(let i = 1; i < nums.length; i++) {
+        let tmp = maxVal;
+        // The maximum product could come either from the product of negative
+        // numbers of a simple product operation
+        maxVal = Math.max(nums[i], Math.max(nums[i] * maxVal, minVal * nums[i]));
+        minVal = Math.min(nums[i], Math.min(nums[i] * tmp, minVal * nums[i]));
+        result = Math.max(result, maxVal);
+    }
+    return result;
+};
+
 var maxProduct = function(nums) {
     
     if(nums.length == 0) return 0;
