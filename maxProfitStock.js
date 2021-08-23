@@ -21,6 +21,28 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 */
 
+// Sliding window
+// Time O(N)
+// Space O(1)
+var maxProfit = function(prices) {
+    let left = 0;
+    let right = 1;
+    let result = 0;
+    // left = buy, right = sell
+    
+    while(right < prices.length) {
+        // Check if it´s profitable
+        if(prices[left] < prices[right]) {
+            let profit = prices[right] - prices[left];
+            result = Math.max(result, profit);
+        } else {
+            left = right;
+        }
+        right++;
+    }
+    return result;
+};
+
 /**
  * @param {number[]} prices
  * @return {number}
