@@ -11,6 +11,70 @@ https://leetcode.com/problems/search-in-rotated-sorted-array/description/
 
 */
 
+// Option 1
+var search = function(nums, target) {
+  //we have to search for the element where the rotation end
+  let pivot = find(nums, target, 0, nums.length-1);
+  
+  //if the element we find is -1 so, we know that array is already sorted order 
+  //so just apply binary search for the whole array
+  if(pivot == -1){
+      return binarySearch(nums, target, 0, nums.length-1);
+  }
+  //if the pivot element itself the target element just return it
+  if(nums[pivot] == target){
+      return pivot;
+  }
+  //if our first element is less than target just apply binary
+  //search in first part of array with respect to pivot
+  if(nums[0] <= target){
+      return binarySearch(nums, target, 0, pivot-1);
+  }
+  //apply binary search in second part of the array
+  return binarySearch(nums, target, pivot+1, nums.length-1);
+};
+
+const find = function(a, k, start, end){
+  while(start <= end){
+      let mid = Math.floor((start+end)/2);
+      //if our mid go to the element where the element itself greater
+      //than its next element than it will be our pivot
+      //in second case if the element pre element is greater than mid 
+      //than our mid-1 element is pivot
+      if(mid<end && a[mid] > a[mid+1]){
+          return mid;
+      }
+      if(mid>start && a[mid-1] > a[mid]){
+          return mid-1;
+      }
+      //if our mid element is smaller than start then the case happen
+      //where element of left hand side have one element that is pivot
+      //if it is bigger than the pivot element lies in right hand side
+      //of the array
+      if(a[mid] <= a[start]){
+          end = mid-1;
+      }else{
+          start = mid+1;
+      }
+  }
+  return -1;
+}
+
+const binarySearch = function(a, k, start, end){
+  while(start <= end){
+      let mid = Math.floor(start+(end-start)/2);
+      if(a[mid] > k){
+          end = mid-1;
+      }else if(a[mid] < k){
+          start = mid+1;
+      }else{
+          return mid;
+      }
+  }
+  return -1;
+}
+
+// Option 2
 var search = function(nums, target){
   var start = 0;
   var end = nums.length - 1;
@@ -49,8 +113,7 @@ target = 3;
 console.log(search(array, target));
 
 
-//Opcion 2
-
+//Opcion 3
 var search = function(nums, target) {
     let map = {};
     if(nums.length === 0) return -1
