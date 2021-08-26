@@ -39,3 +39,24 @@ var minSubArrayLen = function(target, nums) {
     }
     return min !== Number.MAX_SAFE_INTEGER ? min : 0;
 };
+
+// Prefix Sum
+var minSubArrayLen = function(s, nums) {
+    if(!nums || !nums.length) {
+        return 0;
+    }
+    let sum = 0;
+    let i = 0;
+    let j = 0;
+    let min = Number.MAX_SAFE_INTEGER;
+    
+    
+    while(j < nums.length) {
+        sum += nums[j++];
+        while(sum >= s) {
+            min = Math.min(min, j - i);
+            sum -= nums[i++];
+        }
+    }
+    return min === Number.MAX_SAFE_INTEGER ? 0 : min;  
+};
