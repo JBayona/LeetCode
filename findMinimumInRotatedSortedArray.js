@@ -46,3 +46,42 @@ var findMin = function(nums) {
     }
     return nums[start];
 };
+
+*/
+// Time O(LogN)
+// if nums[min] > nums: it's sure that min element is in the left part of array
+// else we know min element is in the right side
+// min is always in the start pointer
+var findMin = function(nums) {
+    if(nums.length === 1) {
+        return nums[0];
+    }
+    // If the first element is less than the last element then
+    // there´s no rotation
+    if(nums[0] < nums[nums.length - 1]) {
+        return nums[0];
+    }
+    // Binary Search
+    let start = 0;
+    let end = nums.length - 1;
+    while(start <= end) {
+        let mid = Math.floor((start + end) / 2);
+        // This point would be the point of change. From higher to lower value.
+        if(nums[mid] > nums[mid + 1]) {
+            return nums[mid + 1];
+        }
+        if(nums[mid - 1] > nums[mid]) {
+            return nums[mid];
+        }
+        // If mid is greater than first value, it seems that min value
+        // should be in the right side
+        if(nums[mid] > nums[0]) {
+            start = mid + 1;
+        } else {
+            // if nums[0] is greater than the mid value then this means the
+            // smallest value is somewhere to the left
+            end = end - 1;
+        }
+    }
+    return nums[start];
+};
