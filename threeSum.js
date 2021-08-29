@@ -17,9 +17,7 @@ https://leetcode.com/problems/3sum/#/description
 
 function threeSum(nums) {
     //Ordena los elementos de menor a mayor, con esto evitamos números repetidos.
-    nums.sort(function(a, b) {
-        return a - b;
-    });
+    nums.sort((a, b) => a - b);
     //Tamaño del array 
     var len = nums.length;
     var result = [];
