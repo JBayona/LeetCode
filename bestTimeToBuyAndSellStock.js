@@ -43,6 +43,26 @@ var maxProfit = function(prices) {
     return result;
 };
 
+// Option 2
+var maxProfit = function(prices) {
+    
+    if(!prices.length) {
+        return 0;
+    }
+    
+    let minProfit = Number.MAX_SAFE_INTEGER;
+    let result = 0
+    for(let i = 0; i < prices.length; i++) {
+        // A day in the future, that´s why the else if
+        if(prices[i] < minProfit) {
+            minProfit = prices[i];
+        } else { // Try to maximize profits
+            result = Math.max(result, prices[i] - minProfit);
+        }
+    }
+    return result;
+}; 
+
 /**
  * @param {number[]} prices
  * @return {number}
