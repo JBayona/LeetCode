@@ -12,7 +12,7 @@ https://leetcode.com/problems/container-with-most-water/
 # Time O(N)
 # Space O(1)
 def maxArea(self, height: List[int]) -> int:
-    maxValue = 0
+    max_value = 0
     i = 0
     j = len(height) - 1
     h = 0
@@ -21,9 +21,9 @@ def maxArea(self, height: List[int]) -> int:
     while i < j:
         width = j - i
         h = min(height[i], height[j])
-        maxValue = max(maxValue, h * width)
+        max_value = max(max_value, h * width)
         if height[i] > height[j]:
             j-=1
         else:
             i+=1
-    return maxValue
+    return max_value
