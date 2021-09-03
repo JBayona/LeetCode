@@ -50,6 +50,7 @@ function helper(str, array, start) {
 }
 
 // Time complexity O(n^2)
+// DP.
 function wordBreak(str, array) {
   let dp = new Array(str.length + 1).fill(false);
   // Set the initial state as true to have a state
