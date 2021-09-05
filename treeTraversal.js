@@ -1,5 +1,4 @@
 // Tree traversals
-
 // Preorder
 /*
 It is O (n) where n is the number of nodes in the tree. It is simply because
