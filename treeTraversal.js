@@ -7,8 +7,7 @@ the algorithm will need to visit every node exactly once.
 
 // Iterative
 // https://www.youtube.com/watch?v=elQcrJrfObg&t=213s
-var preorderTraversal = function(root) {
-    
+var preorderTraversal = function(root) {    
     if(!root) {
         return [];
     }
