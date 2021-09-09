@@ -1,6 +1,5 @@
 /*
 Implement a trie with insert, search, and startsWith methods.
-
 Example:
 Trie trie = new Trie();
 trie.insert("apple");
