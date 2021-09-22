@@ -69,7 +69,8 @@ function isSafe(grid, visited, row, col) {
 ];
 output = [4, 1, 2, 1]
 */
-/*grid = [
+/*
+grid = [
     [1, 1, 1, 1],
     [1, 1, 1, 1],
     [1, 1, 1, 1],
