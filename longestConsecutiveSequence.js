@@ -36,7 +36,6 @@ var longestConsecutive = function(nums) {
       result = Math.max(count, result);
     }
   }
-  
   return result;
 };
 

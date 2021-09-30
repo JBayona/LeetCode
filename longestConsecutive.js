@@ -57,6 +57,17 @@ var longestConsecutive = function(nums) {
   return result;
 };
 
+//DFS
+var longestConsecutive = function(nums) {
+  if(!nums.length) {
+    return 0;
+  }
+  // Add nums to set
+  let set = new Set(nums);
+  connsole.log();
+}
+
+
 // Time O(NLogN)
 var longestConsecutive = function(nums) {
   if(!nums.length) {
