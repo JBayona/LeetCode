@@ -1,10 +1,8 @@
 /*
-There is a new alien language which uses the latin alphabet. However, the order among letters
-are unknown to you. You receive a list of non-empty words from the dictionary, where words are sorted
-lexicographically by the rules of this new language. Derive the order of letters in this language.
-
-Example 1:
-Given the following words in dictionary,
+There is a new alien language which uses the latin alphabet. However, the order among letters are unknown to you.
+You receive a list of non-empty words from the dictionary, where words are sorted lexicographically by the rules
+of this new language. Derive the order of letters in this language.
+Input:
 [
   "wrt",
   "wrf",
@@ -12,130 +10,117 @@ Given the following words in dictionary,
   "ett",
   "rftt"
 ]
-The correct order is: "wertf".
+Output: "wertf"
 
-Example 2:
-Given the following words in dictionary,
-[
-  "z",
-  "x"
-]
-The correct order is: "zx".
+Topological sort - graph
 
-Example 3:
-Given the following words in dictionary,
-[
-  "z",
-  "x",
-  "z"
-]
-The order is invalid, so return "".
+Time Complexity: O(V + E)
+The time it takes to build a graph would be O(E) since we need to traverse through all the edges and initializing
+a queue that has vertices w in-degree 0 would take O(V) assuming we have V vertices.
+Lastly, dequeue and output the vertices would take O(V) as well since dequeueing and outputting each vertex are linear time.
 
-// Topological sort
-
-Topological ordering is possible if and only if the graph has no directed cycles
-(DAG - directed acyclic graph)
-
-Derive the order of letters in this language
-=> get topological sort of all letters
-
-Wrap up:
-Build the graph
-Topological sorting
-
-En un diccionario normal cómo sabemos cuál va primero?
-Por la primer letra diferente
-Ejemplo: “azd” y “zad”, sabemos que primero va azd porque encontramos la
-primera letra diferente entre los caracteres que es “a" y “z", “a" es menor por lo que sabemos
-que “azd” va primero, en este ejemplo:
-
-Words = [“wrtf”, “wrf”, “er”, “ett”, “rftt” ] => ya están ordenados
-
-wrtf y wrf = comparando el primer carácter diferente, “t" va antes que “f”
-wrf y er = “w” va antes que “e”
-er y ett = “r” va antes que “t”
-ett y rfft = “e” va antes que “r”
-Entonces el orden final es => w, e, r, t, f
-
-Time complexity:
-Say the number of characters in the dictionary (including duplicates) is n.
-Building the graph takes O(n). Topological sort takes O(V + E). V <= n.
-E also can't be larger than n. So the overall time complexity is O(n).
-
-https://www.youtube.com/watch?v=LA0X_N-dEsg
+Space Complexity: O(V)
+The memory needed for this problem would be the in-degree array and a dictionary containing all the
+vertices as keys and vertices they're sourcing to as values. Both would take O(V)
 */
 
-function alienOrder(words) {
-    inDegree = new Array(26).fill(0); // a = 0, b = 1, c = 2, ..., z = 26
-    graph = {};
-    buildGraph(graph, words, inDegree);
-    // Topological sort
-    return bfs(graph, inDegree);
+const alienOrder = words => {
+  let graph = {};
+  // We´ll check who is the root based on the degree
+  degree = new Array(26).fill(0); // a = 0, b = 1, c = 2, ..., z = 26
+  buildGraph(graph, words, degree);
+  /*
+  {
+    w: Set { 'e' },
+    r: Set { 't' },
+    t: Set { 'f' },
+    f: Set {},
+    e: Set { 'r' }
   }
-  
-  function buildGraph(graph, words, inDegree) {
-    for(let word of words) {
-      for(let i = 0; i < word.length; i++) {
-        let c = words[i];
+  */
+ return bfs(graph, degree);
+}
+
+function buildGraph(graph, words, degree) {
+  // Each character is a node in the graph
+  for(let word of words) {
+    for(let i = 0; i < word.length; i++) {
+      let c = word[i];
+      if(!(c in graph)) {
         graph[c] = new Set();
       }
     }
+  }
   
-    // Check for every single word
-    for(let i = 1; i < words.length; i++) {
-      // First should be the first element as the words are
-      // sorted, so the first different char of first goes
-      // before the first different char of second
-      let first = words[i - 1];
-      let second = words[i];
-      let len = Math.min(first.length, second.length);
-  
-      // We need to find the first different character, so
-      // we need to iterate the string with the smalles length
-      for(let j = 0; j < len; j++) {
-        if(first[j] !== second[j]) {
-          let out = first[j];
-          let in = second[j];
-  
-          if(!graph[out].has(in)) {
-            graph[out].add(in);
-            inDegree[in - 97]++; // 97 = a
-          }
-          // We only need to get the first different char
-          // so no need to look for the others, that's
-          // why we break the loop
-          break;
+  for(let i = 1; i < words.length; i++) {
+    // We already know that the original array is sorted based on the program
+    // so we need to find which character comes first, we neeed to look for the
+    // first two words and start comparing elements
+    let firstWord = words[i - 1];
+    let secondWord = words[i];
+    let min = Math.min(firstWord.length, secondWord.length);
+
+    // Let´s take the smallest word to compare characters
+    for(let j = 0; j < min; j++) {
+      if(firstWord[j] !== secondWord[j]) {
+        let parent = firstWord[j];
+        let child = secondWord[j];
+
+        if(!graph[parent].has(child)) {
+          graph[parent].add(child);
+          // Get the ascii number based on the char to identify
+          // the root
+          let n = child.charCodeAt(0);
+          degree[n - 97]++;
+        }
+        // We only need to check the first different char
+        // so there´s no need to look for the rest for the others
+        // that´s why we break the loop
+        break;
+      }
+    }
+  }
+}
+
+const bfs = (graph, degree) => {
+  let result = '';
+  const totalChars = Object.keys(graph).length;
+  let queue = [];
+
+  console.log(graph);
+  console.log(degree);
+
+  // Identify root node
+  for(let c in graph) {
+    // Get the chars with degree zero of the graph
+    // These are potential root nodes with better order
+    let d = c.charCodeAt(0);
+    if(degree[d - 97] === 0) {
+      queue.push(c);
+    }
+  }
+
+  while(queue.length) {
+    let size = queue.length;
+    for(let i = 0; i < size; i++) {
+      let node = queue.shift();
+      result += node;
+      // Get neighbor nodes
+      for(let neighbor of graph[node]) {
+        let n = neighbor.charCodeAt(0);
+        degree[n - 97]--;
+        if(degree[n - 97] === 0) {
+          queue.push(neighbor);
         }
       }
     }
   }
-  
-  function bfs(graph, inDegree) {
-    let result = '';
-    let totalChars = Object.keys(graph).length;
-    let queue = [];
-  
-    for(let c in graph) {
-      // Get the chars with degree zero
-      if(inDegree[c - 97] === 0) {
-        result += c;
-        queue.push(c);
-      }
-    }
-  
-    while(queue.length) {
-      let size = queue.length;
-      for(let i = 0; i < size; i++) {
-        let node = queue.shift();
-        for(let neigh of graph[node]) {
-          inDegree[neigh - 97]--;
-          if(inDegree[neigh - 97] === 0) {
-            queue.push(neigh);
-            result += neigh;
-          }
-        }
-      }
-    }
-  
-    return result.length === totalChars ? result : "";
-  }
+  return result.length === totalChars ? result : '';
+}
+
+words = ["wrt", "wrf", "er", "ett", "rftt"]; // output = "wertf"
+// words = ["z","x"] // output = "zx"
+// words = ["z","x","z"]  // output = ""
+// words = ["abc","ab"]; // output = ""
+// words = ["z","z"]; // output = "z"
+console.log(alienOrder(words));
