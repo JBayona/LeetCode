@@ -20,8 +20,7 @@ var shortestDistance = function(wordsDict, word1, word2) {
     let firstWord = -1;
     let secondWord = -1;
 
-    let result = 0;
-    let min = Number.MAX_SAFE_INTEGER;
+    let result = Number.MAX_SAFE_INTEGER;
     for(let i = 0; i < wordsDict.length; i++) {
         if(wordsDict[i] === word1) {
             firstWord = i;
@@ -30,15 +29,18 @@ var shortestDistance = function(wordsDict, word1, word2) {
             secondWord = i;
         }
         if(firstWord !== -1 && secondWord !== -1) {
-            result = Math.min(min, Math.abs(firstWord - secondWord));
+            result = Math.min(result, Math.abs(firstWord - secondWord));
         }
     }
     return result;
 };
 
-wordsDict = ["practice", "makes", "perfect", "coding", "makes"];
+// wordsDict = ["practice", "makes", "perfect", "coding", "makes"];
 // word1 = 'coding';
 // word2 = 'practice'; 3
-word1 = "makes";
-word2 = "coding";
+// word1 = "makes";
+// word2 = "coding";
+wordsDict = ["a","a","b","b"];
+word1 = "a";
+word2 = "b";
 console.log(shortestDistance(wordsDict, word1, word2));
