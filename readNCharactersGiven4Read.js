@@ -8,23 +8,23 @@ Note: The read function will only be called once for each test case.
 https://leetcode.com/problems/read-n-characters-given-read4/
 */
 
-// @buffer [] array
-// @n int
+/**
+* @param buf Destination buffer
+* @param n   Maximum number of characters to read
+* @return    The number of characters read
+*/
 const read = (buffer, n) => {
     let total = 0;
     let isEOF = false;
     let tmp = [];
-
     while(!isEOF && total < n) {
-        let count = read4(buffer);
-        // Check if it´s the end of the file
+        let count = read4(tmp);
+        // Check if it´s the end of file
         isEOF = count < 4;
-        // Get the actual count
-        total = Math.min(count, n - total);
-        // Copy from temp buffer to buf
-        for(let i = 0; i < total; i++) {
-            buffer[total++] = tm[i];
-        }
+        // get the actual count
+        count = Math.min(count, n - total);
+        // copy from temp buffer to buffer
+        for (int i = 0; i < count; i++) 
+        buffer[total++] = tmp[i];
     }
-    return total;
 }
