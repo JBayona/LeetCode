@@ -23,9 +23,7 @@ function onEditDistance(s1,s2) {
             }
         }
     }
-  
-  return Math.abs(len1 - len2) === 1; // Corner case: ""
-  
+    return Math.abs(len1 - len2) === 1; // Corner case: ""
 }
 
 s1 = "ab";
