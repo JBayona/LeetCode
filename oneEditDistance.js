@@ -1,9 +1,7 @@
 /*
 Given two strings S and T, determine if they are both one edit distance apart.
 */
-
 //O(N)
-
 function onEditDistance(s1, s2) {
   let len1 = s1.length;
   let len2 = s2.length;
