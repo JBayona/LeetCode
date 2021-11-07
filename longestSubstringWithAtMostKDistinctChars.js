@@ -7,6 +7,7 @@ https://www.youtube.com/watch?v=RHFrVNmlyA8
 https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characters/
 */
 
+// Sliding Window.
 // Time O(N)
 // Space O(N)
 // https://www.youtube.com/watch?v=8AQra0p_HmI
