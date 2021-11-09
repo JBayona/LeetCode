@@ -61,11 +61,16 @@ LRUCache.prototype.remove = function(node){
   next siempre apunta a null, entonces actualizamos
   el nodo siguiente (node.prev.next) que apunte a
   node.next que es null*/
+  // En este caso el nodo que estamos eliminando está
+  // en medio de dos nodos, entonces hacemos la conexión
+  // entre esos dos nodos
   if(node.prev !== null){
     node.prev.next = node.next;
   }else{
     /*Si no hay nada apuntamos head a
     null que es node.next*/
+    // En este caso el nodo es el primero
+    // entonces head ahora es el next del nodo que queremos eliminar
     this.head = node.next;
   }
   /*Si hay un nodo antes, es decir, no es el
@@ -90,6 +95,8 @@ LRUCache.prototype.setHead = function(node){
   /*El prev es null porque no hay nodos mas
   recuentes en ese momento*/
   node.prev = null;
+  // El antiguo head, ya no es el head y debe de
+  // apuntar al nuevo nodo
   if(this.head !== null){
     this.head.prev = node;
   }
