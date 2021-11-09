@@ -44,7 +44,7 @@ var lengthOfLongestSubstringKDistinct = function (str, k) {
   return result;
 };
 
-// Time Complexity O(N^2)
+//  Time Complexity O(N^2)
 // Space Complexity O(N^2)
 var lengthOfLongestSubstringKDistinct = function (str, k) {
   let hash = {};
