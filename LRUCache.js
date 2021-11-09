@@ -37,6 +37,7 @@ LRUCache.prototype.put = function(key,value){
     let created = new Node(key,value);
     if(this.map.size >= this.size){
       this.map.delete(this.end.key);
+      // Remove the last node as it´s the least used
       this.remove(this.end);
       this.setHead(created);
     }else{
