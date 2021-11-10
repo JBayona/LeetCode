@@ -45,6 +45,33 @@ https://leetcode.com/problems/merge-intervals/
   return result;
 };
 
+// Another option
+var merge = function(intervals) {
+  if(!intervals.length) {
+      return [];
+  }
+  
+  intervals = intervals.sort((a, b) => a[0] - b[0]);
+  let prev = intervals[0];
+  let result = [];
+  for(let i = 1; i < intervals.length; i++) {
+      let current = intervals[i];
+      // No overlap exist
+      if(current[0] > prev[1]) {
+          result.push(prev);
+          prev = current;
+      } else {
+          // Overlap exists
+          // Get the first range, and the max of the current end or prev end
+          let merged = [prev[0], Math.max(current[1], prev[1])];
+          prev = merged
+      }
+  }
+  // Add the last one
+  result.push(prev);
+  return result;
+};
+
 // Updated
 var merge = function(intervals) {
   let result = [];
