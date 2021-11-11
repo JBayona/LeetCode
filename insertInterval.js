@@ -30,6 +30,7 @@ var insert = function(intervals, newInterval) {
     result.push(intervals[i++]);
   }
 
+  // Add those overlaping scenarios
   while(i < intervals.length && intervals[i].start <= newInterval.end) {
     newInterval.start = Math.min(intervals[i].start, newInterval.start);
     newInterval.end = Math.max(intervals[i].end, newInterval.end);
