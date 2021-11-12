@@ -20,6 +20,27 @@ Explanation: You don't need to remove any of the intervals since they're already
 https://leetcode.com/problems/non-overlapping-intervals/
 */
 
+// Time O(N)
+var eraseOverlapIntervals = function(intervals) {
+    // Sorted based on the start interval
+    intervals.sort((a,b) => a[0] - b[0]);
+    let prevEnd = intervals[0][1];
+    let count = 0;
+    
+    for(let i = 1; i < intervals.length; i++) {
+        // If current start is less than prev end, it means that we
+        // have an overlap
+        if(intervals[i][0] < prevEnd) {
+            count++;
+            prevEnd = Math.min(prevEnd, intervals[i][1]);
+        } else {
+            prevEnd = intervals[i][1];
+        }
+    }
+    return count;
+};
+
+// Option 2
 var eraseOverlapIntervals = function(intervals) {
   // Sort based on start
   let sorted = intervals.sort((a,b) => a[0] - b[0]);
