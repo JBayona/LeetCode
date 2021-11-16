@@ -10,6 +10,8 @@ https://github.com/JBayona/Facebook-Interview-Coding-1/blob/master/253.%20Meetin
 """
 
 # Greedy algorithm
+# Time O(N)
+# Space O(1)
 def canAttendMeetings(intervals):
     intervals = sorted(intervals, key = lambda x: [x[0], x[1]])
     
