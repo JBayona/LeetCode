@@ -10,6 +10,8 @@ https://github.com/JBayona/Facebook-Interview-Coding-1/blob/master/253.%20Meetin
 */
 
 // Greedy algorithm
+// Time O(N)
+// Space O(1)
 var canAttendMeetings = function(intervals) {
     // Sort the intervals per end time so we can check if collapses
     let sorted = intervals.sort((a,b) => a.end - b.end);
