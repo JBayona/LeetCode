@@ -1,5 +1,8 @@
 /*
-Given an array of meeting time intervalsof start and end times [[s1,ed], [s2, e2]..] determine if a person coudld attend al meetings
+Given an array of meeting time intervalsof start and end times [[s1,ed], [s2, e2]..] determine if a
+person coudld attend al meetings
+
+Description: https://aaronice.gitbook.io/lintcode/sweep-line/meeting-rooms
 
 https://leetcode.com/problems/meeting-rooms/
 https://www.youtube.com/watch?v=i2bBG7CaVxs
