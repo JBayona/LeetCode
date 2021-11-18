@@ -29,8 +29,6 @@ the previous greater (ignore elements less current one) element for left and rig
 Then calculate the distance between left and right index plus 1 (arr of single current element).
 
 It's additional memory, but time complexity is O(n).
-
-
 """
 
 def countContiguousSubArray(arr):
