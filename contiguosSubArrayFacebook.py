@@ -49,7 +49,7 @@ def countContiguousSubArray(arr):
       while max and arr[max[-1]] < arr[i]:
         max.pop()
 
-      # + 1 because it´s tracking the previous max
+      # + 1 because it's tracking the previous max
       left_max[i] = 0 if not max else max[-1] + 1
       # New max
       max.append(i)
@@ -77,7 +77,7 @@ def countContiguousSubArray(arr):
   return result
       
 
-arr = [3, 4, 1, 6, 2]; # expected = [1, 3, 1, 5, 1]
-# arr = [5,4,1,2,6,3,7] # expected = [4,3,1,2,6,1,7]
+# arr = [3, 4, 1, 6, 2]; # expected = [1, 3, 1, 5, 1]
+arr = [5,4,1,2,6,3,7] # expected = [4,3,1,2,6,1,7]
 # arr = [2, 4, 7, 1, 5, 3] # expected = [1, 2, 6, 1, 3, 1 ]
 print(countContiguousSubArray(arr))
