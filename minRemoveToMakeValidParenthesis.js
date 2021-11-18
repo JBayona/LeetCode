@@ -33,6 +33,44 @@ Output: "a(b(c)d)"
 https://leetcode.com/problems/minimum-remove-to-make-valid-parentheses/
 */
 
+// Time O(N)
+var minRemoveToMakeValid = function(s) {
+    if(!s) {
+        return null;
+    }
+    let stack = [];
+    let invalidIndexes = new Set();
+    
+    for(let i = 0; i < s.length; i++) {
+        let c = s[i];
+        if(c === '(') {
+            stack.push(i);
+        } else if(c === ')') {
+            // If stack is empty we have an invalid parenthesis
+            if(!stack.length) {
+                invalidIndexes.add(i);
+            } else {
+                stack.pop();
+            }
+        }
+    }
+    // If stack is not empty, it means that we have invalid indexes
+    for(let idx of stack) {
+        invalidIndexes.add(idx);
+    }
+    
+    // Create the result string ignoring invalid indexes
+    let result = '';
+    for(let i = 0; i < s.length; i++) {
+        if(invalidIndexes.has(i)) {
+            continue;
+        }
+        result += s[i];
+    }
+    return result;
+};
+
+// Opción 2
 var minRemoveToMakeValid = function(s) {
     if(!s) {
         return null;
