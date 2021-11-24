@@ -24,6 +24,9 @@ We only have two paths:
 this string will be used later for the recursion calls with abbreviiation.
 */
 var generateAbbreviations = function(word) {
+  if(!word) {
+    return [];
+  }
   let result = [];
   helper(result, word, '', 0, 0);
   return result;
