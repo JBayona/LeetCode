@@ -4,7 +4,8 @@ substrings and replacing them with their respective lengths. For example, "abcde
 into "a3e" ("bcd" turned into "3"), "1bcd1" ("a" and "e" both turned into "1"), and
 "23" ("ab" turned into "2" and "cde" turned into "3").
 
-Given a string word, return a list of all the possible generalized abbreviations of word. Return the answer in any order.
+Given a string word, return a list of all the possible generalized abbreviations of word.
+Return the answer in any order.
 
 Example 1:
 Input: word = "word"
