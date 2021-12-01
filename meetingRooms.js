@@ -13,6 +13,19 @@ https://github.com/JBayona/Facebook-Interview-Coding-1/blob/master/253.%20Meetin
 // Time O(N)
 // Space O(1)
 var canAttendMeetings = function(intervals) {
+  // Sort the intervals per start time so we can check if collapses
+  let sorted = intervals.sort((a,b) => a.start - b.start);
+
+  for(let i = 1 ; i < intervals.length; i++) {
+      if(sorted[i].start < sorted[i-1].end) {
+          return false;
+      }
+  }
+
+return true;
+};
+
+var canAttendMeetings = function(intervals) {
     // Sort the intervals per end time so we can check if collapses
     let sorted = intervals.sort((a,b) => a.end - b.end);
   
