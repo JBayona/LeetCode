@@ -26,7 +26,7 @@ var canAttendMeetings = function(intervals) {
 };
 
 var canAttendMeetings = function(intervals) {
-    // Sort the intervals per end time so we can check if collapses
+    // Sort the intervals per start time so we can check if collapses
     let sorted = intervals.sort((a,b) => a.start - b.start);
   
     for(let i = 1 ; i < intervals.length; i++) {
