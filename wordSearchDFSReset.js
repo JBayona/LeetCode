@@ -39,9 +39,6 @@ var exist = function(board, word) {
 };
 
 function dfs(board, word, row, col, count) {
-  let ROW = [0, -1, 0, 1];
-  let COL = [-1, 0, 1, 0];
-  
   // We found the word
   // Break condition
   if(count === word.length) {
