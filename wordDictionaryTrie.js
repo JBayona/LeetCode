@@ -1,12 +1,10 @@
 /*
 Design a data structure that supports the following two operations:
-
 void addWord(word)
 bool search(word)
 search(word) can search a literal word or a regular expression string containing only letters a-z or .. A . means it can represent any one letter.
 
 Example:
-
 addWord("bad")
 addWord("dad")
 addWord("mad")
@@ -14,8 +12,7 @@ search("pad") -> false
 search("bad") -> true
 search(".ad") -> true
 search("b..") -> true
-Note:
-You may assume that all words are consist of lowercase letters a-z.
+Note: You may assume that all words are consist of lowercase letters a-z.
 
 https://leetcode.com/problems/add-and-search-word-data-structure-design/description/
 */
@@ -57,7 +54,7 @@ WordDictionary.prototype.search = function(word) {
 };
 
 
-    WordDictionary.prototype.dfs = function(word, start, node) {
+WordDictionary.prototype.dfs = function(word, start, node) {
     // We need to verify the existence of node cause we
     // may be sending undefined values checking for the '.'
     if(start === word.length && node) {
@@ -66,8 +63,9 @@ WordDictionary.prototype.search = function(word) {
     let c = word[start];
     if(c === '.') {
         // Check all possible letters in the alphabet to find is there is a word
+        // Try to match every possibility iin the word
         for(let i = 0; i < 26;  i++) {
-            let letter = String.fromCharCode('a'.charCodeAt(0) + i); 
+            let letter = String.fromCharCode('a'.charCodeAt(0) + i);
             if(node && node.children[letter] !== null && this.dfs(word, start+1, node.children[letter])) {
                 return true;
             }
