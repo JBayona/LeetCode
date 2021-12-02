@@ -44,7 +44,7 @@ function dfs(node, board, row, col, result) {
     const char = board[row][col];
     board[row][col] = "";
     
-    // Check the trie
+    // Check the trie and iterate
     node = node.children[char];
     if(node) {
         // Word found
@@ -87,13 +87,13 @@ function isSafe(board, row, col) {
     );
 }
 
-// let board = [
-//     ['o','a','a','n'],
-//     ['e','t','a','e'],
-//     ['i','h','k','r'],
-//     ['i','f','l','v']
-// ];
-// let words = ["oath","pea","eat","rain"];
-let board = [["a","b"]];
-let words = ["ab"];
+let board = [
+    ['o','a','a','n'],
+    ['e','t','a','e'],
+    ['i','h','k','r'],
+    ['i','f','l','v']
+];
+let words = ["oath","pea","eat","rain"];
+// let board = [["a","b"]];
+// let words = ["ab"];
 console.log(findWords(board,words));
