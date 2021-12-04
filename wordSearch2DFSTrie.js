@@ -6,7 +6,6 @@ Each word must be constructed from letters of sequentially adjacent cell, where
 may not be used more than once in a word.
 
 Example:
-
 Input: 
 board = [
   ['o','a','a','n'],
