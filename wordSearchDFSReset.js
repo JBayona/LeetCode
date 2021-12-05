@@ -12,7 +12,6 @@ Given board =
   ['S','F','C','S'],
   ['A','D','E','E']
 ]
-
 word = "ABCCED", -> returns true,
 iword = "SEE", -> returns true,
 word = "ABCB", -> returns false.
