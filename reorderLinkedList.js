@@ -21,6 +21,7 @@ var reorderList = function(head) {
     return merge(head, reversedList);
 };
 
+// Two pointers
 var middleNode = function(head) {
     if(!head) {
         return null;
