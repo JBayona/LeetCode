@@ -25,6 +25,19 @@ function reverseList(list){
 
 // Recursive
 var reverseList = function(head) {
+  if(!head || !head.next) {
+      return head;
+  }
+  let t = head;
+  head = head.next;
+  t.next = null;
+  let e = reverseList(head);
+  head.next = t;
+  return e;
+};
+
+// Recursive
+var reverseList = function(head) {
   // Check if we have more than one node
   if(head && head.next) {
     let next = head.next;
