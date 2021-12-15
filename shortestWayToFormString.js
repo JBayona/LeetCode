@@ -21,6 +21,28 @@ Output: 3
 Explanation: The target string can be constructed as follows "xz" + "y" + "xz".
 */
 
+// Option 1
+const shortestWay = (source, target) => {
+  let index = 0;
+  let result = 0;
+  while(index < target.length) {
+    let prev = index;
+
+    for(let i = 0; i < source.length; i++) {
+      if(index < target.length && source[i] === target[index]) {
+        index++;
+      }
+    }
+    // Char not found
+    if(prev === index) {
+      return -1;
+    }
+    result++;
+  }
+  return result;
+}
+
+// Option 2
 const shortestWay = (source, target) => {
   let result = 0;
   let start = 0;
