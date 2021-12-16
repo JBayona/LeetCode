@@ -1,5 +1,6 @@
 /*
-Merge two sorted linked lists and return it as a new list. The new list should be made by splicing together the nodes of the first two lists.
+Merge two sorted linked lists and return it as a new list.
+The new list should be made by splicing together the nodes of the first two lists.
 
 https://leetcode.com/problems/merge-two-sorted-lists/#/description
 */
@@ -33,50 +34,40 @@ function ListNode(val, node) {
     }
 };*/
 
-// iterative solution
+// Iterative solution
 var mergeTwoLists = function(l1, l2) {
-    var head1 = l1,
-        head2 = l2,
-        curHead,
-        head;
-
-    if (!head1) {
-        return head2;
+    // If only l2 is provided, return second list
+    if (!l1) {
+        return l2;
     }
 
-    if (!head2) {
-        return head1;
+    // If only l1 is provided, return l1
+    if (!l2) {
+        return l1;
     }
 
-    if (head1.val < head2.val) {
-        head = head1;
-        curHead = head;
-        head1 = head1.next;
-    } else {
-        head = head2;
-        curHead = head;
-        head2 = head2.next;
-    }
-
-    while (head1 && head2) {
-        if (head1.val < head2.val) {
-            curHead.next = head1;
-            curHead = head1;
-            head1 = head1.next;
+    let dummy = new ListNode(0);
+    let current = dummy;
+    // Change references on the list
+    while (l1 && l2) {
+        if(l1.val < l2.val) {
+            current.next = l1;
+            l1 = l1.next;
         } else {
-            curHead.next = head2;
-            curHead = head2;
-            head2 = head2.next;
+            current.next = l2;
+            l2 = l2.next;
         }
+        current = current.next;
     }
 
-    if (head1) {
-        curHead.next = head1;
-    } else if (head2) {
-        curHead.next = head2;
+    // If we have not visited the full list
+    // add them to the result
+    if (l1) {
+        current.next = l1;
+    } else if (l2) {
+        current.next = l2;
     }
-
-    return head;
+    return dummy.next;
 };
 
 l1 = new ListNode(5, new ListNode(10, new ListNode(15, new ListNode(40))));
