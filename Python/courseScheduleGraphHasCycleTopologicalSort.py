@@ -28,6 +28,8 @@ You may assume that there are no duplicate edges in the input prerequisites.
 https://leetcode.com/problems/course-schedule/
 """
 
+# Time O(V+E) – where VV is the number of vertices and EE is the number of edges in the graph.
+# Space O(V+E) – where VV is the number of vertices and EE is the number of edges in the graph.
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         
