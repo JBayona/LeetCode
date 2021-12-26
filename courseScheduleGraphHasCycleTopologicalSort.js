@@ -18,6 +18,7 @@ Explanation: There are a total of 2 courses to take.
              also have finished course 1. So it is impossible.
  
 The input prerequisites is a graph represented by a list of edges, not adjacency matrices. Read more about how a graph is represented.
+
 You may assume that there are no duplicate edges in the input prerequisites.
 1 <= numCourses <= 10^5
 
