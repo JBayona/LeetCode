@@ -31,6 +31,7 @@ Para ser un árbol válido debe cumplitr con las siguientes características:
 // Space: O(V)
 var validTree = function(n, edges) {
   // Corner case
+  // In order to be a connected tree, it should have the number of nodes - 1
   if(edges.length !== n-1) return false;
 
   let graph = [];
