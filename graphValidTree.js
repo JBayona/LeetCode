@@ -77,7 +77,6 @@ var validTree = function(n, edges) {
 
 // Has cycle
 function dfs(graph, visited, node, parent) {
-
   let children = graph[node];
   for(let i = 0; i < children.length; i++) {
     let v = children[i];
@@ -92,6 +91,19 @@ function dfs(graph, visited, node, parent) {
     }
   }
   // The node has not been visited
+  return false;
+}
+
+function hasCycleDFS(graph, visited, node, parent) {
+  visited[node] = true;
+  for(let neighbor of graph[node]) {
+    if(parent !== neighbor && visited[neighbor]) {
+      return true;
+    }
+    if(!visited[neighbor] && hasCycleDFS(graph, visited, neighbor, node)) {
+      return true
+    }
+  }
   return false;
 }
 
