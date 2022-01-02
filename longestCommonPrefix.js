@@ -13,7 +13,7 @@ var longestCommonPrefix = function(strs) {
     if(strs.length == 0 || strs == "") return "";
     var currentChar = '';
     var len1 = strs[0].length;
-	//Iteramos sobre la primer cadena
+    //Iteramos sobre la primer cadena
     for(var i = 0; i < len1; i++){
 	  //Vamos sacando caracter por caracter de la primer cadena
       currentChar = strs[0].charAt(i);
