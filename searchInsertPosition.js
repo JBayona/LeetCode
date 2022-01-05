@@ -24,6 +24,27 @@ Output: 0
 https://leetcode.com/problems/search-insert-position/
 */
 
+// Option 1
+// The problem is about find first element in array nums that
+// are greater or equal to target. If doesn't found, return nums.length.
+// Time O(Log N)
+var searchInsert = function(nums, target) {
+    let start = 0;
+    let end = nums.length;
+    while(start <= end) {
+        let middle = Math.floor((start + end) / 2);
+        if(nums[middle] > target) {
+            end = middle - 1; // try to find in the left side
+        } else if(nums[middle] < target) {
+            start = middle + 1; // try to find in the right side
+        } else {
+            return middle;
+        }
+    }
+    return start;
+};
+
+// Option 1
 // The problem is about find first element in array nums that
 // are greater or equal to target. If doesn't found, return nums.length.
 // Time O(Log N)
