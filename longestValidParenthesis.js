@@ -5,13 +5,11 @@ longest valid (well-formed) parentheses substring.
 Example 1:
 Input: "(()"
 Output: 2
-
 Explanation: The longest valid parentheses substring is "()"
 
 Example 2:
 Input: ")()())"
 Output: 4
-
 Explanation: The longest valid parentheses substring is "()()"
 
 https://leetcode.com/problems/longest-valid-parentheses/
