@@ -29,7 +29,7 @@ var removeNthFromEnd = function(head, n) {
         fast = fast.next;
         slow = slow.next;
     }
-    
+    // Remove the node by pointing to the next node
     slow.next = slow.next.next;
     return head;
 };
