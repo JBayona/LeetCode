@@ -28,11 +28,11 @@ var containsDuplicate = function(nums) {
 	}
 
 	for(let i = 0; i < nums.length; i++) {
-    if(nums[i] in hash) {
-        return true;
-    } else {
-        hash[nums[i]] = true;
-    }
+        if(nums[i] in hash) {
+            return true;
+        } else {
+            hash[nums[i]] = true;
+        }
 	}
 	return false;
 };
