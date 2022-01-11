@@ -14,6 +14,42 @@ A solution set is:
 https://leetcode.com/problems/3sum/#/description
 */
 
+// Option 1
+var threeSum = function(nums) {
+    // Sort the array to handle easier
+    nums.sort((a, b) => a - b);
+    
+    // No more than 3 elements in the array
+    if(nums.length < 3) {
+        return [];
+    }
+    let set = new Set();
+    for(let i = 0; i < nums.length - 2; i++) {
+        let next = i + 1;
+        let end = nums.length - 1;
+        while(next < end) {
+            let sum = nums[i] + nums[next] + nums[end];
+            // We found a match
+            if(sum === 0) {
+                set.add(nums[i] + '.' + nums[next] + '.' + nums[end]);
+                next++;
+                end--;
+            } else if(sum > 0) {
+                end--;
+            } else {
+                next++;
+            }
+        }
+    }
+    // Format the response
+    let result = [];
+    for(let el of set) {
+        result.push(el.split('.').map(Number));
+    }
+    return result;
+};
+
+// Option 2
 function threeSum(nums) {
     //Ordena los elementos de menor a mayor, con esto evitamos números repetidos.
     nums.sort((a, b) => a - b);
