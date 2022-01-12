@@ -59,6 +59,7 @@ var mergeTrees = function(t1, t2) {
 };
 
 // Using t1 to place the results
+// BFS
 var mergeTrees = function(t1, t2) {
     
     if(!t1) {
@@ -67,7 +68,6 @@ var mergeTrees = function(t1, t2) {
     
     let queue = [];
     queue.push([t1, t2]);
-    
     while(queue.length) {
         let trees = queue.shift();
         let tree1 = trees[0];
@@ -78,19 +78,16 @@ var mergeTrees = function(t1, t2) {
         } else {
             tree1.val = tree1.val + tree2.val;
         }
-        
         if(tree1.left == null) {
             tree1.left = tree2.left;
         } else {
             queue.push([tree1.left, tree2.left]);
         }
-        
         if(tree1.right == null) {
             tree1.right = tree2.right;
         } else {
             queue.push([tree1.right, tree2.right]);
         }
-        
     }
     return t1;
 };
