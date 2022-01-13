@@ -42,7 +42,7 @@ var updateMatrix = function(matrix) {
     // Queue to run BFS
     let queue = [];
     // Result array
-    let result = new Array(ROW).fill(Number.MAX_SAFE_INTEGER);
+    let result = new Array(ROW);
     // Visited matrix to avoid loops
     let visited = new Array(ROW).fill(false);
     // Fill out initial values
@@ -82,13 +82,9 @@ var updateMatrix = function(matrix) {
             for(let i = 0; i < 4; i++) {
                 let newRow = x + rowK[i];
                 let newCol = y + colK[i];
-                // Distance should be less in order to be valid
                 if(isSafe(matrix, visited, newRow, newCol) && distance < result[newRow][newCol]) {
-                    //  Mark as visited
                     visited[newRow][newCol] = true;
-                    // Update the result with the new smaller distance
                     result[newRow][newCol] = distance;
-                    // Add to the queue the new level
                     queue.push({row: newRow, col: newCol});
                 }
             }
@@ -108,4 +104,4 @@ function isSafe(grid,visited,row,col){
       (col >= 0 && col < COL) &&
       grid[row][col] === 1 &&
       visited[row][col] === false);
-}
+} 
