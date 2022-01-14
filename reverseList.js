@@ -68,3 +68,16 @@ function helper(prev, current, next) {
     }
     return prev;
 }
+
+// Recursive Option 3
+var reverseList = function(head) {
+    if(!head || !head.next) {
+        return head;
+    }
+    let t = head;
+    head = head.next;
+    t.next = null;
+    let e = reverseList(head);
+    head.next = t;
+    return e;
+};
