@@ -42,8 +42,7 @@ var floodFill = function(image, sr, sc, newColor) {
     let col = [-1, 0, 1, 0];
     let queue = [];
     
-    // If we are in the same color we don´t need to do
-    // anything
+	    // If we are in the same color we don´t need to do anything
     if(image[sr][sc] === newColor) {
         return image;
     }
