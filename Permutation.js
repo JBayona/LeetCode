@@ -17,12 +17,9 @@ https://leetcode.com/problems/permutations/description/
 
 // Option 1
 // Backtrack
-// Backtracking
 var permute = function(nums) {
   let result = [];
   let tmp = [];
-  let start = 0;
-  let end = nums.length;
   helper(tmp, result, nums);
   return result;
 };
@@ -40,7 +37,6 @@ function helper(tmp, result, nums) {
       }
   }
 }
-
 //Permutacion Heaps Algorithm
 
 var permute = function(nums){
