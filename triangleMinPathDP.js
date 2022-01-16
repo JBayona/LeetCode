@@ -22,15 +22,17 @@ https://leetcode.com/problems/triangle/
 // Space O(1)
 var minimumTotal = function(triangle) {
   let row = triangle.length;
-  // Process from bottom-up
+  // Start looking from the last row - 1
   for(let i = row - 2; i>= 0; i--) {
-    for(let j = 0; j <= i; j++) {
-      if(triangle[i+1][j+1] < triangle[i+1][j]) {
-        triangle[i][j] += triangle[i+1][j+1];
-      } else {
-        triangle[i][j] += triangle[i+1][j];
+      // We can only move to column j or j+1
+      for(let j = 0; j <= i; j++) {
+          if(triangle[i+1][j+1] < triangle[i+1][j]) {
+              triangle[i][j] += triangle[i+1][j+1];
+          } else {
+              triangle[i][j] += triangle[i+1][j];
+          }
       }
-    }
   }
+  // Top will have the maximum value
   return triangle[0][0];
 };
