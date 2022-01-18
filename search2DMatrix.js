@@ -58,3 +58,27 @@ function binarySearch(array, target){
     }
   }
 }
+
+// Op2 
+
+/*
+//First find which row should target be
+    for(int i=0;i<row;i++)
+    {
+
+        if(target >= matrix[i][0])
+        {
+            which_row = i;
+        }
+
+    }
+
+    for(int i =0;i<col;i++)
+    {
+
+        if(target == matrix[which_row][i])
+            return true;
+    }
+
+    return false;
+*/
