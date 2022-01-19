@@ -86,6 +86,26 @@ var peakFinding2D = function(matrix){
   return checkPeak2D(matrix,row,col,mid);
 }
 
+/*
+var findPeakElement = function(nums) {
+    let left = 0;
+    let right = nums.length-1;
+    while(left < right){
+        let mid = Math.floor(left + (right - left)/2);
+        if(nums[nums] < nums[nums+1]) {
+            left = mid+1;
+            //We are in the ascending range of the array so the peak element must lie in the right of the mid (i.e <= mid+1)
+        }else{
+            right = mid;
+            //nums[mid] > nums[mid+1] (as 2 consecutive cant be equal)
+            // we are in the decreasing range of the array peak element may equal to mid or lie in the left of the mid. 
+        }
+    }
+    // when start == mid they will point the peak max ele of the array 
+    return left;
+};*/
+*/
+
 matrix = [
             [ 10, 8, 10, 10],
             [ 14, 13, 12, 11],
