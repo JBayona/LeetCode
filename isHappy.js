@@ -26,7 +26,6 @@ var isHappy = function(n) {
         hash[n] = true;
         n = sumDigits(n); // Parse
     }
-    
     return n === 1;
 };
     
