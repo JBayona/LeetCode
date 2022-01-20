@@ -10,30 +10,7 @@ Example: 19 is a happy number
 
 */
 
-//Option 1
-
-function happyNumber(n){
-  var store = {};
-  //Si no hemos checado el elemento y n no es 1, seguimos iterando
-  //Si ya vimos encontramos el elemento en el hash, significa que no es happpy number
-  //Si n es igual a uno, significa que es happy number
-  while(!(n in store) && n !== 1){ 
-    store[n] = n;
-    n.toString().split('').forEach(function(item, index){
-      if(index == 0){
-        n = 0;
-      }
-      n += Math.pow(item,2);
-    });
-    n = parseInt(n); //Si es igual a uno significa que es Happy Number
-  }
-  return n == 1;
-}
-
-n = 7;
-console.log(happyNumber(n));
-
-//Option 2 with functions
+//Option 1 with functions
 function happyNumber(n){
   var store = {};
   while(!(n in store) && n !== 1){ 
@@ -51,6 +28,25 @@ function sumDigits(n){
     n = Math.floor(n/10);
   }
   return sum;
+}
+
+//Option 2
+function happyNumber(n){
+  var store = {};
+  //Si no hemos checado el elemento y n no es 1, seguimos iterando
+  //Si ya vimos encontramos el elemento en el hash, significa que no es happpy number
+  //Si n es igual a uno, significa que es happy number
+  while(!(n in store) && n !== 1){ 
+    store[n] = n;
+    n.toString().split('').forEach(function(item, index){
+      if(index == 0){
+        n = 0;
+      }
+      n += Math.pow(item,2);
+    });
+    n = parseInt(n); //Si es igual a uno significa que es Happy Number
+  }
+  return n == 1;
 }
 
 n = 7;
