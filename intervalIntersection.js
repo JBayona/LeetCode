@@ -14,6 +14,36 @@ Reminder: The inputs and the desired output are lists of Interval objects, and n
 https://leetcode.com/problems/interval-list-intersections/
 */
 
+// Time O(N)
+var intervalIntersection = function(firstList, secondList) {
+    let indexA = 0;
+    let indexB = 0;
+    let result = [];
+    
+    if(!firstList.length || !secondList.length) {
+        return [];
+    }
+    while(indexA < firstList.length && indexB < secondList.length) {
+        let startMax = Math.max(firstList[indexA][0], secondList[indexB][0]);
+        let endMin = Math.min(firstList[indexA][1], secondList[indexB][1]);
+        
+        // You have end greater than start and you already know that this interval is sorrounded
+        // with startMin and endMax so this must be the intersection
+        if(endMin >= startMax) {
+            result.push([startMax, endMin]);
+        }
+        
+        if(endMin === firstList[indexA][1]) {
+            indexA++;
+        }
+        if(endMin === secondList[indexB][1]) {
+            indexB++;
+        }
+    }
+    return result;
+};
+
+// Opt 2
 var intervalIntersection = function(A, B) {
     let indexA = 0;
     let indexB = 0;
