@@ -29,3 +29,23 @@ function dfs(graph, current, tmp, result) {
         tmp.pop();
     }
 }
+
+// BFS
+var allPathsSourceTarget = function(graph) {
+    let queue = [];
+    let result = [];
+    // Init node
+    queue.push([0]);
+    while(queue.length) {
+        let path = queue.shift();
+        let node = path[path.length - 1];
+        if(node == graph.length-1) {
+            result.push(path)
+        } else {
+            for(let neighbor of graph[node]) {
+                queue.push([...path, neighbor]);
+            }
+        }
+    }
+    return result;
+};
