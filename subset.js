@@ -21,13 +21,9 @@ https://leetcode.com/problems/subsets/description/
 
 */
 
-// Option 1
-// Backtrack
+// Time O(N×2^N)
+// Space O(N)
 var subsets = function(nums) {
-  if(nums.length === 0) return result;
-  //In case is not sorted
-  /*Asi no habra duplicados*/
-  nums.sort((a,b) => a-b);
   let tmp = [];
   let result = [];
   let index = 0;
@@ -42,26 +38,6 @@ function helper(index, tmp, result, nums) {
       tmp.push(nums[i]);
       helper(i+1, tmp.concat(), result, nums);
       tmp.pop();
-  }
-}
-
-// Option 2
-var subsets = function(nums) {
-  var result = [];
-  if(nums.length === 0) return result;
-  //In case is not sorted
-  /*Asi no habra duplicados*/
-  nums.sort((a,b) => a-b);
-  helper(result, [], 0, nums.length-1, nums);
-  return result;
-};
-
-function helper(result, currArr, start, end, nums){
-  result.push(currArr);
-  for(let i = start; i <= end; i++){
-    currArr.push(nums[i]);
-    helper(result, currArr.concat(), i+1, end, nums);
-    currArr.pop();
   }
 }
 
