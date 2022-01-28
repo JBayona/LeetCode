@@ -7,7 +7,7 @@ https://leetcode.com/problems/letter-combinations-of-a-phone-number/#/descriptio
 */
 
 // Option 1
-ar letterCombinations = function(digits) {
+var letterCombinations = function(digits) {
   // Para matcharlo con los elementos exactos sin tener que hacer alguna otra operación
   let map = ['0', '1', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
   let result = [];
