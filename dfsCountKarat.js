@@ -48,7 +48,6 @@ disappear(grid2, 2, 2)  => 6
 disappear(grid2, 0, 3)  => 7
 disappear(grid3, 0, 0)  => 1
 disappear(grid4, 0, 0)  => 9
-
 N - Width of the grid
 M - Height of the grid
 **/
