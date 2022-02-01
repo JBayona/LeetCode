@@ -30,5 +30,15 @@ var canJump = function(nums) {
     return max >= lastIndex;
 };
 
+// Op 2
+var canJump = function(nums) {
+    let max = 0;
+    let lastIndex = nums.length - 1;
+    for(let i = 0; i <= max && max < lastIndex; i++) {
+        max = Math.max(max, nums[i] + i);
+    }
+    return max >= lastIndex;
+};
+
   array = [3,3,1,0,2,0,1];
   console.log(canJump(array));
