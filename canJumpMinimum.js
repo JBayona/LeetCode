@@ -22,6 +22,29 @@ https://leetcode.com/problems/jump-game-ii/
 * Space complexity O(n) to maintain result and min jumps
 * Time complexity O(n^2)
 */
+
+// Option 1
+var jump = function(nums) {
+    //jump variable is used to store minimum number of jumps required to reach last index.
+    let jump = 0;
+    //left and right variables hold the sliding window.
+    let left = 0;
+    let right = 0;
+    while (right < nums.length - 1) {
+        let max = 0;
+        //find maximum index that can be reached from the current sliding window(left, right). 
+        for (let i = left; i <= right; i++) {
+            max = Math.max(max, i + nums[i]);
+        }
+        //For the next sliding window, right + 1 will be the new left
+        // and max will be the new right.
+        left = right + 1;
+        right = max;
+        jump++;
+    }
+    return jump;
+};
+
 var jump = function(nums) {
     let jump = new Array(nums.length);
     let comingFromIndex = new Array(nums.length);
