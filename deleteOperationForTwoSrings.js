@@ -36,5 +36,5 @@ var minDistance = function (word1, word2) {
     }
   }
   let lcs = table[word1.length][word2.length];
-  return word1.length + word2.length - 2 * lcs;
+  return word1.length + word2.length - (2 * lcs);
 };
