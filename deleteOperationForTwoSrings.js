@@ -25,7 +25,6 @@ var minDistance = function (word1, word2) {
   for (let i = 0; i < table.length; i++) {
     table[i] = new Array(word2.length + 1).fill(0);
   }
-
   for (let i = 1; i < table.length; i++) {
     for (let j = 1; j < table[0].length; j++) {
       if (word1[i - 1] === word2[j - 1]) {
