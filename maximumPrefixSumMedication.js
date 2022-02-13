@@ -2,7 +2,6 @@
 // Given a list of prescription medications and start and end dates for each
 // write a program that determines the maximum number of prescriptions that a person
 // has had active at any point in time
-//
 //  [(A, 1, 5), (B, 2, 4), (C, 6, 8), (D, 4, 6)]   
 //  [(A, 1, 5), (B, 2, 4), (D, 4, 6) (C, 6, 8)]
 // 
