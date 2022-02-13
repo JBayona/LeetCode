@@ -7,7 +7,6 @@
 // 
 //answer: 3
 
-
 function findMaximumAtGivenTime(arr, day) {
   // Get maximum
   let tmp = [];
