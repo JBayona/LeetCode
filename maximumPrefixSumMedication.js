@@ -15,7 +15,6 @@ function findMaximumAtGivenTime(arr, day) {
     tmp.push(end);
   }
   let max = Math.max(...tmp);
-
   let compute = new Array(max + 1).fill(0);
   for(let elem of arr) {
     let [start, end] = elem;
