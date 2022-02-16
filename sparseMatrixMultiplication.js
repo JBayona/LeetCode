@@ -26,22 +26,19 @@ https://leetcode.com/problems/sparse-matrix-multiplication/
 
 // Time O(N^2)
 function multiply(A, B) {
-    //validity check
-
-    let C = new Array(A.length);
-    for(let i = 0; i < A.length; i++) {
-        C[i] = new Array(B[0].length).fill(0);
-    }
- 
-    for(let i = 0; i < C.length; i++){
-        for(let k = 0; k < A[0].length; k++){
-            if(A[i][k] != 0){
-                for(let j = 0; j < C[0].length; j++){
-                    C[i][j] += A[i][k]*B[k][j];
-                }
-            }
+  //validity check
+  let C = new Array(A.length);
+  for (let i = 0; i < A.length; i++) {
+    C[i] = new Array(B[0].length).fill(0);
+  }
+  for (let i = 0; i < C.length; i++) {
+    for (let k = 0; k < A[0].length; k++) {
+      if (A[i][k] != 0) {
+        for (let j = 0; j < C[0].length; j++) {
+          C[i][j] += A[i][k] * B[k][j];
         }
+      }
     }
- 
-    return C;
+  }
+  return C;
 }
