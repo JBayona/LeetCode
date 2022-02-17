@@ -2,7 +2,7 @@
 See if there´s a cycle in an undirected graph
 */
 
-// Union find
+// Option 1 - Union find
 function unionFindHasCycle(n, edges) {
   let parent = {};
   // Create skeleton
