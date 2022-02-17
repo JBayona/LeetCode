@@ -85,7 +85,7 @@ function dfs(graph, visited, node, parent) {
     if(v === parent) continue;
     if(!visited[v]) {
       visited[v] = true;
-      dfs(graph, visited, v, node);
+      return dfs(graph, visited, v, node);
     } else {
       // The node has been visited so there´s a cycle
       return true;
