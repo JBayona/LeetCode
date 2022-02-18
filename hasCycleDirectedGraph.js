@@ -1,4 +1,6 @@
-/*Detect a cycle in directed graph*/
+/*
+Detect a cycle in directed graph
+*/
 
 function hasCycleDirectedGraph(n, edges) {
   let graph = [];
