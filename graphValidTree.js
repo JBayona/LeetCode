@@ -20,8 +20,7 @@ https://www.youtube.com/watch?v=vsIb9B84Rt8
 
 Multiple approaches:
 https://zhuhan0.blogspot.com/2017/07/leetcode-261-graph-valid-tree.html
-
-Para ser un árbol válido debe cumplitr con las siguientes características:
+Para ser un árbol válido debe cumplir con las siguientes características:
 1. Estar conectado.
 2. No debe haber ciclos.
 */
