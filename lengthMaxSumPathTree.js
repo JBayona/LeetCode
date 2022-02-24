@@ -3,17 +3,20 @@ Find the length of the maximum path in the tree. Length of a path is defined by
 the number of nodes in a path, no node can be traversed more than once in a path.
 
 Example:
-    a
+    10
    / \
-  b   c
+  2   3
  /|\   \
-d e f   h
+1 20 4   -5
    /
-  g
+  5
+
+
+  20 - 2 - 4 - 5
 
 The path is the maximum distance between two nodes, it can be anyware in the tree.
 
-Output: 6
+Output: 31
 */
 
 class Res {
