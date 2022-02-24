@@ -11,6 +11,8 @@ d e f   h
    /
   g
 
+The path is the maximum distance between two nodes, it can be anyware in the tree.
+
 Output: 6
 */
 
