@@ -1,4 +1,4 @@
-// Design a rate limiter
+// Design a rate limiter API.
 
 class RateLimiter {
   constructor(limit) {
