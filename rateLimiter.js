@@ -32,4 +32,3 @@ setTimeout(function () {
   console.log(api.callAPI());
   console.log(api.callAPI());
 }, 500);
-//console.log(api.callAPI());
