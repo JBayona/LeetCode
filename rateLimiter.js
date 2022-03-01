@@ -25,6 +25,7 @@ class RateLimiter {
   }
 }
 
+// Test.
 let api = new RateLimiter(2);
 console.log(api.callAPI());
 console.log(api.callAPI());
