@@ -1,5 +1,4 @@
 /*
-
 Process a log file to compute average session time spent per user on an app.
 
 You are given a large log file which stores user interactions with an application.
