@@ -8,7 +8,6 @@ https://leetcode.com/problems/rotate-list/description/
 */
 
 //Option 1
-
 function ListNode(val, next) {
   this.val = val;
   this.next = next || null;
