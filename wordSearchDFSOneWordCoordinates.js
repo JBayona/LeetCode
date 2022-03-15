@@ -45,6 +45,8 @@ c = number of columns
 w = length of the word
 */
 
+// Time complexity: O(WRC)
+// Space complexity: O(WRC)
 const searchWord = (grid, word) => {
   let result = [];
   for(let i = 0; i < grid.length; i++) {
