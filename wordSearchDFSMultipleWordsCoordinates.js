@@ -8,7 +8,6 @@ grid1 = [
     ['y', 't', 'a'],
     ['x', 'x', 't'],
 ]
-
 words1_1 = ["by","bat"]
 
 find_word_locations(grid1, words1_1) => 
