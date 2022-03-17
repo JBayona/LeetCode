@@ -13,7 +13,6 @@ words1_1 = ["by","bat"]
 find_word_locations(grid1, words1_1) => 
 ([(0, 0), (1, 0)],
  [(0, 2), (1, 2), (2, 2)])
-
 grid2 =[
     ['A', 'B', 'A', 'B'],
     ['B', 'A', 'B', 'A'],
