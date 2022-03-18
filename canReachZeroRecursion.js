@@ -16,12 +16,13 @@
 
 function canFindZero(array) {
   if(!array.length) {
-    return [];
+    return false;
   }
-  return helper(array, 0);
+  let seen = new Set();
+  return helper(array, 0, seen);
 }
 
-function helper(array, index) {
+function helper(array, index, seen) {
   // Base case
   if(array[index] === 0) {
     return true;
@@ -29,11 +30,19 @@ function helper(array, index) {
   if(index < 0 || index >= array.length) {
     return false;
   }
-  return helper(array, index - array[index]) || helper(array, index + array[index]);
+
+  if(seen.has(index)) {
+    return false;
+  }
+
+  seen.add(index);
+
+  return  helper(array, index - array[index], seen) || helper(array, index + array[index], seen);
 }
 
-//const testArray = [3, 7, 0, 2, 8, 3, 7, 6];
+// const testArray = [3, 7, 0, 2, 8, 3, 7, 6];
 // const testArray = [3, 7, 4, 2, 8, 3, 7, 6];
 // const testArray = [3, 7, 4, 0, 8, 3, 7, 0];
 // const testArray = [];
+const testArray = [1,1,1,1,1,1,1,1,1];
 console.log(canFindZero(testArray));

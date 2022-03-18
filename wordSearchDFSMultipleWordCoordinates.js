@@ -1,5 +1,8 @@
 /**
-After catching your classroom students cheating before, you realize your students are getting craftier and hiding words in 2D grids of letters. The word may start anywhere in the grid, and consecutive letters can be either immediately below or immediately to the right of the previous letter.
+After catching your classroom students cheating before, you realize your
+students are getting craftier and hiding words in 2D grids of letters.
+The word may start anywhere in the grid, and consecutive letters can be
+either immediately below or immediately to the right of the previous letter.
 
 Given a grid and a word, write a function that returns the location of the word in the grid as a list of coordinates. If there are multiple matches, return any one.
 
