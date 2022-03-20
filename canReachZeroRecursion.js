@@ -1,8 +1,7 @@
 /*
  * Given an array of integers, e.g. [3, 7, 0, 2, 8, 3, 7, 6]
  * Traversal starts at index 0, and can happen by jumping left
- * or right at any particular index by the value at that index.
- * 
+ * or right at any particular index by the value at that index. 
  *  * Sample traversal:
  * [3, 7, 0, 2, 8, 3, 7, 6]
  *  ^
