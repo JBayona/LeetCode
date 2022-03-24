@@ -1,59 +1,44 @@
-/*
-Implement a SnapshotArray that supports the following interface:
-
-SnapshotArray(int length) initializes an array-like data structure with the given length.  Initially, each element equals 0.
-void set(index, val) sets the element at the given index to be equal to val.
-int snap() takes a snapshot of the array and returns the snap_id: the total number of times we called snap() minus 1.
-int get(index, snap_id) returns the value at the given index, at the time we took the snapshot with the given snap_id
- 
-Example 1:
-Input: ["SnapshotArray","set","snap","set","get"]
-[[3],[0,5],[],[0,6],[0,0]]
-Output: [null,null,0,null,5]
-Explanation: 
-SnapshotArray snapshotArr = new SnapshotArray(3); // set the length to be 3
-snapshotArr.set(0,5);  // Set array[0] = 5
-snapshotArr.snap();  // Take a snapshot, return snap_id = 0
-snapshotArr.set(0,6);
-snapshotArr.get(0,0);  // Get the value of array[0] with snap_id = 0, return 5
-
-https://leetcode.com/problems/snapshot-array/
-*/
-
-/**
- * @param {number} length
- */
- var SnapshotArray = function(length) {
-  this.snapShotId = 0;
-  this.snapshot = {};
-  this.arr = {};
-};
-
-/** 
-* @param {number} index 
-* @param {number} val
-* @return {void}
-*/
-SnapshotArray.prototype.set = function(index, val) {
-  this.arr[index] = val;
-};
-
-/**
-* @return {number}
-*/
-SnapshotArray.prototype.snap = function() {
-  this.snapshot[this.snapShotId] = {...this.arr};
-  return this.snapShotId++;
-};
-
-/** 
-* @param {number} index 
-* @param {number} snap_id
-* @return {number}
-*/
-SnapshotArray.prototype.get = function(index, snap_id) {
-  if(!(snap_id in this.snapshot)) {
-      return 0;
+class DocStore {
+  constructor() {
+    this.hash = {};
   }
-  return this.snapshot[snap_id][index] || 0;
-};
+  save(docName, text) {
+    if (!(docName in this.hash)) {
+      this.hash[docName] = [];
+    }
+    let ts = new Date().getTime();
+    this.hash[docName].push({ ts, text });
+  }
+  load(docName) {
+    if (!(docName in this.hash)) {
+      return "Document not found!";
+    }
+    let docs = this.hash[docName];
+    return docs[docs.length - 1].text;
+  }
+  loadFromTime(docName, time) {
+    if (!(docName in this.hash)) {
+      return "Document not found!";
+    }
+    let docs = this.hash[docName];
+    for (let i = 1; i < docs.length; i++) {
+      let doc = docs[i];
+      if (doc.ts > time) {
+        return docs[i - 1].text;
+      }
+    }
+    return docs[docs.length - 1].text;
+  }
+}
+
+
+const docStore = new DocStore();
+docStore.save('foo', 'Hello World!');
+console.log(docStore.load('foo'));
+let ts = new Date().getTime();
+docStore.save('foo', 'Good bye!');
+console.log(docStore.load('foo'));
+docStore.save('foo', 'I was joking');
+console.log(docStore.load('foo'));
+console.log(docStore.loadFromTime('foo', ts));
+console.log(docStore.hash);
