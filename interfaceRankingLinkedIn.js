@@ -1,5 +1,4 @@
 public class RetainBestCache<K, V extends Rankable> {
-  // Add any fields you need here 
   /**
    * Constructor with a data source (assumed to be slow) and a cache size
    * @param ds the persistent layer of the the cache
