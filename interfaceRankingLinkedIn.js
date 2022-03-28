@@ -9,8 +9,7 @@ public class RetainBestCache<K, V extends Rankable> {
     this.heap = new Array(capacity);
     this.map = new Map();
     this.ds = ds;
-  }
- 
+  } 
   /**
    * Gets some data. If possible, retrieves it from cache to be fast. If the data is not cached,
    * retrieves it from the data source and, if possible, cache it. If the cache is full, attempt
