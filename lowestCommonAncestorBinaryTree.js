@@ -21,6 +21,12 @@ Output: 1
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/
 */
 
+function TreeNode(val, left, right) {
+    this.val = val;
+    this.left = left || null;
+    this.right = right || null;
+}
+
 var lowestCommonAncestor = function(root, p, q) {
     // Base case
     if(root === null) {
@@ -51,3 +57,8 @@ var lowestCommonAncestor = function(root, p, q) {
     // so let's return to the parent the one is not null
     return left ? left : right;
 };
+
+tree = new TreeNode(3, new TreeNode(5, new TreeNode(6), new TreeNode(2, new TreeNode(7), new TreeNode(4))), new TreeNode(1, new TreeNode(0), new TreeNode(8)));
+p = new TreeNode(5);
+q = new TreeNode(4);
+console.log(lowestCommonAncestor(tree, p, q));
