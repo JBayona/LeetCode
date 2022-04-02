@@ -28,7 +28,7 @@ var validPalindrome = function(s) {
 
 function helper(s, start, end, remove) {
   // We have checked the string
-  if(start > s.length / 2) {
+  if(start >= end) {
     return true;
   }
   // Keep moving forward and reduce the scope of the string
@@ -36,7 +36,7 @@ function helper(s, start, end, remove) {
     return helper(s, start + 1, end - 1, remove);
   } else if(!remove) {
     // Check which of the letters can be removed and we have not remove one letter
-    return helper(s, start + 1, end, !remove) || helper(s, start, end - 1, !remove);
+    return helper(s, start + 1, end, true) || helper(s, start, end - 1, true);
   } else {
     // We have removed one letter and we need to remove a new one which is not allowed
     return false;
