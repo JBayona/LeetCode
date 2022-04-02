@@ -1,5 +1,6 @@
 /*
-On a single threaded CPU, we execute some functions. Each function has a unique id between 0 and N-1.
+On a single threaded CPU, we execute some functions.
+Each function has a unique id between 0 and N-1.
 We store logs in timestamp order that describe when a function is entered or exited.
 
 Each log is a string with this format: "{function_id}:{"start" | "end"}:{timestamp}". 
