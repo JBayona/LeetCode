@@ -10,7 +10,7 @@ If it is not possible to find such walk return -1.
 https://leetcode.com/problems/shortest-path-in-a-grid-with-obstacles-elimination/
 */
 
-/ Time: O(N * M * k)
+// Time: O(N * M * k)
 // Space: O(N * M)
 // Key: the condition for adding new node into queue is not decided by whether
 // its visited before. It should be decided by whether in the new path
