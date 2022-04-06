@@ -28,6 +28,37 @@ https://leetcode.com/problems/longest-substring-without-repeating-characters/
 // Time O(N)
 // Space O(N) assuming all chars are different
 var lengthOfLongestSubstring = function(s) {
+    let result = 0;
+    let hash = {};
+    let start = 0;
+    let end = 0;
+    
+    // No string
+    if(!s.length) {
+        return 0;
+    }
+    
+    while(end < s.length) {
+        let c = s[end];
+        // We already found the character
+        if(c in hash) {
+            let tmp = s[start];
+            delete hash[tmp];
+            start++;
+        } else {
+            // No character is found so we should look for a max
+            result = Math.max(result, end - start + 1);
+            hash[c] = true;
+            end++;
+        }
+    }
+    return result;
+};
+
+// Sliding window
+// Time O(N)
+// Space O(N) assuming all chars are different
+var lengthOfLongestSubstring = function(s) {
     let start = 0;
     let end = 0;
     let max = 0;
