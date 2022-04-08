@@ -23,6 +23,8 @@ Explanation: One 1 at depth 3, one 4 at depth 2, and one 6 at depth 1.
 https://leetcode.com/problems/nested-list-weight-sum-ii/
 */
 
+// Option 1
+// Time O(N)
 function nestedListWeightLevel2(list) {
   let maxDepth = getMaxDepth(list);
   return weightedSum(list, 1, maxDepth);
