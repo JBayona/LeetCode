@@ -25,7 +25,7 @@ https://leetcode.com/problems/nested-list-weight-sum-ii/
 
 // Option 1
 // Time O(N)
-function nestedListWeightLevel2(list) {
+/*function nestedListWeightLevel2(list) {
   let maxDepth = getMaxDepth(list);
   return weightedSum(list, 1, maxDepth);
 }
@@ -51,6 +51,34 @@ function weightedSum(list, level, maxDepth) {
       }
   }
   return sum;
+}*/
+
+// Option 2
+// BFS
+// Time O(N)
+function nestedListWeightLevel2(list) {
+  let queue = [];
+  let level = 1;
+  let maxDepth = 0;
+  let sumElem = 0;
+  let prodElem = 0;
+
+  queue.push(...list);
+  while(queue.length) {
+    let size = queue.length;
+    for(let i = 0; i < size; i++) {
+      let elem = queue.shift();
+      if(Array.isArray(elem)) {
+        queue.push(...elem);
+      } else {
+        sumElem += elem;
+        prodElem += (level * elem);
+      }
+    }
+    maxDepth = Math.max(level, maxDepth);
+    level++;
+  }
+  return (maxDepth + 1) * sumElem - prodElem;
 }
 
 // let list = [[1,1],2,[1,1]]; // Answer 8
