@@ -25,7 +25,7 @@ https://leetcode.com/problems/nested-list-weight-sum-ii/
 
 // Option 1
 // Time O(N)
-/*function nestedListWeightLevel2(list) {
+function nestedListWeightLevel2(list) {
   let maxDepth = getMaxDepth(list);
   return weightedSum(list, 1, maxDepth);
 }
@@ -51,7 +51,7 @@ function weightedSum(list, level, maxDepth) {
       }
   }
   return sum;
-}*/
+}
 
 // Option 2
 // BFS
