@@ -20,3 +20,25 @@ var singleNumber = function(nums) {
     }
     return result;
 };
+
+// If it´s sorted
+var singleNumberSorted = function(nums) {
+    let result = 0;
+    let start = 0;
+    let end = nums.length;
+    while(start <= end) {
+        let mid = Math.floor((start + end) / 2);
+        // Single num
+        if(nums[mid -1] !== nums[mid] && nums[mid+1] !== nums[mid]) {
+            return nums[mid];
+        } else if(nums[mid] === nums[mid-1]) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }
+    }
+    return -1;
+};
+
+nums = [1,1,2,2,4];
+console.log(singleNumberSorted(nums));
