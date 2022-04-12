@@ -33,12 +33,78 @@ tweetCounts.getTweetCountsPerFrequency("hour", "tweet3", 0, 210);  // return [4]
 https://leetcode.com/problems/tweet-counts-per-frequency/
 */
 
-var TweetCounts = function() {
-    this.map = {};
+// Time Option 1
+// Time O(Log N)
+var TweetCounts = function () {
+  this.hash = {};
 };
 
-/** 
- * @param {string} tweetName 
+TweetCounts.prototype.recordTweet = function (tweetName, time) {
+  if (!(tweetName in this.hash)) {
+    this.hash[tweetName] = [];
+  }
+  this.hash[tweetName].push(time);
+};
+
+TweetCounts.prototype.getTweetCountsPerFrequency = function (
+  freq,
+  tweetName,
+  startTime,
+  endTime
+) {
+  if (!(tweetName in this.hash)) {
+    return [];
+  }
+  let tweetTimes = this.hash[tweetName];
+  let buckets = createBuckets(startTime, endTime, freq);
+
+  for (let tweetTime of tweetTimes) {
+    let left = 0;
+    let right = buckets.length - 1;
+    while (left <= right) {
+      const mid = Math.floor((left + right) / 2);
+      let [start, end, count] = buckets[mid];
+      if (tweetTime >= start && tweetTime <= end) {
+        buckets[mid][2] = count + 1;
+        break;
+      }
+      if (tweetTime < start) {
+        right = mid - 1;
+      } else {
+        left = mid + 1;
+      }
+    }
+  }
+  // Format response
+  let result = [];
+  for (let bucket of buckets) {
+    result.push(bucket[2]);
+  }
+  return result;
+};
+
+function createBuckets(startTime, endTime, freq) {
+  const chunks = { minute: 60, hour: 3600, day: 86400 };
+  const buckets = [];
+
+  let start = startTime;
+  while (start <= endTime) {
+    const end = Math.min(start + chunks[freq] - 1, endTime);
+    // start, end, tweets
+    buckets.push([start, end, 0]);
+    start = end + 1;
+  }
+  return buckets;
+}
+
+// Option 2
+// Time O(N Log N)
+var TweetCounts = function () {
+  this.map = {};
+};
+
+/**
+ * @param {string} tweetName
  * @param {number} time
  * @return {void}
  */
@@ -50,54 +116,69 @@ tweet3: 0, 60, 10
 
 
 */
-TweetCounts.prototype.recordTweet = function(tweetName, time) {
-    if(!(tweetName in this.map)) {
-        this.map[tweetName] = [];
-    }
-    this.map[tweetName].push(time);
+TweetCounts.prototype.recordTweet = function (tweetName, time) {
+  if (!(tweetName in this.map)) {
+    this.map[tweetName] = [];
+  }
+  this.map[tweetName].push(time);
 };
 
-/** 
- * @param {string} freq 
- * @param {string} tweetName 
- * @param {number} startTime 
+/**
+ * @param {string} freq
+ * @param {string} tweetName
+ * @param {number} startTime
  * @param {number} endTime
  * @return {number[]}
  */
-TweetCounts.prototype.getTweetCountsPerFrequency = function(freq, tweetName, startTime, endTime) {
-    let array = this.map[tweetName];
-    let freqTime = 0;
-    let result = [];
-    
-    switch(freq) {
-        case 'minute': freqTime = 60; break;
-        case 'hour': freqTime = 3600; break;
-        case 'day': freqTime = 3600 * 24; break;
-    }    
-    array.sort((a, b) => a - b);
-    
-    let index = 0;
-    let nowInterval = startTime;
-    while(nowInterval <= endTime) {
-        // Skip those that does not belong into the interval based on the start time
-        while(index < array.length && array[index] < startTime) {
-            index++;
-        }
-        let count = 0;
-        // Find the elements in the array that are part of the range based on the frequency
-        // count them and move the array until we find an element that does not belong
-        // nowInterval + freqTime denotes the different ranges in the result array
-        while(index < array.length &&  array[index] < nowInterval + freqTime && array[index] <= endTime) {
-            index++; // Move to the next element in the array
-            count++; // Count the number of elements
-        }
-        result.push(count);
-        nowInterval += freqTime;
+TweetCounts.prototype.getTweetCountsPerFrequency = function (
+  freq,
+  tweetName,
+  startTime,
+  endTime
+) {
+  let array = this.map[tweetName];
+  let freqTime = 0;
+  let result = [];
+
+  switch (freq) {
+    case "minute":
+      freqTime = 60;
+      break;
+    case "hour":
+      freqTime = 3600;
+      break;
+    case "day":
+      freqTime = 3600 * 24;
+      break;
+  }
+  array.sort((a, b) => a - b);
+
+  let index = 0;
+  let nowInterval = startTime;
+  while (nowInterval <= endTime) {
+    // Skip those that does not belong into the interval based on the start time
+    while (index < array.length && array[index] < startTime) {
+      index++;
     }
-    return result;
+    let count = 0;
+    // Find the elements in the array that are part of the range based on the frequency
+    // count them and move the array until we find an element that does not belong
+    // nowInterval + freqTime denotes the different ranges in the result array
+    while (
+      index < array.length &&
+      array[index] < nowInterval + freqTime &&
+      array[index] <= endTime
+    ) {
+      index++; // Move to the next element in the array
+      count++; // Count the number of elements
+    }
+    result.push(count);
+    nowInterval += freqTime;
+  }
+  return result;
 };
 
-/** 
+/**
  * Your TweetCounts object will be instantiated and called as such:
  * var obj = new TweetCounts()
  * obj.recordTweet(tweetName,time)
