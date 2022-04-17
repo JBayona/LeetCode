@@ -16,11 +16,6 @@ var Leaderboard = function() {
   this.hash = {};
 };
 
-/** 
-* @param {number} playerId 
-* @param {number} score
-* @return {void}
-*/
 Leaderboard.prototype.addScore = function(playerId, score) {
   if(!(playerId in this.hash)) {
       this.hash[playerId] = 0;
@@ -28,10 +23,6 @@ Leaderboard.prototype.addScore = function(playerId, score) {
   this.hash[playerId] += score;
 };
 
-/** 
-* @param {number} K
-* @return {number}
-*/
 Leaderboard.prototype.top = function(K) {
   let values = Object.values(this.hash);
   values.sort((a, b) => b - a);
@@ -43,18 +34,33 @@ Leaderboard.prototype.top = function(K) {
   return total;
 };
 
-/** 
-* @param {number} playerId
-* @return {void}
-*/
 Leaderboard.prototype.reset = function(playerId) {
   this.hash[playerId] = 0;
 };
 
-/** 
-* Your Leaderboard object will be instantiated and called as such:
-* var obj = new Leaderboard()
-* obj.addScore(playerId,score)
-* var param_2 = obj.top(K)
-* obj.reset(playerId)
-*/
+// Python Heap
+class Leaderboard:
+
+    def __init__(self):
+        self.scores = {}
+
+    def addScore(self, playerId: int, score: int) -> None:
+        if playerId not in self.scores:
+            self.scores[playerId] = 0
+        self.scores[playerId] += score
+
+    def top(self, K: int) -> int:
+    
+        # This is a min-heap by default in Python.
+        heap = []
+        for x in self.scores.values():
+            heapq.heappush(heap, x)
+            if len(heap) > K:
+                heapq.heappop(heap)
+        res = 0
+        while heap:
+            res += heapq.heappop(heap)
+        return res
+
+    def reset(self, playerId: int) -> None:
+        self.scores[playerId] = 0
