@@ -67,3 +67,38 @@ HitCounter.prototype.getHits = function(timestamp) {
     }
     return this.queue.length;
 };
+
+// Option 3
+// Binary Search
+var HitCounter = function() {
+    this.hits = [];
+};
+
+HitCounter.prototype.hit = function(timestamp) {
+    this.hits.push(timestamp);
+};
+
+// We are makiing the assumption that all are
+// in increasing number
+HitCounter.prototype.getHits = function(timestamp) {
+    let start = 0;
+    let end = this.hits.length - 1;
+    let target = timestamp - 300;
+    
+    while(start <= end) {
+        let mid = Math.floor((start + end) / 2);
+        if(this.hits[mid] <= target) {
+            start = mid + 1;
+        } else {
+            end = mid - 1;
+        }
+    }
+    return this.hits.length - start;
+};
+
+/** 
+ * Your HitCounter object will be instantiated and called as such:
+ * var obj = new HitCounter()
+ * obj.hit(timestamp)
+ * var param_2 = obj.getHits(timestamp)
+ */
