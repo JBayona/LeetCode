@@ -17,6 +17,7 @@ timestamp (i.e., the past 300 seconds).
 https://leetcode.com/problems/design-hit-counter/
 */
 
+// Option 1 - Array
 var HitCounter = function() {
     this.hits = [];
 };
@@ -44,9 +45,25 @@ HitCounter.prototype.getHits = function(timestamp) {
     return hits;
 };
 
-/** 
- * Your HitCounter object will be instantiated and called as such:
- * var obj = new HitCounter()
- * obj.hit(timestamp)
- * var param_2 = obj.getHits(timestamp)
- */
+// Option 2 queue
+var HitCounter = function() {
+    this.queue = [];
+};
+
+HitCounter.prototype.hit = function(timestamp) {
+    this.queue.push(timestamp);
+};
+
+// We are makiing the assumption that all are
+// in increasing number
+HitCounter.prototype.getHits = function(timestamp) {
+    while(this.queue.length) {
+        let diff = timestamp - this.queue[0];
+        if(diff >= 300) {
+            this.queue.shift();
+        } else {
+            break;
+        }
+    }
+    return this.queue.length;
+};
