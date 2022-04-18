@@ -13,7 +13,6 @@ Output: 10
 
 https://leetcode.com/problems/single-element-in-a-sorted-array/
 */
-
 /*
 Suppose array is [1, 1, 2, 2, 3, 3, 4, 5, 5]
 we can observe that for each pair, 
