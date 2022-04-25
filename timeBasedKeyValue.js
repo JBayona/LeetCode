@@ -7,8 +7,7 @@ Stores the key and value, along with the given timestamp.
 Returns a value such that set(key, value, timestamp_prev) was called previously
 with timestamp_prev <= timestamp.
 If there are multiple such values, it returns the one with the largest timestamp_prev.
-If there are no values, it returns the empty string ("").
- 
+If there are no values, it returns the empty string (""). 
 
 Example 1:
 Input: inputs = ["TimeMap","set","get","get","set","get","get"], inputs = [[],["foo","bar",1],["foo",1],["foo",3],["foo","bar2",4],["foo",4],["foo",5]]
