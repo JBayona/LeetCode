@@ -22,7 +22,6 @@ kv.get("foo", 4); // output "bar2"
 kv.get("foo", 5); //output "bar2"   
 
 Example 2:
-
 Input: inputs = ["TimeMap","set","set","get","get","get","get","get"], inputs = [[],["love","high",10],["love","low",20],["love",5],["love",10],["love",15],["love",20],["love",25]]
 Output: [null,null,null,"","high","high","low","low"]
  
