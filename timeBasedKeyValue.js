@@ -25,9 +25,7 @@ Example 2:
 Input: inputs = ["TimeMap","set","set","get","get","get","get","get"], inputs = [[],["love","high",10],["love","low",20],["love",5],["love",10],["love",15],["love",20],["love",25]]
 Output: [null,null,null,"","high","high","low","low"]
  
-
 Note:
-
 All key/value strings are lowercase.
 All key/value strings have length in the range [1, 100]
 The timestamps for all TimeMap.set operations are strictly increasing.
