@@ -13,7 +13,6 @@ Output: [1,2]
 
 https://leetcode.com/problems/partition-list/
 */
-
 // Two pointers - one list with values < x and the other one values >= x
 // Traveling from left to right will fix the order problem as we are maintaining the original order
 // Finally combine the two lists
