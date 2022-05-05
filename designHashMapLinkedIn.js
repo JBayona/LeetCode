@@ -1,6 +1,5 @@
 /*
 Design a HashMap without using any built-in hash table libraries.
-
 Implement the MyHashMap class:
 MyHashMap() initializes the object with an empty map.
 void put(int key, int value) inserts a (key, value) pair into the HashMap. If the key already exists in the map, update the corresponding value.
