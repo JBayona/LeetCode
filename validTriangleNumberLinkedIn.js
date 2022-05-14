@@ -17,6 +17,7 @@ Output: 4
 https://leetcode.com/problems/valid-triangle-number/
 */
 
+// Time O(NLogN)
 var triangleNumber = function (nums) {
   let result = 0;
   nums.sort((a, b) => a - b);
