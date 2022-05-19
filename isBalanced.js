@@ -1,6 +1,5 @@
 /*
 Given a binary tree, determine if it is height-balanced.
-
 For this problem, a height-balanced binary tree is defined as a binary tree in which the depth of the two subtrees of every node never differ by more than 1.
 
 
@@ -8,7 +7,6 @@ An empty tree is height-balanced. A non-empty binary tree T is balanced if:
 1) Left subtree of T is balanced
 2) Right subtree of T is balanced
 3) The difference between heights of left subtree and right subtree is not more than 1.
-
 
 https://leetcode.com/problems/balanced-binary-tree/description/
 
