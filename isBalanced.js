@@ -30,7 +30,6 @@ function isBalanced(tree) {
   let leftHeight = null; //left height of tree
   let rightHeight = null; //right height of tree
 
-  //If tree is empty return true
   if(!tree) {
     return true;
   }
