@@ -43,5 +43,5 @@ function isBalanced(tree) {
   return false;
 }
 
-tree = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5, new TreeNode(6))), new TreeNode(3,null, new TreeNode(7)));
+let tree = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5, new TreeNode(6))), new TreeNode(3,null, new TreeNode(7)));
 console.log(isBalanced(tree));
