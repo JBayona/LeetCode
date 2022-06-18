@@ -29,6 +29,31 @@ Explanation: The trivial word chain ["abcd"] is one of the longest word chains.
 https://leetcode.com/problems/longest-string-chain/
 */
 
+// DP
+// Time O(N^2)
+var longestStrChain = function (words) {
+  if (!words.length) {
+    return 0;
+  }
+  // Sort the array based on the length
+  // This will help us to compute easier if we can
+  // form a string by removing one char
+  words.sort((a, b) => a.length - b.length);
+  let dp = {};
+  let result = 1;
+  for(let word of words) {
+    dp[word] = 1;
+    for(let i = 0; i < word.length; i++) {
+      let prev = word.substring(0, i) + word.substring(i + 1);
+      if(prev in dp) {
+        dp[word] = Math.max(dp[word], dp[prev] + 1)
+        result = Math.max(result, dp[word]);
+      }
+    }
+  }
+  return result;
+};
+
 // Time O(N^2)
 var longestStrChain = function (words) {
   if (!words.length) {
