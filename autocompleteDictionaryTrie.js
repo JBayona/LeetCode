@@ -20,6 +20,7 @@ const addWord = function(word) {
 // Add words to the tree
 addWord('google');
 addWord('good');
+addWord('gooooogle');
 addWord('great');
 // console.log(trie);
 
@@ -34,7 +35,7 @@ function dfs(prefix, index, node) {
   if(index < prefix.length) {
     let letter = prefix[index];
     if(node.children[letter]) {
-      dfs(prefix, index + 1, node.children[letter], );
+      dfs(prefix, index + 1, node.children[letter]);
     } else {
       return;
     }
@@ -42,6 +43,7 @@ function dfs(prefix, index, node) {
     if(node.isWord) {
       result.push(node.isWord);
     } else {
+      // Try to find everything
       for(let op in node.children) {
         dfs(prefix, index, node.children[op]);
       }
