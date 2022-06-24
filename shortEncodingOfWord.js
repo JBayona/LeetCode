@@ -1,6 +1,5 @@
 /*
 A valid encoding of an array of words is any reference string s and array of indices indices such that:
-
 words.length == indices.length
 The reference string s ends with the '#' character.
 For each index indices[i], the substring of s starting from indices[i] and up to (but not including) the next '#' character is equal to words[i].
