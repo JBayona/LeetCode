@@ -30,7 +30,36 @@ Constraints:
 0 <= schedule[i].start < schedule[i].end <= 10^8
 */
 
+// Option 1
+function employeeFreeTime(list) {
+    // [ [ 1, 3 ], [ 6, 7 ], [ 2, 4 ], [ 2, 5 ], [ 9, 12 ] ]
+    let flatten = list.reduce((acum, val) => acum.concat(val), []);
+    // Sort based on the starting element
+    flatten.sort((a,b) => a[0] != b[0] ? a[0] - b[0] : a[1] - b[1]);
+    console.log(flatten);
 
+    let result = [];
+    let prev = flatten.shift();
+    while(flatten.length) {
+        let current = flatten.shift();
+        // There's no overlap so we can add it in the result
+        if (prev[1] < current[0]) {
+            // result.add(new Interval(prev.end, current.start));
+            // prev.end, current.start
+            result.push([prev[1], current[0]]);
+        } else {
+            // Combine the last time to find the next
+            // free time
+            // current.end = Math.max(prev.end, current.end);
+            current[1] = Math.max(prev[1], current[1]);
+        }
+        prev = current;
+    }
+    console.log('Result');
+    return result;
+}
+
+// Option 2
 function employeeFreeTime(list) {
 
     flatten = list.reduce((acum, val) => acum.concat(val), []);
