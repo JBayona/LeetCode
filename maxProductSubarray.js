@@ -1,14 +1,13 @@
 /*
-Given an integer array nums, find the contiguous subarray within an array (containing at least one number) which
-has the largest product.
+Given an integer array nums, find the contiguous subarray
+within an array (containing at least one number) which has the largest product.
 
 Example 1:
-
 Input: [2,3,-2,4]
 Output: 6
 Explanation: [2,3] has the largest product 6.
-Example 2:
 
+Example 2:
 Input: [-2,0,-1]
 Output: 0
 Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
@@ -60,19 +59,16 @@ var maxProduct = function(nums) {
         // Update
         prevMaxProduct = currentMaxProd
         prevMinProduct = currentMidProd
-    }
-    
+    }    
     return answer;
-
 };
 
 
 
 var maxProduct = function(nums) {
-    
     if(nums.length == 0) return 0;
 
-    let maxProduct = nums[0];
+    let maxProduct = nums[0]
     let minProduct = nums[0];
     let maxRes = nums[0];
     
@@ -85,10 +81,7 @@ var maxProduct = function(nums) {
             maxProduct = Math.max(minProduct * nums[i], nums[i]);
             minProduct = Math.min(tmp * nums[i], nums[i]);
         }
-        
         maxRes = Math.max(maxRes, maxProduct);
     }
-    
     return maxRes;
-
 };
