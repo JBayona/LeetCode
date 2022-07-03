@@ -8,10 +8,8 @@ Note:
 Assume the length of given string will not exceed 1,010.
 
 Example:
-
 Input:
 "abccccdd"
-
 Output:
 7
 
