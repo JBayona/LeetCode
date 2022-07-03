@@ -21,7 +21,6 @@ https://leetcode.com/problems/longest-palindrome/description/
 
 // Time O(N)
 // Space O(N) - We create a hash of the size of the input
-
 var longestPalindrome = function(s) {
   let hash = {};
   let result = 0;
