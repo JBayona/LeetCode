@@ -40,76 +40,117 @@ leetcode.com
 // Sliding Window
 // Time O(N)
 // Space O(N)
-var findAnagrams = function(s, p) {
+var findAnagrams = function (s, p) {
   // p is greater then s
-  if(s.length < p.length) {
-      return [];
+  if (s.length < p.length) {
+    return [];
   }
-  
+
   let mapS = {};
   // We want a window of size p
-  for(let i = 0; i < p.length; i++) {
-      let elem = s[i];
-      if(elem in mapS) {
-          mapS[elem]++;
-      } else {
-          mapS[elem] = 1;
-      }
+  for (let i = 0; i < p.length; i++) {
+    let elem = s[i];
+    if (elem in mapS) {
+      mapS[elem]++;
+    } else {
+      mapS[elem] = 1;
+    }
   }
-  
+
   // This won't change
-  let mapP = {}
-  for(let i = 0; i < p.length; i++) {
-      let elem = p[i];
-      if(elem in mapP) {
-          mapP[elem]++;
-      } else {
-          mapP[elem] = 1;
-      }
+  let mapP = {};
+  for (let i = 0; i < p.length; i++) {
+    let elem = p[i];
+    if (elem in mapP) {
+      mapP[elem]++;
+    } else {
+      mapP[elem] = 1;
+    }
   }
-  
+
   let result = [];
-  for(let i = p.length; i < s.length; i++) {
-      if(isMapEquals(mapS, mapP)) {
-          result.push(i - p.length);
-      }
-      
-      // Expand the window
-      let c = s[i];
-      // Add the new char coming into the window
-      if(c in mapS) {
-          mapS[c]++;
-      } else {
-          mapS[c] = 1;
-      }
-      
-      // Remove the left char of the window
-      c = s[i - p.length];
-      if(mapS[c] === 1) {
-          delete mapS[c];
-      } else if(mapS[c] > 1) {
-          mapS[c]--;
-      }
+  for (let i = p.length; i < s.length; i++) {
+    if (isMapEquals(mapS, mapP)) {
+      result.push(i - p.length);
+    }
+
+    // Expand the window
+    let c = s[i];
+    // Add the new char coming into the window
+    if (c in mapS) {
+      mapS[c]++;
+    } else {
+      mapS[c] = 1;
+    }
+
+    // Remove the left char of the window
+    c = s[i - p.length];
+    if (mapS[c] === 1) {
+      delete mapS[c];
+    } else if (mapS[c] > 1) {
+      mapS[c]--;
+    }
   }
-  
+
   // The last window
-  if(isMapEquals(mapS, mapP)) {
-      result.push(s.length - p.length);
+  if (isMapEquals(mapS, mapP)) {
+    result.push(s.length - p.length);
   }
   return result;
 };
 
 function isMapEquals(map1, map2) {
-  if(Object.keys(map1).length !== Object.keys(map2).length) {
-      return false;
+  if (Object.keys(map1).length !== Object.keys(map2).length) {
+    return false;
   }
-  
-  for(let prop in map1) {
-      if(!(prop in map2) || map1[prop] !== map2[prop]) {
-          return false;
-      }
+
+  for (let prop in map1) {
+    if (!(prop in map2) || map1[prop] !== map2[prop]) {
+      return false;
+    }
   }
   return true;
+}
+
+// Option 2
+var findAnagrams = function (s, p) {
+  if (p.length > s.length) {
+    return [];
+  }
+
+  let freqS = getFrequency(s, p.length);
+  let freqP = getFrequency(p, p.length);
+
+  let result = [];
+  // First window
+  if (equals(freqS, freqP)) {
+    result.push(0);
+  }
+
+  let init = p.length;
+  for (let i = init; i < s.length; i++) {
+    let c = s[i];
+    // Move window
+    freqS[s[i - p.length].charCodeAt(0) - 97]--;
+    freqS[c.charCodeAt(0) - 97]++;
+    if (equals(freqS, freqP)) {
+      result.push(i - p.length + 1);
+    }
+  }
+  return result;
+};
+
+function getFrequency(str, len) {
+  let array = new Array(26).fill(0);
+  for (let i = 0; i < len; i++) {
+    let c = str[i];
+    array[c.charCodeAt(0) - 97]++; // a = 97
+  }
+  return array;
+}
+
+function equals(a, b) {
+  return a.join("") === b.join("");
 }
 
 /*
