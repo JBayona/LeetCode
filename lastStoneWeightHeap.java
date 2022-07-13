@@ -28,11 +28,7 @@ https://leetcode.com/problems/last-stone-weight/
 
 class Solution {
     public int lastStoneWeight(int[] stones) {
-        PriorityQueue<Integer> maxHeap = maxHeap = new PriorityQueue<>(new Comparator<Integer>(){
-            public int compare(Integer i1, Integer i2) {
-                return i2 - i1;
-            }
-        });
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((x, y) -> y - x);
         // Insert all elements into the min heap
         for(int i = 0; i < stones.length; i++) {
             maxHeap.offer(stones[i]);
@@ -50,7 +46,6 @@ class Solution {
             }
             maxHeap.offer(a);
         }
-        
         return maxHeap.size() > 0 ? maxHeap.poll() : 0;
     }
 }
