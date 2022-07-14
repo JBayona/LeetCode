@@ -39,6 +39,7 @@ Output: [0,1,2,3,4,-1]
 https://leetcode.com/problems/where-will-the-ball-fall/
 */
 
+// Directions.
 // \ -> 1 right
 // / -1 left
 var findBall = function(grid) {
