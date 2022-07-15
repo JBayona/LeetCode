@@ -39,15 +39,16 @@ Output: [0,1,2,3,4,-1]
 https://leetcode.com/problems/where-will-the-ball-fall/
 */
 
+// DFS
 // Directions.
 // \ -> 1 right
 // / -1 left
-var findBall = function(grid) {
+var findBall = function (grid) {
   let balls = grid[0].length;
-  
+
   let result = new Array(balls).fill(-1);
-  for(let i = 0; i < grid[0].length; i++) {
-      result[i] = dfs(grid, 0, i);
+  for (let i = 0; i < grid[0].length; i++) {
+    result[i] = dfs(grid, 0, i);
   }
   return result;
 };
@@ -55,27 +56,84 @@ var findBall = function(grid) {
 function dfs(grid, row, col) {
   // Base case for success
   // If row is not defined, that means we reach the bottom of the box
-  if(!grid[row]) {
-      return col;
+  if (!grid[row]) {
+    return col;
   }
   // Traveling to the right, shouldn´t be a wall or next cell should not
   // be traveling to the left as it will be a "V" form
-  if(grid[row][col] === 1 && (!grid[row][col+1]|| grid[row][col + 1] === -1)) {
-      return -1;
+  if (
+    grid[row][col] === 1 &&
+    (!grid[row][col + 1] || grid[row][col + 1] === -1)
+  ) {
+    return -1;
   }
   // Traveling to the left, shouldn´t be a wall or prev cell should not
   // be traveling to the right as it will be a "V" form
-  if(grid[row][col] === -1 && (!grid[row][col-1] || grid[row][col - 1] === 1)) {
-      return -1;
+  if (
+    grid[row][col] === -1 &&
+    (!grid[row][col - 1] || grid[row][col - 1] === 1)
+  ) {
+    return -1;
   }
-  
+
   // Traverse right
-  if(grid[row][col] === 1) {
-      // Move one row down and column to right
-      return dfs(grid, row + 1, col + 1);
+  if (grid[row][col] === 1) {
+    // Move one row down and column to right
+    return dfs(grid, row + 1, col + 1);
   } else {
-      // Traverse left
-      // Move one row down and column to left
-      return dfs(grid, row + 1, col - 1);
+    // Traverse left
+    // Move one row down and column to left
+    return dfs(grid, row + 1, col - 1);
+  }
+}
+
+// BFS
+// \ -> 1 right
+// / -1 left
+var findBall = function (grid) {
+  let balls = grid[0].length;
+
+  let result = new Array(balls).fill(-1);
+  for (let i = 0; i < grid[0].length; i++) {
+    result[i] = bfs(grid, 0, i);
+  }
+  return result;
+};
+
+function bfs(grid, row, col) {
+  let queue = [];
+  queue.push({ row, col });
+  while (queue.length) {
+    let { row, col } = queue.shift();
+    // Success condition for it to return the column
+    if (row < 0 || row >= grid.length || col < 0 || col >= grid[0].length) {
+      return col;
+    }
+    // if current grid is 1, check the next one. If its the opposite then ball will get stuck
+    // return -1 else move to next cell
+    if (grid[row][col] === 1) {
+      // Out of boundaries
+      if (col >= grid[0].length - 1) {
+        return -1;
+      }
+      // Next move
+      if (grid[row][col + 1] === 1) {
+        queue.push({ row: row + 1, col: col + 1 });
+      } else if (grid[row][col + 1] === -1) {
+        // Ball stuck
+        return -1;
+      }
+    } else if (grid[row][col] === -1) {
+      // Out of boundaries
+      if (col <= 0) {
+        return -1;
+      }
+      if (grid[row][col - 1] === -1) {
+        queue.push({ row: row + 1, col: col - 1 });
+      } else if (grid[row][col - 1] === 1) {
+        // Ball stuck
+        return -1;
+      }
+    }
   }
 }
