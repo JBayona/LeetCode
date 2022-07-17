@@ -15,94 +15,70 @@ Could you do it in O(n) time and O(1) space?
 https://leetcode.com/problems/palindrome-linked-list/description/
 */
 
-// Time O(N) Space O(1)
-var isPalindrome = function(head) {
-  let list = head;
-  let listLength = getListLength(list);
-  
-  if(listLength <= 1) return true;
-  
-  let l1 = head;
-  let l2 = null;
-  
+// Option 1
+// Time O(N)
+// Space O(1)
+var isPalindrome = function (head) {
+  let slow = head;
+  let fast = head;
+  // Split the list in 2;
+  while (fast && fast.next) {
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  let mid = slow;
+  // Reverse list from mid to end
+  mid = reverse(mid);
+
+  // Compare values
   let current = head;
-  let i = 0;
-  let prev = null;
-  while(current) {
-    if(i === Math.floor(listLength/2)) {
-      // Par
-      if(listLength % 2 === 0) {
-          l2 = current;
-      } else {
-          l2 = current.next;
-      }
-      // This line will ignore the middle element if it's even number (impar) 1 -> 2 (this will be ignored) -> 1
-      // Or will carry with the correct size for even numbers
-      prev.next = null;
-      break;
+  while (mid) {
+    // If the value is not the same it´s not a palindrome
+    if (current.val !== mid.val) {
+      return false;
     }
-    prev = current;
+    mid = mid.next;
     current = current.next;
-    i++;
   }
-
-  l2 = reverseList(l2);
-
-  // Compare if both lists are the same
-  // if it's odd number(impar) we ignore the element of the middle
-  while(l1 && l2) {
-    if(l1.val !== l2.val) {
-        return false;
-    }
-    l1 = l1.next;
-    l2 = l2.next;
-  }
-    return true;
+  return true;
 };
 
-function getListLength(list) {
-  let size = 0;
-  while(list) {
-      size++;
-      list = list.next;
-  }
-  return size;
-}
-
-function reverseList(list) {
-  let current = list;
+function reverse(head) {
+  let current = head;
   let prev = null;
-  let next = null;
-  while(current) {
-      next = current.next;
-      current.next = prev;
-      prev = current;
-      current = next;
+  let next;
+
+  while (current) {
+    next = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
   }
-    return prev;
+
+  return prev;
 }
 
 // Option 2
 // Time O(N) Space O(N)
-var isPalindrome = function(head) {
+var isPalindrome = function (head) {
   let stack = [];
   let node;
-  
+
   node = head;
-  while(node) {
+  while (node) {
     stack.push(node.val);
     node = node.next;
   }
-  
+
   // Check if the list is palindrome with the stack
   // as the stack pop from the back (last entered)
   node = head;
-  while(node) {
-    if(node.val !== stack.pop()) {
-        return false;
+  while (node) {
+    if (node.val !== stack.pop()) {
+      return false;
     }
     node = node.next;
   }
-  
+
   return true;
 };
