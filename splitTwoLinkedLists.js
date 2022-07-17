@@ -1,7 +1,6 @@
 /*
 Split a linked list in two parts
 */
-
 function ListNode(val, node) {
   this.val = val;
   this.next = node ? node : null;
