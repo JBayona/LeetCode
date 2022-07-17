@@ -7,6 +7,16 @@ https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-tr
 http://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/
 */
 
+// You may think why do we need both the preorder and inorder arrays?
+// Because if we simply have only 1 of them, we don't know whether the elements are
+// left or right children. Image a preorder of: [1,2,3]
+// Is 2 on the right side or left side? we don't know. This is the reason for both the formats.
+
+// What do we know about inorder traversal?
+// All the elements are traversed left to right. This property will help us with building the final tree
+// What do we know about preorder traversal?
+// We first scan the "root" and then go to it's children (left and then right).
+// With this we know what element is the root of the current level.
 function TreeNode(val, left, right){
     this.val = val;
     this.left = left || null;
