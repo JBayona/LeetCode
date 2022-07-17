@@ -25,11 +25,15 @@ var removeNthFromEnd = function(head, n) {
         return head;
     }
     
+    // Iterate until we have a next node then
+    // slow will be posisionated one before the nth
+    // node we want to remove
     while(fast.next) {
         fast = fast.next;
         slow = slow.next;
     }
-    // Remove the node by pointing to the next node
+    
+    // Skip the node and remove it
     slow.next = slow.next.next;
     return head;
 };
