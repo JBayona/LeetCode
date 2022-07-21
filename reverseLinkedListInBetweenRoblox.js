@@ -17,6 +17,7 @@ var reverseList = function(head, n) {
   while(current) {
     // One we find the node
     if(current.val === n) {
+        // Split the list
         let next = current.next;
         // Remove current reference to split the list
         current.next = null;
