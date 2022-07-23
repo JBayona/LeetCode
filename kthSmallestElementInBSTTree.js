@@ -12,6 +12,7 @@ Output: 3
 
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 */
+
 var kthSmallest = function (root, k) {
   let node = root;
   let stack = [];
