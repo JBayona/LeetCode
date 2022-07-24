@@ -90,6 +90,11 @@ function dfsHasCycle(graph, node, states){
     // Processed
     states[node] = 2;
     // Add to the result
+    // This result is required to course[1] should be before course[0]
+    // If we want to have the opposite we just need to reverse the
+    // order of how do we insert the elements in the result, so
+    // it should be result.unshift(node) if we want to happen first
+    // course[0] than course[1]
     result.push(node);
     return false;
 }
