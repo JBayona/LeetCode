@@ -8,37 +8,32 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 https://leetcode.com/problems/3sum-closest/#/description
 */
 
-var threeSumClosest = function(nums, target) {
-    var left = 0;
-    var right = 0;
-    var len = nums.length;
-    var minDiff = Number.MAX_VALUE;
-    var diff = 0;
+var threeSumClosest = function (nums, target) {
+  var len = nums.length;
+  var minDiff = Number.MAX_VALUE;
 
-    nums.sort(function(a, b) {
-      return a - b;
-    });
-    for(var i = 0; i < len; i++){
-      left = i + 1;
-      right = len - 1;
-      while(left < right){
-        diff = target - (nums[i] + nums[left] + nums[right]);
-        if(diff === 0){
-          return target;
-        }else if(diff > 0){
-          left++;
-        }else{
-          right--;
-        }
+  nums.sort((a, b) => a - b);
+  for (var i = 0; i < len; i++) {
+    let left = i + 1;
+    let right = len - 1;
+    while (left < right) {
+      let diff = target - (nums[i] + nums[left] + nums[right]);
+      if (diff === 0) {
+        return target;
+      } else if (diff > 0) {
+        left++;
+      } else {
+        right--;
+      }
 
-        if(Math.abs(diff) < Math.abs(minDiff)){
-          minDiff = diff;
-        }
+      if (Math.abs(diff) < Math.abs(minDiff)) {
+        minDiff = diff;
       }
     }
-    return target - minDiff;
+  }
+  return target - minDiff;
 };
 
 array = [-1, 2, 1, -4];
 target = 1;
-console.log(threeSumClosest(array, target)); 
+console.log(threeSumClosest(array, target));
