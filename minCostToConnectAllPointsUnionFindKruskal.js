@@ -33,7 +33,6 @@ var minCostConnectPoints = function (points) {
     parent[i] = i;
   }
   // {0:0, 1:1, 2:2, 3:3, 4:4}
-
   let cost = 0;
   for (let edge of computed) {
     let [x, y, val] = edge;
