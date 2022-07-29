@@ -26,7 +26,6 @@ var minCostConnectPoints = function (points) {
   [ 0, 2, 13 ], [ 2, 4, 14 ]
 ]
   */
-
   // Union find
   let parent = {};
   for (let i = 0; i < points.length; i++) {
