@@ -81,6 +81,7 @@ function findParent(node, parent) {
   return findParent(parent[node], parent);
 }
 
+// Test.
 points = [
   [0, 0],
   [2, 2],
