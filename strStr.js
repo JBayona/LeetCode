@@ -22,6 +22,29 @@ For the purpose of this problem, we will return 0 when needle is an empty string
 https://leetcode.com/problems/implement-strstr/description/
 */
 
+// Two pointers
+var strStr = function(haystack, needle) {
+  if(!needle.length) {
+      return 0;
+  }
+  
+  let needleIndex = 0;
+  let hayIndex = 0;
+  while(hayIndex < haystack.length) {
+      if (haystack[hayIndex] === needle[needleIndex]) {
+          needleIndex++;
+      } else {
+          hayIndex = hayIndex - needleIndex;
+          needleIndex = 0;
+      }
+      hayIndex++;
+      if (needleIndex === needle.length) {
+          return hayIndex - needle.length;
+      }
+  }
+  return -1;
+};
+
 var strStr = function(haystack, needle) {
   if(haystack.length === needle.length) return haystack === needle ? 0 : -1;
   if(needle.length === 0) return 0;
