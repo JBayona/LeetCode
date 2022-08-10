@@ -21,7 +21,36 @@ https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 */
 
 // Option 1
+var zigzagLevelOrder = function(root) {
+    if(!root) {
+        return [];
+    }
+    let queue = [];
+    let result = [];
+    let leftToRight = true;
+    queue.push(root);
+    
+    while(queue.length) {
+        let size = queue.length;
+        let tmp = [];
+        for(let i = 0; i < size; i++) {
+            let index = leftToRight ? i : size - i - 1;
+            let node = queue.shift();
+            tmp[index] = node.val;
+            if(node.left) {
+                queue.push(node.left);
+            }
+            if(node.right) {
+                queue.push(node.right)
+            }
+        }
+        result.push(tmp);
+        leftToRight = !leftToRight;
+    }
+    return result;
+};
 
+// Option 2
 var zigzagLevelOrder = function(root) {
     if(!root) {
         return [];
@@ -54,8 +83,7 @@ var zigzagLevelOrder = function(root) {
     return result;
 };
 
-// Option 2
-
+// Option 3
 var zigzagLevelOrder = function(root) {
     if(!root) {
         return [];
