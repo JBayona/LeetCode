@@ -77,3 +77,62 @@ MyCalendar.prototype.book = function(start, end) {
  * var obj = new MyCalendar()
  * var param_1 = obj.book(start,end)
  */
+
+// Option 2
+var MyCalendar = function() {
+    this.root = null;
+};
+
+/** 
+ * @param {number} start 
+ * @param {number} end
+ */
+class Node {
+    constructor (start, end, left = null, right = null) {
+        this.start = start;
+        this.end = end;
+        this.left = left;
+        this.right = right;   
+    }
+    insert (node) {
+        if (this.start >= node.end) {
+            // This should be at the left
+            if (!this.left) {
+                this.left = node;
+                return true;
+            } else {
+                return this.left.insert(node);
+            }
+        } else if (this.end <= node.start) {
+            if (!this.right) {
+                this.right = node;
+                return true;
+            } else {
+                return this.right.insert(node);
+            }
+        } else {
+            return false;
+        }
+    }
+}
+
+/** 
+ * @param {number} start 
+ * @param {number} end
+ * @return {boolean}
+ */
+MyCalendar.prototype.book = function(start, end) {
+    // First element
+    if (!this.root) {
+        this.root = new Node(start, end);
+        return true;
+    }
+    
+    return this.root.insert(new Node(start, end)); 
+};
+
+/** 
+ * Your MyCalendar object will be instantiated and called as such:
+ * var obj = new MyCalendar()
+ * var param_1 = obj.book(start,end)
+ */
