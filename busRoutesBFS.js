@@ -38,6 +38,8 @@ var numBusesToDestination = function (routes, S, T) {
     }
   }
 
+  // hash = { '1': [ 0 ], '2': [ 0 ], '3': [ 1 ], '6': [ 1 ], '7': [ 0, 1 ] }
+
   // Create a set to store the buses that have already been taken
   let visitedBus = new Set();
   // Create a set to store the stops that have already been visited
