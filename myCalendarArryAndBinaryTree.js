@@ -34,7 +34,6 @@ var MyCalendar = function() {
     this.arr = [];
 };
 
-
 /** 
  * @param {number} start 
  * @param {number} end
