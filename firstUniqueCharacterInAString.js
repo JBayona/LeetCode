@@ -39,3 +39,29 @@ var firstUniqChar = function(s) {
     }
     return -1;
 };
+
+// Option 2
+var firstUniqChar = function(s) {
+    if(!s) {
+        return -1;
+    }
+    
+    let hash = {};
+    for(let i = 0; i < s.length; i++) {
+        let elem = s[i];
+        if(!(elem in hash)) {
+            hash[elem] = {index: i, count:1};
+        } else {
+            hash[elem].count++
+        }
+    }
+    
+    // Get the result
+    let min = Number.MAX_SAFE_INTEGER;
+    for(let prop in hash) {
+        if(hash[prop].count === 1) {
+            min = Math.min(hash[prop].index, min);
+        }
+    }
+    return min === Number.MAX_SAFE_INTEGER ? -1 : min;
+};
