@@ -3,7 +3,8 @@ You are given an integer array nums that is sorted in non-decreasing order.
 
 Determine if it is possible to split nums into one or more subsequences such that both of the
 following conditions are true:
-- Each subsequence is a consecutive increasing sequence (i.e. each integer is exactly one more than the previous integer).
+- Each subsequence is a consecutive increasing
+sequence (i.e. each integer is exactly one more than the previous integer).
 - All subsequences have a length of 3 or more.
 
 Return true if you can split nums according to the above conditions, or false otherwise.
