@@ -9,7 +9,24 @@ https://leetcode.com/problems/plus-one/description/
 */
 
 // Option 1
+var plusOne = function(digits) {
+  let n = digits.length;
+  for(let i = n - 1; i >= 0; i--) {
+      if(digits[i] < 9) {
+        digits[i]++;
+        return digits;
+      }
+    digits[i] = 0;
+  }
+  // Reach here only if all of the above are 9.
+  let newNumber = new Array (n+1).fill(0);
+  newNumber[0] = 1;
+  
+  return newNumber;
+};
 
+
+// Option 2
 var plusOne = function(digits) {
   let index = digits.length - 1;
   // Plus one
@@ -31,8 +48,7 @@ var plusOne = function(digits) {
 };
 
 
-//Option 2
-
+//Option 3
 var plusOne = function(digits) {
 	var len = digits.length,
 	var overflow = 1,
@@ -58,8 +74,7 @@ var plusOne = function(digits) {
 array = [6,1,4,5,3,9,0,1,9,5,1,8,6,7,0,5,5,4,3];
 console.log(plusOne(array));
 
-//Option 3
-
+//Option 4
 var plusOne = function(digits) {
   let result = [];
   let value = 0;
