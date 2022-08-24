@@ -13,16 +13,19 @@ var isValidSudoku = function (board) {
     for (let j = 0; j < 9; j++) {
       let number = board[i][j];
       if (number !== ".") {
+        // Check if the number was saw in the row
         if (!set.has(`${number} in row ${i}`)) {
           set.add(`${number} in row ${i}`);
         } else {
           return false;
         }
+        // Check if the number was saw in the col
         if (!set.has(`${number} in col ${j}`)) {
           set.add(`${number} in col ${j}`);
         } else {
           return false;
         }
+        // Check if the number was saw in the block
         if (
           !set.has(
             `${number} in block ${Math.floor(i / 3)}-${Math.floor(j / 3)}`
