@@ -23,7 +23,6 @@ var plusOne = function(digits) {
   return newNumber;
 };
 
-
 // Option 2
 var plusOne = function(digits) {
   let index = digits.length - 1;
