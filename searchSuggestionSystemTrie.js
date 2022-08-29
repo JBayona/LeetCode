@@ -30,6 +30,7 @@ Output: [["baggage","bags","banner"],["baggage","bags","banner"],["baggage","bag
 https://leetcode.com/problems/search-suggestions-system/
 */
 
+// Option 1
 var suggestedProducts = function (products, searchWord) {
   let trie = { children: {}, count: 0, isWord: false };
   // Add words to trie
@@ -40,6 +41,7 @@ var suggestedProducts = function (products, searchWord) {
   let prefix = "";
   let result = [];
   let buffer = [];
+  // For each type, we need to get the string prefix
   for (let i = 0; i < searchWord.length; i++) {
     prefix += searchWord[i];
     result.push(getWordWithStringPrefix(trie, prefix, buffer));
@@ -47,6 +49,7 @@ var suggestedProducts = function (products, searchWord) {
   return result;
 };
 
+// Insert word in the trie
 function insert(trie, word) {
   let node = trie;
   for (let i = 0; i < word.length; i++) {
@@ -95,6 +98,7 @@ function dfsWithPrefix(current, word, buffer) {
   }
 }
 
+// Option 2
 var suggestedProducts = function (products, searchWord) {
   products.sort();
   let list = [];
