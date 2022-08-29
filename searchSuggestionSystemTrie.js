@@ -71,12 +71,14 @@ function getWordWithStringPrefix(trie, prefix, buffer) {
   let result = [];
   for (let i = 0; i < prefix.length; i++) {
     let c = prefix[i];
+    // No other char is found, return the current result
     if (!node.children[c]) {
       return buffer;
     }
     // Move to the next node of the trie
     node = node.children[c];
   }
+  // Run DFS based on the prefix we found in the tree and get all the children
   dfsWithPrefix(node, prefix, buffer);
   return buffer;
 }
