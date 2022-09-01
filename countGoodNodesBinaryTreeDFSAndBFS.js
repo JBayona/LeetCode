@@ -44,3 +44,29 @@ function dfs(root, result, currentMax) {
   dfs(root.left, result, max);
   dfs(root.right, result, max);
 }
+
+// BFS
+var goodNodes = function(root) {
+  let queue = [];
+  let result = 0;
+  
+  queue.push({node: root, max: root.val});
+  while(queue.length) {
+      let len = queue.length;
+      for (let i = 0; i < len; i++) {
+          let {node, max} = queue.shift();
+          if (node.val >= max) {
+              result++;
+          }
+          
+          if (node.left) {
+              queue.push({node: node.left, max: Math.max(node.val, max)});
+          }
+          
+          if (node.right) {
+              queue.push({node: node.right, max: Math.max(node.val, max)});
+          }
+      }
+  }
+  return result;
+};
