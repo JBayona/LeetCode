@@ -50,7 +50,7 @@ var goodNodes = function(root) {
   let result = 0;
   
   queue.push({node: root, max: root.val});
-  while(queue.length) {
+  while (queue.length) {
       let len = queue.length;
       for (let i = 0; i < len; i++) {
           let {node, max} = queue.shift();
