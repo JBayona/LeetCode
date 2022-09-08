@@ -35,3 +35,31 @@ var pruneTree = function (root) {
   }
   return root;
 };
+
+// Option 2
+var pruneTree = function (root) {
+  // Clean starting root
+  if (!dfs(root)) {
+    return null;
+  }
+  return root;
+};
+
+function dfs(root) {
+  if (!root) {
+    return false;
+  }
+  let oneSeen = root.val === 1;
+  let left = dfs(root.left);
+  let right = dfs(root.right);
+
+  if (!left) {
+    root.left = null;
+  }
+
+  if (!right) {
+    root.right = null;
+  }
+
+  return oneSeen || left || right;
+}
