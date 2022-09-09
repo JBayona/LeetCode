@@ -10,6 +10,19 @@ Given 1->2->3->4, you should return the list as 2->1->4->3.
 https://leetcode.com/problems/swap-nodes-in-pairs/
 */
 
+// Option 1 - Recursive
+var swapPairs = function(head) {
+    // We exhausted the list
+    if (!head || !head.next) {
+        return head;
+    }
+    let second = head.next;
+    let swap = swapPairs(second.next);
+    second.next = head;
+    head.next = swap;
+    return second;
+};
+
 function Node(val, next) {
     this.val = val;
     this.next = next || null;
