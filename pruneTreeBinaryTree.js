@@ -45,6 +45,7 @@ var pruneTree = function (root) {
   return root;
 };
 
+// Post order.
 function dfs(root) {
   if (!root) {
     return false;
