@@ -41,5 +41,13 @@ var climbStairs = function(n) {
     return memo[n];
 };
 
+// Recursion
+var climbStairs = function(n) {
+    if (n <= 2 ){
+        return n;
+    }
+    return climbStairs(n - 1) + climbStairs(n - 2);
+};
+
 n = 5;
 console.log(climbStairs(n));
