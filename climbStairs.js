@@ -12,6 +12,7 @@ http://www.geeksforgeeks.org/count-ways-reach-nth-stair/
 https://leetcode.com/problems/climbing-stairs/description/
 */
 
+// DP
 var climbStairs = function(n) {
     var array = [];
     // Casos Base
