@@ -25,5 +25,21 @@ var climbStairs = function(n) {
     return array[n];
 };
 
+// Memoization
+let memo = {};
+var climbStairs = function(n) {
+    if (n in memo) {
+        return memo[n];
+    }
+    
+    if (n <= 2 ){
+        memo[n] = n;
+        return n;
+    }
+    
+    memo[n] = climbStairs(n - 1) + climbStairs(n - 2);
+    return memo[n];
+};
+
 n = 5;
 console.log(climbStairs(n));
