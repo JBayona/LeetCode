@@ -26,31 +26,31 @@ function getMaxNumber(arr, dimension) {
 
 
 // Version 2
-// function getLargestPiece(dimension, xCuts, yCuts) {
-//   // We need to sort them to get the different dimensions
-//   xCuts.sort((a, b) => a - b);
-//   yCuts.sort((a, b) => a - b);
+function getLargestPiece(dimension, xCuts, yCuts) {
+  // We need to sort them to get the different dimensions
+  xCuts.sort((a, b) => a - b);
+  yCuts.sort((a, b) => a - b);
 
-//   let parsed = dimension.split(',');
-//   let x = Number(parsed[0]);
-//   let y = Number(parsed[1]);
+  let parsed = dimension.split(',');
+  let x = Number(parsed[0]);
+  let y = Number(parsed[1]);
 
-//   let xMax = 0;
-//   switch (xCuts.length) {
-//       case 0: xMax = x; break;
-//       case 1: xMax = Math.max(Math.abs(xCuts[0] - 0), Math.abs(x - xCuts[0])); break;
-//       case 2: xMax = Math.max(Math.abs(xCuts[0] - 0), Math.abs(xCuts[0] - xCuts[1]), Math.abs(x - xCuts[1])); break;
-//   }
+  let xMax = 0;
+  switch (xCuts.length) {
+      case 0: xMax = x; break;
+      case 1: xMax = Math.max(Math.abs(xCuts[0] - 0), Math.abs(x - xCuts[0])); break;
+      case 2: xMax = Math.max(Math.abs(xCuts[0] - 0), Math.abs(xCuts[0] - xCuts[1]), Math.abs(x - xCuts[1])); break;
+  }
 
-//   let yMax = 0;
-//   switch (yCuts.length) {
-//       case 0: yMax = y; break;
-//       case 1: yMax = Math.max(Math.abs(yCuts[0] - 0), Math.abs(y - yCuts[0])); break;
-//       case 2: yMax = Math.max(Math.abs(yCuts[0] - 0), Math.abs(yCuts[0] - yCuts[1]), Math.abs(y - yCuts[1])); break;
-//   }
+  let yMax = 0;
+  switch (yCuts.length) {
+      case 0: yMax = y; break;
+      case 1: yMax = Math.max(Math.abs(yCuts[0] - 0), Math.abs(y - yCuts[0])); break;
+      case 2: yMax = Math.max(Math.abs(yCuts[0] - 0), Math.abs(yCuts[0] - yCuts[1]), Math.abs(y - yCuts[1])); break;
+  }
 
-//   return xMax * yMax;
-// }
+  return xMax * yMax;
+}
 
 console.log(getLargestPiece("9,9", [3,6], [3,6])); // 9
 // x = 9 -> 3, 6 -> 0 - 3 = 3, 3-6 = 3, 6-9 = 3
