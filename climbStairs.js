@@ -25,7 +25,7 @@ var climbStairs = function(n) {
     return array[n];
 };
 
-// Memoization
+// Memoization approach
 let memo = {};
 var climbStairs = function(n) {
     if (n in memo) {
