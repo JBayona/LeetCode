@@ -24,7 +24,6 @@ function getMaxNumber(arr, dimension) {
   return max
 }
 
-
 // Version 2
 function getLargestPiece(dimension, xCuts, yCuts) {
   // We need to sort them to get the different dimensions
