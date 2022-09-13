@@ -54,7 +54,6 @@ function getLargestPiece(dimension, xCuts, yCuts) {
 console.log(getLargestPiece("9,9", [3,6], [3,6])); // 9
 // x = 9 -> 3, 6 -> 0 - 3 = 3, 3-6 = 3, 6-9 = 3
 // y = 9 -> 3, 6 -> 0 - 3 = 3, 3-6 = 3, 6-9 = 3
-
 console.log(getLargestPiece("10,10", [8,2], [2,8])); // 36
 console.log(getLargestPiece("10,10", [3], [])); // 70
 console.log(getLargestPiece("10,10", [], [])); // 100
