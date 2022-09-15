@@ -24,6 +24,27 @@ function dfs(root, hash) {
   if (!root.left && !root.right) {
       return Object.keys(hash).length <= 1;
   }
+  return dfs(root.left, {...hash}) + dfs(root.right, {...hash});
+}
+
+// Version 2
+var pseudoPalindromicPaths  = function(root) {
+  return dfs(root, {});
+};
+
+function dfs(root, hash) {
+  if (!root) {
+      return 0;
+  }
+  if (root.val in hash) {
+      delete hash[root.val];
+  } else {
+      hash[root.val] = 1;
+  }
+  // If node is leaf
+  if (!root.left && !root.right) {
+      return Object.keys(hash).length <= 1;
+  }
   let left = dfs(root.left, {...hash});
   let right = dfs(root.right, {...hash});
   return left + right;
