@@ -49,3 +49,45 @@ function dfs(root, hash) {
   let right = dfs(root.right, {...hash});
   return left + right;
 }
+
+// Version 3
+var pseudoPalindromicPaths  = function(root) {
+  let result = {count: 0};
+  dfs(root, result, '');
+  return result.count;
+};
+
+function dfs(root, result, str) {
+  if (!root) {
+      return null;
+  }
+  str += root.val;
+  // If node is leaf
+  if (!root.left && !root.right && isShiftedPalindrome(str)) {
+      result.count++;
+  }
+  dfs(root.left, result, str);
+  dfs(root.right, result, str);
+}
+
+function isShiftedPalindrome(str) {
+  let hash = {};
+  for (let i = 0; i < str.length; i++) {
+      let c = str[i];
+      if (!(c in hash)) {
+          hash[c] = 0;
+      }
+      hash[c]++;
+  }
+  
+  let count = 0;
+  for (let prop in hash) {
+      if (hash[prop] % 2 !== 0) {
+          count++;
+      }
+      if (count > 1) {
+          return false;
+      }
+  }
+  return count <= 1;
+}
