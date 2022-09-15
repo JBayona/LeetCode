@@ -10,7 +10,6 @@ function getLargestPiece(dimension, xCuts, yCuts) {
 
   let xMax = getMaxNumber(xCuts, x);
   let yMax = getMaxNumber(yCuts, y);
-
   return xMax * yMax;
 }
 
