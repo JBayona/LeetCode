@@ -50,6 +50,7 @@ n = nums.length
   [13,  0,  -,  -],
   [14,  -,  -,  -],
 ]
+
 Why only half a table? Because we only have m moves we can make, so snake a path
 from the origin to anywhere on the table in m moves to see how much of
 the table will be used for our calculations.
