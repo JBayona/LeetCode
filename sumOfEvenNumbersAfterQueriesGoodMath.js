@@ -20,6 +20,7 @@ https://leetcode.com/problems/sum-of-even-numbers-after-queries/
 */
 
 // Option 1 optimized
+// Time O(N)
 var sumEvenAfterQueries = function (nums, queries) {
   // First calculate the sum of even
   let evenSum = 0;
