@@ -45,3 +45,30 @@ var sumEvenAfterQueries = function (nums, queries) {
   }
   return result;
 };
+
+// Option 2
+// Brute force
+var sumEvenAfterQueries = function (nums, queries) {
+  let result = [];
+  for (let i = 0; i < queries.length; i++) {
+    let [val, index] = queries[i];
+    // Current val
+    let computedVal = nums[index] + val;
+    nums[index] = computedVal;
+    let tmp = sumArr(nums);
+    if (tmp % 2 === 0) {
+      result.push(tmp);
+    }
+  }
+  return result;
+};
+
+function sumArr(nums) {
+  let sum = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] % 2 === 0) {
+      sum += nums[i];
+    }
+  }
+  return sum;
+}
