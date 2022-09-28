@@ -10,6 +10,7 @@ function ListNode(val, node){
   this.next = node ? node : null;
 }
 
+// Time O(N)
 var removeNthFromEnd = function(head, n) {
     let slow = head;
     let fast = head;
