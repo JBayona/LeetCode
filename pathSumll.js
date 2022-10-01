@@ -5,7 +5,6 @@ Note: A leaf is a node with no children.
 
 Example:
 Given the below binary tree and sum = 22,
-
       5
      / \
     4   8
