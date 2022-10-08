@@ -8,6 +8,8 @@ The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
 https://leetcode.com/problems/3sum-closest/#/description
 */
 
+// Time O(N^2)
+// Two pointer
 var threeSumClosest = function (nums, target) {
   var len = nums.length;
   var minDiff = Number.MAX_VALUE;
