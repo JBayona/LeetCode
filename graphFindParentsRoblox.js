@@ -21,7 +21,6 @@
 // all individuals with exactly one parent
 
 // Sample input and output:
-
 // Output may be in any order
 
 // findNodesWithZeroAndOneParents(parentChildPairs) => [
