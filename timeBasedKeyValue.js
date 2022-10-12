@@ -10,7 +10,8 @@ If there are multiple such values, it returns the one with the largest timestamp
 If there are no values, it returns the empty string (""). 
 
 Example 1:
-Input: inputs = ["TimeMap","set","get","get","set","get","get"], inputs = [[],["foo","bar",1],["foo",1],["foo",3],["foo","bar2",4],["foo",4],["foo",5]]
+Input: inputs = ["TimeMap","set","get","get","set","get","get"],
+inputs = [[],["foo","bar",1],["foo",1],["foo",3],["foo","bar2",4],["foo",4],["foo",5]]
 Output: [null,null,"bar","bar",null,"bar2","bar2"]
 Explanation:   
 TimeMap kv;   
