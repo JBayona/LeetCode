@@ -34,7 +34,6 @@ TimeMap.set and TimeMap.get functions will be called a total of 120000 times (co
 
 https://leetcode.com/problems/time-based-key-value-store/
 */
-
 // Java
 class TimeMap {
     private Map<String, TreeMap<Integer, String>> map;
