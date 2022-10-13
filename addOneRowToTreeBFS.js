@@ -24,6 +24,7 @@ Output: [4,2,null,1,1,3,null,null,1]
 https://leetcode.com/problems/add-one-row-to-tree/description/
 */
 
+// BFS
 var addOneRow = function (root, val, depth) {
   // This is the root
   if (depth === 1) {
@@ -63,6 +64,24 @@ var addOneRow = function (root, val, depth) {
         node.right = newNodeRight;
       }
     }
+  }
+  return root;
+};
+
+// DFS
+var addOneRow = function(root, val, depth) {
+  if (depth === 1) {
+      return new TreeNode(val, root, null);
+  } else if (depth === 2) {
+      root.left = new TreeNode(val, root.left, null);
+      root.right = new TreeNode(val, null, root.right);
+  } else {
+      if (root.left != null) {
+          addOneRow(root.left, val, depth - 1);
+      }
+      if (root.right != null) {
+          addOneRow(root.right, val, depth - 1);
+      }
   }
   return root;
 };
