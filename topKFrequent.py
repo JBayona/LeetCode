@@ -13,15 +13,18 @@ https://leetcode.com/problems/top-k-frequent-elements/description/
 import heapq
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        c = Counter(nums);
+        # Count frequency
+	c = Counter(nums);
         # Min heap
         minHeap = []
         heapq.heapify(minHeap)
         
+	# In the heap add the value and the key
         for i in c:
             heapq.heappush(minHeap,(c[i], i))
-            
+	    # Remove the min on the heap if it's greater than k
             if len(minHeap) > k:
                 heapq.heappop(minHeap)
-                
+        
+ 	# From the tupple only keep the key
         return [x[1] for x in minHeap]
