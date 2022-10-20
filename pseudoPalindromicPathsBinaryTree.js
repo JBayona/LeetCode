@@ -8,24 +8,25 @@ https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/
 
 // Version 1
 var pseudoPalindromicPaths  = function(root) {
-  return dfs(root, {});
-};
-
-function dfs(root, hash) {
-  if (!root) {
-      return 0;
+    return dfs(root, {});
+  };
+  
+  function dfs(root, hash) {
+    if (!root) {
+        return 0;
+    }
+    if (root.val in hash) {
+        delete hash[root.val];
+    } else {
+        hash[root.val] = 1;
+    }
+    // If node is leaf
+    // The frequency must have at maximum 1 odd number
+    if (!root.left && !root.right) {
+        return Object.keys(hash).length <= 1 ? 1 : 0;
+    }
+    return dfs(root.left, {...hash}) + dfs(root.right, {...hash});
   }
-  if (root.val in hash) {
-      delete hash[root.val];
-  } else {
-      hash[root.val] = 1;
-  }
-  // If node is leaf
-  if (!root.left && !root.right) {
-      return Object.keys(hash).length <= 1;
-  }
-  return dfs(root.left, {...hash}) + dfs(root.right, {...hash});
-}
 
 // Version 2
 var pseudoPalindromicPaths  = function(root) {
