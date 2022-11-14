@@ -1,7 +1,9 @@
 /*
 Given a binary tree root and an integer target, delete all the leaf nodes with value target.
 
-Note that once you delete a leaf node with value target, if it's parent node becomes a leaf node and has the value target, it should also be deleted (you need to continue doing that until you can't). 
+Note that once you delete a leaf node with value target, if it's parent node
+becomes a leaf node and has the value target, it should also be
+deleted (you need to continue doing that until you can't). 
 
 Example 1:
 Input: root = [1,2,3,2,null,2,4], target = 2
