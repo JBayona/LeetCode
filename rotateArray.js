@@ -26,6 +26,7 @@ https://www.youtube.com/watch?v=gmu0RA5_zxs
 */
 
 var rotate = function(nums, k) {
+    // Left = ((0 - k) + nums.length)%k
     k = k % nums.length;
     
     reverse(nums, 0, nums.length - 1);
