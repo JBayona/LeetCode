@@ -35,6 +35,7 @@ var nearestExit = function (maze, entrance) {
 
   while (queue.length) {
     let { x, y, d, init } = queue.shift();
+    // We are not allowed to exit in the same entrance if it's border
     if (isExit(maze, x, y) && (x !== entrance[0] || y !== entrance[1])) {
       return d;
     }
