@@ -4,7 +4,6 @@ The Sudoku board could be partially filled, where empty cells are filled with th
 
 https://leetcode.com/problems/valid-sudoku/description/
 */
-
 // Option 1
 var isValidSudoku = function (board) {
   let set = new Set();
