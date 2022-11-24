@@ -6,6 +6,7 @@ https://leetcode.com/problems/valid-sudoku/description/
 */
 // Option 1
 // Time O(N^2)
+// Space O(N * M)
 var isValidSudoku = function (board) {
   let set = new Set();
   for (let i = 0; i < 9; i++) {
