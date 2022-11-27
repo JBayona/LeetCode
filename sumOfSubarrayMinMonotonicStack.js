@@ -18,6 +18,44 @@ Output: 444
 https://leetcode.com/problems/sum-of-subarray-minimums/description/
 */
 
+/*
+ [3,1,2,4]
+
+ 3 = 3
+ 3 1 = 1
+ 3 1 2 = 1
+ 3 1 2 4 = 1
+
+ 1 = 1
+ 1 2 = 1
+ 1 2 4 = 1
+
+ 2 = 2
+ 2 4 = 2
+
+ 4 = 4
+
+ Total = 17
+ */
+var sumSubarrayMins = function (arr) {
+  let answer = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let min = arr[i];
+    let j = i + 1;
+    // Add them here as well for those with one digit min
+    // like [3] [1] [2] [4]
+    answer += min;
+    while (j < arr.length) {
+      if (arr[j] < min) {
+        min = arr[j];
+      }
+      j++;
+      answer += min;
+    }
+  }
+  return answer % (Math.pow(10, 9) + 7);
+};
+
 // Time O(N)
 var sumSubarrayMins = function (arr) {
   let ans = 0;
