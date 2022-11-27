@@ -17,7 +17,6 @@ Output: 444
 
 https://leetcode.com/problems/sum-of-subarray-minimums/description/
 */
-
 /*
  [3,1,2,4]
 
