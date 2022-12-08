@@ -8,8 +8,7 @@ https://leetcode.com/problems/leaf-similar-trees/
 // Time O(N)
 var leafSimilar = function(root1, root2) {
     let array = [];
-    let arr = [];
-    
+    let arr = [];  
     // Iterate both trees
     preorder(root1, array);
     preorder(root2, arr);
