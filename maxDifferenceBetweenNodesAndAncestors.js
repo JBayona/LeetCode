@@ -6,7 +6,6 @@ different nodes A and B where V = |A.val - B.val| and A is an ancestor of B.
 or any child of A is an ancestor of B.)
 
 Example 1:
-
 Input: [8,3,10,1,6,null,14,null,null,4,7,13]
 Output: 7
 Explanation: 
