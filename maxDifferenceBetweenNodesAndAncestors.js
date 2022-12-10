@@ -7,7 +7,6 @@ or any child of A is an ancestor of B.)
 Example 1:
 Input: [8,3,10,1,6,null,14,null,null,4,7,13]
 Output: 7
-
 Explanation: 
 We have various ancestor-node differences, some of which are given below :
 |8 - 3| = 5
