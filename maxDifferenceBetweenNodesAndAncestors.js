@@ -13,6 +13,7 @@ We have various ancestor-node differences, some of which are given below :
 |3 - 7| = 4
 |8 - 1| = 7
 |10 - 13| = 3
+
 Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 7.
 
 https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/
