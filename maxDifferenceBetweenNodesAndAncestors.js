@@ -18,7 +18,6 @@ Among all possible differences, the maximum value of 7 is obtained by |8 - 1| = 
 
 https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/
 */
-
 // Run preorder and for each subtree keep track of
 // the maximum and minimum values seen to get the
 // calculations
