@@ -20,7 +20,7 @@ Dist(n1, n2) = Dist(root, n1) + Dist(root, n2) - (2 * Dist(root, lca))
 Dist(n1, n2) is the distance between n1 and n2.
 */
 
-// Global static variable
+// Global variable
 let d1 = -1;
 let d2 = -1;
 let dist = 0;
