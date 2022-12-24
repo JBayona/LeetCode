@@ -5,7 +5,6 @@
       4   5   6   7
                8
 */
-
 function Node(val, left, right) {
   this.val = val || 0;
   this.left = left || null;
