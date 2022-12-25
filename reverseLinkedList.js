@@ -2,19 +2,19 @@
 Reverse Linked List
 */
 
-function ListNode(val, next){
+function ListNode(val, next) {
   this.val = val;
   this.next = next || null;
 }
 
 // Iterative
 // Time O(N)
-function reverseList(list){
+function reverseList(list) {
   let current = list;
   let prev = null;
   let next;
 
-  while(current){
+  while (current) {
     next = current.next;
     current.next = prev;
     prev = current;
@@ -24,7 +24,41 @@ function reverseList(list){
 }
 
 // Recursive
-var reverseList = function(head) {
+/*
+1 -> 2 -> 3 -> 4 -> 5
+1 -> 2 -> 3 -> 4 -> 5 
+               ^   /
+                \ /
+1 -> 2 -> 3 -> 4   5
+               ^   /
+                \ /
+1 -> 2 -> 3     4   5
+           ^   /^  /
+            \ /  \ /
+*/
+let reverse = function (head) {
+  //  no need to reverse if head is null
+  //  or there is only 1 node.
+  if (!head || !head.next) {
+    return head;
+  }
+
+  // Recursive call
+  let reversedHead = reverse(head.next);
+
+  // Reverse the direction of the next pointer of the last element
+  // of the un-reversed part of the list, so that it points back
+  // to the second-last element"
+
+  head.next.next = head;
+  // Set the second-last node as the new last element of the
+  // un-reversed part of the list
+  head.next = null;
+
+  return reversedHead;
+};
+
+/*var reverseList = function(head) {
   if(!head || !head.next) {
       return head;
   }
@@ -55,7 +89,11 @@ function reverse(node, prev) {
   let next = node.next;
   node.next = prev;
   return reverse(next, node);
-}
+}*/
 
-list = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5)))));
-console.log(reverseList(list));
+list = new ListNode(
+  1,
+  new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))
+);
+// console.log(reverseList(list));
+console.log(reverse(list));
