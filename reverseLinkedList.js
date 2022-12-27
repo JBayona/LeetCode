@@ -1,7 +1,6 @@
 /*
 Reverse Linked List
 */
-
 function ListNode(val, next) {
   this.val = val;
   this.next = next || null;
