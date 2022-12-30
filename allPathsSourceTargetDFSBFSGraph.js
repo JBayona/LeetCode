@@ -38,6 +38,7 @@ var allPathsSourceTarget = function(graph) {
     queue.push([0]);
     while(queue.length) {
         let path = queue.shift();
+        // The latest node in the path.
         let node = path[path.length - 1];
         if(node == graph.length-1) {
             result.push(path)
