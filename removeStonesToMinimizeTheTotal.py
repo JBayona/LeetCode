@@ -10,7 +10,6 @@ function Node(val, left, right) {
   this.left = left || null;
   this.right = right || null;
 }
-
 /*
 Dist(n1, n2) = Dist(root, n1) + Dist(root, n2) - (2 * Dist(root, lca))
 'n1' and 'n2' are the two given keys
