@@ -7,7 +7,6 @@ node i (i.e., there is a directed edge from node i to node graph[i][j]).
 
 https://leetcode.com/problems/all-paths-from-source-to-target/
 */
-
 // Time O(N)
 // Space O(N)
 var allPathsSourceTarget = function(graph) {
