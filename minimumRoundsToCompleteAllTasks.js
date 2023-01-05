@@ -24,7 +24,6 @@ complete either 2 or 3 tasks of the same difficulty level. Hence, you cannot com
 
 https://leetcode.com/problems/minimum-rounds-to-complete-all-tasks/description/
 */
-
 // Time O(N)
 // Space O(N)
 var minimumRounds = function (tasks) {
