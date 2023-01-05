@@ -37,7 +37,6 @@ Step 1: Find the middle of the list
 Step 2: Sort using merge sort (break down until we have only one node)
 Step 3: Merge sorted
 */
-
 var sortList = function(head) {
     if(head === null || head.next === null) return head;
     
