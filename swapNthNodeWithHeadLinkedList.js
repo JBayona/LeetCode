@@ -1,6 +1,5 @@
 /*
 Given the head of a singly linked list and 'n', swap the head with the nth node. Return the head of the new linked list.
-
 Let’s take a look at an example where n is equal to 4
 7 -> 14 -> 21 -> 28 -> 35 -> 42 -> null, n = 4
 28 -> 14 -> 21 -> 7 -> 35 -> 42 -> null
