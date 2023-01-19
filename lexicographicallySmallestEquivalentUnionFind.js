@@ -88,3 +88,51 @@ function union(nodeA, nodeB, parent) {
     parent[parentA] = parentB;
   }
 }
+
+/*
+class Solution {
+    public String smallestEquivalentString(String s1, String s2, String baseStr) {
+        Map<Character, List<Character>> charMap = new HashMap<>();
+
+        // { a: [c] c:[a], b: []}
+        for (int i=0; i < s1.length(); i++){
+            char a = s1.charAt(i);
+            char b = s2.charAt(i);
+            List<Character> listA = charMap.getOrDefault(a, new ArrayList<>());
+            List<Character> listB = charMap.getOrDefault(b, new ArrayList<>());
+            listA.add(b);
+            listB.add(a);
+            charMap.put(a, listA);
+            charMap.put(b, listB);
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < baseStr.length(); i++) {
+            char ch = getMin(baseStr.charAt(i), charMap);
+            sb.append(ch);
+        }
+        return sb.toString();
+    }
+
+    private char getMin(char a, Map<Character, List<Character>> map){
+        Stack<Character> stack = new Stack<>();
+        Set<Character> visited = new HashSet<>();
+        stack.push(a);
+        char min = 'z';
+        while(!stack.isEmpty()) {
+            char curr = stack.pop();
+            visited.add(curr);
+            List<Character> childs = map.get(curr);
+            min = min > curr ? curr : min;
+            if(childs != null) {
+                for(Character ch : childs){
+                    if(!visited.contains(ch)){
+                        stack.push(ch);
+                    }
+                }
+            }
+        }
+        return min;
+    }
+}
+*/
