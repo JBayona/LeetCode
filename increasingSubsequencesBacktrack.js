@@ -13,28 +13,30 @@ https://leetcode.com/problems/increasing-subsequences/
 
 */
 
-var findSubsequences = function(nums) {
+var findSubsequences = function (nums) {
   let result = [];
   let tmp = [];
-  let hash = {};
+  let hash = new Map();
   let start = 0;
   helper(result, tmp, start, nums, hash);
   return result;
 };
 
 function helper(result, tmp, start, nums, hash) {
-  if(tmp.length >= 2) {
+  if (tmp.length >= 2) {
     // Verify there's no duplicates
-    if(!(tmp.join('') in hash)) {
-      hash[tmp.join('')] = true
+    if (!hash.get(tmp.join(""))) {
+      hash.set(tmp.join(""), true);
       // concat() to lose reference
       result.push(tmp.concat());
-   }
+    }
   }
 
-  for(let i = start; i < nums.length; i++) {
-    // This will allow us to have sequence, greater than the past element
-    if(tmp.length !== 0 && tmp[tmp.length - 1] > nums[i]) continue;
+  for (let i = start; i < nums.length; i++) {
+    // The elements should be non-decreasing
+    if (tmp.length !== 0 && tmp[tmp.length - 1] > nums[i]) {
+      continue;
+    }
     tmp.push(nums[i]);
     helper(result, tmp, i + 1, nums, hash);
     tmp.pop();
