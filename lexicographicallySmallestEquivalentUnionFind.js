@@ -8,6 +8,7 @@ Equivalent characters follow the usual rules of any equivalence relation:
 Reflexivity: 'a' == 'a'.
 Symmetry: 'a' == 'b' implies 'b' == 'a'.
 Transitivity: 'a' == 'b' and 'b' == 'c' implies 'a' == 'c'.
+
 For example, given the equivalency information from s1 = "abc" and s2 = "cde", "acd" and "aab"
 are equivalent strings of baseStr = "eed", and "aab" is the lexicographically smallest equivalent string of baseStr.
 
