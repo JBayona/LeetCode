@@ -6,7 +6,6 @@ words in the given array.
 
 Example:
 Input: ["cat","cats","catsdogcats","dog","dogcatsdog","hippopotamuses","rat","ratcatdogcat"]
-
 Output: ["catsdogcats","dogcatsdog","ratcatdogcat"]
 
 Explanation: "catsdogcats" can be concatenated by "cats", "dog" and "cats"; 
