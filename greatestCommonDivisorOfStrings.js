@@ -19,7 +19,7 @@ Output: ""
 https://leetcode.com/problems/greatest-common-divisor-of-strings/description/
 */
 
-// Time Complexity O(N)
+// Time Complexity O(LogN)
 var gcdOfStrings = function (str1, str2) {
   if (str1 + str2 !== str2 + str1) {
     return "";
