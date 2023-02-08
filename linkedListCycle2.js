@@ -36,8 +36,7 @@ var detectCycle = function(head) {
     // No loops found
     if(fast == null || fast.next == null) {
         return null;
-    }
-    
+    }    
     // Set fast to the head and try to meet slow
     slow = head;
     while(slow != fast) {
