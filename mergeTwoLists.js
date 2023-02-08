@@ -4,7 +4,6 @@ The new list should be made by splicing together the nodes of the first two list
 
 https://leetcode.com/problems/merge-two-sorted-lists/#/description
 */
-
 function ListNode(val, node) {
      this.val = val;
     this.next = node? node : null;
