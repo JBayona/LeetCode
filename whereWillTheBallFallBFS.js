@@ -46,6 +46,7 @@ var findBall = function (grid) {
   let balls = grid[0].length;
 
   let result = new Array(balls).fill(-1);
+  // Throw all the balls.
   for (let i = 0; i < grid[0].length; i++) {
     result[i] = bfs(grid, 0, i);
   }
