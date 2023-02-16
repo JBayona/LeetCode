@@ -49,6 +49,10 @@ function longestCommonSubstring(str1, str2) {
     }
   }
 
+  // We can get the string ending from the "max" as in that
+  // index, the longest common substring happens, so we need
+  // to look back and push for the front to get the string
+  // in the same order
   //Get string
   let tmp = max;
   while(tmp > 0) {
