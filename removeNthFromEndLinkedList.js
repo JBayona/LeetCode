@@ -11,6 +11,7 @@ function ListNode(val, node){
 }
 
 // Time O(N)
+// Space O(1)
 var removeNthFromEnd = function(head, n) {
     let slow = head;
     let fast = head;
