@@ -13,7 +13,6 @@ https://leetcode.com/problems/sort-list/description/
 
 */
 
-
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -35,56 +34,54 @@ Step 1: Find the middle of the list
 Step 2: Sort using merge sort (break down until we have only one node)
 Step 3: Merge sorted
 */
-var sortList = function(head) {
-    if(head === null || head.next === null) return head;
-    
-    // Step 1: Find the middle of the list
-    // MiddleNode is the left part of the list
-    let middleNode = findMiddleNode(head);
-    //Right head of the list
-    let rightHead = middleNode.next;
-    
-    // Remove reference to the right head
-    middleNode.next = null;
-    
-    return mergeSort(sortList(middleNode), sortList(rightHead));
+var sortList = function (head) {
+  if (head === null || head.next === null) return head;
+
+  // step 1. cut the list to two halves
+  let prev = null;
+  let slow = head;
+  let fast = head;
+
+  // Split the list in two
+  // slow has the middle node always
+  while (fast && fast.next) {
+    prev = slow;
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  prev.next = null;
+
+  // step 2. sort each half
+  let l1 = sortList(head);
+  let l2 = sortList(slow);
+
+  // step 3. merge l1 and l2
+  return mergeSort(l1, l2);
 };
-
-
-function findMiddleNode(head) {
-    // It's necessary a dummy Node to get the mid value
-    // or we can use a new conditional fast.next.next
-    let newHeadDummy = new ListNode(0);
-    newHeadDummy.next = head;
-    
-    let slow = newHeadDummy;
-    let fast = newHeadDummy;
-    
-    while(slow && fast && fast.next) {
-        slow = slow.next;
-        fast = fast.next.next;
-    }
-    return slow;
-}
 
 // Merge and Sort
 function mergeSort(left, right) {
-    //Dummy node is required to insert nodes at the very beginning
-    let dummy = new ListNode(0);
-    let tail = dummy;
-    
-    while(left && right) {
-        if(left.val < right.val) {
-            tail.next = left;
-            left = left.next
-        } else {
-            tail.next = right;
-            right = right.next;
-        }
-        tail = tail.next;
+  //Dummy node is required to insert nodes at the very beginning
+  let dummy = new ListNode(0);
+  let tail = dummy;
+
+  while (left && right) {
+    if (left.val < right.val) {
+      tail.next = left;
+      left = left.next;
+    } else {
+      tail.next = right;
+      right = right.next;
     }
-    
-    tail.next = left || right;
-    return dummy.next;
-    
+    tail = tail.next;
+  }
+
+  if (left) {
+    tail.next = left;
+  }
+
+  if (right) {
+    tail.next = right;
+  }
+  return dummy.next;
 }
