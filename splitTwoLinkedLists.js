@@ -5,6 +5,7 @@ function ListNode(val, node) {
   this.val = val;
   this.next = node ? node : null;
 }
+
 // Time O(N)
 function split(head) {
   if (!head) {
