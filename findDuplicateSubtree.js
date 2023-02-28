@@ -35,7 +35,9 @@ var findDuplicateSubtrees = function(root) {
     for(let elem in map) {
         // We only need one node, the array has multiple same nodes
         let node = map[elem][0];
-        if(map[elem].length > 1) {
+        // If there are more than 1 it means that there are repeated
+	// subtress for the given key so we need to track them and only return one.
+	if(map[elem].length > 1) {
             result.push(node);
         }
     }
