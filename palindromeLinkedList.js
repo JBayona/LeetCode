@@ -51,7 +51,6 @@ function reverse(head) {
     prev = current;
     current = next;
   }
-
   return prev;
 }
 
