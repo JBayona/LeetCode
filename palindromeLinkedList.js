@@ -37,6 +37,7 @@ var isPalindrome = function (head) {
     mid = mid.next;
     current = current.next;
   }
+
   return true;
 };
 
