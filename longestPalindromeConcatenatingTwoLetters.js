@@ -76,7 +76,6 @@ var longestPalindrome = function (words) {
   return result;
 };
 
-
 // input = ["lc", "cl", "gg"]; // 6
 // input = ["ab","ty","yt","lc","cl","ab"]; // 8
 // input = ["cc","ll","xx"]; // 2
