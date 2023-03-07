@@ -5,7 +5,6 @@ For each kind of duplicate subtrees, you only need to return the root node of an
 Two trees are duplicate if they have the same structure with same node values.
 
 Example 1:
-
         1
        / \
       2   3
