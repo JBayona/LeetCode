@@ -1,6 +1,4 @@
 /*
-
-
 - /foo
   - /images
     - /foo.png  <------.
