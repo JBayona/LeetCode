@@ -15,6 +15,23 @@ Explanation: The missing positive integers are [5,6,7,...]. The 2nd missing posi
 https://leetcode.com/problems/kth-missing-positive-number/description/
 */
 
+// Option 1 Binary Search
+// Time O(LogN)
+var findKthPositive = function (arr, k) {
+  let left = 0;
+  let right = arr.length - 1;
+  while (left <= right) {
+    let mid = Math.floor(left + (right - left) / 2);
+    if (arr[mid] - mid - 1 < k) {
+      left = mid + 1;
+    } else {
+      right = mid - 1;
+    }
+  }
+  return left + k;
+};
+
+// Option 2
 // Time O(N)
 // Space O(N)
 var findKthPositive = function (arr, k) {
