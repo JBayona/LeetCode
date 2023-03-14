@@ -9,7 +9,6 @@ Notice that you should not modify the linked list.
 
 https://leetcode.com/problems/linked-list-cycle-ii/
 */
-
 // Option 1
 // Time O(N)
 // Space O(1)
