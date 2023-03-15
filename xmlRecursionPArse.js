@@ -1,6 +1,5 @@
 
 import { html, render } from 'https://unpkg.com/htm/preact/standalone.module.js'
-
 export async function getProjectTree() {
   const response = await fetch('./project/project-structure.xml')
   const xmlStr = await response.text()
