@@ -10,7 +10,6 @@ Output: [8,5,10,1,7,null,12]
 
 https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/
 */
-
 /*
 The first element of preorder traversal is always root. We first construct the root.
 Then we find the index of first element which is greater than root. Let the index be ‘i’. The values
