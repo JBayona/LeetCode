@@ -9,7 +9,6 @@ The score of a path between two cities is defined as the minimum distance of a r
 Return the minimum possible score of a path between cities 1 and n.
 
 Note:
-
 A path is a sequence of roads between two cities.
 It is allowed for a path to contain the same road multiple times, and you can visit cities 1
 and n multiple times along the path.
