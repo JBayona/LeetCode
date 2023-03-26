@@ -5,7 +5,6 @@ is a bidirectional road between cities ai and bi with a distance equal to distan
 The cities graph is not necessarily connected.
 
 The score of a path between two cities is defined as the minimum distance of a road in this path.
-
 Return the minimum possible score of a path between cities 1 and n.
 Note:
 A path is a sequence of roads between two cities.
@@ -15,7 +14,6 @@ The test cases are generated such that there is at least one path between 1 and 
 
 https://leetcode.com/problems/minimum-score-of-a-path-between-two-cities/description/
 */
-
 var minScore = function (n, roads) {
   // Use 1 index, the 0 position is not used
 
@@ -27,7 +25,6 @@ var minScore = function (n, roads) {
     graph[from].push([to, distance]);
     graph[to].push([from, distance]);
   }
-
   /*
    // index is the node and [2, 9] from node, weight
       [
