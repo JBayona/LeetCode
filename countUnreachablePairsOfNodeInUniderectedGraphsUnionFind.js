@@ -8,6 +8,8 @@ Return the number of pairs of different nodes that are unreachable from each oth
 https://leetcode.com/problems/count-unreachable-pairs-of-nodes-in-an-undirected-graph/description/
 */
 
+// Union Find
+// Option 1
 var countPairs = function (n, edges) {
   let parent = {};
   // Set parent to their own parent
@@ -59,4 +61,49 @@ function findParent(node, parent) {
     return node;
   }
   return findParent(parent[node], parent);
+}
+
+// Option 2
+// Time O(|E| + |V|)
+var countPairs = function (n, edges) {
+  let adj = new Array(n);
+  for (let i = 0; i < n; i++) {
+    adj[i] = [];
+  }
+  for (let i = 0; i < edges.length; i++) {
+    let from = edges[i][0];
+    let to = edges[i][1];
+    adj[from].push(to);
+    adj[to].push(from);
+  }
+
+  let sum = n;
+  let res = 0;
+  let set = new Set();
+  for (let i = 0; i < n; i++) {
+    if (!set.has(i)) {
+      set.add(i);
+      let count = bfs(i, set, adj, 0);
+      sum -= count;
+      res += sum * count;
+    }
+  }
+  return res;
+};
+
+function bfs(i, vis, adj, count) {
+  let queue = [];
+  queue.push(i);
+  count++;
+  while (queue.length) {
+    let curr = queue.shift();
+    for (let adjnode of adj[curr]) {
+      if (!vis.has(adjnode)) {
+        queue.push(adjnode);
+        count++;
+        vis.add(adjnode);
+      }
+    }
+  }
+  return count;
 }
