@@ -12,9 +12,7 @@ Return the board when no more squares will be revealed.
  
 
 Example 1:
-
 Input: 
-
 [['E', 'E', 'E', 'E', 'E'],
  ['E', 'E', 'M', 'E', 'E'],
  ['E', 'E', 'E', 'E', 'E'],
