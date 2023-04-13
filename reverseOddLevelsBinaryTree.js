@@ -46,3 +46,26 @@ var reverseOddLevels = function (root) {
   }
   return root;
 };
+
+// DFS
+// Time: O(N)
+// Space: O(N)
+var reverseOddLevels = function(root) {
+  // We call the function from lvl 0, and everything starts from lvl 1
+  inorder(root.left, root.right, 1);
+  return root;
+};
+
+function inorder(left, right, level) {
+  if(!left || !right) {
+      return;
+  }
+  // Odd level
+  if (level % 2 === 1) {
+      let tmp = left.val;
+      left.val = right.val;
+      right.val = tmp;
+  }
+  inorder(left.left, right.right, level + 1);
+  inorder(left.right, right.left, level + 1);
+}
