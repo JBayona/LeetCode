@@ -35,7 +35,6 @@ function getHeight(t) {
         /\
         8 9
   */
-
 tree = new Tree(
   1,
   new Tree(2, new Tree(4), new Tree(5, new Tree(8), new Tree(9))),
