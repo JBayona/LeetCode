@@ -4,9 +4,11 @@ function Tree(val, left, right){
   this.left = left ? left : null;
   this.right = right ? right : null;
 }
+
 function findHeight(t){
   return getHeight(t);
 }
+
 https://leetcode.com/problems/maximum-depth-of-binary-tree/description/
 /*Recursion para obtener el height*/
 function Tree(val, left, right) {
