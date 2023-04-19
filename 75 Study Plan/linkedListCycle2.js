@@ -7,6 +7,7 @@ connected to.
 Note that pos is not passed as a parameter.
 Notice that you should not modify the linked list.
 
+
 https://leetcode.com/problems/linked-list-cycle-ii/
 */
 // Option 1
@@ -29,8 +30,7 @@ var detectCycle = function(head) {
         if(slow == fast) {
             break;
         }
-    }
-    
+    }    
     // No loops found
     if(fast == null || fast.next == null) {
         return null;
