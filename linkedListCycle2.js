@@ -5,6 +5,7 @@ continuously following the next pointer.
 Internally, pos is used to denote the index of the node that tail's next pointer is
 connected to.
 Note that pos is not passed as a parameter.
+
 Notice that you should not modify the linked list.
 
 https://leetcode.com/problems/linked-list-cycle-ii/
