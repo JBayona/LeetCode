@@ -3,7 +3,6 @@ Given an array nums, we call (i, j) an important reverse pair if i < j and nums[
 You need to return the number of important reverse pairs in the given array.
 
 Example1:
-
 Input: [1,3,2,3,1]
 Output: 2
 Example2:
