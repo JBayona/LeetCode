@@ -16,7 +16,6 @@ All the numbers in the input array are in the range of 32-bit integer.
 
 https://leetcode.com/problems/reverse-pairs/
 """
-
 import bisect
 class Solution:
     def reversePairs(self, nums: List[int]) -> int:
