@@ -20,7 +20,7 @@ You can assume that no duplicates edges will appear in edges. Since all edges ar
 Multiple approaches:
 -https://zhuhan0.blogspot.com/2017/07/leetcode-261-graph-valid-tree.html
 
-Para ser un árbol válido debe cumplitr con las siguientes características:
+Para ser un árbol válido debe cumplir con las siguientes características:
 1. Estar conectado.
 2. No debe haber ciclos.
 */
