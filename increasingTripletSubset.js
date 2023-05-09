@@ -19,7 +19,6 @@ Explanation: The triplet (3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 
 
 https://leetcode.com/problems/increasing-triplet-subsequence/description/
 */
-
 // Time O(N)
 // Space O(1)
 var increasingTriplet = function (nums) {
