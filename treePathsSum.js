@@ -16,7 +16,6 @@ For example consider the following Binary Tree.
   6->3->5->7               6357
   6->3->5->4               6354
   6->5>4                    654   
-
 Answer = 632 + 6357 + 6354 + 654 = 13997 
 
 https://www.geeksforgeeks.org/sum-numbers-formed-root-leaf-paths/
