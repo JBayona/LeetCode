@@ -2,7 +2,6 @@
 Given a binary tree, where every node value is a Digit from 1-9.
 Find the sum of all the numbers which are formed from root to leaf paths.
 For example consider the following Binary Tree.
-
                                           6
                                       /      \
                                     3          5
