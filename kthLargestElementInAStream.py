@@ -28,29 +28,34 @@ https://leetcode.com/problems/kth-largest-element-in-a-stream/
 # Heap pop O(1)
 # Time O(N Log N) # Array into a heap is N
 # Space O(N) The heap itself
-
-
 class KthLargest:
     """
     Use a min heap with size k, the k element will be the kth largest as we are using a
     min heap, the min heap will pop the smallest element and the max heap will pop the
     largest element
     """
-
     def __init__(self, k: int, nums: List[int]):
         self.k = k
         self.heap = nums
         heapq.heapify(self.heap)
 
+        # This will sort the heap from smaller to greater elements, i.e
+        # 2, 4, 5, 8
+        
         # We don't really care about numbers grear than our K largest.
         while len(self.heap) > k:
             heapq.heappop(self.heap)
+        
 
     def add(self, val: int) -> int:
+        # This will add every element and if whenever there´s an element
+        # exceding our size, we need to remove and return always the first
+        # element
         heapq.heappush(self.heap, val)
         if len(self.heap) > self.k:
             heapq.heappop(self.heap)
         return self.heap[0]
+        
 
 
 # Your KthLargest object will be instantiated and called as such:
