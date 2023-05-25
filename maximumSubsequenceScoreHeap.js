@@ -56,6 +56,9 @@ var maxScore = function (nums1, nums2, k) {
     sum += num1;
     heap.enqueue(num1);
 
+    // Everytime we reach the size k, we know that maxN2 will
+    // hold the smallest value of the subsequence as it was sorted
+    // in decreasing order
     if (heap.size() === k) {
       res = Math.max(res, sum * maxN2);
     }
