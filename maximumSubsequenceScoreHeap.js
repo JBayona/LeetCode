@@ -16,6 +16,7 @@ deleting some or no elements.
 Example 1:
 Input: nums1 = [1,3,3,2], nums2 = [2,1,3,4], k = 3
 Output: 12
+
 Explanation: 
 The four possible subsequence scores are:
 - We choose the indices 0, 1, and 2 with score = (1+3+3) * min(2,1,3) = 7.
