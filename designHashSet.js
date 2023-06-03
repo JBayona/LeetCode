@@ -6,6 +6,7 @@ Implement MyHashSet class:
 -void remove(key) Removes the value key in the HashSet. If key does not exist in the HashSet, do nothing.
  
 Example 1:
+
 Input
 ["MyHashSet", "add", "add", "contains", "contains", "add", "contains", "remove", "contains"]
 [[], [1], [2], [1], [3], [2], [2], [2], [2]]
