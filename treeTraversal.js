@@ -29,7 +29,6 @@ var preorderTraversal = function(root) {
 };
 
 // Recursive
-
 var preorderTraversal = function(root) {
     let result = [];
     preorder(root, result);
