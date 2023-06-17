@@ -30,7 +30,6 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 
 https://leetcode.com/problems/word-ladder/
 */
-
 // BFS
 var ladderLength = function(beginWord, endWord, wordList) {
     // Variable used to mark the words that we have seen with one
