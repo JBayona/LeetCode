@@ -7,7 +7,6 @@ start from any cell and end at any cell. Since the answer may be very large, ret
 it modulo 109 + 7.
 
 Two paths are considered different if they do not have exactly the same sequence of visited cells.
-
 Example 1:
 Input: grid = [[1,1],[3,4]]
 Output: 8
