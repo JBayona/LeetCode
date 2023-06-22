@@ -24,6 +24,27 @@ Output: 6
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/description/
 */
 
+var maxProfit = function (prices, fee) {
+  if (prices.length <= 1) {
+    return 0;
+  }
+  let buy = new Array(prices.length);
+  let sell = new Array(prices.length);
+  // At day 0 we cannot sell as we have not bought the stock
+  // then state is -prices[0], and sell is 0 as we have not bought
+  buy[0] = -prices[0];
+  sell[0] = 0;
+  for (let i = 1; i < prices.length; i++) {
+    // At day i, we may buy stock (from previous sell status)
+    // or do nothing (from previous buy status):
+    buy[i] = Math.max(buy[i - 1], sell[i - 1] - prices[i]);
+    // At day i, we may sell stock (from previous buy status)
+    // or keep holding (from previous sell status):
+    sell[i] = Math.max(sell[i - 1], buy[i - 1] + prices[i] - fee);
+  }
+  return sell[prices.length - 1];
+};
+
 // Three conditions:
 // Buy
 // Sell
