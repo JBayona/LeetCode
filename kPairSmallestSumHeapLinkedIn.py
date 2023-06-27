@@ -21,28 +21,34 @@ Explanation: All possible pairs are returned from the sequence: [1,3],[2,3]
 https://leetcode.com/problems/find-k-pairs-with-smallest-sums/
 """
 # Time O(K Log N)
-
-
+# Time O(K Log N)
 class Solution:
     def kSmallestPairs(self, nums1: List[int], nums2: List[int], k: int) -> List[List[int]]:
         minHeap = []
         res = []
-        # Iterate upto k because the result will not be out of this range
+		# Iterate up to k because the result will not be out of this range
         for i in range(min(k, len(nums1))):
+            # Insert in the tuples the first k elements which is the
+            # nums[i] elements from the first array + arrays[0] of the second element
+            # additionally add the "i" index for first element and "0" for the second
             heappush(minHeap, (nums1[i] + nums2[0], i, 0))
 
+        print(minHeap)
+        
         counter = 1
-        # Only go upto k
+		# Only go upto k
         while minHeap and counter <= k:
+            # Sum i first array, i second array
             _, i1, i2 = heappop(minHeap)
-
+            
             res.append([nums1[i1], nums2[i2]])
-
+            
             nxt_i2 = i2 + 1
             # If next element available for the nums2 then add it to the heap
-            if len(nums2) > nxt_i2:
+            if nxt_i2 < len(nums2):
+                # Generate combinations for the second array
                 heappush(minHeap, (nums1[i1] + nums2[nxt_i2], i1, nxt_i2))
-
-            counter += 1
+            
+            counter+=1
 
         return res
