@@ -17,7 +17,6 @@ the other has 0.5 * 0.5 = 0.25.
 
 https://leetcode.com/problems/path-with-maximum-probability/
 */
-
 var maxProbability = function(n, edges, succProb, start, end) {
     let graph = new Array(n);
     for(let i = 0; i < graph.length; i++) {
