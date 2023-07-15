@@ -15,7 +15,6 @@ https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbor
 
 var findTheCity = function (n, edges, distanceThreshold) {
   let graph = creategraph(edges);
-
   let city = 0;
   // Min can´t be greater than n+1
   let min = n + 1;
