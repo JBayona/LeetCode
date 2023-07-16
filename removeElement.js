@@ -15,16 +15,32 @@ https://leetcode.com/problems/remove-element/description/
 
 */
 
-const removeElements = function(nums, val){
-  for(let i = 0; i < nums.length; i++){
-    if(nums[i] === val){
-      nums.splice(i,1);
+// Option 1
+// Time O(N)
+// Space O(1)
+var removeElement = function (nums, val) {
+  let index = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] !== val) {
+      let tmp = nums[index];
+      nums[index] = nums[i];
+      nums[i] = tmp;
+      index++;
+    }
+  }
+  return index;
+};
+
+const removeElements = function (nums, val) {
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === val) {
+      nums.splice(i, 1);
       i -= 1;
     }
   }
   return nums;
-}
+};
 
-array = [3,3];
+array = [3, 3];
 val = 3;
 console.log(removeElements(array, val));
