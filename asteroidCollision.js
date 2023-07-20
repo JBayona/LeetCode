@@ -15,6 +15,7 @@ https://leetcode.com/problems/asteroid-collision/description/
 // Space O(N)
 var asteroidCollision = function (asteroids) {
   let stack = [];
+  // Last element of the stack
   stack.push(asteroids.pop());
   // Handle possible collisions
   while (asteroids.length) {
@@ -25,6 +26,7 @@ var asteroidCollision = function (asteroids) {
       // Asteroid with negative sign is winnning
       if (Math.abs(b) > Math.abs(a)) {
         asteroids.pop();
+        // Both are destroyed
       } else if (Math.abs(b) === Math.abs(a)) {
         asteroids.pop();
         stack.pop();
@@ -32,12 +34,13 @@ var asteroidCollision = function (asteroids) {
         stack.pop();
       }
     } else {
-      // Both have the same direction
+      // There's no collisions
       stack.push(asteroids.pop());
     }
   }
 
-  // Final result
+  // Final result, reformat the result as the
+  // stack is formatted in reverse order
   let len = stack.length;
   for (let i = 0; i < len; i++) {
     asteroids.push(stack.pop());
