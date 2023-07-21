@@ -11,7 +11,6 @@ If both are the same size, both will explode. Two asteroids moving in the same d
 
 https://leetcode.com/problems/asteroid-collision/description/
 */
-
 // Time O(N)
 // Space O(N)
 var asteroidCollision = function (asteroids) {
