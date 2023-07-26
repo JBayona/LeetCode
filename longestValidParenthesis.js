@@ -14,7 +14,6 @@ Explanation: The longest valid parentheses substring is "()()"
 
 https://leetcode.com/problems/longest-valid-parentheses/
 */
-
 var longestValidParentheses = function(s) {
     if (!s || s.length === 0) {
         return 0;
