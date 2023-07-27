@@ -43,7 +43,8 @@ var largestSumOfAverages = function(nums, k) {
   for (let partition = 0; partition < k-1; partition++) {
       for (let i = 0; i < nums.length; i++) {
           for (let j = i + 1; j < nums.length; j++) {
-              dp[i] = Math.max(dp[i], ((prefixSum[j] - prefixSum[i]) / (j-i)) + dp[j]);
+            // Greater elements will be moved to the first elements
+            dp[i] = Math.max(dp[i], ((prefixSum[j] - prefixSum[i]) / (j-i)) + dp[j]);
           }
       }
   }
