@@ -17,6 +17,40 @@ That partition would lead to a score of 5 + 2 + 6 = 13, which is worse.
 https://leetcode.com/problems/largest-sum-of-averages/description/
 */
 
+// Option 1
+var largestSumOfAverages = function(nums, k) {
+  let dp = new Array(nums.length).fill(0);
+  let prefixSum = new Array(nums.length + 1).fill(0);
+
+  // Prefix sum
+  // [ 0, 9, 10, 12, 15, 24 ]
+  for (let i = 1; i < nums.length + 1; i++) {
+      prefixSum[i] = prefixSum[i-1] + nums[i-1];
+  }
+
+  // Average
+  // (24 - 0) / 5 = 4.8
+  // (24 - 9) / 4 = 3.75
+  // (24 - 10) / 3 = 4.6666
+  // (24 - 12) / 2 = 6
+  // (24 - 15) / 1 = 9
+  // dp = [ 4.8, 3.75, 4.666666666666667, 6, 9 ]
+  for (let i = 0; i < nums.length; i++) {
+      dp[i] = (prefixSum[nums.length] - prefixSum[i]) / (nums.length - i);
+  }
+  
+  // We only need at maximum k - 1 partition (starting 0 index)
+  for (let partition = 0; partition < k-1; partition++) {
+      for (let i = 0; i < nums.length; i++) {
+          for (let j = i + 1; j < nums.length; j++) {
+              dp[i] = Math.max(dp[i], ((prefixSum[j] - prefixSum[i]) / (j-i)) + dp[j]);
+          }
+      }
+  }
+  return dp[0];
+};
+
+// Option 2
 /*
 N=5 K=1, max elements in one group is 5
 N=5 K=2, max elements in one group is 4
