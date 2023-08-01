@@ -3,7 +3,6 @@ Given two integers n and k, return all possible combinations of k numbers out of
 
 For example,
 If n = 4 and k = 2, a solution is:
-
 [
   [2,4],
   [3,4],
@@ -17,13 +16,14 @@ https://leetcode.com/problems/combinations/description/
 */
 
 var combine = function(n, k) {
-    var result = [];
+    let result = [];
     helper(result, [], 1, n, k);
     return result;
 };
 
 function helper(result, currArr, start, n, k){
-  if(currArr.length === k){
+  // Base Case 
+ if(currArr.length === k){
     result.push(currArr);
     return currArr;
   }
