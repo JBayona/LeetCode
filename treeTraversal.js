@@ -144,7 +144,6 @@ var postorderTraversal = function(root) {
     return result;
 };
 
-
 // Recursive
 var postorderTraversal = function(root) {
     let result = [];
