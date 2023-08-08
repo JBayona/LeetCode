@@ -10,7 +10,6 @@ You may assume no duplicate exists in the array.
 https://leetcode.com/problems/search-in-rotated-sorted-array/description/
 
 */
-
 // Option 1
 var search = function(nums, target) {
   //we have to search for the element where the rotation end
