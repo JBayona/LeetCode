@@ -14,6 +14,32 @@ The array may contain duplicates.
 https://leetcode.com/problems/search-in-rotated-sorted-array-ii/description/
 */
 
+// Option 1
+// Time O(LogN)
+var search = function(nums, target) {
+    let start = 0;
+    let end = nums.length - 1;
+        
+    while (start <= end) {
+        let mid = Math.floor((start + end) / 2);
+        if (nums[mid] === target || nums[start] === target || nums[end] === target) {
+            return true;
+        }
+        // Target on right
+        if (target > nums[mid] && target < nums[end]) {
+            start = mid + 1;
+        } else if (target < nums[mid] && target > nums[start]) {
+            // Target on lleft
+            end = mid - 1;
+        } else {
+            start++;
+            end--;
+        }
+    }
+    return false;
+};
+
+// Option 2
 var search = function(nums, target) {
   let start = 0,
   let end = nums.length - 1,
