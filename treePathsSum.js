@@ -49,7 +49,6 @@ function helper(node, val) {
   return helper(node.left, val) + helper(node.right, val);
 }
 
-
 tree = new TreeNode(6, new TreeNode(3, new TreeNode(2), new TreeNode(5, new TreeNode(7), new TreeNode(4))), new TreeNode(5, null, new TreeNode(4)));
 
 console.log(treePathsSum(tree));
