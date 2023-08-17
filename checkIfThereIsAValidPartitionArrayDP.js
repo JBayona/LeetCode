@@ -24,7 +24,6 @@ Explanation: There is no valid partition for this array.
 
 https://leetcode.com/problems/check-if-there-is-a-valid-partition-for-the-array/description/
 */
-
 // Time O(N)
 // Space O(1)
 var validPartition = function (nums) {
