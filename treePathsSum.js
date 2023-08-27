@@ -20,7 +20,6 @@ Answer = 632 + 6357 + 6354 + 654 = 13997
 
 https://www.geeksforgeeks.org/sum-numbers-formed-root-leaf-paths/
 */
-
 function TreeNode(val, left, right) {
   this.val = val;
   this.left = left || null;
