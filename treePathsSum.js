@@ -31,7 +31,6 @@ function treePathsSum(root) {
 
 // Traverse inorder
 function helper(node, val) {
-
   // Base case
   if(!node) return 0;
   
