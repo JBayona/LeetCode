@@ -9,6 +9,7 @@ For example consider the following Binary Tree.
                                  2     5          4  
                                       /   \
                                      7     4
+
  There are 4 leaves, hence 4 root to leaf paths:
  Path                    Number
   6->3->2                   632
