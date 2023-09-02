@@ -6,6 +6,7 @@ The player is given an NxM board of tiles from 0 to 9 like this:
   2   5   7   5
 The player selects one of these tiles, and that tile will disappear, along with any tiles with the same
 number that are connected with that tile (up, down, left, or right), and any tiles with the same number connected with those, and so on.
+
 For example, if the 4 in the upper left corner is selected, these five tiles disappear
  >4< >4< >4< >4<
   5   5   5  >4<
@@ -14,6 +15,7 @@ If the 5 just below it is selected, these four tiles disappear. Note that tiles 
   4   4   4   4
  >5< >5< >5<  4
   2  >5<  7   5
+
 Write a function that, given a grid of tiles and a selected row and column of a tile, returns how many tiles will disappear.
 grid1 = [[4, 4, 4, 4],
          [5, 5, 5, 4],
