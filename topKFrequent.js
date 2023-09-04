@@ -9,7 +9,8 @@ Your algorithm's time complexity must be better than O(n log n), where n is the 
 
 https://leetcode.com/problems/top-k-frequent-elements/description/
 */
-
+// Time O(N)
+// Space O(N)
 var topKFrequent = function(nums, k) {
     let hash = {};
     let count = new Array(nums.length + 1).fill(0);
