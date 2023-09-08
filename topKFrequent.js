@@ -25,8 +25,7 @@ var topKFrequent = function(nums, k) {
         } else {
             hash[num] = 1;
         }
-    }
-    
+    } 
     // Form our array with frecuencies
     // Example array = [1,1,1,2,3,2,5]
     // count = [0, [3,5], [2], [1], 0,..]
