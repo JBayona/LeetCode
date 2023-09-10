@@ -62,7 +62,6 @@ var isValidSudoku = function (board) {
       }
     }
   }
-
   //Checar que los elementos sean unicos por columnas
   for (let i = 0; i < 9; i++) {
     m = new Array(9);
