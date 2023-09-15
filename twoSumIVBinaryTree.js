@@ -18,6 +18,7 @@ https://leetcode.com/problems/two-sum-iv-input-is-a-bst/description/
  * @param {number} k
  * @return {boolean}
  */
+// Time O(N)
  var findTarget = function(root, k) {
   let memo = {};
   return dfs(root, k, memo);
