@@ -9,8 +9,7 @@ the algorithm will need to visit every node exactly once.
 var preorderTraversal = function(root) {    
     if(!root) {
         return [];
-    }
-    
+    }    
     let stack = [];
     let result = [];
     stack.push(root);
