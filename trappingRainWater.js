@@ -15,7 +15,7 @@ https://leetcode.com/problems/trapping-rain-water/description/
 */
 
 var trap = function (array) {
-  let left = [];
+  let left = [];   
   let right = [];
   let max = 0;
   let result = 0;
