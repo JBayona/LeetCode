@@ -19,6 +19,39 @@ The substring "BBBB" has the longest repeating letters, which is 4.
 https://leetcode.com/problems/longest-repeating-character-replacement/
 */
 
+// Option 1
+var characterReplacement = function (s, k) {
+  let hash = {};
+  let mostFreqChar = 0;
+  let left = 0;
+  let right = 0;
+  let result = 0;
+
+  while (right < s.length) {
+    let c = s[right];
+    if (!(c in hash)) {
+      hash[c] = 0;
+    }
+    hash[c]++;
+    // Get the most frequent char from the current window
+    mostFreqChar = Math.max(mostFreqChar, hash[c]);
+    // How many letters we need to change
+    let lettersToChange = right - left + 1 - mostFreqChar;
+    // if this value is greater, it means the window is not valid
+    // as we need more letter than "k" to change.
+    if (lettersToChange > k) {
+      let l = s[left];
+      hash[l]--;
+      left++;
+    }
+    // Try to maxime el result
+    result = Math.max(result, right - left + 1);
+    right++;
+  }
+  return result;
+};
+
+// Option 2
 var characterReplacement = function (s, k) {
   let start = 0;
   let maxCount = 0;
