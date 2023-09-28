@@ -63,7 +63,6 @@ var characterReplacement = function (s, k) {
   let maxCount = 0;
   let charCount = {};
   let maxLongest = 0;
-
   for (let i = 0; i < s.length; i++) {
     let currentChar = s[i];
 
