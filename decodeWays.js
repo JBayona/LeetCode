@@ -21,7 +21,6 @@ https://www.youtube.com/watch?v=YcJTyrG3bZs
 
 https://leetcode.com/problems/decode-ways/description/
 */
-
 // O(N) DP
 var numDecodings = function(s) {
     if(!s || s.length === 0 || s[0] === '0') {
