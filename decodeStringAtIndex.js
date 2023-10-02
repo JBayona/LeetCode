@@ -3,7 +3,8 @@ You are given an encoded string s. To decode the string to a tape, the encoded s
 read one character at a time and the following steps are taken:
 
 If the character read is a letter, that letter is written onto the tape.
-If the character read is a digit d, the entire current tape is repeatedly written d - 1 more times in total.
+If the character read is a digit d, the entire current tape is repeatedly written
+d - 1 more times in total.
 Given an integer k, return the kth letter (1-indexed) in the decoded string.
 
 Example 1:
