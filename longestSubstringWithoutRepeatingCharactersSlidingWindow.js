@@ -24,37 +24,72 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/slidin
 
 */
 
+// Option 1
+// Time O(N)
+var lengthOfLongestSubstring = function (s) {
+  if (!s.length) {
+    return 0;
+  }
+
+  let hash = {};
+  let result = 0;
+  // Sliding window
+  let left = 0,
+    right = 0;
+  while (right < s.length) {
+    // Get the first most character
+    let c = s[right];
+    // If the char is not in the hash, track it
+    if (!(c in hash)) {
+      hash[c] = 0;
+    }
+    hash[c]++;
+    // Whenever we find repetitive characters
+    while (hash[c] > 1) {
+      let l = s[left++];
+      hash[l]--;
+      if (hash[l] === 0) {
+        delete hash[l];
+      }
+    }
+    // Try to maximize the results
+    result = Math.max(result, right - left + 1);
+    right++;
+  }
+  return result;
+};
+
 // Sliding Window
 /*
 Sliding window, si no encontramos repetimos, avanzamos el tail del windows, si encontramos un
 repetido, avanzamos el head del window
 */
-var lengthOfLongestSubstring = function(s) {
+var lengthOfLongestSubstring = function (s) {
   let start = 0;
   let end = 0;
   let map = {};
   let result = 0;
   // Counter es la variable que usamos para contar los repetidos
   let counter = 0;
-    
-  while(end < s.length) {
+
+  while (end < s.length) {
     let current = s[end];
     // Si tenemos un repetido, contamos repetidos
-    if(current in map) {
+    if (current in map) {
       map[current]++;
       // Si es mayor a uno significa que tenemos repetidos
-      if(map[current] > 1) {
+      if (map[current] > 1) {
         counter++;
       }
     } else {
       map[current] = 1;
     }
-    
+
     // Si tenemos repetidos debemos avanzar el head del window
-    while(counter > 0) {
+    while (counter > 0) {
       let head = s[start];
       // Significa que este char es repetido, debemos recorrerlo
-      if(map[head] > 1) {
+      if (map[head] > 1) {
         // Decrementamos counter como hemos eliminado uno de nuestros objetivos de la ventaba
         counter--;
       }
@@ -65,7 +100,7 @@ var lengthOfLongestSubstring = function(s) {
     }
     // Encrease window from tail
     end++;
-      
+
     result = Math.max(result, end - start);
   }
   return result;
