@@ -3,7 +3,6 @@ Given an array nums, there is a sliding window of size k which is moving from th
 
 Follow up:
 Could you solve it in linear time?
-
 Example:
 
 Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3
