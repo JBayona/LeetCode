@@ -4,7 +4,6 @@ So the median is the mean of the two middle value.
 
 Examples:
 [2,3,4] , the median is 3
-
 [2,3], the median is (2 + 3) / 2 = 2.5
 
 Given an array nums, there is a sliding window of size k which is moving from the very left of the array
