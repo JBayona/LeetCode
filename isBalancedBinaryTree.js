@@ -15,6 +15,7 @@ function TreeNode(val, left, right) {
   this.right = right || null;
 }
 
+// Time O(N)
 // Get the tree length function.
 function heightTree(tree) {
   if(!tree) {
