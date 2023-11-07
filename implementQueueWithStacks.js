@@ -23,6 +23,7 @@ You may assume that all operations are valid (for example, no pop or peek operat
 https://leetcode.com/problems/implement-queue-using-stacks/description/
 */
 
+// Option 2
 /**
  * Initialize your data structure here.
  */
