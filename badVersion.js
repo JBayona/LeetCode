@@ -14,7 +14,6 @@ Then 4 is the first bad version.
 
 https://leetcode.com/problems/first-bad-version/description/
 /*
-
 /**
  * Definition for isBadVersion()
  * 
