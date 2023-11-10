@@ -13,23 +13,51 @@ canConstruct("aa", "aab") -> true
 https://leetcode.com/problems/ransom-note/
 */
 
-var canConstruct = function(ransomNote, magazine) {
+// Option 1
+var canConstruct = function (ransomNote, magazine) {
   let hash = {};
-  for(let i = 0; i < magazine.length; i++) {
-      if(magazine[i] in hash) {
-          hash[magazine[i]]++;
-      } else {
-          hash[magazine[i]] = 1;
-      }
+  for (let i = 0; i < magazine.length; i++) {
+    if (magazine[i] in hash) {
+      hash[magazine[i]]++;
+    } else {
+      hash[magazine[i]] = 1;
+    }
   }
-  
-  for(let i = 0; i < ransomNote.length; i++) {
-      let elem = ransomNote[i];
-      if(elem in hash && hash[elem] > 0) {
-          hash[elem]--;
-      } else {
-          return false;
-      }
+
+  for (let i = 0; i < ransomNote.length; i++) {
+    let elem = ransomNote[i];
+    if (elem in hash && hash[elem] > 0) {
+      hash[elem]--;
+    } else {
+      return false;
+    }
   }
   return true;
 };
+
+// Option 2
+var canConstruct = function (ransomNote, magazine) {
+  let ransomMap = getMap(ransomNote);
+  let magazineMap = getMap(magazine);
+
+  // Verify if it's possible to build the string
+  for (let c in ransomMap) {
+    // If
+    if (!(c in magazineMap) || !(magazineMap[c] >= ransomMap[c])) {
+      return false;
+    }
+  }
+  return true;
+};
+
+function getMap(str) {
+  let hash = {};
+  for (let i = 0; i < str.length; i++) {
+    let c = str[i];
+    if (!(c in hash)) {
+      hash[c] = 0;
+    }
+    hash[c]++;
+  }
+  return hash;
+}
