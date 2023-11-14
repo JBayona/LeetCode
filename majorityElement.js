@@ -15,6 +15,7 @@ Output: 2
 https://leetcode.com/problems/majority-element/
 */
 
+// Option 1
 // Time O(N)
 // Space O(1)
 var majorityElement = function(nums) {
@@ -35,6 +36,7 @@ var majorityElement = function(nums) {
     }
 };
 
+// Option 2
 // Time O(N)
 // Space O(N)
 var majorityElement = function(nums) {
