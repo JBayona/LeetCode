@@ -22,20 +22,24 @@ https://leetcode.com/problems/middle-of-the-linked-list/
 */
 
 var middleNode = function(head) {
-    if(!head) {
+    // If no node
+    if (!head) {
         return null;
     }
-    
-    // If there's only one node in the list
-    if(head && !head.next) {
+
+    // If only one node
+    if (head && !head.next) {
         return head;
     }
-    
+
     let slow = head;
-    let fast = head;    
+    let fast = head;
+    let mid;
+    // Get the middle of the linked list
     while(fast && fast.next) {
+        mid = slow.next;
         slow = slow.next;
-        fast = fast.next.next;   
+        fast = fast.next.next;
     }
-    return slow;
+    return mid;
 };
