@@ -90,6 +90,7 @@ Trie.prototype.startsWith = function(prefix) {
     return node.count > 0;
 };
 
+
 /** 
  * Your Trie object will be instantiated and called as such:
  * var obj = new Trie()
