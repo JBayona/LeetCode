@@ -15,6 +15,7 @@ All inputs are guaranteed to be non-empty strings.
 
 https://leetcode.com/problems/implement-trie-prefix-tree/
 */
+
 /*
 Time:
 - Insert: O(m)
