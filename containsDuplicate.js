@@ -17,8 +17,12 @@ Input: [1,1,1,3,3,4,3,2,4,2]
 Output: true
 
 https://leetcode.com/problems/contains-duplicate/
-
 */
+
+var containsDuplicate = function(nums) {
+    let set = new Set(nums);
+    return set.size !== nums.length ? true : false;
+};
 
 var containsDuplicate = function(nums) {
 	let hash = {};
