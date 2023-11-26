@@ -22,32 +22,35 @@ https://leetcode.com/problems/k-closest-points-to-origin/
 // O(N log N)
 
 // NOTE: We can user a max heap too (max heap has the root as greater element)
-var kClosest = function(points, K) {
-    
-    if(!points.length || !K) {
-        return [];
-    }
-    
-    let origin = [0,0];
-    let array = [];
-    let result = [];
-    for(let i = 0; i < points.length; i++) {
-        array.push({coordinate: points[i], distance: getEuclideanDistance(points[i], origin)});
-    }
-    
-    // Custom sort - comparator using distance for sorting
-    array.sort((a,b) => (a.distance - b.distance));
-    
-    // Create the array result
-    for(let i = 0; i < K; i++) {
-        result.push(array[i].coordinate);
-    }
-    
-    return result;
+var kClosest = function (points, K) {
+  // If there's no points array of no K.
+  if (!points.length || !K) {
+    return [];
+  }
+
+  let origin = [0, 0];
+  let array = [];
+  let result = [];
+  for (let i = 0; i < points.length; i++) {
+    // Calculate the distance from the point to the origin.
+    array.push({
+      coordinate: points[i],
+      distance: getEuclideanDistance(points[i], origin),
+    });
+  }
+
+  // Custom sort - comparator using distance for sorting
+  array.sort((a, b) => a.distance - b.distance);
+
+  // Create the array result
+  for (let i = 0; i < K; i++) {
+    result.push(array[i].coordinate);
+  }
+  return result;
 };
 
 // Euclidean distance
 // Formula = Math.sqrt((a1 - b1)^2 + (a2 - b2)^2 + .... + (an - b2))
 function getEuclideanDistance(a, b) {
-    return Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
+  return Math.sqrt(Math.pow(a[0] - b[0], 2) + Math.pow(a[1] - b[1], 2));
 }
