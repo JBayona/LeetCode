@@ -19,7 +19,6 @@ https://leetcode.com/problems/insert-interval/
 var insert = function (intervals, newInterval) {
   let result = [];
   let i = 0;
-
   // Here we handle all of the non overlapping cases that we are sure
   // There's no overlap if the current interval end is less that the start
   // of the new interval
