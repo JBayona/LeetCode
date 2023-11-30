@@ -39,8 +39,7 @@ const findClosestDrivers = function(dashers, origin) {
             rating: driverInfo[3],
             id: driverInfo[0],
         });
-    }
-    
+    } 
     // Custom sort
     array.sort((a,b) => {
         return a.distance === b.distance ? b.rating - a.rating : a.distance - b.distance
