@@ -15,6 +15,51 @@ https://leetcode.com/problems/3sum/#/description
 */
 
 var threeSum = function (nums) {
+  // Sort the numbers, increasing order
+  nums.sort((a, b) => a - b);
+
+  let result = [];
+  let len = nums.length;
+  // Try to get the three sum
+  // -2 as we consider the other two numbers
+  for (let i = 0; i < nums.length - 2; i++) {
+    // Skip duplicates to avoid repetition
+    if (i > 0 && nums[i] === nums[i - 1]) {
+      continue;
+    }
+    let j = i + 1;
+    let k = len - 1;
+    while (j < k) {
+      let sum = nums[i] + nums[j] + nums[k];
+      if (sum === 0) {
+        result.push([nums[i], nums[j], nums[k]]);
+
+        // Skip duplicates for j
+        while (j < k && nums[j] === nums[j + 1]) {
+          j++;
+        }
+
+        // Skip duplicates for k
+        while (j < k && nums[k] === nums[k - 1]) {
+          k--;
+        }
+
+        // Move pointers
+        j++;
+        k--;
+      } else if (sum < 0) {
+        // Sum is less than zero, increment j to increase the sum
+        j++;
+      } else {
+        // Sum is greater than zero, decrement k to decrease the sum
+        k--;
+      }
+    }
+  }
+  return result;
+};
+
+var threeSum = function (nums) {
   //Ordena los elementos de menor a mayor
   nums.sort(function (a, b) {
     return a - b;
