@@ -31,27 +31,27 @@ https://leetcode.com/problems/clone-graph/
 
 */
 
-var cloneGraph = function(graph) {
+var cloneGraph = function(node) {
     let map = {};
-    return clone(graph, map);
+    return clone(node, map);  
 };
 
 function clone(node, map) {
-    if(!node) return null;
-    if(node.label in map) {
-        return map[node.label];
+    if (!node) {
+        return null;
     }
-    
-    let root = new UndirectedGraphNode(node.label);
-    map[node.label] = root;
-    if(node.label in map) {
-        for(n of node.neighbors) {
-            root.neighbors.push(n, map);
-        }
+    // Check if it has been stored previously
+    if (node.val in map) {
+        return map[node.val];
     }
-    return root;
+    let clonedNode = new Node(node.val);
+    map[clonedNode.val] = clonedNode;
+    // Clone recursively its neighbors
+    for (let n of node.neighbors) {
+        clonedNode.neighbors.push(clone(n, map));
+    }
+    return clonedNode;
 }
-
 
 /**
  * Definition for undirected graph.
