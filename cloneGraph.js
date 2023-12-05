@@ -16,7 +16,6 @@ Second node is labeled as 1. Connect node 1 to node 2.
 Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.
  
 Visually, the graph looks like the following:
-
        1
       / \
      /   \
@@ -25,7 +24,6 @@ Visually, the graph looks like the following:
          \_/
 Note: The information about the tree serialization is only meant so that you can understand error
 output if you get a wrong answer. You don't need to understand the serialization to solve the problem.
-
 
 https://leetcode.com/problems/clone-graph/
 
