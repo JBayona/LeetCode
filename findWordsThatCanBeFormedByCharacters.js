@@ -23,6 +23,7 @@ https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
 
 // Time O(N * M) Where n is the number of words and M is the max length of the word
 // Space O(N + M)
+// Option 1
 var countCharacters = function(words, chars) {
   let map = getHash(chars);
   let result = 0;
