@@ -27,7 +27,6 @@ output if you get a wrong answer. You don't need to understand the serialization
 https://leetcode.com/problems/clone-graph/
 
 */
-
 var cloneGraph = function(node) {
     let map = {};
     return clone(node, map);  
