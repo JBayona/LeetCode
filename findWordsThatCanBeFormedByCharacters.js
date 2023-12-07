@@ -24,12 +24,12 @@ https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
 // Time O(N * M) Where n is the number of words and M is the max length of the word
 // Space O(N + M)
 // Option 1
-var countCharacters = function(words, chars) {
+var countCharacters = function (words, chars) {
   let map = getHash(chars);
   let result = 0;
-  for(let word of words) {
+  for (let word of words) {
     let mapB = getHash(word);
-    if(canForm(mapB, map)) {
+    if (canForm(mapB, map)) {
       result += word.length;
     }
   }
@@ -38,9 +38,9 @@ var countCharacters = function(words, chars) {
 
 function getHash(str) {
   let hash = {};
-  for(let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     let elem = str[i];
-    if(elem in hash) {
+    if (elem in hash) {
       hash[elem]++;
     } else {
       hash[elem] = 1;
@@ -50,10 +50,45 @@ function getHash(str) {
 }
 
 function canForm(hash1, hash2) {
-  for(let prop in hash1) {
-    if(!(prop in hash2) || hash2[prop] < hash1[prop]) {
+  for (let prop in hash1) {
+    if (!(prop in hash2) || hash2[prop] < hash1[prop]) {
       return false;
     }
   }
   return true;
+}
+
+// Option 2
+var countCharacters = function (words, chars) {
+  let map = getHash(chars);
+  let result = 0;
+  for (let word of words) {
+    // Clone object
+    let tmp = { ...map };
+    let isFormed = true;
+    for (let i = 0; i < word.length; i++) {
+      let c = word[i];
+      if (!(c in tmp) || tmp[c] <= 0) {
+        isFormed = false;
+        break;
+      }
+      tmp[c]--;
+    }
+    if (isFormed) {
+      result += word.length;
+    }
+  }
+  return result;
+};
+
+function getHash(chars) {
+  let map = {};
+  for (let i = 0; i < chars.length; i++) {
+    let c = chars[i];
+    if (!(c in map)) {
+      map[c] = 0;
+    }
+    map[c]++;
+  }
+  return map;
 }
