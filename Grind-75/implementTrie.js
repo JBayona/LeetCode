@@ -18,9 +18,9 @@ https://leetcode.com/problems/implement-trie-prefix-tree/
 
 /*
 Time:
-- Insert: O(m)
-- Search: O(m)
-- StartsWith: O(m)
+- Insert: O(m * n)
+- Search: O(m * n)
+- StartsWith: O(m * n)
 
 Space:
 - O(m * n)
