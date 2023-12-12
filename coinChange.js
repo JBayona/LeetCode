@@ -30,7 +30,6 @@ Para el 7, podemos tener dos combinaciones:
 2. Si tenemos la moneda 3, podemos formar el 7 con la combinación de 4 (2 + 2) y la moneda 3, que son 3 monedas
 
 En ambas las respuesta es 3 monedas como mínimo. 
-
 dp = [ 0, Infinity, 1, 1, 2, 2, 2, 3 ]
 
 https://www.programcreek.com/2015/04/leetcode-coin-change-java/
