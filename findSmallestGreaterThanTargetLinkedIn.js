@@ -20,7 +20,6 @@ Output: "f"
 
 https://leetcode.com/problems/find-smallest-letter-greater-than-target/
 */
-
 // Binary Search
 // Time O(LogN)
 var nextGreatestLetter = function (letters, target) {
