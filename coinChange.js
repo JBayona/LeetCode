@@ -34,6 +34,30 @@ dp = [ 0, Infinity, 1, 1, 2, 2, 2, 3 ]
 https://www.programcreek.com/2015/04/leetcode-coin-change-java/
 */
 var coinChange = function(coins, amount) {
+  if (amount === 0) {
+      return 0;
+  }
+
+  let dp = new Array(amount + 1).fill(Infinity);
+  dp[0] = 0;
+
+  for (let i = 1; i <= amount; i++) {
+  for (let coin of coins) {
+      if(coin === i) {
+          dp[i] = 1;
+      } else if (i > coin) {
+          // The number is not reachable, not available coins
+          if(dp[i - coin] === Inf<inity) {
+              continue;
+          }
+          dp[i] = Math.min(dp[i - coin] + 1, dp[i]);
+      }
+    }
+  }
+  return dp[amount] === Infinity ? -1 : dp[amount];
+};<
+
+var coinChange = function(coins, amount) {
   if(amount === 0) {
     return 0;
   }
