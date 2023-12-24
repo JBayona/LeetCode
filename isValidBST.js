@@ -11,6 +11,7 @@ Example 1:
    / \
   1   3
 Binary tree [2,1,3], return true.
+
 Example 2:
     1
    / \
