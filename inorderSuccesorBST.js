@@ -14,7 +14,6 @@ function TreeNode(val, left, right) {
 
 // O(N) Time complexity, space O(1)
 var inorderSuccessor = function(root, node) {
-
   if(!root) return -1;
 
   // 1 case - We have right tree(children), get the most left element
