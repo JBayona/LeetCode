@@ -10,7 +10,6 @@ For example, starting with "hello", we could do an extension on the group "o" to
 "helloo" since the group "oo" has size less than 3.  Also, we could do another extension like "ll" -> "lllll"
 to get "helllllooo".  If S = "helllllooo", then the query word "hello" would be stretchy because of these two
 extension operations: query = "hello" -> "hellooo" -> "helllllooo" = S.
-
 Given a list of query words, return the number of words that are stretchy. 
 
 Example:
