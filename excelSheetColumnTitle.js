@@ -29,7 +29,6 @@ Output: 2147483647
 
 https://leetcode.com/problems/excel-sheet-column-number/
 */
-
 /*
 ZY
 Y = 25
