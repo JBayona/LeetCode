@@ -5,7 +5,6 @@ values of the nodes you can see ordered from top to bottom.
 Example:
 Input: [1,2,3,null,5,null,4]
 Output: [1, 3, 4]
-
 Explanation:
    1            <---
  /   \
