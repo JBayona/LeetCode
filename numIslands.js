@@ -65,7 +65,7 @@ function isSafe(grid, row, column, visited){
     (column >= 0 && column < COLUMN) && 
     grid[row][column] === 1 &&
     !visited[row][column];
-  )
+  );
 }
 
 /*matrix = [
