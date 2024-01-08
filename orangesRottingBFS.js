@@ -26,7 +26,6 @@ Output: 0
 Explanation:  Since there are already no fresh oranges at minute 0, the answer is just 0.
  
 Note:
-
 1 <= grid.length <= 10
 1 <= grid[0].length <= 10
 grid[i][j] is only 0, 1, or 2.
@@ -45,7 +44,6 @@ var orangesRotting = function(grid) {
     for(let i = 0; i < visited.length; i++) {
         visited[i] = new Array(COL).fill(false);
     }
-    
     // Fill initial visited
     for(let i = 0; i < ROW; i++) {
         for(let j = 0; j < COL; j++) {
@@ -63,7 +61,6 @@ var orangesRotting = function(grid) {
     //  Directions
     let rowK = [-1,0,0,1];
     let colK = [0,-1,1,0];
-    
     let minutesPassed = 0;
     
     // Launch BFS
