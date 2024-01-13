@@ -32,6 +32,7 @@ grid[i][j] is only 0, 1, or 2.
 
 https://leetcode.com/problems/rotting-oranges/
 */
+
 // BFS
 var orangesRotting = function (grid) {
   let ROW = grid.length;
