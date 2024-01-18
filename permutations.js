@@ -13,6 +13,7 @@ For example,
 ]
 https://leetcode.com/problems/permutations/description/
 
+Reference: https://leetcode.com/problems/permutations/solutions/18239/a-general-approach-to-backtracking-questions-in-java-subsets-permutations-combination-sum-palindrome-partioning
 */
 
 // Option 1
