@@ -43,3 +43,28 @@ var uniqueOccurrences = function (arr) {
   }
   return true;
 };
+
+// Option 2
+var uniqueOccurrences = function (arr) {
+  let hash = {};
+  for (let n of arr) {
+    if (!(n in hash)) {
+      hash[n] = 0;
+    }
+    hash[n]++;
+  }
+
+  console.log(hash);
+  // Iterate the map to find occurrences
+  let seen = [];
+  for (let prop in hash) {
+    let frequency = hash[prop];
+    // If we have seen it before, return false
+    if (seen[frequency]) {
+      return false;
+    }
+    // Otherwise, mark it as seen
+    seen[frequency] = true;
+  }
+  return true;
+};
