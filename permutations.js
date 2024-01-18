@@ -37,8 +37,9 @@ function helper(tmp, result, nums) {
       }
   }
 }
-//Permutacion Heaps Algorithm
 
+// Option 2
+//Permutacion Heaps Algorithm
 var permute = function(nums){
   var result = [];
   heapPermutation(nums, nums.length, nums.length, result);
