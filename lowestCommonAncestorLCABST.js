@@ -17,7 +17,6 @@ Given binary search tree:  root = [6,2,8,0,4,7,9,null,null,3,5]
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/description/
 
 https://www.youtube.com/watch?v=TIoCCStdiFo
-
 */
 
 // Time O(h) with O(h) space for call stack
