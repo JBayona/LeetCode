@@ -116,8 +116,7 @@ TimeMap.prototype.get = function(key, timestamp) {
         } else if (array[mid][0] < timestamp) {
             left = mid + 1;
         }
-    }
-    
+    } 
     // This has the closest element
     return array[left][1];
 };
