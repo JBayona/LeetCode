@@ -102,8 +102,7 @@ TimeMap.prototype.get = function(key, timestamp) {
         return array[right-1][1];
     } else if(timestamp < array[0][0]){
         return "";
-    }
-    
+    } 
     // Binary Search
     // O(Log(N))
     while(left < right) {
