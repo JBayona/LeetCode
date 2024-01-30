@@ -14,11 +14,10 @@ Could you come up with an one-pass algorithm using only constant space?
 
 https://leetcode.com/problems/sort-colors/description/
 */
-
 // O(N)
 var sortColors = function (nums) {
-  var redEnds = 0;
-  var blueStars = nums.length - 1;
+  let redEnds = 0;
+  let blueStars = nums.length - 1;
 
   //Empieza el loop para ordenar las bolas
   let i = 0;
