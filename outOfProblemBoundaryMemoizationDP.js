@@ -9,7 +9,6 @@ ball out of the grid boundary. Since the answer can be very large, return it mod
 
 https://leetcode.com/problems/out-of-boundary-paths/description/
 */
-
 // Memoization
 var findPaths = function (m, n, maxMove, startRow, startColumn) {
   // Grid to track the possible gays to leave the grid
