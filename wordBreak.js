@@ -19,28 +19,32 @@ https://youtu.be/WepWFGxiwRs
 */
 // BFS
 // Time O(n^3)
-// Space O(n^3)
-var wordBreak = function(s, wordDict) {
+// Theree are N nodes (letters) and we never visit more than one node at once
+// we iterate over the nodes in front of the current node, of which there are O(n).
+// For each node end, we create a substring, which also costs O(n), this is O(N^2).
+// So running a BFS can take up to Time O(n^3). To create sets can be O(m + k)
+// Space O(n + m * k)
+var wordBreak = function (s, wordDict) {
   let set = new Set(wordDict);
   let queue = [];
   let visited = new Set();
-  
+
   queue.push(0);
-  while(queue.length) {
-      let start = queue.shift();
-      if(visited.has(start)) {
-          continue;
+  while (queue.length) {
+    let start = queue.shift();
+    if (visited.has(start)) {
+      continue;
+    }
+    // + 1 because the substring method is exclusive
+    for (let i = start + 1; i < s.length + 1; i++) {
+      if (set.has(s.substring(start, i))) {
+        queue.push(i);
+        if (i === s.length) {
+          return true;
+        }
       }
-      // + 1 because it's exclusive
-      for(let i = start + 1; i < s.length + 1; i++) {
-          if(set.has(s.substring(start, i))) {
-              queue.push(i);
-              if(i === s.length) {
-                  return true;
-              }
-          }
-      }
-      visited.add(start);
+    }
+    visited.add(start);
   }
   return false;
 };
@@ -107,22 +111,22 @@ function wordBreak(str, array) {
 
 function helper(str, array, start) {
   // We found the string
-  if(start === str.length) {
+  if (start === str.length) {
     return true;
   }
   // Check the values in the array
-  for(let i = 0; i < array.length; i++) {
+  for (let i = 0; i < array.length; i++) {
     let word = array[i];
     let len = word.length;
 
     // end should be less than the str length cause we can not create it
-    if(start + len > str.length) {
+    if (start + len > str.length) {
       // Check the next word in the array
       continue;
     }
 
-    if(str.substring(start, start + len) === word) {
-      if(helper(str, array, start + len)) {
+    if (str.substring(start, start + len) === word) {
+      if (helper(str, array, start + len)) {
         return true;
       }
     }
@@ -137,55 +141,54 @@ function wordBreak(str, array) {
   // Set the initial state as true to have a state
   dp[0] = true;
 
-  for(let i = 0; i < str.length; i++) {
+  for (let i = 0; i < str.length; i++) {
     // We should only be interested in matches position
-    if(!dp[i]) {
+    if (!dp[i]) {
       continue;
     }
-    for(let j = 0; j < array.length; j++) {
+    for (let j = 0; j < array.length; j++) {
       let word = array[j];
       let len = word.length;
       let end = i + len;
 
       // We are only interested in those whom can create it
-      if(end > str.length) {
+      if (end > str.length) {
         continue;
       }
 
       // If we already have a match, there´s no need to check again
-      if(dp[end]) {
+      if (dp[end]) {
         continue;
       }
 
-      if(str.substring(i, i + len) === word) {
+      if (str.substring(i, i + len) === word) {
         dp[i + len] = true;
       }
-
     }
   }
   return dp[str.length];
 }
 
-str = 'leetcode';
-dict = ['leet', 'code'];
+str = "leetcode";
+dict = ["leet", "code"];
 console.log(wordBreak(str, dict));
 
 // O(n^2) en tiempo y memoria O(n)
 // Best option.
 function wordBreak(str, dict) {
   let n = str.length;
-  if(!str || n === 0) {
+  if (!str || n === 0) {
     return false;
   }
 
-  let dp = new Array(n+1).fill(false);
+  let dp = new Array(n + 1).fill(false);
   dp[0] = true;
 
-  for(let i = 1; i < n+1; i++) {
-    for(let j = 0; j <= i; j++) {
+  for (let i = 1; i < n + 1; i++) {
+    for (let j = 0; j <= i; j++) {
       // El dp[j] nos ayuda a identificar si las partes anteriores fueron encontradas,
       // el substring como es 0 based nos ayuda a recortar la cadena correcta
-      if(dp[j] && dict.includes(str.substring(j,i))) {
+      if (dp[j] && dict.includes(str.substring(j, i))) {
         dp[i] = true;
         break;
       }
@@ -196,18 +199,18 @@ function wordBreak(str, dict) {
   return dp[n];
 }
 
-var wordBreak = function(str, dic) {
-  let pos = new Array(str.length+1).fill(-1);
-  pos[0]=0;
-  for(let i = 0; i < str.length; i++){
-      if(pos[i] !== -1){
-          for(let j = i + 1; j <= str.length; j++){
-              let sub = str.substring(i, j);
-              if(dic.indexOf(sub) >= 0){
-                  pos[j]=i;
-              }
-          } 
+var wordBreak = function (str, dic) {
+  let pos = new Array(str.length + 1).fill(-1);
+  pos[0] = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (pos[i] !== -1) {
+      for (let j = i + 1; j <= str.length; j++) {
+        let sub = str.substring(i, j);
+        if (dic.indexOf(sub) >= 0) {
+          pos[j] = i;
+        }
       }
+    }
   }
   /*Si el final es distinto de cero entonces hemos formado
   la palabra*/
@@ -216,4 +219,4 @@ var wordBreak = function(str, dic) {
 
 s = "leetcode";
 dict = ["leet", "code"];
-console.log(wordBreak(s,dict));
+console.log(wordBreak(s, dict));
