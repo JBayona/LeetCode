@@ -14,6 +14,35 @@ Could you come up with an one-pass algorithm using only constant space?
 
 https://leetcode.com/problems/sort-colors/description/
 */
+
+// O(N)
+var sortColors = function (nums) {
+  // Start of red balls
+  let startRed = 0;
+  // Start of blue balls
+  let startBlue = nums.length - 1;
+
+  let index = 0;
+  while (index <= startBlue) {
+    if (nums[index] === 0) {
+      swap(index, startRed, nums);
+      startRed++;
+      index++;
+    } else if (nums[index] === 2) {
+      swap(index, startBlue, nums);
+      startBlue--;
+    } else {
+      index++;
+    }
+  }
+};
+
+function swap(a, b, nums) {
+  let tmp = nums[a];
+  nums[a] = nums[b];
+  nums[b] = tmp;
+}
+
 // O(N)
 var sortColors = function (nums) {
   let redEnds = 0;
