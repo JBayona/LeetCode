@@ -46,10 +46,6 @@ var coinChange = function(coins, amount) {
       if(coin === i) {
           dp[i] = 1;
       } else if (i > coin) {
-          // The number is not reachable, not available coins
-          if(dp[i - coin] === Inf<inity) {
-              continue;
-          }
           dp[i] = Math.min(dp[i - coin] + 1, dp[i]);
       }
     }
