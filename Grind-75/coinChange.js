@@ -69,10 +69,6 @@ var coinChange = function(coins, amount) {
       if(coin === i) {
         dp[i] = 1;
       } else if(i > coin){
-        // Not reachable
-        if(dp[i - coin] === Number.MAX_SAFE_INTEGER) {
-          continue;
-        }
         dp[i] = Math.min(dp[i - coin] + 1, dp[i]);
       }
     }
