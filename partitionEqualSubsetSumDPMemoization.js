@@ -14,7 +14,6 @@ Explanation: The array cannot be partitioned into equal sum subsets.
 
 https://leetcode.com/problems/partition-equal-subset-sum/
 */
-
 // Memoization
 var canPartition = function(nums) {
     if(!nums) {
