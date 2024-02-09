@@ -16,6 +16,45 @@ Explanation: 13 = 4 + 9.
 https://leetcode.com/problems/perfect-squares/
 */
 
+// DP
+// Time O(N)
+/*The idea behind is to store on each "i" the min squares
+needed to get that element, those elements are used to get
+the current element
+
+n = 5
+squares = [1, 4]
+
+dp = [max, max, max, max, max, max]
+, dp = [0, max, max, max, max, max]
+i = 1, dp = [0, 1, max, max, max, max]
+i = 2, dp = [0, 1, 2, max, max, max]
+i = 3, dp = [0, 1, 2, 3, max, max]
+i = 4, dp = [0, 1, 2, 3, 1, max]
+i = 5, dp = [0, 1, 2, 3, 1, 2]
+*/
+var numSquares = function (n) {
+  let squares = [];
+  let number = 1;
+  // Only add potential candidates to add up
+  // They cannot be greater than "n"
+  while (number * number <= n) {
+    squares.push(number * number);
+    number++;
+  }
+
+  let dp = new Array(n + 1).fill(Infinity);
+  dp[0] = 0;
+  for (let i = 1; i <= n; i++) {
+    for (let square of squares) {
+      if (i >= square) {
+        dp[i] = Math.min(dp[i - square] + 1, dp[i]);
+      }
+    }
+  }
+  return dp[n];
+};
+
 // BFS
 var numSquares = function (n) {
   let squares = [];
