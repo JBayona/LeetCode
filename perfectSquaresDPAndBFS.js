@@ -14,7 +14,6 @@ Explanation: 13 = 4 + 9.
 
 https://leetcode.com/problems/perfect-squares/
 */
-
 // DP
 // Time O(N)
 /*The idea behind is to store on each "i" the min squares
