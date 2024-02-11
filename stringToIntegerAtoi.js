@@ -23,47 +23,95 @@ INT_MAX (231 − 1) or INT_MIN (−231) is returned.
 https://leetcode.com/problems/string-to-integer-atoi/
 */
 
-var myAtoi = function(s) {
-    const MAX = Math.pow(2, 31) - 1;
-    
-    let sign = 1;
-    let result = 0;
-    let index = 0;
-    
-    // Remove whitespaces, just move until we find a different character
-    while(s[index] === ' ') {
-        index++;
+// Time O(N)
+var myAtoi = function (s) {
+  const MAX = Math.pow(2, 31) - 1;
+
+  let sign = 1;
+  let result = 0;
+  let index = 0;
+
+  // Remove whitespaces, just move until we find a different character
+  while (s[index] === " ") {
+    index++;
+  }
+
+  // Check if we have a sign
+  if (s[index] === "+") {
+    sign = 1;
+    index++;
+  } else if (s[index] === "-") {
+    sign = -1;
+    index++;
+  }
+
+  // Try to convert the number
+  while (index < s.length) {
+    // Get the number if found, ignore other and break
+    // 0 - 48
+    let tmp = s.charCodeAt(index) - 48;
+    // If we get a number between 0 and 9 means we are under the boundaries so it's
+    // a number and we should consider it, otherwise we need to break the while and return
+    // the result
+    if (tmp > 9 || tmp < 0) {
+      // Break the loop is the number is not valid
+      break;
     }
-    
-    // Check if we have a sign
-    if(s[index] === '+') {
-        sign = 1;
-        index++;
-    } else if(s[index] === '-') {
-        sign = -1;
-        index++;
+    result = result * 10 + tmp;
+    index++;
+  }
+
+  if (result > MAX) {
+    result = MAX;
+    if (sign === -1) {
+      result++;
     }
-    
-    // Try to convert the number
-    while(index < s.length) {
-        // Get the number if found, ignore other and break
-        // 0 - 48
-        let tmp = s.charCodeAt(index) - 48;
-        // If we get a number between 0 and 9 means we are under the boundaries so it's
-        // a number and we should consider it, otherwise we need to break the while and return
-        // the result
-        if(tmp > 9 || tmp < 0) { // Break the loop is the number is not valid
-            break;
-        }
-        result = (result * 10) + tmp;
-        index++;
+  }
+  return result * sign;
+};
+
+var myAtoi = function (s) {
+  const MAX = Math.pow(2, 31) - 1;
+
+  let sign = 1;
+  let result = 0;
+  let index = 0;
+
+  // Remove whitespaces, just move until we find a different character
+  while (s[index] === " ") {
+    index++;
+  }
+
+  // Check if we have a sign
+  if (s[index] === "+") {
+    sign = 1;
+    index++;
+  } else if (s[index] === "-") {
+    sign = -1;
+    index++;
+  }
+
+  // Try to convert the number
+  while (index < s.length) {
+    // Get the number if found, ignore other and break
+    // 0 - 48
+    let tmp = s.charCodeAt(index) - 48;
+    // If we get a number between 0 and 9 means we are under the boundaries so it's
+    // a number and we should consider it, otherwise we need to break the while and return
+    // the result
+    if (tmp > 9 || tmp < 0) {
+      // Break the loop is the number is not valid
+      break;
     }
-    
-    if(result > MAX) {
-        result = MAX;
-        if(sign === -1) {
-            result++;
-        }
+    result = result * 10 + tmp;
+    index++;
+  }
+
+  if (result > MAX) {
+    result = MAX;
+    if (sign === -1) {
+      result++;
     }
-    return result * sign;
+  }
+  return result * sign;
 };
