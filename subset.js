@@ -23,7 +23,26 @@ https://leetcode.com/problems/subsets/description/
 
 // Time O(N×2^N)
 // Space O(N)
-var subsets = function(nums) {
+var subsets = function (nums) {
+  let result = [];
+  let tmp = [];
+  let index = 0;
+  helper(nums, result, tmp, index);
+  return result;
+};
+
+function helper(nums, result, tmp, index) {
+  result.push(tmp);
+  for (let i = index; i < nums.length; i++) {
+    tmp.push(nums[i]);
+    helper(nums, result, tmp.concat(), i + 1);
+    tmp.pop();
+  }
+}
+
+// Time O(N×2^N)
+// Space O(N)
+var subsets = function (nums) {
   let tmp = [];
   let result = [];
   let index = 0;
@@ -34,12 +53,12 @@ var subsets = function(nums) {
 function helper(index, tmp, result, nums) {
   // Add the element of the subset
   result.push(tmp);
-  for(let i = index; i < nums.length; i++) {
-      tmp.push(nums[i]);
-      helper(i+1, tmp.concat(), result, nums);
-      tmp.pop();
+  for (let i = index; i < nums.length; i++) {
+    tmp.push(nums[i]);
+    helper(i + 1, tmp.concat(), result, nums);
+    tmp.pop();
   }
 }
 
-nums = [1,2,3]
+nums = [1, 2, 3];
 console.log(subsets(nums));
