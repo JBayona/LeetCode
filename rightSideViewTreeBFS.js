@@ -14,7 +14,7 @@ Explanation:
 
 https://leetcode.com/problems/binary-tree-right-side-view/
 */
-
+// Time O(N)
 var rightSideView = function(root) {
     if(!root) {
         return [];
