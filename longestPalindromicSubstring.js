@@ -3,7 +3,6 @@ Given a string s, find the longest palindromic substring in s.
 You may assume that the maximum length of s is 1000.
 
 Example 1:
-
 Input: "babad"
 Output: "bab"
 
@@ -15,7 +14,6 @@ Output: "bb"
 
 https://leetcode.com/problems/longest-palindromic-substring/description/
 */
-
 // Improvement
 // Time O(N^2)
 // Space O(1)
