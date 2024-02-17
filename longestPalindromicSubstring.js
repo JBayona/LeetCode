@@ -24,8 +24,6 @@ var longestPalindrome = function (s) {
   }
 
   let max = s[0];
-  let even = "";
-  let odd = "";
   for (let i = 0; i < s.length; i++) {
     // Even length
     let even = getLongestSubstring(i, i + 1, s);
