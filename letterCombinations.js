@@ -6,6 +6,29 @@ A mapping of digit to letters (just like on the telephone buttons) is given belo
 https://leetcode.com/problems/letter-combinations-of-a-phone-number/#/description
 */
 
+// Time O(4^N) where NN is the length of the digits and 4 can be the max letters we coulld have
+// Space O(N) account for the recursion stack
+var letterCombinations = function(digits) {
+  // Para matchearlo con los elementos exactos sin tener que hacer alguna otra operación
+  let map = ['0', '1', 'abc', 'def', 'ghi', 'jkl', 'mno', 'pqrs', 'tuv', 'wxyz'];
+  let result = [];
+  if(digits.length === 0) return []
+  combinations(result, '', map, digits, 0);
+  return result;
+};
+
+function combinations(result, tmp, map, digits, index){
+  if(index === digits.length) {
+      result.push(tmp);
+      return;
+  }
+  
+  let possibleChars = map[Number(digits[index])];
+  for(let i = 0; i < possibleChars.length; i++) {
+      combinations(result, tmp + possibleChars.charAt(i), map, digits, index + 1)
+  }
+}
+
 // Option 1
 var letterCombinations = function(digits) {
   // Para matcharlo con los elementos exactos sin tener que hacer alguna otra operación
