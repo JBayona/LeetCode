@@ -84,3 +84,73 @@ function getFrequency(str, len) {
 function equals(a, b) {
   return a.join("") === b.join("");
 }
+
+// Option 2
+var findAnagrams = function (s, p) {
+  if (s.length < p.length) {
+    return [];
+  }
+
+  // This map won´t change
+  let mapP = {};
+  for (let c of p) {
+    if (!(c in mapP)) {
+      mapP[c] = 0;
+    }
+    mapP[c]++;
+  }
+
+  // Initial map of S
+  let mapS = {};
+  for (let i = 0; i < p.length; i++) {
+    let c = s[i];
+    if (!(c in mapS)) {
+      mapS[c] = 0;
+    }
+    mapS[c]++;
+  }
+
+  let result = [];
+  let i = p.length;
+  while (i < s.length) {
+    if (isMapEquals(mapS, mapP)) {
+      result.push(i - p.length);
+    }
+
+    // Expand the window
+    let c = s[i];
+    // Add the new char coming into the window
+    if (c in mapS) {
+      mapS[c]++;
+    } else {
+      mapS[c] = 1;
+    }
+
+    // Remove the left char of the window
+    c = s[i - p.length];
+    if (mapS[c] === 1) {
+      delete mapS[c];
+    } else if (mapS[c] > 1) {
+      mapS[c]--;
+    }
+    i++;
+  }
+  // Last window
+  if (isMapEquals(mapS, mapP)) {
+    result.push(i - p.length);
+  }
+  return result;
+};
+
+function isMapEquals(map1, map2) {
+  if (Object.keys(map1).length !== Object.keys(map2).length) {
+    return false;
+  }
+
+  for (let prop in map1) {
+    if (!(prop in map2) || map1[prop] !== map2[prop]) {
+      return false;
+    }
+  }
+  return true;
+}
