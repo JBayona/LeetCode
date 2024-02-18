@@ -17,7 +17,7 @@ word = "ABCB", -> returns false.
 https://leetcode.com/problems/word-search/description/
 */
 var exist = function(board, word) {
-  if(!board.length) {
+  if(!board.length || !word) {
       return false;
   }
   
