@@ -12,6 +12,32 @@ https://leetcode.com/problems/container-with-most-water/description/
 Para maximixar el area debemos conservar ya sea el mayor x axis o mayor y
 axis
 */
+
+// Time O(N)
+// Two pointers
+var maxArea = function(height) {
+  if (!height.length) {
+      return 0;
+  }
+  let left = 0;
+  let right = height.length - 1;
+  let max = -Infinity;
+  while (left < right){
+      // Take the minimum as that one will be our limitation
+      let h = Math.min(height[left], height[right]);
+      // Maximize area
+      max = Math.max(max, h * (right - left));
+
+      if(height[left] < height[right]) {
+          left++;
+      } else {
+          right--;
+      }
+  }
+  return max;
+};
+
+
 // Two pointers
 // Time O(N)
 // Space O(1)
