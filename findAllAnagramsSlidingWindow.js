@@ -3,7 +3,6 @@ Given a string s and a non-empty string p, find all the start indices of p's ana
 
 Strings consists of lowercase English letters only and the length of both strings s and p will not be
 larger than 20,100.
-
 The order of output does not matter.
 
 Example 1:
@@ -43,7 +42,6 @@ var findAnagrams = function (s, p) {
   if (p.length > s.length) {
     return [];
   }
-
   let freqS = getFrequency(s, p.length);
   let freqP = getFrequency(p, p.length);
 
