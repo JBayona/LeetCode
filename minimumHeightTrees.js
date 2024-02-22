@@ -19,7 +19,6 @@ Input: n = 4, edges = [[1, 0], [1, 2], [1, 3]]
         1
        / \
       2   3 
-
 Output: [1]
 
 https://leetcode.com/problems/minimum-height-trees/
