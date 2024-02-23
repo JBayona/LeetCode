@@ -29,7 +29,6 @@ var findMinHeightTrees = function (n, edges) {
   if (edges.length === 0) {
     return [0];
   }
-
   const graph = makeAdjacencyList(n, edges);
   /*
     Map(4) {
@@ -38,7 +37,6 @@ var findMinHeightTrees = function (n, edges) {
         2 => Set(1) { 1 },
         3 => Set(1) { 1 }
     }
-
     */
   let nodes = n;
   let leaves = [];
