@@ -13,29 +13,6 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/discuss/63783/Two-Easiest-In-Order-Traverse-(Java)
 */
 
-// Heap Java
-/*
-class Solution {
-    public int kthSmallest(TreeNode root, int k) {
-        Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b-a);
-        preorder(root, maxHeap, k);
-        return maxHeap.poll();
-    }
-    
-    public void preorder(TreeNode node, Queue<Integer> maxHeap, int k) {
-        if(node == null) { 
-            return;
-        }
-        maxHeap.add(node.val);
-        if(maxHeap.size() > k) {
-            maxHeap.poll();
-        }
-        preorder(node.left, maxHeap, k);
-        preorder(node.right, maxHeap, k);
-    }
-}
-*/
-
 function Node(val,left,right){
   this.val = val;
   this.left = left || null;
@@ -49,6 +26,7 @@ function findKSmallestBST(tree, k){
   let count = 0;
   let right;
 
+  // Smallest will always come from left.
   while(node){
     stack.push(node);
     node = node.left;
@@ -131,6 +109,29 @@ var kthSmallest = function(root, k) {
   // Element not found
   return -1;
 };
+
+// Heap Java
+/*
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b-a);
+        preorder(root, maxHeap, k);
+        return maxHeap.poll();
+    }
+    
+    public void preorder(TreeNode node, Queue<Integer> maxHeap, int k) {
+        if(node == null) { 
+            return;
+        }
+        maxHeap.add(node.val);
+        if(maxHeap.size() > k) {
+            maxHeap.poll();
+        }
+        preorder(node.left, maxHeap, k);
+        preorder(node.right, maxHeap, k);
+    }
+}
+*/
 
 
 tree = new Node(7, new Node(5, new Node(4, new Node(3)), new Node(6)), new Node(10, new Node(9), new Node(11)));
