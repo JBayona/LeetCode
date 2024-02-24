@@ -11,8 +11,15 @@ Could you do both operations in O(1) time complexity?
 https://leetcode.com/problems/lru-cache/description/
 */
 
-class Node{
-  constructor(key,val){
+var LRUCache = function (capacity) {
+  this.head = null;
+  this.end = null;
+  this.size = capacity;
+  this.map = new Map();
+};
+
+class Node {
+  constructor(key, val) {
     this.key = key;
     this.value = val;
     this.prev = null;
@@ -20,102 +27,99 @@ class Node{
   }
 }
 
-let LRUCache = function(capacity){
-  this.map = new Map();
-  this.head = null;
-  this.end = null;
-  this.size = capacity;
-}
-
-LRUCache.prototype.put = function(key,value){
-  if(this.map.has(key)){
-    let old = this.map.get(key);
-    old.value = value;
-    this.remove(old);
-    this.setHead(old);
-  }else{
-    let created = new Node(key,value);
-    if(this.map.size >= this.size){
-      this.map.delete(this.end.key);
-      // Remove the last node as it´s the least used
-      this.remove(this.end);
-      this.setHead(created);
-    }else{
-      this.setHead(created);
-    }
-    this.map.set(key, created);
-  }
-}
-
-LRUCache.prototype.get = function(key) {
-   if(this.map.has(key)){
-    let node = this.map.get(key);
-    this.remove(node);
-    this.setHead(node);
-    return node.value;
-   }
-   return -1;
-};
-
-LRUCache.prototype.remove = function(node){
-  /*Al hacer el remove, el nodo más antiguo su
-  next siempre apunta a null, entonces actualizamos
-  el nodo siguiente (node.prev.next) que apunte a
-  node.next que es null*/
-  // En este caso el nodo que estamos eliminando está
-  // en medio de dos nodos, entonces hacemos la conexión
-  // entre esos dos nodos
-  if(node.prev !== null){
+/*Utility functions*/
+LRUCache.prototype.remove = function (node) {
+  /*
+  If node.prev is not null, that means that the node to
+  remove is not the head node, so we need to update the
+  pointers
+  */
+  // Update node's prev pointers
+  if (node.prev !== null) {
     node.prev.next = node.next;
-  }else{
-    /*Si no hay nada apuntamos head a
-    null que es node.next*/
-    // En este caso el nodo es el primero
-    // entonces head ahora es el next del nodo que queremos eliminar
+  } else {
+    // This means we want to remove the head, so
+    // in the meantime we update the head to point
+    // to the node after the head
     this.head = node.next;
   }
-  /*Si hay un nodo antes, es decir, no es el
-  último, eliminamos la referencia de ese nodo
-  y apuntamos el nodo anterior(next)*/
-  if(node.next !== null){
+
+  // Update node's next pointers
+  // If there's a node we point from the node we want to remove
+  // we update the pointers from both excluding the node we are removing
+  if (node.next !== null) {
     node.next.prev = node.prev;
-  }else{
-    /*Si el nodo a eliminar es el ultimo, su
-    next estará apuntando a null, entonces
-    debemos actualizar el end para que sea el prev 
-    del nodo a eliminar*/
+  } else {
+    // If the node to delete is the latest node
+    // we need to update the pointer too
     this.end = node.prev;
   }
-}
+};
 
-LRUCache.prototype.setHead = function(node){
-  /*Cada que creamos un nueno nodo, el next debe
+LRUCache.prototype.setHead = function (node) {
+  /*Cada que creamos un nueno nodo, el next debe 
   apuntar al head, que es el nodo anterior
   mas "actual"*/
   node.next = this.head;
-  /*El prev es null porque no hay nodos mas
-  recuentes en ese momento*/
+  /*El prev es null porque no hay nodos mas recuentes en ese momento*/
   node.prev = null;
-  // El antiguo head, ya no es el head y debe de
-  // apuntar al nuevo nodo
-  if(this.head !== null){
+  // As we have a new node, we need to update
+  // the "old new" node to point to the new node
+  if (this.head !== null) {
     this.head.prev = node;
   }
   /*El nuevo head es nuestro nodo*/
   this.head = node;
   /*Si es el primer nodo, entonces end
-  debe tener el head también que es el
-  mismo nodo*/
-  if(this.end === null){
+  debe tener el head también que es el mismo nodo*/
+  if (this.end === null) {
     this.end = this.head;
   }
-}
+};
+
+/**
+ * @param {number} key
+ * @return {number}
+ */
+LRUCache.prototype.get = function (key) {
+  if (this.map.has(key)) {
+    let node = this.map.get(key);
+    this.remove(node);
+    this.setHead(node);
+    return node.value;
+  }
+  return -1;
+};
+
+/**
+ * @param {number} key
+ * @param {number} value
+ * @return {void}
+ */
+LRUCache.prototype.put = function (key, value) {
+  if (this.map.has(key)) {
+    let old = this.map.get(key);
+    old.value = value;
+    this.remove(old);
+    this.setHead(old);
+  } else {
+    let created = new Node(key, value);
+    if (this.map.size >= this.size) {
+      this.map.delete(this.end.key);
+      this.remove(this.end);
+      this.setHead(created);
+    } else {
+      this.setHead(created);
+    }
+    this.map.set(key, created);
+  }
+};
 
 let cache = new LRUCache(3);
-cache.put(1,1);
-cache.put(2,2);
-cache.put(3,3);
-cache.put(4,4);
+cache.put(1, 1);
+cache.put(2, 2);
+cache.put(3, 3);
+cache.put(4, 4);
 console.log(cache.get(3));
 console.log(cache.get(2));
 console.log(cache.get(1));
