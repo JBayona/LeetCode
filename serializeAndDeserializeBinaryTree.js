@@ -27,23 +27,57 @@ function TreeNode(val, left, right) {
   this.right = right || null;
 }
 
+// DFS
+var serialize = function (root) {
+  let result = [];
+  function preorder(node) {
+    if (!node) {
+      result.push("null");
+      return;
+    }
+    result.push(node.val.toString());
+    preorder(node.left);
+    preorder(node.right);
+  }
+  preorder(root);
+  console.log(result.join(","));
+  return result.join(",");
+};
+
+var deserialize = function (data) {
+  const arr = data.split(",");
+  let i = 0;
+
+  function preorder() {
+    if (arr[i] === "null") {
+      i++;
+      return null;
+    }
+    const node = new TreeNode(Number(arr[i]));
+    i++;
+    node.left = preorder();
+    node.right = preorder();
+    return node;
+  }
+  return preorder();
+};
+
 // BST
-var serialize = function(root) {
-  if(!root) return '';
+var serialize = function (root) {
+  if (!root) return "";
   let queue = [];
-  let result = '';
+  let result = "";
 
   queue.push(root);
-
-  while(queue.length) {
+  while (queue.length) {
     let node = queue.shift();
 
-    if(!node) {
-      result = result + 'null ';
+    if (!node) {
+      result = result + "null ";
       continue;
     }
 
-    result = result + node.val + ' ';
+    result = result + node.val + " ";
     // Do not check for existence so we can print null too
     queue.push(node.left);
     queue.push(node.right);
@@ -52,7 +86,7 @@ var serialize = function(root) {
   return result.trim();
 };
 
-var deserialize = function(data) {
+var deserialize = function (data) {
   if (data === "") return null;
   let queue = [];
 
@@ -76,9 +110,12 @@ var deserialize = function(data) {
   return root;
 };
 
-
-tree = new TreeNode(1, new TreeNode(2), new TreeNode(3, new TreeNode(4), new TreeNode(5)));
-let str = serialize(tree)
+tree = new TreeNode(
+  1,
+  new TreeNode(2),
+  new TreeNode(3, new TreeNode(4), new TreeNode(5))
+);
+let str = serialize(tree);
 console.log(serialize(str));
 let treeNew = deserialize(str);
 console.log(treeNew);
