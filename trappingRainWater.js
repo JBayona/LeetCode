@@ -13,7 +13,6 @@ Output: 9
 
 https://leetcode.com/problems/trapping-rain-water/description/
 */
-
 var trap = function (array) {
   let left = [];   
   let right = [];
