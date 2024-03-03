@@ -34,25 +34,41 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
+// Add element O(logN)
+// Remove element O(logN)
+// Find O(1)
+/*
+    Small Heap.    Large Heap
+    Max heap.      Min Heap
+    [1, 2].        [3, 4]
+        (2 + 3) / 2 = 2.5
+*/
 public class MedianFinder {
-    PriorityQueue<Integer> minHeap; // larger part
-    PriorityQueue<Integer> maxHeap; // smaller part
-    
+    // Smaller elements but we want maxHeap implementation
+    // We want the larger elements
+    PriorityQueue<Integer> maxHeap;
+    // Larger elements but we want minHeap implementation
+    // Get the smallet element from Min heap
+    PriorityQueue<Integer> minHeap;
+
     public MedianFinder() {
         minHeap = new PriorityQueue<>();
-        maxHeap = new PriorityQueue<>(new Comparator<Integer>(){
+        maxHeap = new PriorityQueue<>(new Comparator<Integer>() {
             public int compare(Integer i1, Integer i2) {
                 return i2 - i1;
             }
         });
     }
+
     // Adds a number into the data structure.
     public void addNum(int num) {
         minHeap.offer(num);
         maxHeap.offer(minHeap.poll());
-        if (minHeap.size() < maxHeap.size())
+        if (minHeap.size() < maxHeap.size()) {
             minHeap.offer(maxHeap.poll());
+        }
     }
+
     // Returns the median of current data stream
     public double findMedian() {
         return minHeap.size() > maxHeap.size() ? minHeap.peek() : (maxHeap.peek() + minHeap.peek()) / 2.0;
