@@ -3,7 +3,6 @@ Median is the middle value in an ordered integer list. If the size of the list i
 
 For example,
 [2,3,4], the median is 3
-
 [2,3], the median is (2 + 3) / 2 = 2.5
 
 Design a data structure that supports the following two operations:
@@ -14,13 +13,11 @@ double findMedian() - Return the median of all elements so far.
 https://leetcode.com/problems/find-median-from-data-stream/description/
 
 Example:
-
 addNum(1)
 addNum(2)
 findMedian() -> 1.5
 addNum(3) 
-findMedian() -> 2
- 
+findMedian() -> 2 
 
 Follow up:
 
