@@ -34,47 +34,42 @@ https://leetcode.com/problems/word-ladder/
 */
 
 // BFS
-var ladderLength = function(beginWord, endWord, wordList) {
-    // Variable used to mark the words that we have seen with one
-    // character of difference with  our current word
-    let visited = new Array(wordList.length).fill(false);
-    let queue = [];
-    
-    // Set the original word with the first level
-    queue.push({word: beginWord, level: 1});
-    while(queue.length) {
-        // Get the first current node
-        let current = queue.shift();
-        //  If we have identified the word, we are done and we already have the
-        // shortest path
-        if(current.word === endWord){
-            return current.level;
-        }
+var ladderLength = function (beginWord, endWord, wordList) {
+  let visited = new Set();
 
-        // Let's look over all of our avaiable words
-        for(let i = 0; i < wordList.length; i++) {
-            // If we already saw the word in wordList, there's no need to process again
-            // as we can have an infinite loop
-            if(visited[i]) {
-                continue;
-            }
+  // Set initial state of the queue
+  let queue = [{ word: beginWord, level: 1 }];
 
-            let charDiff = 0;
-            let currentWordList = wordList[i];
-            // Count the number of different chars, it should be one char of difference
-            for(let j = 0; j < currentWordList.length; j++) {
-                if(currentWordList[j] !== current.word[j]) {
-                    charDiff++;
-                }
-            }
-
-            // If we only have one char of difference, we add it to the queue
-            if(charDiff ===  1) {
-                queue.push({word: wordList[i], level: current.level + 1});
-                // Mark as visited
-                visited[i] = true;
-            }
-        }
+  // BFS
+  while (queue.length) {
+    let { word, level } = queue.shift();
+    // If we reach the word we were looking
+    if (word === endWord) {
+      return level;
     }
-    return 0;
+    // Look over all available words
+    for (let i = 0; i < wordList.length; i++) {
+      let wordTmp = wordList[i];
+      // We saw the word before
+      if (visited.has(wordTmp)) {
+        continue;
+      }
+      // Compute how many chars are different on the
+      // same position
+      let charDiff = 0;
+      for (let j = 0; j < word.length; j++) {
+        if (word[j] !== wordTmp[j]) {
+          charDiff++;
+        }
+      }
+      // If diff is only one, add it into the queue
+      if (charDiff === 1) {
+        queue.push({ word: wordTmp, level: level + 1 });
+        // Visit the queue as we want to make sure we already
+        // compute it on the queue
+        visited.add(wordTmp);
+      }
+    }
+  }
+  return 0;
 };
