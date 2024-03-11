@@ -29,14 +29,14 @@ public class Solution {
 
       // Nodo temporal
       ListNode head = new ListNode(0);
-      ListNode p = head;
+      ListNode current = head;
       // Mientras tengamos elementos en la pq
       while (!queue.isEmpty()) {
         // Saca el menor
         ListNode node = queue.poll();
-        p.next = node;
+        current.next = node;
         // Recorremos
-        p = p.next;
+        current = current.next;
         // Agregamos el next de nuestro nodo actual a la pq
         if (node.next != null) {
             queue.add(node.next);
