@@ -42,7 +42,8 @@ var largestRectangleArea = function(heights) {
             let [index, height] = stack.pop();
             maxArea = Math.max(maxArea, height * (i - index));
             // We consider the start the last index we seen as we
-            // can extend backwards
+            // can extend backwards, one before we try to get the
+            // area as we can extend it
             start = index;
         }
         stack.push([start, h]);
