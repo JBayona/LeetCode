@@ -35,8 +35,8 @@ var largestRectangleArea = function(heights) {
     
     for([i, h] of heights.entries()) {
         let start = i;
-        // We can not extend any further to the left as the current element 
-        // is greater than the last hegith seen, so let´s calculate the
+        // We can not extend any further to the right as the current element 
+        // is greater than the last height seen, so let´s calculate the
         // max area at that point
         while(stack.length && stack[stack.length-1][1] > h) {
             let [index, height] = stack.pop();
@@ -47,7 +47,6 @@ var largestRectangleArea = function(heights) {
         }
         stack.push([start, h]);
     }
-    
     // At this point we might have elements in the stack, this means
     // that we could extend from the last element of the height all the
     // way down
