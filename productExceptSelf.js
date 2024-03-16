@@ -42,7 +42,6 @@ var productExceptSelf = function(nums) {
     let result = [];
     let tmp = 1;
     let n = nums.length;
-
     /*In this loop, tmp variable contains product
     of elements on left side excluding nums[i]*/
     for(let i = 0; i < n; i++){
