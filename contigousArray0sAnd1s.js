@@ -14,6 +14,7 @@ Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal numb
 
 https://leetcode.com/problems/contiguous-array/description/?envType=daily-question&envId=2024-03-16
 */
+
 // Time O(N)
 // Space O(1)
 var findMaxLength = function (nums) {
