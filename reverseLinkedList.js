@@ -1,6 +1,7 @@
 /*
 Reverse Linked List
 */
+
 function ListNode(val, next) {
   this.val = val;
   this.next = next || null;
@@ -51,7 +52,6 @@ let reverse = function (head) {
   // Set the second-last node as the new last element of the
   // un-reversed part of the list
   head.next = null;
-
   return reversedHead;
 };
 
