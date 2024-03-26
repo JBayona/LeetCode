@@ -15,6 +15,9 @@ https://leetcode.com/problems/find-the-duplicate-number/description/
  * @param {number[]} nums
  * @return {number}
  */
+
+// Time O(N)
+// Space O(N)
 var findDuplicate = function(nums) {
     var map = {};
     let item;
