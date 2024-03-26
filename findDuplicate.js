@@ -17,6 +17,20 @@ https://leetcode.com/problems/find-the-duplicate-number/description/
  */
 
 // Time O(N)
+// Space O(1)
+var findDuplicate = function(nums) {
+    // Como los elementos son positivos no debemos hacer ningún shift
+    for(let i = 0; i < nums.length; i++) {
+      if(nums[Math.abs(nums[i])] >= 0) {
+        nums[Math.abs(nums[i])] = -nums[Math.abs(nums[i])];
+      } else {
+        // this is the repeated
+        return Math.abs(nums[i]);
+      }
+    }
+  }
+
+// Time O(N)
 // Space O(N)
 var findDuplicate = function(nums) {
     var map = {};
