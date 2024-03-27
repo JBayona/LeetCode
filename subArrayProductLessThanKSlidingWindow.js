@@ -22,6 +22,7 @@ https://leetcode.com/problems/subarray-product-less-than-k/
 // If product < k then the number of subarrays you can add is equal to the
 // length of the current sliding window between e and s for that
 // cycle (because we are only incrementing the end of the sliding window once per cycle).
+// Sliding Window
 var numSubarrayProductLessThanK = function (nums, k) {
   let start = 0;
   let end = 0;
@@ -29,8 +30,11 @@ var numSubarrayProductLessThanK = function (nums, k) {
   let prod = 1;
   while (end < nums.length) {
     prod *= nums[end++];
+    // If the window is not eligible anymore
     while (start < end && prod >= k) {
+      // adjust the window
       prod /= nums[start];
+      // move the left window
       start++;
     }
     result += end - start;
