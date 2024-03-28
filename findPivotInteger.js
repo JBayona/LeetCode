@@ -25,21 +25,23 @@ https://leetcode.com/problems/find-the-pivot-integer/description/?envType=daily-
 // Two pointers
 // Time O(N)
 // Space O(1)
-var pivotInteger = function (n) {
-  let sum = 0;
-  for (let i = 1; i <= n; i++) {
-    sum += i;
-  }
+var pivotInteger = function(n) {
+  // let sum = 0;
+  // for (let i = 1; i <= n; i++) {
+  //     sum += i;
+  // }
+  // Sum from 1 to n
+  let sum = n * (n + 1) / 2;
   let second = n;
-  let pivot = n;
+  let index = n;
 
-  while (pivot > 0) {
-    if (sum === second) {
-      return pivot;
-    }
-    sum -= pivot;
-    second += pivot - 1;
-    pivot--;
+  while(index > 0) {
+      if (sum === second) {
+          return index;
+      }
+      sum -= index;
+      second += (index - 1)
+      index--;
   }
   return -1;
 };
