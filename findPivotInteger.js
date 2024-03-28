@@ -43,3 +43,23 @@ var pivotInteger = function (n) {
   }
   return -1;
 };
+
+// Option 2
+var pivotInteger = function (n) {
+  let i = 1;
+  while (i <= n) {
+    if (sum(1, i) === sum(i, n)) {
+      return i;
+    }
+    i++;
+  }
+  return -1;
+};
+
+function sum(from, to) {
+  let sum = 0;
+  for (let i = from; i <= to; i++) {
+    sum += i;
+  }
+  return sum;
+}
