@@ -7,7 +7,6 @@ The maximum value in the subarray is equal to maxK.
 Return the number of fixed-bound subarrays.
 
 A subarray is a contiguous part of an array.
-
 Example 1:
 Input: nums = [1,3,5,2,7,5], minK = 1, maxK = 5
 Output: 2
