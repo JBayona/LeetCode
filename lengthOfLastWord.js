@@ -14,10 +14,8 @@ https://leetcode.com/problems/length-of-last-word/description/
 */
 
 var lengthOfLastWord = function(s) {
-   if(s == 0) return 0;
-   let words = s.split(' ');
-   let noSpace = words.filter(item => item != 0);
-   return noSpace[noSpace.length - 1].length;
+   let arr = s.trim().split(' ');
+   return arr[arr.length - 1].length;
 };
 
 var str = "a ";
