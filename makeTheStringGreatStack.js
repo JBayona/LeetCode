@@ -29,7 +29,7 @@ Output: "s"
 
 https://leetcode.com/problems/make-the-string-great/description/
 */
-
+// Timee O(N)
 var makeGood = function (s) {
   let stack = [];
   for (let i = 0; i < s.length; i++) {
