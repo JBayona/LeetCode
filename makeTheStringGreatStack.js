@@ -29,7 +29,23 @@ Output: "s"
 
 https://leetcode.com/problems/make-the-string-great/description/
 */
-// Timee O(N)
+// Time O(N)
+var makeGood = function(s) {
+    let stack = [];
+    for (let c of s) {
+        let top = stack.at(-1);
+        // Remove bad string
+        // top can be undefined
+        if (top && top !== c && top.toLowerCase() === c.toLowerCase()) {
+            stack.pop();
+        } else {
+            stack.push(c);
+        }
+    }
+    return stack.join('');
+};
+
+// Time O(N)
 var makeGood = function (s) {
   let stack = [];
   for (let i = 0; i < s.length; i++) {
