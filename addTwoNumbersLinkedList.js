@@ -13,8 +13,7 @@ https://leetcode.com/problems/add-two-numbers/
 */
 
 // Option 1
-var addTwoNumbers = function(l1, l2) {
-    
+var addTwoNumbers = function(l1, l2) {    
     if(!l1) {
         return l2;
     }
