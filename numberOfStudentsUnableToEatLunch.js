@@ -38,3 +38,21 @@ var countStudents = function (students, sandwiches) {
   }
   return 0;
 };
+
+// Option 2
+var countStudents = function (students, sandwiches) {
+  let queue = students;
+  let count = 0;
+  while (queue.length && count !== sandwiches.length) {
+    let topStudent = queue.shift();
+    let topSandwich = sandwiches[0];
+    if (topStudent === topSandwich) {
+      sandwiches.shift();
+      count = 0;
+    } else {
+      count++;
+      queue.push(topStudent);
+    }
+  }
+  return queue.length;
+};
