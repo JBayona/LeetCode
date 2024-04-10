@@ -39,3 +39,39 @@ var summaryRanges = function (nums) {
   }
   return result;
 };
+
+// Option 2
+var summaryRanges = function (nums) {
+  if (!nums.length) {
+    return [];
+  }
+
+  if (nums.length === 1) {
+    return [nums[0].toString()];
+  }
+
+  let prev = nums[0];
+  let result = [];
+  for (let i = 0; i < nums.length - 1; i++) {
+    let current = nums[i];
+    let next = nums[i + 1];
+    if (Math.abs(current - next) > 1) {
+      // If there's only one number
+      if (current === prev) {
+        result.push(prev.toString());
+      } else {
+        result.push(`${prev}->${current}`);
+      }
+      // Last element
+      if (i === nums.length - 2) {
+        result.push(next.toString());
+      }
+      prev = next;
+    } else if (i === nums.length - 2) {
+      // Last element and we found consecutives
+      // the next will have the value
+      result.push(`${prev}->${next}`);
+    }
+  }
+  return result;
+};
