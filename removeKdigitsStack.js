@@ -23,7 +23,7 @@ Explanation: Remove all the digits from the number and it is left with nothing w
 
 https://leetcode.com/problems/remove-k-digits/
 */
-
+// Time O(N)
 var removeKdigits = function(num, k) {
     let stack = [];
     for(item of num) {
