@@ -31,7 +31,6 @@ var trap = function (array) {
     max = Math.max(max, array[i]);
     right[i] = max;
   }
-
   // console.log(left);
   // console.log(right);
 
