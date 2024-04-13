@@ -2,7 +2,6 @@
 Given a 2D binary matrix filled with 0's and 1's, find the largest rectangle containing only 1's and return its area.
 
 Example:
-
 Input:
 [
   ["1","0","1","0","0"],
@@ -14,10 +13,8 @@ Output: 6
 
 https://leetcode.com/problems/maximal-rectangle/
 */
-
 // Time: O(n^2*m^2)
 // Space: O(1)
-
 var maximalRectangle = function(matrix) {
     let maxArea = 0;
     
