@@ -5,9 +5,7 @@ could represent a number.
 An example is the root-to-leaf path 1->2->3 which represents the number 123.
 
 Find the total sum of all root-to-leaf numbers.
-
 Note: A leaf is a node with no children.
-
 Example:
 
 Input: [1,2,3]
