@@ -15,14 +15,6 @@ Input:
 Output: 16
 
 Explanation: The perimeter is the 16 yellow stripes in the image below:
-
-
-Accepted
-130,867
-Submissions
-215,405
-
-https://leetcode.com/problems/island-perimeter/
 */
 
 var islandPerimeter = function(grid) {
