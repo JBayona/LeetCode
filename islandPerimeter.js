@@ -17,29 +17,30 @@ Output: 16
 Explanation: The perimeter is the 16 yellow stripes in the image below:
 */
 
-var islandPerimeter = function(grid) {
-    let result = 0;
-    for(let i = 0; i < grid.length; i++) {
-        for(let j = 0; j < grid[i].length; j++) {
-            if(grid[i][j]) {
-                //check upper
-                if(i == 0 || grid[i-1][j] == 0) {
-                    result++;
-                }
-                //check right
-                if(j == grid[0].length-1 || grid[i][j+1] == 0) {
-                    result++;
-                }
-                //check left
-                if(j == 0 || grid[i][j-1] == 0) {
-                    result++;
-                }
-                // check down
-                if(i == grid.length-1 || grid[i+1][j] == 0) {
-                    result++;
-                }        
-            }
+var islandPerimeter = function (grid) {
+  let result = 0;
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      // Only run when a land is found
+      if (grid[i][j]) {
+        //check if land above is water (or top edge)
+        if (i == 0 || grid[i - 1][j] == 0) {
+          result++;
         }
+        //check if land right is water (or right edge)
+        if (j == grid[0].length - 1 || grid[i][j + 1] == 0) {
+          result++;
+        }
+        //check if left land is water (or left edge)
+        if (j == 0 || grid[i][j - 1] == 0) {
+          result++;
+        }
+        // check land below is water (or bottom edge)
+        if (i == grid.length - 1 || grid[i + 1][j] == 0) {
+          result++;
+        }
+      }
     }
-    return result;
+  }
+  return result;
 };
