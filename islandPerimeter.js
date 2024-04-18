@@ -16,7 +16,7 @@ Output: 16
 
 Explanation: The perimeter is the 16 yellow stripes in the image below:
 */
-
+// Option 1
 var islandPerimeter = function (grid) {
   let result = 0;
   for (let i = 0; i < grid.length; i++) {
@@ -44,3 +44,38 @@ var islandPerimeter = function (grid) {
   }
   return result;
 };
+
+// Option 2
+var islandPerimeter = function(grid) {
+  for (let i = 0; i < grid.length; i++) {
+      for(let j = 0; j < grid[0].length; j++) {
+          // Runs when an island is found
+          if(grid[i][j] === 1) {
+              return dfs(grid, i, j);
+          }
+      }
+  }
+};
+
+function dfs(grid, row, col) {
+  let perimeter = 0;
+  let ROW = grid.length;
+  let COL = grid[0].length;
+  // Water
+  if(row < 0 || row >= ROW || col < 0 || col >= COL || grid[row][col] === 0) {
+      return 1;
+  }
+  // Visited already
+  if (grid[row][col] === -1) {
+      return 0;
+  }
+  // Change to avoid re-visit
+  grid[row][col] = -1;
+  perimeter += (
+      dfs(grid, row + 1, col) +
+      dfs(grid, row, col + 1) +
+      dfs(grid, row - 1, col) +
+      dfs(grid, row, col - 1)
+  );
+  return perimeter;
+}
