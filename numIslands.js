@@ -8,7 +8,6 @@ You may assume all four edges of the grid are all surrounded by water.
 
 https://leetcode.com/problems/number-of-islands/description/
 */
-
 var numIslands = function(grid) {
   if(grid.length === 0) return 0;
   grid = grid.map(item => [...item].map(Number));
@@ -67,6 +66,7 @@ function isSafe(grid, row, column, visited){
     !visited[row][column];
   );
 }
+
 
 /*matrix = [
           [1, 1, 0, 0, 0],
