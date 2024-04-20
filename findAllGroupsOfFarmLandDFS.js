@@ -40,7 +40,6 @@ var findFarmland = function (land) {
 function dfs(grid, visited, row, col, tmp) {
   let rowK = [0, -1, 0, 1];
   let colK = [-1, 0, 1, 0];
-
   for (let i = 0; i < 4; i++) {
     let nextRow = rowK[i] + row;
     let nextCol = colK[i] + col;
