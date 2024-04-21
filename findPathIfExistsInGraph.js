@@ -12,6 +12,69 @@ return true if there is a valid path from source to destination, or false otherw
 https://leetcode.com/problems/find-if-path-exists-in-graph/description/
 */
 
+// Option 1
+var validPath = function (n, edges, source, destination) {
+  // Create graoh
+  let graph = {};
+  for (let node of edges) {
+    let [from, to] = node;
+    if (!(from in graph)) {
+      graph[from] = [];
+    }
+    if (!(to in graph)) {
+      graph[to] = [];
+    }
+    graph[from].push(to);
+    graph[to].push(from);
+  }
+  let visited = new Set();
+  // return hasValidPathDFS(graph, source, destination, visited);
+  return hasValidPathBFS(graph, source, destination, visited);
+};
+
+function hasValidPathBFS(graph, source, destination, visited) {
+  let queue = [source];
+  while (queue.length) {
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+      let node = queue.shift();
+      // Found the destination node
+      if (node === destination) {
+        return true;
+      }
+      // If the node has been visited before
+      if (visited.has(node)) {
+        continue;
+      }
+      visited.add(node);
+      for (let neighbor of graph[node]) {
+        queue.push(neighbor);
+      }
+    }
+  }
+  return false;
+}
+
+function hasValidPathDFS(graph, source, destination, visited) {
+  // If the node is found
+  if (source === destination) {
+    return true;
+  }
+  // If the node has been visited before
+  if (visited.has(source)) {
+    return false;
+  }
+  // Mark node as visited
+  visited.add(source);
+  for (let neighbor of graph[source]) {
+    if (hasValidPathDFS(graph, neighbor, destination, visited)) {
+      return true;
+    }
+  }
+  return false;
+}
+
+// Option 2
 var validPath = function (n, edges, source, destination) {
   let graph = {};
   // Construct graph
