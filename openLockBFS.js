@@ -37,6 +37,71 @@ Output: -1
 
 https://leetcode.com/problems/open-the-lock/
 */
+
+// BFS
+// Time O(N)
+// Space O(N)
+var openLock = function(deadends, target) {
+    // These combinations are locked and can not move forward if we reach them
+    let set = new Set(deadends);
+    let seen = new Set();
+    let queue = [];
+    
+    // Firs position
+    // Initial position
+    queue.push({combination: '0000', distance: 0});
+    // To avoid seen duplicates
+    seen.add('0000');
+    while(queue.length) {
+        let node = queue.shift();
+        let combination = node.combination;
+        let distance = node.distance;
+        
+        // Skip the combination if we reach the deadend
+        if(set.has(combination)) {
+            continue;
+        }
+        
+        // Check if we are done and we found the combination
+        if(combination === target) {
+            return distance;
+        }
+        
+        // We have 4 wheels, try with every wheel
+        // For every combination we do both, increasing one and decreasing one
+        for(let i = 0; i < 4; i++) {
+            let newIncCombination = replaceChar(i, combination, 'INC');
+            // Make sure we do not see the combination before
+            if(!seen.has(newIncCombination)) {
+                seen.add(newIncCombination);
+                queue.push({combination: newIncCombination, distance: distance + 1});
+            }
+
+            let newDecCombination = replaceChar(i, combination, 'DEC');
+            
+            // Make sure we don´t see that combination before
+            if(!seen.has(newDecCombination)) {
+                seen.add(newDecCombination);
+                queue.push({combination: newDecCombination, distance: distance + 1});
+            }
+        }
+    }
+    return -1;
+};
+
+// Create both combinations, by incrementing one and decrementing one
+function replaceChar(index, combination, operation) {
+    let c = combination;
+    if (operation === 'INC') {
+        // If incrementing, if we are at 9, go to 0
+        return c.substring(0, index) + (c.charAt(index) === '9' ? '0' : (Number(c.charAt(index)) + 1).toString()) + c.substring(index + 1, 4);
+    } else {
+        // If decrementing, if we are at 0, go to 9
+        return c.substring(0, index) + (c.charAt(index) === '0' ? '9' : (Number(c.charAt(index)) - 1).toString()) + c.substring(index + 1, 4);
+    }
+}
+
+
 // BFS
 // Time O(N)
 // Space O(N)
