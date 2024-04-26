@@ -24,6 +24,7 @@ Explanation: The longest ideal string is "abcd". The length of this string is 4,
 
 https://leetcode.com/problems/longest-ideal-subsequence/description/?envType=daily-question&envId=2024-04-25
 */
+
 // Time O(N) + 26
 // Space O(N)
 var longestIdealString = function (s, k) {
