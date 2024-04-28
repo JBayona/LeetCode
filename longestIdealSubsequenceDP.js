@@ -6,7 +6,8 @@ if the following conditions are satisfied:
 is less than or equal to k.
 Return the length of the longest ideal string.
 
-A subsequence is a string that can be derived from another string by deleting some or no characters
+A subsequence is a string that can be derived from another string by
+deleting some or no characters
 without changing the order of the remaining characters.
 
 Note that the alphabet order is not cyclic. For example, the absolute difference in the alphabet
