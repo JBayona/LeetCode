@@ -15,6 +15,7 @@ to
 
 https://leetcode.com/problems/invert-binary-tree/description/
 */
+
 function TreeNode(val, left, right) {
   this.val = val;
   this.left = left || null;
