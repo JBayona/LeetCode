@@ -1,55 +1,36 @@
 /*
-Given an integer array nums that does not contain any zeros, find the largest positive integer k such that -k also exists in the array.
-
-Return the positive integer k. If there is no such integer, return -1.
-
-Example 1:
-Input: nums = [-1,2,-3,3]
-Output: 3
-Explanation: 3 is the only valid k we can find in the array.
-
-Example 2:
-Input: nums = [-1,10,6,7,-7,1]
-Output: 7
-Explanation: Both 1 and 7 have their corresponding negative values in the array. 7 has a larger value.
-
-Example 3:
-Input: nums = [-10,8,6,7,-2,-3]
-Output: -1
-Explanation: There is no a single valid k, we return -1.
-
-https://leetcode.com/problems/largest-positive-integer-that-exists-with-its-negative/description/
+Merge three arrays with no elements duplicated
 */
 
-// Time O(N)
-var findMaxK = function (nums) {
-  let set = new Set();
-  let result = -1;
-  for (let n of nums) {
-    if (set.has(-n)) {
-      result = Math.max(result, Math.abs(n));
-    } else {
-      set.add(n);
-    }
+var mergeThreeArraysNoDuplicate = function(arr1, arr2, arr3) {
+  let indexA = 0;
+  let indexB = 0;
+  let indexC = 0;
+  let result = [];
+  while (indexA < arr1.length || indexB < arr2.length || indexC < arr3.length) {
+      let a = arr1[indexA] || Infinity;
+      let b = arr2[indexB] || Infinity;
+      let c = arr3[indexC] || Infinity;
+      // This will avoid duplicate elements as we are only inserting once
+      // and we are moving all the indexes the matches the min so that way
+      // we don't have duplicate elements
+      let min = Math.min(a, b ,c);
+      result.push(min);
+
+      if (a === min) {
+          indexA++;   
+      }
+      if (b === min) {
+          indexB++;   
+      }
+      if (c === min) {
+          indexC++;   
+      }
   }
   return result;
-};
+}
 
-// Two pointers
-// Time O(NLogN)
-var findMaxK = function (nums) {
-  nums.sort((a, b) => a - b);
-  let start = 0;
-  let end = nums.length - 1;
-  while (start < end) {
-    if (Math.abs(nums[start]) === nums[end] && nums[start] !== nums[end]) {
-      return Math.abs(nums[end]);
-    }
-    if (Math.abs(nums[start]) > nums[end]) {
-      start++;
-    } else {
-      end--;
-    }
-  }
-  return -1;
-};
+arr1 = [-1, 2, 4, 5, 7, 9];
+arr2 = [-4, -2, -1, 13, 20, 21];
+arr3 = [4, 5, 6, 7, 8, 9];
+console.log(mergeThreeArraysNoDuplicate(arr1, arr2, arr3));
