@@ -9,12 +9,7 @@ If two nodes have the same position, then the value of the node that is reported
 
 Return an list of non-empty reports in order of X coordinate.  Every report will have a list of values of nodes.
 
- 
-
 Example 1:
-
-
-
 Input: [3,9,20,null,null,15,7]
 Output: [[9],[3,15],[20],[7]]
 Explanation: 
@@ -23,10 +18,8 @@ Then, the node with value 9 occurs at position (-1, -1);
 The nodes with values 3 and 15 occur at positions (0, 0) and (0, -2);
 The node with value 20 occurs at position (1, -1);
 The node with value 7 occurs at position (2, -2).
+
 Example 2:
-
-
-
 Input: [1,2,3,4,5,6,7]
 Output: [[4],[2],[1,5,6],[3],[7]]
 Explanation: 
@@ -35,7 +28,6 @@ However, in the report "[1,5,6]", the node value of 5 comes first since 5 is sma
  
 
 Note:
-
 The tree will have between 1 and 1000 nodes.
 Each node's value will be between 0 and 1000.
 
@@ -53,7 +45,12 @@ var verticalTraversal = function(root) {
     let nodeCoordinates = {};
     preorder(root, nodeCoordinates, 0, 0);
     
-    let sorkedKeysArray = Object.keys(nodeCoordinates).map((element => element * 1)).sort((a,b) => a - b);
+    // Sort keys based on "x" as it's the key on the hash
+    let sorkedKeysArray = Object.keys(nodeCoordinates)
+        .map((element => Number(element))).sort((a,b) => a - b);
+
+    console.log(sorkedKeysArray);
+    console.log(nodeCoordinates);
     
     let result = [];
     // Get elements in the array and
@@ -90,7 +87,7 @@ function preorder(node, nodeCoordinates, x, y) {
     } else {
         nodeCoordinates[x] = [{y, val: node.val}];
     }
-    
+    // x and y based on the cartesian plane, the root node is 0,0
     preorder(node.left, nodeCoordinates, x - 1, y - 1);
     preorder(node.right, nodeCoordinates, x + 1, y - 1);
 }
