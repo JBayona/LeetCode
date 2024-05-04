@@ -25,7 +25,6 @@ function helper(result, currArr, index, len, s) {
     }
     return;
   }
-
   // Solo tres situaciones, porque es de longitud de 3 cada espacio de la IP
   for (let i = index; i < len && i <= index + 3; i++) {
     // Sacamos caracter por caracter y validamos
