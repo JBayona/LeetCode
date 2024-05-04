@@ -30,6 +30,8 @@ function helper(result, currArr, index, len, s) {
   // Solo tres situaciones, porque es de longitud de 3 cada espacio de la IP
   for (let i = index; i < len && i <= index + 3; i++) {
     // Sacamos caracter por caracter y validamos
+    // Num has the validations and we are concatenating but
+    // we are inserting digit by digit in the currArr.
     let num = s.substring(index, i + 1);
     if (isValid(num)) {
       currArr.push(parseInt(num));
