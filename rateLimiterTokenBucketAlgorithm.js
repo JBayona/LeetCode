@@ -1,4 +1,5 @@
-class RateLitimerTocketBucket {
+// Rate Limiter Token Bucket
+class RateLitimerTokenBucket {
   // capacity: the maximum number of tokens allowed in the bucket
   // refillRate: number of tokens put into the bucket every second or other specified time period.
   constructor(capacity, refillRate) {
