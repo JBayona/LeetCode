@@ -1,5 +1,4 @@
 // Design a rate limiter API.
-
 class RateLimiter {
   constructor(limit) {
     this.limit = limit;
