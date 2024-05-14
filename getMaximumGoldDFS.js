@@ -35,52 +35,48 @@ Path to get the maximum gold, 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7.
 https://leetcode.com/problems/path-with-maximum-gold/
 */
 
-var getMaximumGold = function(grid) {
-    let m = grid.length;
-    let n = grid[0].length;
-    let max = 0;
-    
-    for(let i = 0; i < grid.length; i++) {
-        for(let j = 0; j < grid[0].length; j++) {
-            // We are only interested in those blocks with gold
-            if(grid[i][j] !== 0) {
-                let count = dfs(grid, i, j, m, n);
-                max = Math.max(count, max);
-            }
-        }
+var getMaximumGold = function (grid) {
+  let m = grid.length;
+  let n = grid[0].length;
+  let max = 0;
+
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[0].length; j++) {
+      // We are only interested in those blocks with gold
+      // Look for all options we have gold
+      if (grid[i][j] !== 0) {
+        let count = dfs(grid, i, j, m, n);
+        max = Math.max(count, max);
+      }
     }
-    return max;
+  }
+  return max;
 };
 
 function dfs(grid, row, col, m, n) {
-    // Check if we can do a valid move
-    if(!isSafe(grid, row, col, m, n) || grid[row][col] === 0) {
-        return 0;
-    }
-    
-    // Retrieve the variable to avoid loops and mark it as visited
-    let sum = grid[row][col];
-    grid[row][col] = 0;
-    
-    let top = dfs(grid, row - 1, col, m, n);
-    let right = dfs(grid, row, col + 1, m, n);
-    let bottom = dfs(grid, row + 1, col, m, n);
-    let left = dfs(grid, row, col - 1, m, n);
-    
-    let best = Math.max(top, right, bottom, left);
-    
-    // Set back the value to avoid modifications
-    // backtrack the original form
-    grid[row][col] = sum;
-    
-    return sum + best;
+  // Check if we can do a valid move, either there are no
+  // blockers to move and thee move is safee
+  if (!isSafe(grid, row, col, m, n) || grid[row][col] === 0) {
+    return 0;
+  }
+
+  // Retrieve the variable to avoid loops and mark it as visited
+  let sum = grid[row][col];
+  grid[row][col] = 0;
+
+  let top = dfs(grid, row - 1, col, m, n);
+  let right = dfs(grid, row, col + 1, m, n);
+  let bottom = dfs(grid, row + 1, col, m, n);
+  let left = dfs(grid, row, col - 1, m, n);
+
+  let best = Math.max(top, right, bottom, left);
+
+  // Set back the value to avoid modifications
+  // backtrack the original form
+  grid[row][col] = sum;
+  return sum + best;
 }
 
 function isSafe(grid, row, col, m, n) {
-    return (
-        row >= 0 &&
-        row < m &&
-        col >= 0 &&
-        col < n
-    )
+  return row >= 0 && row < m && col >= 0 && col < n;
 }
