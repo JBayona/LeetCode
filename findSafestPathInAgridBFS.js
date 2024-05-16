@@ -10,7 +10,6 @@ The safeness factor of a path on the grid is defined as the minimum manhattan di
 from any cell in the path to any thief in the grid.
 
 Return the maximum safeness factor of all paths leading to cell (n - 1, n - 1).
-
 An adjacent cell of cell (r, c), is one of the cells (r, c + 1), (r, c - 1), (r + 1, c) and (r - 1, c) if it exists.
 
 The Manhattan distance between two cells (a, b) and (x, y) is equal to |a - x| + |b - y|
