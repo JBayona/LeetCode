@@ -10,7 +10,6 @@ Otherwise, evaluate the node's two children and apply the boolean operation of i
 Return the boolean result of evaluating the root node.
 
 A full binary tree is a binary tree where each node has either 0 or 2 children.
-
 A leaf node is a node that has zero children.
 
 https://leetcode.com/problems/evaluate-boolean-binary-tree/description/?envType=daily-question&envId=2024-05-16v
