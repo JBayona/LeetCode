@@ -44,7 +44,6 @@ function reverse(head) {
   let current = head;
   let prev = null;
   let next;
-
   while (current) {
     next = current.next;
     current.next = prev;
