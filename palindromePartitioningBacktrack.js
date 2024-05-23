@@ -8,7 +8,6 @@ Output:
   ["aa","b"],
   ["a","a","b"]
 ]
-
 https://leetcode.com/problems/palindrome-partitioning/
 */
 // Time O(n^2)
