@@ -12,6 +12,7 @@ Could you do it in O(n) time and O(1) space?
 
 https://leetcode.com/problems/palindrome-linked-list/description/
 */
+
 // Option 1
 // Time O(N)
 // Space O(1)
