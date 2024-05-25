@@ -29,7 +29,9 @@ You may assume that there are no duplicate edges in the input prerequisites.
 
 https://leetcode.com/problems/course-schedule-ii/
 */
-
+// Time O(V+E) – where V is the number of vertices and E is the number of edges in the graph.
+// Space O(V+E) – where V is the number of vertices and E is the number of edges in the graph.
+// Directed Graph
 var findOrder = function(numCourses, prerequisites) {
     let graph = [];
     // Create graph
@@ -54,36 +56,30 @@ var findOrder = function(numCourses, prerequisites) {
     let states = new Array(numCourses).fill(0);
     
     for(let i = 0; i < numCourses; i++) {
-        // Has not been visited
-        if(states[i] === 0) {
-            // Check that there is no cycle
-            // If there's a cycle, just return empty array
-            if(dfsHasCycle(graph, i, states)) {
-                return []
-            }
+        // Check that there is no cycle
+        // If there's a cycle, just return empty array
+        if(dfsHasCycle(graph, i, states)) {
+            return []
         }
     }
-    
     // At this point there's no cycle
     return result;
 
 };
 
-function dfsHasCycle(graph, node, states){  
-    let neighbors = graph[node];
+function dfsHasCycle(graph, node, states){
+    // It will be a cycle is it's different than 2
+    if (states[node] > 0) {
+        return states[node] !== 2;
+    }
 
     // Processing in current dfs
     states[node] = 1;
-
+    let neighbors = graph[node];
     for(let i = 0; i < neighbors.length; i++) {
         let vertex = neighbors[i];
-        if(states[vertex] === 0) {
-            // Has a cycle
-            if(dfsHasCycle(graph, vertex, states)) {
-                return true;
-            }
-        }
-        if(states[vertex] === 1) {
+        // Has a cycle
+        if(dfsHasCycle(graph, vertex, states)) {
             return true;
         }
     }
