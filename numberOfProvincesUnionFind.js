@@ -14,47 +14,50 @@ https://leetcode.com/problems/number-of-provinces/
 */
 
 // Union Find
-// Time O(V + E)
-var findCircleNum = function (grid) {
+// O(V + E)
+var findCircleNum = function(isConnected) {
   let parent = {};
-  for (let i = 0; i < grid[0].length; i++) {
-    parent[i] = i;
+  for (let i = 0; i < isConnected[0].length; i++) {
+      parent[i] = i;
   }
-
-  for (let i = 0; i < grid.length; i++) {
-    for (let j = i + 1; j < grid[i].length; j++) {
-      if (grid[i][j]) {
-        let parentA = findParent(i, parent);
-        let parentB = findParent(j, parent);
-        if (parentA !== parentB) {
-          union(parentA, parentB, parent);
-        }
+  
+  // Union find
+  for (let i = 0; i < isConnected.length; i++) {
+      for (let j = i + 1; j < isConnected[i].length; j++) {
+          // If they are connected, try to join them
+          if (isConnected[i][j]) {
+              let parentA = findParent(i, parent);
+              let parentB = findParent(j, parent);
+              // If the parent is not the same, join them
+              if (parentA !== parentB) {
+                  union(i, j, parent);
+              }
+          }
       }
-    }
   }
-
+  // Get the result
   let result = 0;
-  for (let i = 0; i < grid.length; i++) {
-    if (parent[i] === i) {
-      result++;
-    }
+  for (let i = 0; i < isConnected.length; i++) {
+      // Whenever it's the same parent, those are the different values
+      if (parent[i] === i) {
+          result++;
+      }
   }
   return result;
 };
 
-// El valor del map es el padre
-// En este caso usamos el node A como el padre
+function findParent(node, parent) {
+  if (parent[node] === node) {
+      return node;
+  }
+  return findParent(parent[node], parent);
+}
+
+// Use parent A to be the parent of B
 function union(nodeA, nodeB, parent) {
   let parentA = findParent(nodeA, parent);
   let parentB = findParent(nodeB, parent);
   parent[parentB] = parentA;
-}
-
-function findParent(node, parent) {
-  if (node === parent[node]) {
-    return node;
-  }
-  return findParent(parent[node], parent);
 }
 
 // DFS
