@@ -15,71 +15,69 @@ https://leetcode.com/problems/number-of-provinces/
 
 // Union Find
 // O(V + E)
-var findCircleNum = function(isConnected) {
+var findCircleNum = function (isConnected) {
   let parent = {};
   for (let i = 0; i < isConnected[0].length; i++) {
-      parent[i] = i;
+    parent[i] = i;
   }
-  
+
   // Union find
   for (let i = 0; i < isConnected.length; i++) {
-      for (let j = i + 1; j < isConnected[i].length; j++) {
-          // If they are connected, try to join them
-          if (isConnected[i][j]) {
-              let parentA = findParent(i, parent);
-              let parentB = findParent(j, parent);
-              // If the parent is not the same, join them
-              if (parentA !== parentB) {
-                  union(i, j, parent);
-              }
-          }
+    for (let j = i + 1; j < isConnected[i].length; j++) {
+      // If they are connected, try to join them
+      if (isConnected[i][j]) {
+        let parentA = findParent(i, parent);
+        let parentB = findParent(j, parent);
+        // If the parent is not the same, join them
+        if (parentA !== parentB) {
+          union(i, j, parent);
+        }
       }
+    }
   }
   // Get the result
   let result = 0;
   for (let i = 0; i < isConnected.length; i++) {
-      // Whenever it's the same parent, those are the different values
-      if (parent[i] === i) {
-          result++;
-      }
+    // Whenever it's the same parent, those are the different values
+    if (parent[i] === i) {
+      result++;
+    }
   }
   return result;
 };
 
 function findParent(node, parent) {
   if (parent[node] === node) {
-      return node;
+    return node;
   }
   return findParent(parent[node], parent);
 }
 
-// Use parent A to be the parent of B
 function union(nodeA, nodeB, parent) {
   let parentA = findParent(nodeA, parent);
   let parentB = findParent(nodeB, parent);
   parent[parentB] = parentA;
 }
 
-// DFS
-// Time (M * N)
-/*var findCircleNum = function(grid) {
-  let visited = new Array(grid.length).fill(0);
-  let count = 0;
-  for(let i = 0; i < grid.length; i++) {
-      if(!visited[i]) {
-          dfs(i, grid, visited);
-          count++;
-      }
+// DFS (M + N)
+var findCircleNum = function (grid) {
+  let visited = new Array(grid.length).fill(false);
+  let result = 0;
+  // i represents each node
+  for (let i = 0; i < grid.length; i++) {
+    if (!visited[i]) {
+      dfs(i, grid, visited);
+      result++;
+    }
   }
-  return count;
+  return result;
 };
 
 function dfs(node, grid, visited) {
-  for(let i = 0; i < grid[node].length; i++) {
-      if(!visited[i] && grid[node][i]) {
-          visited[i] = true;
-          dfs(i, grid, visited);
-      }
+  for (let i = 0; i < grid[node].length; i++) {
+    if (!visited[i] && grid[node][i]) {
+      visited[i] = true;
+      dfs(i, grid, visited);
+    }
   }
 }
-*/
