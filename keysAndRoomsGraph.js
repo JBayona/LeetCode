@@ -41,3 +41,30 @@ function dfs(node, visited, graph) {
     }
   }
 }
+
+// BFS
+// Time O (V + E) where V are vertices and E are edges
+var canVisitAllRooms = function (graph) {
+  let visited = new Array(graph.length).fill(false);
+  let queue = [];
+
+  // Start with the first room
+  queue.push(0);
+  visited[0] = true;
+  while (queue.length) {
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+      let node = queue.shift();
+      for (let neighbor of graph[node]) {
+        // If visited already, let's skip it
+        if (visited[neighbor]) {
+          continue;
+        }
+        // Mark as visited and iterate it again
+        visited[neighbor] = true;
+        queue.push(neighbor);
+      }
+    }
+  }
+  return visited.every((n) => n === true);
+};
