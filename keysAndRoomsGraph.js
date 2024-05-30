@@ -24,6 +24,7 @@ Explanation: We can not enter room number 2 since the only key that unlocks it i
 
 https://leetcode.com/problems/keys-and-rooms/description/?envType=study-plan-v2&envId=graph-theory
 */
+
 // Time O (V + E) where V are vertices and E are edges
 var canVisitAllRooms = function (graph) {
   let visited = new Array(graph.length).fill(false);
