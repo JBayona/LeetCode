@@ -7,7 +7,6 @@ Roads are represented by connections where connections[i] = [ai, bi] represents 
 This year, there will be a big event in the capital (city 0), and many people want to travel to this city.
 
 Your task consists of reorienting some roads such that each city can visit the city 0. Return the minimum number of edges changed.
-
 It's guaranteed that each city can reach city 0 after reorder.
 
 https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/description/?envType=study-plan-v2&envId=graph-theory
