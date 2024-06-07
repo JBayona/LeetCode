@@ -15,61 +15,62 @@ https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/description/
 
 // Time O(M * N)
 // Space O(M * N)
-var nearestExit = function (maze, entrance) {
-  if (!maze.length) {
-    return 0;
+var nearestExit = function(grid, entrance) {
+  if (!grid.length) {
+      return 0;
   }
 
-  let ROW = maze.length;
-  let COL = maze[0].length;
+  let ROW = grid.length;
+  let COL = grid[0].length;
+
   let visited = new Array(ROW);
   for (let i = 0; i < ROW; i++) {
-    visited[i] = new Array(COL).fill(false);
+      visited[i] = new Array(COL).fill(false);
   }
 
+  let ROWK = [0, -1, 0, 1];
+  let COLK = [-1, 0, 1, 0];
+
   let queue = [];
-  queue.push({ x: entrance[0], y: entrance[1], d: 0 });
+  queue.push({x: entrance[0], y: entrance[1], d: 0});
   visited[entrance[0]][entrance[1]] = true;
 
-  let row = [0, -1, 0, 1];
-  let col = [-1, 0, 1, 0];
-
   while (queue.length) {
-    let { x, y, d, init } = queue.shift();
-    // We are not allowed to exit in the same entrance if it's border
-    if (isExit(maze, x, y) && (x !== entrance[0] || y !== entrance[1])) {
-      return d;
-    }
-    for (let i = 0; i < 4; i++) {
-      let nextRow = x + row[i];
-      let nextCol = y + col[i];
-      if (isSafe(maze, visited, nextRow, nextCol)) {
-        visited[nextRow][nextCol] = true;
-        queue.push({ x: nextRow, y: nextCol, d: d + 1 });
+      let len = queue.length;
+      for (let i = 0; i < len; i++) {
+          let {x, y, d} = queue.shift();
+          // We are not allowed to exit in the same entrance if it's border
+          if (isExit(x, y, grid) && (x !== entrance[0] || y !== entrance[1])) {
+              return d;
+          }
+          for (let i = 0; i < 4; i++) {
+              let nextRow = x + ROWK[i];
+              let nextCol = y + COLK[i];
+              if (isSafe(nextRow, nextCol, grid, visited)) {
+                  visited[nextRow][nextCol] = true;
+                  queue.push({x: nextRow, y: nextCol, d: d + 1});
+              }
+          }
       }
-    }
   }
   return -1;
 };
 
-function isExit(maze, row, col) {
-  return (
-    row === 0 ||
-    row === maze.length - 1 ||
-    col === 0 ||
-    col === maze[0].length - 1
-  );
-}
-
-function isSafe(grid, visited, row, col) {
+function isExit(x, y, grid) {
   let ROW = grid.length;
   let COL = grid[0].length;
   return (
-    row >= 0 &&
-    row < ROW &&
-    col >= 0 &&
-    col < COL &&
-    grid[row][col] === "." &&
-    visited[row][col] === false
+      x === 0 || x === ROW - 1 || y === 0 || y === COL - 1
+  );
+}
+
+function isSafe(row, col, grid, visited) {
+  let ROW = grid.length;
+  let COL = grid[0].length;
+  return (
+      row >= 0 && row < ROW &&
+      col >= 0 && col < COL &&
+      visited[row][col] === false &&
+      grid[row][col] === '.'
   );
 }
