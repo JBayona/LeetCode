@@ -20,7 +20,7 @@ Output: 1
 
 https://leetcode.com/problems/shortest-bridge/
 */
-
+// Time Complexity O(N * M) whew N number of rows and M number of columns
 var shortestBridge = function(grid) {
   let row = grid.length;
   let col = grid[0].length;
