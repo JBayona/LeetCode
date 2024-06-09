@@ -25,39 +25,48 @@ Output: 3
 https://leetcode.com/problems/minimum-genetic-mutation/description/v
 */
 
-var minMutation = function (start, end, bank) {
+// Time O(M * N)
+// Space O(M * N)
+var minMutation = function(start, end, bank) {
   let banks = new Set(bank);
   // If the end form is not in the bank, there's no way we
   // can get to the result
   if (!banks.has(end)) {
-    return -1;
+      return -1;
   }
-  let chars = ["A", "C", "G", "T"];
-  let queue = [{ item: start, d: 0 }];
+  let chars = ['A', 'C', 'G', 'T'];
+  let queue = [{item: start, d: 0}];
 
-  while (queue.length) {
-    let { item, d } = queue.shift();
-    if (item === end) {
-      return d;
-    }
+  while(queue.length) {
+      let len = queue.length;
+      for (let i = 0; i < len; i++) {
+          let {item, d} = queue.shift();
+          if(item === end) {
+              return d;
+          }
 
-    // String is 8 chars long
-    // 8 chars long and can be repllaced by 4 chars so we have
-    // 8 * 4 = 32
-    for (let i = 0; i < 8; i++) {
-      // Generate all combinations
-      for (let j = 0; j < 4; j++) {
-        // If we have the same char, continue
-        if (item[i] === chars[j]) {
-          continue;
-        }
-        // Create combination
-        let str = item.slice(0, i) + chars[j] + item.slice(i + 1);
-        if (banks.has(str)) {
-          queue.push({ item: str, d: d + 1 });
-        }
+          // String is 8 chars long
+          // 8 chars long and can be repllaced by 4 chars so we have
+          // 8 * 4 = 32
+          for(let i = 0; i < 8; i++) {
+              // Generate all combinations
+              for(let j = 0; j < 4; j++) {
+                  // If we have the same char, continue
+                  if (item[i] === chars[j]) {
+                      continue;
+                  }
+                  // Create combination
+                  let str = item.substring(0, i) + chars[j] + item.substring(i + 1);
+
+                  if(banks.has(str)) {
+                      queue.push({item: str, d: d + 1});
+                      // We can remove it from the bank to
+                      // reduce complexity
+                      banks.delete(str);
+                  }
+              }
+          }
       }
-    }
   }
   return -1;
 };
