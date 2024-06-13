@@ -90,3 +90,35 @@ function dfs(arr, index, visited) {
     dfs(arr, index - arr[index], visited)
   );
 }
+
+// BFS Option 2
+var canReach = function (arr, start) {
+  let visited = new Set();
+
+  let queue = [start];
+  visited.add(start);
+
+  while (queue.length) {
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+      let index = queue.shift();
+
+      if (arr[index] === 0) {
+        return true;
+      }
+
+      let next = index + arr[index];
+      let prev = index - arr[index];
+
+      if (next < arr.length && !visited.has(next)) {
+        queue.push(next);
+        visited.add(next);
+      }
+      if (prev >= 0 && !visited.has(prev)) {
+        queue.push(prev);
+        visited.add(prev);
+      }
+    }
+  }
+  return false;
+};
