@@ -31,7 +31,6 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 
 https://leetcode.com/problems/word-ladder/
 */
-
 // Time O(M * N)
 // Space O(M * N)
 var ladderLength = function (beginWord, endWord, wordList) {
