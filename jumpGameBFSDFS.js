@@ -63,3 +63,30 @@ var canReach = function (arr, start) {
   }
   return false;
 };
+
+var canReach = function (arr, start) {
+  let visited = new Set();
+  return dfs(arr, start, visited);
+};
+
+function dfs(arr, index, visited) {
+  // Element seen
+  if (visited.has(index)) {
+    return false;
+  }
+
+  // Outside of ranges
+  if (index < 0 || index >= arr.length) {
+    return false;
+  }
+
+  if (arr[index] === 0) {
+    return true;
+  }
+  // Mark as visited
+  visited.add(index);
+  return (
+    dfs(arr, index + arr[index], visited) ||
+    dfs(arr, index - arr[index], visited)
+  );
+}
