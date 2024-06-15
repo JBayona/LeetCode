@@ -30,6 +30,68 @@ The cells are adjacent in only four directions: up, down, left and right.
 https://leetcode.com/problems/01-matrix/
 */
 
+// Time O(V + E)
+// Space O(V + E)
+var updateMatrix = function(mat) {
+  let ROW = mat.length;
+  let COL = mat[0].length;
+  let result = new Array(ROW);
+  let visited = new Array(ROW);
+
+  for (let i = 0; i < ROW; i++) {
+      // Mark as maximum value so we can find near distances
+      result[i] = new Array(COL).fill(Infinity);
+      visited[i] = new Array(COL).fill(false);
+  }
+
+  let queue = [];
+  // Add to the queue all zeros as we want to run a BFS and
+  // find the 1s
+  for (let i = 0; i < ROW; i++) {
+      for (let j = 0; j < COL; j++) {
+          if (mat[i][j] === 0 && visited[i][j] === false) {
+              queue.push({r: i, c: j, d: 1});
+              // Mark as visited
+              visited[i][j] = true;
+              // We are already in the 0, nothing to validate
+              result[i][j] = 0;
+          }
+      }
+  }
+
+  let rowK = [0, -1, 0, 1];
+  let colK = [-1, 0, 1, 0];
+
+  while (queue.length) {
+      let len = queue.length;
+      for (let i = 0; i < len; i++) {
+          let {r, c, d} = queue.shift();
+          for (let j = 0; j < 4; j++) {
+              let nextRow = r + rowK[j];
+              let nextCol = c + colK[j];
+              // Mininize result
+              if (isSafe(nextRow, nextCol, mat, visited) && d < result[nextRow][nextCol]) {
+                  visited[nextRow][nextCol] = true;
+                  result[nextRow][nextCol] = d;
+                  queue.push({r: nextRow, c: nextCol, d: d + 1});
+              }
+          }
+      }
+  }
+  return result;
+};
+
+function isSafe(row, col, mat, visited) {
+  let ROW = mat.length;
+  let COL = mat[0].length;
+  return (
+      (row >= 0 && row < ROW) &&
+      (col >= 0 && col < COL) &&
+      mat[row][col] === 1 &&
+      visited[row][col] === false
+  );
+}
+
 // Option 1
 var updateMatrix = function (mat) {
   let ROW = mat.length;
