@@ -22,43 +22,50 @@ var shortestPathBinaryMatrix = function(grid) {
     if(grid[0][0]) {
         return -1;
     }
-    let n = grid.length - 1;
-    let queue = [];
-    let visited = new Array(grid.length);
-    for(let i = 0; i < grid.length; i++) {
-        visited[i] = new Array(grid.length).fill(0);
+
+    let ROW = grid.length;
+    let COL = grid[0].length;
+    let visited = new Array(ROW);
+    for (let i = 0; i < ROW; i++) {
+        visited[i] = new Array(COL).fill(false);
     }
+
+    let queue = [{r: 0, c: 0, d: 1}];
+    visited[0][0] = true;
     
-    let row = [1, -1, 0, 0, 1, 1, -1, -1];
-    let col = [0, 0, 1, -1, 1, -1, 1, -1];
+    let rowK = [0, -1, -1, -1, 0, 1, 1, 1];
+    let colK = [-1, -1, 0, 1, 1, 1, 0, -1];
     
-    // Init state
-    queue.push({x: 0, y: 0, d: 1});
-    visited[0][0] = 1;
-    while(queue.length) {
-        let node = queue.shift();
-        if(node.x === n && node.y === n) {
-            return node.d;
-        }
-        for(let i = 0; i < 8; i++) {
-            let newRow = node.x + row[i];
-            let newCol = node.y + col[i];
-            if(isSafe(newRow, newCol, grid, visited)) {
-                visited[newRow][newCol] = 1;
-                queue.push({x: newRow, y: newCol, d: node.d + 1});
+    while (queue.length) {
+        let len = queue.length;
+        for (let i = 0; i < len; i++) {
+            let {r, c, d} = queue.shift();
+
+            if (r === ROW - 1 && c === COL - 1) {
+                return d;
+            }
+
+            for (let j = 0; j < 8; j++) {
+                let nextRow = r + rowK[j];
+                let nextCol = c + colK[j];
+                if (isSafe(nextRow, nextCol, grid, visited)) {
+                    visited[nextRow][nextCol] = true;
+                    queue.push({r: nextRow, c: nextCol, d: d + 1})
+                }
             }
         }
     }
     return -1;
-};
+}  
+
 
 function isSafe(row, col, grid, visited) {
     let ROW = grid.length;
     let COL = grid[0].length;
     return (
-        row >= 0 && row < ROW &&
-        col >= 0 && col < COL &&
-        grid[row][col] === 0 &&
-        visited[row][col] === 0
+        (row >= 0 && row < ROW) &&
+        (col >= 0 && col < COL) &&
+        visited[row][col] === false &&
+        grid[row][col] === 0
     );
 }
