@@ -19,8 +19,6 @@ The descriptions of the inputs above are just serializations of these objects.
 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
 */
 
-// Time O(N)
-// Space O(N)
 var distanceK = function(root, target, K) {
     let graph = {};
     // Create graph
@@ -45,24 +43,27 @@ var distanceK = function(root, target, K) {
     
     // BFS
     while(queue.length) {
-        let {node, d} = queue.shift();
-        // No repeated nodes
-        if(visited.has(node)) {
-            continue;
+        let len = queue.length;
+        for (let i = 0; i < len; i++) {
+            let {node, d} = queue.shift();
+            // No repeated nodes
+            if(visited.has(node)) {
+                continue;
+            }
+            if(d === K) {
+                result.push(node);
+            }
+            // Early break
+            if(d > K) {
+                return result;
+            }
+            
+            for(let n of graph[node]) {
+                queue.push({node: n, d: d + 1});
+            }
+            // Mark node as visited
+            visited.add(node);
         }
-        if(d === K) {
-            result.push(node);
-        }
-        // Early break
-        if(d > K) {
-            return result;
-        }
-        
-        for(let n of graph[node]) {
-            queue.push({node: n, d: d + 1});
-        }
-        // Mark node as visited
-        visited.add(node);
     }
     return result;
 };
@@ -85,7 +86,6 @@ function createGraph(parent, node, graph) {
     }
     graph[node.val] = neighbor;
 }
-
 
 // Time O(N)
 // Space O(N)
