@@ -45,24 +45,27 @@ var distanceK = function(root, target, K) {
     
     // BFS
     while(queue.length) {
-        let {node, d} = queue.shift();
-        // No repeated nodes
-        if(visited.has(node)) {
-            continue;
+        let len = queue.length;
+        for (let i = 0; i < len; i++) {
+            let {node, d} = queue.shift();
+            // No repeated nodes
+            if(visited.has(node)) {
+                continue;
+            }
+            if(d === K) {
+                result.push(node);
+            }
+            // Early break
+            if(d > K) {
+                return result;
+            }
+            
+            for(let n of graph[node]) {
+                queue.push({node: n, d: d + 1});
+            }
+            // Mark node as visited
+            visited.add(node);
         }
-        if(d === K) {
-            result.push(node);
-        }
-        // Early break
-        if(d > K) {
-            return result;
-        }
-        
-        for(let n of graph[node]) {
-            queue.push({node: n, d: d + 1});
-        }
-        // Mark node as visited
-        visited.add(node);
     }
     return result;
 };
@@ -79,76 +82,6 @@ function createGraph(parent, node, graph) {
     if(node.right) {
         neighbor.push(node.right.val);
         createGraph(node.val, node.right, graph);
-    }
-    if(parent !== null) {
-        neighbor.push(parent);
-    }
-    graph[node.val] = neighbor;
-}
-
-
-// Time O(N)
-// Space O(N)
-var distanceK = function(root, target, K) {
-    let graph = {};
-    // Create graph
-    createGraph(root, null, graph);
-    
-    /* {
-          '0': [ 1 ],
-          '1': [ 0, 8, 3 ],
-          '2': [ 7, 4, 5 ],
-          '3': [ 5, 1 ],
-          '4': [ 2 ],
-          '5': [ 6, 2, 3 ],
-          '6': [ 5 ],
-          '7': [ 2 ],
-          '8': [ 1 ]
-        }
-    */
-    // console.log(graph);
-    
-    let queue = [];
-    queue.push([target.val, 0]);
-    let visited = new Set();
-    let result = [];
-    
-    // BFS
-    while(queue.length) {
-        let [node, distance] = queue.shift();
-        // No repeated nodes
-        if(visited.has(node)) {
-            continue;
-        }
-        if(distance === K) {
-            result.push(node);
-        }
-        // Early break
-        if(distance > K) {
-            return result;
-        }
-        
-        for(let n of graph[node]) {
-            queue.push([n, distance + 1]);
-        }
-        // Mark node as visited
-        visited.add(node);
-    }
-    return result;
-};
-
-function createGraph(node, parent, graph) {
-    if(!node) {
-        return;
-    }
-    const neighbor = [];
-    if(node.left) {
-        neighbor.push(node.left.val);
-        createGraph(node.left, node.val, graph);
-    }
-    if(node.right) {
-        neighbor.push(node.right.val);
-        createGraph(node.right, node.val, graph);
     }
     if(parent !== null) {
         neighbor.push(parent);
