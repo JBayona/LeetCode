@@ -24,6 +24,74 @@ https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
 var distanceK = function(root, target, K) {
     let graph = {};
     // Create graph
+    createGraph(null, root, graph);
+    /* {
+          '0': [ 1 ],
+          '1': [ 0, 8, 3 ],
+          '2': [ 7, 4, 5 ],
+          '3': [ 5, 1 ],
+          '4': [ 2 ],
+          '5': [ 6, 2, 3 ],
+          '6': [ 5 ],
+          '7': [ 2 ],
+          '8': [ 1 ]
+        }
+    */
+    
+    let queue = [];
+    queue.push({node: target.val, d: 0});
+    let visited = new Set();
+    let result = [];
+    
+    // BFS
+    while(queue.length) {
+        let {node, d} = queue.shift();
+        // No repeated nodes
+        if(visited.has(node)) {
+            continue;
+        }
+        if(d === K) {
+            result.push(node);
+        }
+        // Early break
+        if(d > K) {
+            return result;
+        }
+        
+        for(let n of graph[node]) {
+            queue.push({node: n, d: d + 1});
+        }
+        // Mark node as visited
+        visited.add(node);
+    }
+    return result;
+};
+
+function createGraph(parent, node, graph) {
+    if(!node) {
+        return;
+    }
+    const neighbor = [];
+    if(node.left) {
+        neighbor.push(node.left.val);
+        createGraph(node.val, node.left, graph);
+    }
+    if(node.right) {
+        neighbor.push(node.right.val);
+        createGraph(node.val, node.right, graph);
+    }
+    if(parent !== null) {
+        neighbor.push(parent);
+    }
+    graph[node.val] = neighbor;
+}
+
+
+// Time O(N)
+// Space O(N)
+var distanceK = function(root, target, K) {
+    let graph = {};
+    // Create graph
     createGraph(root, null, graph);
     
     /* {
