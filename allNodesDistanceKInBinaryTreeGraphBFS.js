@@ -17,7 +17,6 @@ The descriptions of the inputs above are just serializations of these objects.
 
 https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/
 */
-
 // Time O(N)
 // Space O(N)
 var distanceK = function(root, target, K) {
