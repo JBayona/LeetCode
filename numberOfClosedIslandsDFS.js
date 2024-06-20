@@ -27,58 +27,57 @@ https://leetcode.com/problems/number-of-closed-islands/
 */
 
 var closedIsland = function(grid) {
-  let answer = 0;
-  for(let i = 0; i < grid.length; i++) {
-    for(let j = 0; j < grid[0].length; j++) {
-      if(grid[i][j] === 0) {
-        // Check if the 0 isn´t border/connected to border
-        let found = dfs(grid, i, j);
-        if(found) {
-          answer++;
-        }
+  let ROW = grid.length;
+  let COL = grid[0].length;
+
+  let result = 0;
+  for (let i = 0; i < ROW; i++) {
+      for (let j = 0; j < COL; j++) {
+          // Start to verify only if there's a land "zero"
+          if (grid[i][j] === 0) {
+              if (dfs(grid, i, j)) {
+                  result++;
+              }
+          }
       }
-    }
   }
-  return answer;
+  return result;
 };
 
 function dfs(grid, row, col) {
-  if(grid[row][col] === 1) {
-    return true;
+  // If water is found, it means that it might be
+  // enclosing the island
+  if (grid[row][col] === 1) {
+      return true;
   }
 
-  if(!isSafe(grid, row, col)) {
-    return false;
+  // Check limits
+  if (!isSafe(row, col, grid)) {
+      return false;
   }
-  
+
   // In order to be a closed island, the island should be surrounded by water
   // so we can ignore the edges of the grid
-  if(row === 0 || col === 0 || row === grid.length - 1 || col === grid[0].length - 1) {
-    return false;
+  if (row === 0 || row === grid.length - 1 || col === 0 || col === grid[0].length - 1) {
+      return false;
   }
-  
-  // Mark as water to move
+
+  // Mark as water to avoid cycles
   grid[row][col] = 1;
-  
-  // Travel four directions
-  let left;
-  let right;
-  let top;
-  let down;
-  
-  left = dfs(grid, row, col - 1);
-  right = dfs(grid, row, col + 1);
-  top = dfs(grid, row - 1, col);
-  down = dfs(grid, row + 1, col);
+
+  let left = dfs(grid, row, col - 1);
+  let right = dfs(grid, row, col + 1);
+  let top = dfs(grid, row - 1, col);
+  let down = dfs(grid, row + 1, col);
   
   return left && right && top && down;
 }
 
-function isSafe(grid, row, col) {
+function isSafe(row, col, grid) {
   let ROW = grid.length;
   let COL = grid[0].length;
   return (
-    row >= 0 && row < ROW &&
-    col >= 0 && col < COL
+      (row >= 0 && row < ROW) &&
+      (col >= 0 && col < COL)
   );
 }
