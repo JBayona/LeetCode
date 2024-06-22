@@ -27,3 +27,22 @@ var findSmallestSetOfVertices = function(n, edges) {
   }
   return minNodes;
 };
+
+// Option 2
+var findSmallestSetOfVertices = function(n, edges) {
+  let isThereAnyEdge = new Array(n).fill(false);
+  for(let edge of edges) {
+      let [from, to] = edge;
+      isThereAnyEdge[to] = true;
+  }
+
+  let minNodes = [];
+  for (let i = 0; i < n; i++) {
+      // Add in the result those values that either are parents or
+      // does not have any connection
+      if(!isThereAnyEdge[i]) {
+          minNodes.push(i);
+      }
+  }
+  return minNodes;
+};
