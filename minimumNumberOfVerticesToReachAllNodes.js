@@ -6,7 +6,6 @@ Notice that you can return the vertices in any order.
 
 https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/description/?envType=study-plan-v2&envId=graph-theory
 */
-
 // Option 1
 var findSmallestSetOfVertices = function(n, edges) {
   // Nodes with zero degree
