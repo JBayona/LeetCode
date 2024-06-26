@@ -33,7 +33,6 @@ var findSmallestSetOfVertices = function(n, edges) {
       let [from, to] = edge;
       isThereAnyEdge[to] = true;
   }
-
   let minNodes = [];
   for (let i = 0; i < n; i++) {
       // Add in the result those values that either are parents or
