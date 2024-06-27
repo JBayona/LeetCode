@@ -23,7 +23,6 @@ We can't extend "helo" to get "heeellooo" because the group "ll" is not size 3 o
 
 https://leetcode.com/problems/expressive-words/
 */
-
 var expressiveWords = function(s, words) {
     if(!s || !words.length) {
         return 0;
