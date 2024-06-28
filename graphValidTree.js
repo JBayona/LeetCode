@@ -25,6 +25,7 @@ Para ser un árbol válido debe cumplir con las siguientes características:
 2. No debe haber ciclos.
 */
 
+// Option 2
 // DFS
 // Time: O(V + E) - V number of vertices
 // Space: O(V)
@@ -58,14 +59,14 @@ var validTree = function(n, edges) {
   // Visit the first node
   visited[0] = true;
   // Check that there is no cycle
-  if(dfs(graph, visited, 0, -1)) {
+  if(hasCycleDFS(graph, visited, 0, -1)) {
     return false;
   }
 
   // Check if all the graph is connected
   // If any node has not been visited, then
   // the tree is not valid
-  for(let i = 0; i < visited.length; i++) {
+  for(let i = 0; i < n; i++) {
     if(!visited[i]) {
       return false;
     }
