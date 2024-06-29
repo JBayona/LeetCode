@@ -49,7 +49,6 @@ var validTree = function(n, edges) {
     graph[from].push(to);
     graph[to].push(from);
   }
-
   console.log('Graph');
   console.log(graph);
 
