@@ -37,6 +37,19 @@ function rotateRight(array, k) {
   return result;
 }
 
+function rotateLeftArr(array, k) {
+    let result = [];
+    let index = 0;
+    let tam = array.length;
+    for(let i = 0; i < array.length; i++) {
+        result[index] = array[(index + k) % tam];
+        index++;
+    }
+    return result;
+}
+  
+
+
 /*
 Complexity O(n)
 Space O(1)
@@ -113,3 +126,6 @@ function gcd(a, b) {
         return gcd(b, a%b);
     }
 }
+
+
+console.log(rotateLeftArr([1, 2, 3, 4, 5], 4));
