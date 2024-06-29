@@ -25,85 +25,69 @@ Para ser un árbol válido debe cumplir con las siguientes características:
 2. No debe haber ciclos.
 */
 
-// Option 2
+
 // DFS
 // Time: O(V + E) - V number of vertices
 // Space: O(V)
+// DFS
+// Time: O(V) - V number of vertices
+// Space: O(V)
 var validTree = function(n, edges) {
   // Corner case
-  // In order to be a connected tree, it should have the number of nodes - 1
+  // Valid grapg only has edges.length-1
   if(edges.length !== n-1) return false;
-
+  
   let graph = [];
-
   // Create the graph
   for(let i = 0; i < n; i++) {
-    graph[i] = [];
+      graph[i] = [];
   }
 
   // Fill the undirected graph
   for(let i = 0; i < edges.length; i++) {
-    // Destructuring
-    // Insert both sides as the graph is undirected
-    let [from, to] = edges[i];
-    graph[from].push(to);
-    graph[to].push(from);
+      // Destructuring
+      // Insert both sides as the graph is undirected
+      let node = edges[i];
+      let [from, to] = node;
+      graph[from].push(to);
+      graph[to].push(from);
   }
-
-  console.log('Graph');
-  console.log(graph);
-
+  
   // Visited edges
   let visited = new Array(n).fill(0);
 
-  // Visit the first node
-  visited[0] = true;
   // Check that there is no cycle
-  if(hasCycleDFS(graph, visited, 0, -1)) {
-    return false;
+  if(dfs(graph, visited, 0, -1)) {
+      return false;
   }
 
   // Check if all the graph is connected
   // If any node has not been visited, then
   // the tree is not valid
-  for(let i = 0; i < n; i++) {
-    if(!visited[i]) {
-      return false;
-    }
+  for(let i = 0; i < visited.length; i++) {
+      if(!visited[i]) {
+          return false;
+      }
   }
-
   // All the graph is connected and there is no cycle at this point
   return true;
 }
 
 // Has cycle
 function dfs(graph, visited, node, parent) {
-  let children = graph[node];
-  for(let i = 0; i < children.length; i++) {
-    let v = children[i];
-    // Ignore if the node is coming from the father i.e [1,0], [0, 1]
-    if(v === parent) continue;
-    if(!visited[v]) {
-      visited[v] = true;
-      return dfs(graph, visited, v, node);
-    } else {
-      // The node has been visited so there´s a cycle
-      return true;
-    }
-  }
-  // The node has not been visited
-  return false;
-}
-
-function hasCycleDFS(graph, visited, node, parent) {
   visited[node] = true;
-  for(let neighbor of graph[node]) {
-    if(parent !== neighbor && visited[neighbor]) {
-      return true;
-    }
-    if(!visited[neighbor] && hasCycleDFS(graph, visited, neighbor, node)) {
-      return true
-    }
+  for (let neighbor of graph[node]) {
+      // As this is unidirected graph, we need
+      // to make sure it's not the same node
+      if (neighbor === parent) {
+          continue;
+      }
+      if (visited[neighbor]) {
+          return true;
+      }
+      if (!visited[neighbor] && dfs(graph, visited, neighbor, node)) {
+          return true;
+      }
   }
   return false;
 }
