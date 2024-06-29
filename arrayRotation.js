@@ -31,7 +31,7 @@ function rotateRight(array, k) {
   let result = [];
   let index = 0;
   for(let i = 0; i < array.length; i++) {
-    index = (k + i)%array.length;
+    index = (k + i) % array.length;
     result[index] = array[i];
   }
   return result;
