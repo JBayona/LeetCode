@@ -16,7 +16,6 @@ Explanation: We could assign a = 1 and b = 1 to satisfy both equations.
 
 https://leetcode.com/problems/satisfiability-of-equality-equations/description/?envType=study-plan-v2&envId=graph-theory
 */
-
 // Time O(N) worst case, it can be optimized to O(LogN)
 // Space O(N)
 var equationsPossible = function(equations) {
