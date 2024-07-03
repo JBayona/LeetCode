@@ -34,6 +34,8 @@ var equationsPossible = function(equations) {
         };
     }
 
+    // parent {a: a, b: c, d: e, f: a}
+
     // Union find
     for (equation of equations) {
         let a = equation[0];
