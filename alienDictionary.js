@@ -24,6 +24,91 @@ The memory needed for this problem would be the in-degree array and a dictionary
 vertices as keys and vertices they're sourcing to as values. Both would take O(V)
 */
 
+// Option 1
+const alienOrder = words => {
+  let graph = {};
+  // We´ll check who is the root based on the degree
+  // the ones with zero is the roots
+  let count = {}
+
+  for (let word of words) {
+    for (let i = 0; i < word.length; i++) {
+        let c = word[i];
+        graph[c] = new Array();
+        count[c] = 0;
+    }
+  }
+
+  // 1. Find all edges in the graph
+  for (let i = 0; i < words.length - 1; i++) {
+    let parent = words[i];
+    let child = words[i + 1];
+    // Check if child word is not a prefix of parent
+    if (parent.length > child.length && parent.startsWith(child)) {
+        return "";
+    }
+    // Find the first non matching character to find the relationship of those
+    let min = Math.min(parent.length, child.length);
+    for (let j = 0; j < min; j++) {
+        let parentChar = parent[j];
+        let childChar = child[j];
+        if (parentChar !== childChar) {
+            // As this is sorted and parent comes first, the first non ocurrence means
+            // that the parentChar has higher priority than childChar
+            graph[parentChar].push(childChar);
+            // Count
+            count[childChar]++;
+            // There's no need to analyze the rest as the result does not change for the
+            // rest of characters
+            break;
+        }
+    }
+  }
+
+  /* Graph
+    {
+      w: Set(1) { 'e' },
+      r: Set(1) { 't' },
+      t: Set(1) { 'f' },
+      f: Set(0) {},
+      e: Set(1) { 'r' }
+    }
+  */
+
+  // 2. Run BFS
+  let queue = [];
+  // Identify the root node
+  for (let c in graph) {
+    // Get the chars with degree zero of the graph
+    // These are potential root nodes with better order
+    if (count[c] === 0) {
+        queue.push(c)
+    }
+  }
+
+  let result = '';
+
+  while (queue.length) {
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+        let node = queue.shift();
+        result += node;
+        for (let neighbor of graph[node]) {
+            count[neighbor]--;
+            if (count[neighbor] === 0) {
+                queue.push(neighbor);
+            }
+        }
+    }
+  }
+
+  return result.length < Object.keys(graph).length ? "" : result;
+}
+
+
+
+
+// Option 2
 const alienOrder = words => {
   let graph = {};
   // We´ll check who is the root based on the degree
