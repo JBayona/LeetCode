@@ -48,7 +48,6 @@ var findOrder = function(numCourses, prerequisites) {
     }
 
     result = [];
-    
     // states:
     // 0 - no visited
     // 1 = visited but not processed (viisted in current DFS)
