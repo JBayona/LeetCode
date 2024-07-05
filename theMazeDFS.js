@@ -28,46 +28,7 @@ Explanation: One possible way is : left -> down -> left -> down -> right -> down
 https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/solutions-451-500/490-the-maze.html
 */
 
-function hasPath(maze, start, destination) {
-    let visited = new Array(maze.length);
-    for(let i = 0; i < maze.length; i++) {
-        visited[i] = new Array(maze[i].length).fill(false);
-    }
-    
-    return canReach(maze, start[0], start[1], destination, visited);
-}
-
-function canReach(maze, row, col, destination,visited) {
-    // We reach the destination
-    if(row === destination[0] && col === destination[1]) {
-        return true;
-    }
-    // Already visited
-    if(visited[row][col]) {
-        return false;
-    }
-    // Marks as visited
-    visited[row][col] = true;
-    let rowK = [0, 1, 0, -1];
-    let colK = [1, 0, -1, 0];
-
-    for(let i = 0; i < 4; i++) {
-        let x = row;
-        let y = col;
-        // This will make the thing to move all the way until we reach a wall
-        while(x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && !maze[x][y]) {
-            x = x + rowK[i];
-            y = y + colK[i];
-        }
-        // Once the ball hit the wall, take a step back to move, try all combinations
-        x = x - rowK[i];
-        y = y - colK[i];
-        if(!visited[x][y] && canReach(maze, x, y, destination, visited)) {
-            return true;
-        }
-    }
-    return false;
-}
+c
 // True
 // maze = [
 //     [0,0,1,0,0],
