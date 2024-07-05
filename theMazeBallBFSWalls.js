@@ -33,8 +33,8 @@ var hasPath = function (maze, start, destination) {
         return true;
       }
       for (let i = 0; i < 4; i++) {
-        let newRow = x + row[i];
-        let newCol = y + col[i];
+        let newRow = x;
+        let newCol = y;
 
         // Keep rolling in the current direction until
         // we have a boundary
