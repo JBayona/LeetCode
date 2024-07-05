@@ -59,7 +59,7 @@ function canReach(maze, row, col, destination,visited) {
             x = x + rowK[i];
             y = y + colK[i];
         }
-        // Try all directions
+        // Once the ball hit the wall, take a step back to move, try all combinations
         x = x - rowK[i];
         y = y - colK[i];
         if(!visited[x][y] && canReach(maze, x, y, destination, visited)) {
