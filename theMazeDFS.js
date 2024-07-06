@@ -12,7 +12,6 @@ represented by row and column indexes.
 
 Example 1
 Input 1: a maze represented by a 2D array
-
 0 0 1 0 0
 0 0 0 0 0
 0 0 0 1 0
