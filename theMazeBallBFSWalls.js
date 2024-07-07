@@ -20,7 +20,9 @@ var hasPath = function (maze, start, destination) {
   let [x, y] = start;
 
   let queue = [];
+  let visited = new Set();
   queue.push([x, y]);
+  visited.add(`${x}-${y}`)
 
   let row = [-1, 0, 1, 0];
   let col = [0, 1, 0, -1];
@@ -33,30 +35,27 @@ var hasPath = function (maze, start, destination) {
         return true;
       }
       for (let i = 0; i < 4; i++) {
-        let newRow = x;
-        let newCol = y;
+        let nextRow = x;
+        let nextCol = y;
 
         // Keep rolling in the current direction until
         // we have a boundary
-        while (isValid(maze, newRow, newCol)) {
-          newRow += row[i];
-          newCol += col[i];
+        while (isValid(maze, nextRow + row[i], nextCol + col[i]) && maze[nextRow + row[i]][nextCol + col[i]] === 0) {
+          nextRow += row[i];
+          nextCol += col[i];
         }
 
-        // The ball will be on the wall, take a step back
-        newRow -= row[i];
-        newCol -= col[i];
-
-        // If it's invalid let's continue
-        if (maze[newRow][newCol] !== 0) {
+        // If it's invalid let's continue, keep exploring all options
+        if (visited.has(`${nextRow}-${nextCol}`)) {
           continue;
         }
 
         // Continue rolling and mark as visited to not loop
         // The 2 will be places for all of the corners we can
         // roll the ball.
-        queue.push([newRow, newCol]);
-        maze[newRow][newCol] = 2;
+        queue.push([nextRow, nextCol]);
+        visited.add(`${nextRow}-${nextCol}`);
+        // maze[newRow][newCol] = 2;
       }
     }
   }
@@ -67,6 +66,6 @@ function isValid(maze, row, col) {
   let ROW = maze.length;
   let COL = maze[0].length;
   return (
-    row >= 0 && row < ROW && col >= 0 && col < COL && maze[row][col] !== 1 // Wall
+    row >= 0 && row < ROW && col >= 0 && col < COL
   );
 }
