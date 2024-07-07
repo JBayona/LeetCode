@@ -12,6 +12,7 @@ represented by row and column indexes.
 
 Example 1
 Input 1: a maze represented by a 2D array
+
 0 0 1 0 0
 0 0 0 0 0
 0 0 0 1 0
@@ -26,6 +27,9 @@ Explanation: One possible way is : left -> down -> left -> down -> right -> down
 
 https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/solutions-451-500/490-the-maze.html
 */
+// BFS
+// Time O(N * M) All directions will be visited
+// Space O(N * M)
 function hasPath(maze, start, destination) {
     let visited = new Array(maze.length);
     for(let i = 0; i < maze.length; i++) {
@@ -53,19 +57,26 @@ function canReach(maze, row, col, destination,visited) {
         let x = row;
         let y = col;
         // This will make the thing to move all the way until we reach a wall
-        while(x >= 0 && x < maze.length && y >= 0 && y < maze[0].length && maze[x][y] === 0) {
+        while(isValid(maze, x + rowK[i], y + colK[i]) && maze[x + rowK[i]][y + colK[i]] === 0) {
             x = x + rowK[i];
             y = y + colK[i];
         }
-        // Once the ball hit the wall, take a step back to move, try all combinations
-        x = x - rowK[i];
-        y = y - colK[i];
-        if(!visited[x][y] && canReach(maze, x, y, destination, visited)) {
+
+        if(canReach(maze, x, y, destination, visited)) {
             return true;
         }
     }
     return false;
 }
+
+function isValid(maze, row, col) {
+  let ROW = maze.length;
+  let COL = maze[0].length;
+  return (
+    row >= 0 && row < ROW && col >= 0 && col < COL
+  );
+}
+
 
 // True
 // maze = [
