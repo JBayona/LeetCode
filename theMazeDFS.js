@@ -26,7 +26,6 @@ Explanation: One possible way is : left -> down -> left -> down -> right -> down
 
 https://cheonhyangzhang.gitbooks.io/leetcode-solutions/content/solutions-451-500/490-the-maze.html
 */
-
 function hasPath(maze, start, destination) {
     let visited = new Array(maze.length);
     for(let i = 0; i < maze.length; i++) {
