@@ -85,7 +85,7 @@ function dfs(graph, visited, node, parent) {
       if (visited[neighbor]) {
           return true;
       }
-      if (!visited[neighbor] && dfs(graph, visited, neighbor, node)) {
+      if (dfs(graph, visited, neighbor, node)) {
           return true;
       }
   }
