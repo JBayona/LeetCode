@@ -13,9 +13,67 @@ https://leetcode.com/problems/the-maze/
 */
 
 // BFS
-// Time O(N * M)
+// Time O(N * M) All directions will be visited
+// Space O(N * M)
 // The 2 will be placed all over the corners we
 // can stop the ball, otherwise we'll keep rolling it
+// Option 1
+var hasPath = function (maze, start, destination) {
+  let [x, y] = start;
+
+  let ROW = maze.length;
+  let COL = maze[0].length;
+
+  let visited = new Array(ROW);
+  for (let i = 0; i < ROW; i++) {
+    visited[i] = new Array(COL).fill(false);
+  }
+
+  let queue = [];
+  queue.push({x: x, y: y});
+  visited[x][y] = true;
+
+  let row = [-1, 0, 1, 0];
+  let col = [0, 1, 0, -1];
+
+  while (queue.length) {
+    let size = queue.length;
+    for (let i = 0; i < size; i++) {
+      let {x, y} = queue.shift();
+      if (x === destination[0] && y === destination[1]) {
+        return true;
+      }
+      for (let i = 0; i < 4; i++) {
+        let nextRow = x;
+        let nextCol = y;
+
+        // Keep rolling in the current direction until
+        // we have a boundary
+        while (isValid(maze, nextRow + row[i], nextCol + col[i]) && maze[nextRow + row[i]][nextCol + col[i]] === 0) {
+          nextRow += row[i];
+          nextCol += col[i];
+        }
+
+        if (visited[nextRow][nextCol] === false) {
+            queue.push({x: nextRow, y: nextCol});
+            visited[nextRow][nextCol] = true;
+        }
+      }
+    }
+  }
+  return false;
+};
+
+function isValid(maze, row, col) {
+  let ROW = maze.length;
+  let COL = maze[0].length;
+  return (
+    row >= 0 && row < ROW && col >= 0 && col < COL
+  );
+}
+
+
+// Option 2
 var hasPath = function (maze, start, destination) {
   let [x, y] = start;
 
