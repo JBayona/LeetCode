@@ -60,3 +60,44 @@ var maxProbability = function(n, edges, succProb, start, end) {
     }
     return prob[end];
 };
+
+
+// Time O( V + E)
+var maxProbability = function(n, edges, succProb, start, end) {
+    let graph = [];
+    // Initialize the array
+    for (let i = 0; i < n; i++) {
+        graph[i] = [];
+    }
+
+    for (let i = 0; i < edges.length; i++) {
+        let edge = edges[i];
+        let [from, to] = edge;
+        graph[from].push([to, succProb[i]]);
+        graph[to].push([from, succProb[i]]);
+    }
+    
+    let prob = new Array(n).fill(0);
+    let visited = new Array(n).fill(false);
+
+    prob[start] = 1;
+    dfs(start, graph, prob, visited);
+
+    return prob[end];
+};
+
+function dfs(node,graph, prob, visited) {
+    // If visited
+    if (visited[node]) {
+        return;
+    }
+
+    visited[node] = true;
+
+    for (let [next, p] of graph[node]) {
+        if (prob[node] * p > prob[next]) {
+            prob[next] = prob[node] * p;
+        }
+        dfs(next, graph, prob, visited);
+    }
+}
