@@ -10,9 +10,7 @@ You can't visit the same cell more than once.
 Never visit a cell with 0 gold.
 You can start and stop collecting gold from any position in the grid that has some gold.
  
-
 Example 1:
-
 Input: grid = [[0,6,0],[5,8,7],[0,9,0]]
 Output: 24
 Explanation:
@@ -20,8 +18,8 @@ Explanation:
  [5,8,7],
  [0,9,0]]
 Path to get the maximum gold, 9 -> 8 -> 7.
-Example 2:
 
+Example 2:
 Input: grid = [[1,0,7],[2,0,6],[3,4,5],[0,3,0],[9,0,20]]
 Output: 28
 Explanation:
