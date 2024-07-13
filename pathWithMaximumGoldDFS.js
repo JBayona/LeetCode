@@ -32,7 +32,7 @@ Path to get the maximum gold, 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7.
 
 https://leetcode.com/problems/path-with-maximum-gold/
 */
-
+// Complexity: O (V + E)
 var getMaximumGold = function (grid) {
   let m = grid.length;
   let n = grid[0].length;
