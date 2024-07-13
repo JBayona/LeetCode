@@ -20,8 +20,7 @@ var maxProbability = function(n, edges, succProb, start, end) {
     let graph = new Array(n);
     for(let i = 0; i < graph.length; i++) {
         graph[i] = [];
-    }
-    
+    }    
     // Form undirected graph
     // from index to destinty, we have success of prob
     for(let i = 0; i < edges.length; i++) {
