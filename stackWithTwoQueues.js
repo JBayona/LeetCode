@@ -41,6 +41,24 @@ var MyStack = function() {
  * @param {number} x
  * @return {void}
  */
+
+// Option 1, one queue
+MyStack.prototype.push = function(x) {
+  // Insert in queue2
+  // Rotate
+  if (this.queue1.length === 0) {
+      this.queue1.push(x);
+  } else {
+      let n = this.queue1.length;
+      this.queue1.push(x);
+      while (n) {
+          this.queue1.push(this.queue1.shift());
+          n--;
+      }
+  }
+};
+
+// Option 2 (With two stacks)
 MyStack.prototype.push = function(x) {
   // Insert in queue2
   // This queue at this point will always be empty
