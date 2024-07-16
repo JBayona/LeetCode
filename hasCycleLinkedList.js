@@ -8,6 +8,8 @@ var hasCycle = function(head) {
     if(head === null) return false;
     let slow = head;
     let fast = head;
+   
+    // it can be while (fast && fast.next) {
     while(slow && (fast && fast.next)){
         slow = slow.next;
         fast = fast.next.next;
