@@ -19,8 +19,8 @@ function balanceBrackets(str){
 
   for(var i = 0; i < str.length; i++){
     current = str[i];
-    //Si es un parentesis de apertura, lo metemos a la pila
-	//En la pila sólo tendremos paréntesis de apertura
+    // Si es un parentesis de apertura, lo metemos a la pila
+    // En la pila sólo tendremos paréntesis de apertura
     if(current in hash){
       stack.push(current);
     }else{
