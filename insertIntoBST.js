@@ -31,70 +31,46 @@ This tree is also valid:
 https://leetcode.com/problems/insert-into-a-binary-search-tree/description/
 */
 
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @param {number} val
- * @return {TreeNode}
- */
-
- // If tree is balanced O(logN), if not O(N)
-var insertIntoBST = function(root, val) {
-  let newRoot = root;
-  insertValue(root, val);
-  return newRoot;
-};
-
-function insertValue(root, val) {
-  // Base Case (node not found and insert it value)
-  if(root === null) {
-    return new TreeNode(val);
-  } else {
-    if(val < root.val) {
-      root.left = insertValue(root.left, val);
-    } else {
-      root.right = insertValue(root.right, val);
-    }
-    return root;
+ // Time O(N)
+ var insertIntoBST = function(root, val) {
+  if (root === null) {
+      return new TreeNode(val);
   }
-}
-
-// Iterative
-
-var insertIntoBST = function(root, val) {
-  let newRoot = root;
-  insertValue(root, val);
-  return newRoot;
-};
-
-// Iterative solution
-// O(N) time complexity
-function insertValue(root, val) {
-  let node = root;
-  while(true) {
-    if(val < node.val) {
-      if(node.left) {
-        node = node.left;
-        continue;
-      } else {
-        node.left = new TreeNode(val);
-        break;
-      }
-    } else {
-      if(node.right) {
-        node = node.right;
-        continue;
-      } else {
-        node.right = new TreeNode(val);
-        break;
-      }
-    }
+  if (val < root.val) {
+      root.left = insertIntoBST(root.left, val);
+  } else {
+      root.right = insertIntoBST(root.right, val);
   }
   return root;
-}
+};
+
+// Iterative
+var insertIntoBST = function(root, val) {
+  let newNode = new TreeNode(val);
+
+  if (!root) {
+      return newNode;
+  }
+  
+  let tmp = root;
+  let node = root;
+  // This will iterate until the desire position
+  while (node) {
+      // Track the reference on the existing node
+      tmp = node;
+      if (val < node.val) {
+          node = node.left;
+      } else {
+          node = node.right
+      }
+  }
+
+  // Append the node where the position should be inserted
+  if (val < tmp.val) {
+      tmp.left = newNode;
+  } else {
+      tmp.right = newNode;
+  }
+
+  return root;
+};
