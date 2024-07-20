@@ -40,6 +40,7 @@ var wallsAndGates = function(rooms) {
     return rooms;
 }
 
+
 function isSafe(row, col, grid) {
     let ROW = grid.length;
     let COL = grid[0].length;
