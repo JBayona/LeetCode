@@ -56,11 +56,11 @@ var findDuplicate = function(paths) {
         files.forEach(file => {
             const contentStart = file.indexOf("(");
             //parse content
-            const content = file.substring(contentStart+1, file.length-1);
+            const content = file.substring(contentStart + 1, file.length-1);
             //parse filename
             const fileName = file.substring(0, contentStart);
             
-            const fullPath = dir+"/"+fileName;
+            const fullPath = dir + "/" + fileName;
             
             if(content in map) {
                 map[content].push(fullPath);
@@ -81,4 +81,3 @@ var findDuplicate = function(paths) {
     
     return result;
 };
-
