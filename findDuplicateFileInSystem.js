@@ -54,11 +54,11 @@ var findDuplicate = function(paths) {
         const [dir, ...files] = path.split(" ");
         
         files.forEach(file => {
-            const conentStart = file.indexOf("(");
+            const contentStart = file.indexOf("(");
             //parse content
-            const content = file.substring(conentStart+1, file.length-1);
+            const content = file.substring(contentStart+1, file.length-1);
             //parse filename
-            const fileName = file.substring(0, conentStart);
+            const fileName = file.substring(0, contentStart);
             
             const fullPath = dir+"/"+fileName;
             
