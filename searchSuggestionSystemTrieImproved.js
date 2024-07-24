@@ -30,6 +30,15 @@ Output: [["baggage","bags","banner"],["baggage","bags","banner"],["baggage","bag
 https://leetcode.com/problems/search-suggestions-system/
 */
 
+// Trie + sort
+// Sort = NLogN
+// Build Tree
+// O(N)
+// Space O(NKM), k = 3, M = number of longest product
+// Total
+// Space O(s) s is the number of characters to search
+// Space O(sk)
+
 class Trie {
   constructor() {
     this.trie = this.createNode();
