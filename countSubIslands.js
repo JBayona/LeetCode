@@ -38,6 +38,7 @@ function dfs(grid1, grid2, row, col) {
   }
 
   // If values are not the same, it cannot be a sub-island
+  // at this point grid2 is 1 so grid1 needs to be 1 as well
   if (grid1[row][col] !== grid2[row][col]) {
       return false;
   }
