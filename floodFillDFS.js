@@ -37,114 +37,52 @@ https://www.youtube.com/watch?v=TClRuEZ-uDg
 // BFS
 // Time O(N)
 // Space O(N)
-var floodFill = function(image, sr, sc, newColor) {
-    let row = [0, -1, 0, 1];
-    let col = [-1, 0, 1, 0];
-    let queue = [];
-    
+var floodFill = function(image, sr, sc, color) {
+
     // If we are in the same color we don´t need to do
     // anything
-    if(image[sr][sc] === newColor) {
+    if(image[sr][sc] === color) {
         return image;
     }
-    
-    let startColor = image[sr][sc];
-    queue.push([sr, sc]);
+
+    let row = [0, -1, 0, 1];
+    let col = [-1, 0, 1, 0];
+
+    // Launch a BFS starting from the given location
+    let queue = [];
+    queue.push({r: sr, c: sc});
+    // Capture the current color
+    let currentColor = image[sr][sc];
+
     while(queue.length) {
-        // Get row and column
-        let [x,y] = queue.shift();
-        // Set new color
-        image[x][y] = newColor;
-        for(let i = 0; i < 4; i++) {
-            let nextRow = x + row[i];
-            let nextCol = y + col[i];
-            if(isSafe(image, startColor, nextRow, nextCol)) {
-                queue.push([nextRow, nextCol]);
+        // These are always valid as we don´t add them in the queue if
+        // values are not valid
+        let {r, c} = queue.shift();
+        // Paint the current color
+        image[r][c] = color;
+        for (let i = 0; i < 4; i++) {
+            let nextRow = row[i] + r;
+            let nextCol = col[i] + c;
+            // Check if the condition is met to add it to the queue
+            if (isSafe(nextRow, nextCol, image, currentColor)) {
+                queue.push({r: nextRow, c: nextCol});
             }
         }
     }
     return image;
 };
 
-function isSafe(grid, startColor, row, col) {
+function isSafe(row, col, grid, currentColor) {
     let ROW = grid.length;
     let COL = grid[0].length;
     return (
         row >= 0 && row < ROW &&
         col >= 0 && col < COL &&
-        grid[row][col] === startColor
+        grid[row][col] === currentColor
     );
 }
 
-// Option 1
-// Time O(N)
-// Space O(N)
-var floodFill = function(image, sr, sc, newColor) {
-    // Check if we need to change some color, if don't
-    // we don't need to change any color
-    if(image[sr][sc] === newColor) {
-        return image;
-    }
-    // DFS
-    fill(image, sr, sc, image[sr][sc], newColor);
-    return image;
-};
-
-function fill(image, row, col, color, newColor) {
-    // Base case
-    if(row < 0 || row >= image.length || col < 0 || col >= image[row].length || image[row][col] !== color) {
-        return;
-    }
-    
-    let rowK = [0, -1, 0, 1];
-    let colK = [-1, 0, 1, 0];
-    
-    // Mark new color
-    image[row][col] = newColor;
-    
-    for(let i = 0; i < 4; i++) {
-        let ROW = row + rowK[i];
-        let COL = col + colK[i];
-        fill(image, ROW, COL, color, newColor);
-    }
-    
-}
-
-// Option 2
-// BFS
-// Time O(N)
-// Space O(N)
-var floodFill = function(image, sr, sc, newColor) {
-    // If we are in the same color we don´t need to do
-    // anything
-    if(image[sr][sc] === newColor) {
-        return image;
-    }
-    
-    let startColor = image[sr][sc];
-    let queue = [];
-    queue.push([sr, sc]);
-    while(queue.length) {
-        let [x, y] = queue.shift();
-        image[x][y] = newColor;
-        if (x + 1 >= 0 && x + 1 < image.length) {
-            image[x+1][y] == startColor && queue.push([x + 1, y]);
-        }
-        if (x - 1 >= 0 && x - 1 < image.length) {
-            image[x-1][y] == startColor && queue.push([x - 1, y]);
-        }
-        if (y - 1 >= 0 && y - 1 < image[0].length) {
-            image[x][y-1] == startColor && queue.push([x, y - 1]);
-        }
-        if (y + 1 >= 0 && y + 1 < image[0].length) {
-            image[x][y+1] == startColor && queue.push([x, y + 1])
-        }
-    }
-    return image;
-};
-
-// Option 3 DFS
-
+//DFS
 var floodFill = function(image, sr, sc, newColor) {
     // Check if we need to change some color, if don't
     // we don't need to change any color
