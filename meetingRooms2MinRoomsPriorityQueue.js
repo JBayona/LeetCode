@@ -12,7 +12,10 @@ Output: 1
 
 https://leetcode.com/problems/meeting-rooms-ii/description/
 */
-
+// MinHeap
+// https://github.com/datastructures-js/priority-queue/blob/v5/README.md
+// Time O(NlogN) -> N for the tasks and LogN is the enqueue & dequeue cost
+// Space O(N)
 var minMeetingRooms = function(intervals) {
     if (!intervals) {
         return 0;
