@@ -10,7 +10,7 @@ distance(p1, p2) = |p2.x - p1.x| + |p2.y - p1.y|.
 
 https://leetcode.com/problems/best-meeting-point/description/
 */
-
+// Time O(M * N)
 var minTotalDistance = function(grid) {
   let ROW = grid.length;
   let COL = grid[0].length;
