@@ -29,9 +29,7 @@ var findSmallestRegion = function(regions, region1, region2) {
 
     // Add all the regions'1 ancestor
     while(region1) {
-        if (region1 in parent) {
-            ancestors.add(parent[region1]);
-        }
+        ancestors.add(region1);
         // Go deep level
         region1 = parent[region1];
     }
