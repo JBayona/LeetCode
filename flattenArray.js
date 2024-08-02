@@ -1,7 +1,6 @@
 // This is the text editor interface. 
 // Anything you type or change here will be seen by the other person in real time.
 
-
 var input = [1,2,3,[4,[5]], {a: 1, b: 2}, 6, [[7], 8, []]];
 // var output = [1,2,3,4,5,{a: 1, b: 2}, 6,7,8];
 
