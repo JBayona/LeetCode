@@ -55,7 +55,6 @@ Vector2D.prototype.hasNext = function() {
     }
     return this.row < this.v.length;
 };
-
 /** 
  * Your Vector2D object will be instantiated and called as such:
  * var obj = new Vector2D(vec)
