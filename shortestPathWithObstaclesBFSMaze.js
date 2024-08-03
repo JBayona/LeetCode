@@ -42,6 +42,7 @@ var shortestPath = function(grid, k) {
             let nextCol = node.y + col[i];
             
             if(isSafe(nextRow, nextCol, grid)) {
+                // Only move when the next move is smaller and the result can be improved
                 let numberObstacles = node.n + grid[nextRow][nextCol];
                 if(numberObstacles < visited[nextRow][nextCol] && numberObstacles <= k) {
                     // Fewer number of obstacles to reach this point
