@@ -1,6 +1,5 @@
 /*
 Design an iterator to flatten a 2D vector. It should support the next and hasNext operations.
-
 Implement the Vector2D class:
 
 Vector2D(int[][] vec) initializes the object with the 2D vector vec.
