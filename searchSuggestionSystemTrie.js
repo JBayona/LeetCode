@@ -29,6 +29,79 @@ Output: [["baggage","bags","banner"],["baggage","bags","banner"],["baggage","bag
 https://leetcode.com/problems/search-suggestions-system/
 */
 
+// Trie + sort
+// Sort = NLogN
+// Build Tree
+// O(N)
+// Space O(NKM), k = 3, M = number of longest product
+// Total
+// Space O(s) s is the number of characters to search
+// Space O(sk)
+class Trie {
+  constructor() {
+    this.trie = this.createNode();
+  }
+
+  createNode(value = undefined) {
+    return {
+      value,
+      children: {},
+      isWord: false,
+      count: 0,
+    };
+  }
+
+  addWord(word) {
+    let node = this.trie;
+    for (let c of word) {
+      node.children[c] = node.children[c] || this.createNode();
+      node = node.children[c];
+      node.count++;
+    }
+    node.value = word;
+    node.isWord = true;
+  }
+
+  searchInTrie(word) {
+    let result = [];
+    let node = this.trie;
+    for (let c of word) {
+      let vals = [];
+      if (node && node.children) {
+        this.dfs(vals, node.children[c]);
+        node = node.children[c];
+      }
+      result.push(vals);
+    }
+    return result;
+  }
+
+  dfs(vals, node) {
+    // Char not found
+    if (!node) return;
+    // Already got the 3 results, return
+    if (vals.length >= 3) {
+      return;
+    }
+    // Find
+    if (node.isWord) {
+      vals.push(node.value);
+    }
+    // Traverse over the children.
+    for (let i in node.children) {
+      this.dfs(vals, node.children[i]);
+    }
+  }
+}
+
+var suggestedProducts = function (products, searchWord) {
+  // Sorting will help us to get the products sorted based on lexicographical order
+  products.sort();
+  let t = new Trie();
+  products.forEach((e) => t.addWord(e));
+  return t.searchInTrie(searchWord);
+};
+
 // Option 1
 var suggestedProducts = function (products, searchWord) {
   let trie = { children: {}, count: 0, isWord: false };
