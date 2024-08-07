@@ -9,7 +9,6 @@ get(C) // 10
 function set(string, val)
 function get(string)
 */
-
 class Cells {
     constructor() {
         this.hash = {};
