@@ -29,6 +29,7 @@ let lessThan20 = ['', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Ei
     let result = '';
     let i = 0;
     while(num > 0) {
+      // Group by thousands (1000)
       if(num % 1000 !== 0) {
         result = helper(num % 1000) + thousands[i] + ' ' + result;
       }
