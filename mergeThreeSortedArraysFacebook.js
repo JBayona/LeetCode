@@ -1,5 +1,7 @@
 /*
 Merge three arrays with no elements duplicated
+
+https://leetcode.com/discuss/interview-question/568482/facebook-phone-merge-3-sorted-arrays
 */
 
 var mergeThreeArraysNoDuplicate = function (arr1, arr2, arr3) {
