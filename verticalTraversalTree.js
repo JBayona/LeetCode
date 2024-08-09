@@ -36,6 +36,49 @@ https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
 
 // Time Complexity: O(NlogN), where NN is the number of nodes in the given tree.
 // Space Complexity: O(N)
+
+// Option 1
+var verticalOrder = function(root) {
+    if (!root) {
+        return [];
+    }
+
+    // Assume the root is column 0, left is -1 and right + 1
+    let columnTable = {};
+    let queue = [{node: root, column: 0}];
+
+    // Do BFS as it will to all the way down
+    while (queue.length) {
+        let len = queue.length;
+        for (let i = 0; i < len; i++) {
+            let {node, column} = queue.shift();
+            if (column in columnTable) {
+                columnTable[column].push(node.val);
+            } else {
+                columnTable[column] = [node.val];
+            }
+
+            if (node.left) {
+                queue.push({node: node.left, column: column - 1});
+            }
+            if (node.right) {
+                queue.push({node: node.right, column: column + 1});
+            }
+        }
+    }
+    // Get sorted keys
+    const sortedKeys = Object.keys(columnTable).sort((a, b) => a - b);
+
+    // Format the result
+    let result = [];
+    for (let key of sortedKeys) {
+        result.push(columnTable[key]);
+    }
+    return result;
+};
+
+
+// Option 2
 var verticalTraversal = function(root) {
     
     if(!root) {
