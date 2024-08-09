@@ -38,6 +38,7 @@ var minAddToMakeValid = function(s) {
             }
         }
     }
+    // The stack already might have invalid parenthesis.
     return count + stack.length;
 };
 
