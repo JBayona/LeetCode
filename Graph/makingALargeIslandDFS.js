@@ -33,6 +33,7 @@ var largestIsland = function(grid) {
     let region = {};
     // 0 and 1 are reserved for the island for calculation
     region[0] = 0;
+    region[1] = 0;
 
     // 0 and 1 are the current values of the grid, that's why
     // we start with 2
@@ -43,6 +44,7 @@ var largestIsland = function(grid) {
             if (grid[i][j] === 1) {
                 grid[i][j] = regionId;
                 let area = dfs(i, j, grid, regionId);
+                // Save the region and area
                 region[regionId] = area;
                 regionId++;
             }
@@ -64,7 +66,8 @@ var largestIsland = function(grid) {
                 // -1 because we are adding 1
                 neighbors.add(i < ROW - 1 ? grid[i+1][j] : 0);
                 neighbors.add(j < COL - 1 ? grid[i][j+1] : 0);
-                // Current zero
+                // Starts with 1 because we assume 1 incrementing for the current zero
+                // And we try to get the colored region to get the area and try to maximize
                 let area = 1;
                 for (let n of neighbors) {
                     area += (n in region ? region[n] : 0);
@@ -75,36 +78,6 @@ var largestIsland = function(grid) {
     }
     return maxArea;
 };
-
-
-// Change every 0 to 1 and try
-// to maximize the area
-// O(N^2)
-/*var largestIsland = function(grid) {
-    let ROW = grid.length;
-    let COL = grid[0].length;
-    let visited = new Array(ROW);
-
-    for (let i = 0; i < ROW; i++) {
-        visited[i] = new Array(COL).fill(false);
-    }
-
-    let result = 0;
-    let hasZero = false;
-    for (let i = 0; i < ROW; i++) {
-        for (let j = 0; j < COL; j++) {
-            if (grid[i][j] === 0 && visited[i][j] === false) {
-                hasZero = true;
-                grid[i][j] = 1;
-                visited[i][j] = true;
-                result = Math.max(result, dfs(i, j, grid, visited));
-                grid[i][j] = 0;
-            }
-        }
-    }
-    // Entire matrix as has no zero
-    return hasZero ? result : ROW * ROW;
-};*/
 
 function dfs(row, col, grid, regionId) {
     let rowK = [0, -1, 0, 1];
