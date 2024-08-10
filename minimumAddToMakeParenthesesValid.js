@@ -1,5 +1,4 @@
 /*
-
 A parentheses string is valid if and only if:
 It is the empty string,
 It can be written as AB (A concatenated with B), where A and B are valid strings, or
