@@ -30,6 +30,24 @@ function hasCycleDirectedGraph(n, edges) {
 }
 
 function hasCycle(node, graph, states) {
+  // This will give true if the node has a cycle
+  if (states[node] > 0) {
+      return states[node] !== 2;
+  }
+// Mark as processing
+states[node] = 1;
+for (let neighbor of graph[node]) {
+  if (hasCycle(neighbor, graph, states)) {
+      return true;
+  }
+}
+// Mark as processed
+states[node] = 2;
+return false;
+}
+
+/*
+function hasCycle(node, graph, states) {
   // Processing
   states[node] = 1;
   for (let neighbor of graph[node]) {
@@ -46,6 +64,7 @@ function hasCycle(node, graph, states) {
   states[node] = 2;
   return false;
 }
+*/
 
 n = 2;
 edges = [[1, 0]];
