@@ -20,7 +20,6 @@ Output: 3
 
 https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/
 */
-
 // Option 1
 var minAddToMakeValid = function(s) {
     let stack = [];
