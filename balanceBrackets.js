@@ -29,21 +29,14 @@ function balanceBrackets(str){
         /*Si es cero y vamos a insertar uno de cierre,
         sabemos que ya no esta balanzeado*/
         return false;
-      }else{
-        stackPop = stack.pop();
-        if(hash[stackPop] !== current){
-          return false;
-        }
+      }
+      stackPop = stack.pop();
+      if(hash[stackPop] !== current){
+        return false;
       }
     }
   }
-
-  if(stack.length === 0){
-    return true;
-  }else{
-    return false;
-  }
-
+  return stack.length === 0 ? true : false;
 }
 
 
