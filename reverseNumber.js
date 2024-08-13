@@ -1,3 +1,4 @@
+// Reverse Number.
 function reverseNumber(n) {
     let number = 0;
     while (n) {
