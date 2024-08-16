@@ -16,36 +16,43 @@ https://leetcode.com/problems/encode-and-decode-strings/
 */
 
 
-function encode(strs) {
-    let res = ''
-    for (let word of strs) {
-        let encoded = word.length + '/' + word;
-        res += encoded;
+/**
+ * Encodes a list of strings to a single string.
+ *
+ * @param {string[]} strs
+ * @return {string}
+ */
+var encode = function(strs) {
+    let encoded = '';
+    for (let str of strs) {
+        encoded += (str.length + '/' + str);
     }
-    return res;
-}
+    return encoded;
+};
 
-function decode(str) {
-    let index = 0;
+/**
+ * Decodes a single string to a list of strings.
+ *
+ * @param {string} s
+ * @return {string[]}
+ */
+var decode = function(s) {
     let result = [];
-    while (index < len(str)) {
-        let tmp = index;
-        // Find slash
-        while (tmp < str.length && str[tmp] !== '/'){
-            tmp += 1;
-        }
-        let slash = tmp;
-        // Get the size of the string
-        let size = Number(str.substring(index, slash));
-        let word = str.substring[slash + 1, slash + 1 + size];
-        // Move index
-        index = slash + 1 + size;
-        result.push(word);
-    return result;
+    let index = 0;
+    while (index < s.length) {
+        let slash = Number(s.indexOf('/', index));
+        let size = Number(s.substring(index, slash));
+        // Where the word is
+        index = slash + size + 1;
+        result.push(s.substring(slash + 1, index));
     }
-}
+    return result;
+};
 
-
+/**
+ * Your functions will be called as such:
+ * decode(encode(strs));
+ */
 test = ["we", "say", ":", "yes"];
 result = encode(test);
 console.log(result);
