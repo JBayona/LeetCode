@@ -57,7 +57,7 @@ var longestConsecutive = function(nums) {
   return result;
 };
 
-/DFS
+//DFS
 var longestConsecutive = function(nums) {
     if(!nums.length) {
       return 0;
@@ -186,6 +186,29 @@ var longestConsecutive = function(nums) {
       max = currCount > max ? currCount : max;
     }
     return max;
+};
+
+// Another option
+/*
+  1 2 3 4.     100.       200
+|------------------------------|
+*/
+var longestConsecutive = function(nums) {
+  let result = 0;
+  let set = new Set(nums);
+  for (let num of nums) {
+      // Find the start of the element in the sequence
+      // The start is the one not found in the array, that
+      // will always be a start
+      if (!set.has(num - 1)) {
+          let len = 1;
+          while (set.has(num + len)) {
+              len++;
+          }
+          result = Math.max(result, len);
+      }
+  }
+  return result;
 };
 
 array = [100, 4, 200, 1, 3, 2];
