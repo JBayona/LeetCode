@@ -11,6 +11,8 @@ Input: nums = [1], k = 1
 Output: [1]
 
 https://leetcode.com/problems/top-k-frequent-elements/
+
+https://github.com/datastructures-js/priority-queue/blob/v5/README.md#size
 */
 
 // Time O(LogN)
