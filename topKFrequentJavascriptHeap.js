@@ -30,6 +30,42 @@ var topKFrequent = function(nums, k) {
         hash[num]++;
     }
     
+    // Min heap
+    let heap = new PriorityQueue({
+        compare: (a, b) => a.count - b.count
+    });
+    
+    // Insert and remove if the size becomes larget than the desire
+    // size, we only want size k, removes the smallets ones
+    for (let prop in hash) {
+        heap.enqueue({number: prop, count: hash[prop]});
+        if (heap.size() > k) {
+            heap.dequeue();
+        }
+    }
+    
+    while(!heap.isEmpty()) {
+        result.push(heap.dequeue().number);
+    }
+
+   return result;
+};
+
+// Time O(LogN)
+// Space O(N)
+var topKFrequent = function(nums, k) {
+    let hash = {};
+    let result = [];
+    
+    // Count frecuencies
+    for (let i = 0; i < nums.length; i++) {
+        num = nums[i];
+        if (!(num in hash)) {
+            hash[num] = 0;
+        }
+        hash[num]++;
+    }
+    
     let heap = new PriorityQueue({
         compare: (a, b) => b.count - a.count
     });
