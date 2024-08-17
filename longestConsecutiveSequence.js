@@ -29,6 +29,31 @@ var longestConsecutive = function(nums) {
   return result;
 };
 
+// Time O(NLogN)
+// Time O(NLogN)
+var longestConsecutive = function(nums) {
+  if (!nums.length) {
+      return 0;
+  }
+  // There can always be a single sequence
+  let result = 1;
+  nums.sort((a, b) => a - b);
+  let len = 1;
+  for (let i = 0; i < nums.length - 1; i++) {
+      // Check numbers are consecutive
+      if (nums[i] + 1 == nums[i + 1]) {
+          len++;
+          result = Math.max(len, result);
+      } else if (nums[i] === nums[i + 1]) { // If numbers are the same, continue
+         continue;
+      } else {
+          // Start of a new sequence
+          len = 1;
+      }
+  }
+  return result;
+};
+
 // Option 1
 // Time O(N)
 // Space O(N)
