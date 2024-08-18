@@ -29,6 +29,7 @@ var threeSum = function (nums) {
     }
     let j = i + 1;
     let k = len - 1;
+    // Exhaust all pointer options
     while (j < k) {
       let sum = nums[i] + nums[j] + nums[k];
       if (sum === 0) {
