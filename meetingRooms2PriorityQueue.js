@@ -27,7 +27,7 @@ var minMeetingRooms = function(intervals) {
     intervals.sort((a, b) => a[0] - b[0]);
     
     // Set-up a priority queue to get the earlist end time a meeting end
-    let minHeap = new MinPriorityQueue({
+    let minHeap = new PriorityQueue({
         compare: (a, b) => a - b
     });
     // Add the first meeting to the heap
