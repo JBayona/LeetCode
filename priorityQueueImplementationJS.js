@@ -5,6 +5,8 @@ By default, it sorts based on a priority property, but you can modify this to fi
 3. dequeue(): Removes and returns the element with the highest priority according to the comparator.
 4. peek(): Returns the element with the highest priority without removing it.
 5. isEmpty(): Checks if the priority queue is empty.
+
+https://github.com/datastructures-js/priority-queue
 */
 
 // Option 1
