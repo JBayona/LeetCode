@@ -111,5 +111,70 @@ function findParent(node, parent) {
     return findParent(parent[node], parent);
 }
 
+// DFS
+/*
+var findRedundantConnection = function(edges) {
+    let graph = {};
+    let len = edges.length;
+    // Initialize first nodes in case of the labels does not exist
+    for (let i = 1; i <= edges.length; i++) {
+        graph[i] = [];
+    }
+
+
+    // Create graph
+    for (let edge of edges) {
+        let [from, to] = edge;
+        if (!(from in graph)) {
+            graph[from] = [];
+        }
+        if (!(to in graph)) {
+            graph[to] = [];
+        }
+        graph[from].push(to);
+        graph[to].push(from);
+
+        // Try to find reduntant connections for every insertion
+        if (hasCycle(graph, len)) {
+            return [from, to];
+        }
+    }
+    return [-1. -1];
+};
+
+function hasCycle(graph, len) {
+    // + 1 as it's 1-index
+    let visited = new Array(len + 1).fill(false);
+    for (let i = 1; i <= len; i++) {
+        if (!visited[i]) {
+            if (dfs(graph, visited, i, -1)) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+function dfs(graph, visited, node, parent) {
+    for(let neighbor of graph[node]) {
+        if(neighbor === parent) {
+            continue;
+        }
+        // We have a cycle already
+        if(visited[neighbor]) {
+            return true;
+        } else {
+            visited[neighbor] = true;
+            if(dfs(graph, visited, neighbor, node)) {
+                return true;
+            }
+        }
+    }
+    // The node has not been visited
+    return false;
+}
+*/
+
 edges = [[1,2],[1,3],[2,3]]
 console.log(findRedundantConnection(edges));
