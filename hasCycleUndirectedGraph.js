@@ -70,6 +70,7 @@ function dfsHasCycle(n, edges) {
 
 function dfs(graph, visited, node, parent) {
   for(let neighbor of graph[node]) {
+    // Coming from the undirected graph, skip it
     if(neighbor === parent) {
       continue;
     }
@@ -78,7 +79,9 @@ function dfs(graph, visited, node, parent) {
       return true
     } else {
       visited.add(neighbor);
-      return dfs(graph, visited, neighbor, node);
+      if(dfs(graph, visited, neighbor, node)) {
+        return true;
+      }
     }
   }
   // The node has not been visited
