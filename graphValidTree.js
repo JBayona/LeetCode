@@ -92,6 +92,27 @@ function dfs(graph, visited, node, parent) {
   return false;
 }
 
+/*
+function dfs(graph, visited, node, parent) {
+    for(let neighbor of graph[node]) {
+        if(neighbor === parent) {
+            continue;
+        }
+        // We have a cycle already
+        if(visited[neighbor]) {
+            return true;
+        } else {
+            visited[neighbor] = true;
+            if(dfs(graph, visited, neighbor, node)) {
+                return true;
+            }
+        }
+    }
+    // The node has not been visited
+    return false;
+}
+*/
+
 // BFS
 // Time: O(V) - V number of vertices
 // Space: O(V)
