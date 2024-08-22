@@ -34,16 +34,16 @@ function hasCycle(node, graph, states) {
   if (states[node] > 0) {
       return states[node] !== 2;
   }
-// Mark as processing
-states[node] = 1;
-for (let neighbor of graph[node]) {
-  if (hasCycle(neighbor, graph, states)) {
-      return true;
+  // Mark as processing
+  states[node] = 1;
+  for (let neighbor of graph[node]) {
+    if (hasCycle(neighbor, graph, states)) {
+        return true;
+    }
   }
-}
-// Mark as processed
-states[node] = 2;
-return false;
+  // Mark as processed
+  states[node] = 2;
+  return false;
 }
 
 /*
