@@ -30,40 +30,36 @@ Constraints:
 https://leetcode.com/problems/sliding-window-maximum/
 */
 
-// Time O(Log N)
+// Time O(NLog N)
 var maxSlidingWindow = function(nums, k) {
     let result = [];
+    // Create a max heap
+    let maxHeap = new PriorityQueue({
+        compare: (a, b) => b.val - a.val
+    });
 
-    // Create a Priority Queue to keep track of the maximum elements
-    // in the sliding window
-    const maxHeap = new PriorityQueue({ compare: (p1, p2) => p2.val - p1.val });
-
-    // Add the first k elements in the window
+    // Insert the first k elements in the window
     for (let i = 0; i < k; i++) {
-        maxHeap.enqueue({index: i, val: nums[i]}); // Store the index and value
+        maxHeap.enqueue({val: nums[i], index: i});
     }
 
-    // Add the first element in the result, the maximum
-    // Front does not remove the element from the queue
+    // Add the first element to our result
     result.push(maxHeap.front().val);
-
-    // Iterate over the last elements starting from k
+    // Add the rest of the elements
     for (let i = k; i < nums.length; i++) {
-        maxHeap.enqueue({index: i, val: nums[i]});
-        
-        // Check if the index of the maximum element
-        // in the priority queue is outside the current window
-        let currentiMaxIndex = maxHeap.front().index;
-        while (currentiMaxIndex <= i - k) {
-            // Dequeue until the max is within the k window
+        maxHeap.enqueue({val: nums[i], index: i});
+        // Check if the maxElement is outside of our k window
+        // if yes, move the window
+        let maxElementIndex = maxHeap.front().index;
+        // <= as we just added a new element
+        while (maxElementIndex <= i - k) {
             maxHeap.dequeue();
-            currentiMaxIndex = maxHeap.front().index;
+            // Update the element to the latest
+            maxElementIndex = maxHeap.front().index;
         }
-
-        // Add to the result the maximum from the window
         result.push(maxHeap.front().val);
     }
-    return result;    
+    return result;
 };
 
 // Run two loops. In the outer loop, take all subarrays of size K.
