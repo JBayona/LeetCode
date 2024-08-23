@@ -30,12 +30,13 @@ Constraints:
 https://leetcode.com/problems/sliding-window-maximum/
 */
 
-// Run two loops. In the outer loop, take all subarrays of size K. In the inner loop, get the maximum of the current subarray.
+// Run two loops. In the outer loop, take all subarrays of size K.
+// In the inner loop, get the maximum of the current subarray.
 //  O((n-k+1)*k) which can also be written as O(N * K).
 var maxSlidingWindow = function(nums, k) {
     let result = [];
     let max = Number.MIN_SAFE_INTEGER;
-    for(let i = 0; i <= nums.length - k; i++) {
+    for(let i = 0; i < nums.length - k + 1; i++) {
         max = nums[i];
         for(let j = i; j < i + k; j++) {
             max = Math.max(max, nums[j]);
@@ -45,66 +46,18 @@ var maxSlidingWindow = function(nums, k) {
     return result;
 };
 
-// Time O(N*Log(K))
-// Space O(k)
-
-import java.util.*; 
-class Solution {
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        if(nums == null || nums.length == 0) {
-            return new int[0];
+// Brute force
+// Time O(N^2)
+var maxSlidingWindow = function(nums, k) {
+    let result = [];
+    let max = Number.MIN_SAFE_INTEGER;
+    // There are n - k + 1 windows
+    for(let i = 0; i < nums.length - k + 1; i++) {
+        max = nums[i];
+        for(let j = 1 ; j < k; j++) {
+            max = Math.max(max, nums[i + j]);
         }
-        
-        int[] results = new int[nums.length - k + 1];
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((x, y) -> y - x);
-        
-        for(int i = 0; i < nums.length && i < k; i++) {
-            maxHeap.add(nums[i]);
-        }
-        
-        int index = 0;
-        results[index] = maxHeap.peek();
-        for(int i = k; i < nums.length; i++) {
-            maxHeap.remove(nums[index]);
-            maxHeap.add(nums[i]);
-            index++;
-            results[index] = maxHeap.peek();
-        }
-        return results;
+        result.push(max);
     }
-}
-
-// Time O(N)
-// Space O(N)
-
-import java.util.*; 
-class Solution {
-    public int[] maxSlidingWindow(int[] nums, int k) {
-        if(nums == null || nums.length == 0) {
-            return new int[0];
-        }
-        
-        int[] results = new int[nums.length - k + 1];
-        // By default treemap gives you from less element to greater element but as we set a
-        // reverse order, we are going to get the greater element
-        TreeMap<Integer, Integer> map = new TreeMap<>(Collections.reverseOrder());
-        
-        for(int i = 0; i < nums.length && i < k; i++) {
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-        }
-        int index = 0;
-        results[index] = map.firstKey();
-        for(int i = k; i < nums.length; i++) {
-            Integer count = map.get(nums[index]);
-            if(count == 1) {
-                map.remove(nums[index]);
-            } else {
-                map.put(nums[index], count - 1);
-            }
-            map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
-            index++;
-            results[index] = map.firstKey();
-        }
-        return results;
-    }
-}
+    return result;
+};
