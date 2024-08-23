@@ -35,34 +35,6 @@ TimeMap.set and TimeMap.get functions will be called a total of 120000 times (co
 
 https://leetcode.com/problems/time-based-key-value-store/
 */
-// Java
-class TimeMap {
-    private Map<String, TreeMap<Integer, String>> map;
-    /** Initialize your data structure here. */
-    public TimeMap() {
-        map = new HashMap<>();
-    }
-    
-    public void set(String key, String value, int timestamp) {
-        map.putIfAbsent(key, new TreeMap<>());
-        map.get(key).put(timestamp, value);
-    }
-    
-    public String get(String key, int timestamp) {
-        if(!map.containsKey(key)) {
-            return null;
-        }
-        Map.Entry<Integer,String> entry = map.get(key).floorEntry(timestamp);
-        return entry == null ? "" : entry.getValue();
-    }
-}
-
-/**
- * Your TimeMap object will be instantiated and called as such:
- * TimeMap obj = new TimeMap();
- * obj.set(key,value,timestamp);
- * String param_2 = obj.get(key,timestamp);
- */
 
 // Javascript
 var TimeMap = function() {
@@ -125,4 +97,34 @@ TimeMap.prototype.get = function(key, timestamp) {
  * var obj = new TimeMap()
  * obj.set(key,value,timestamp)
  * var param_2 = obj.get(key,timestamp)
+ */
+
+
+// Java
+class TimeMap {
+    private Map<String, TreeMap<Integer, String>> map;
+    /** Initialize your data structure here. */
+    public TimeMap() {
+        map = new HashMap<>();
+    }
+    
+    public void set(String key, String value, int timestamp) {
+        map.putIfAbsent(key, new TreeMap<>());
+        map.get(key).put(timestamp, value);
+    }
+    
+    public String get(String key, int timestamp) {
+        if(!map.containsKey(key)) {
+            return null;
+        }
+        Map.Entry<Integer,String> entry = map.get(key).floorEntry(timestamp);
+        return entry == null ? "" : entry.getValue();
+    }
+}
+
+/**
+ * Your TimeMap object will be instantiated and called as such:
+ * TimeMap obj = new TimeMap();
+ * obj.set(key,value,timestamp);
+ * String param_2 = obj.get(key,timestamp);
  */
