@@ -49,3 +49,26 @@ var isValid = function(s) {
     }
     return stack.length === 0;      
 };
+
+// Option 2
+var isValid = function(s) {
+    let hash = {'(': ')', '{': '}', '[' : ']'};
+    let stack = [];
+    for (let i = 0; i < s.length; i++) {
+        let c = s[i];
+        if (c in hash) {
+            stack.push(c);
+        } else {
+            if (!stack.length) {
+                return false;
+            }
+            let last = stack[stack.length - 1];
+            if (hash[last] === c) {
+                stack.pop();
+            } else {
+                return false;
+            }
+        }
+    }
+    return stack.length === 0;
+};
