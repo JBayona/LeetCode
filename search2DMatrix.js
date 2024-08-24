@@ -15,70 +15,60 @@ Output: false
 
 https://leetcode.com/problems/search-a-2d-matrix/
 */
-
+// Time: O(NLog(M))
 var searchMatrix = function(matrix, target) {
-  let index = -1;
-  let start;
-  let end;
-  let len;
-  if(matrix.length === 0) return false;
-  for(let i = 0; i < matrix.length; i++){
-    len = matrix[i].length;
-    start = matrix[i][0];
-    end = matrix[i][len-1];
-    /*Verifica si el elemento se encuentra dentro del rango, si
-    si entonces es posible buscar el elemento con binary search*/
-    if(target >= start && target <= end){
-      index = binarySearch(matrix[i], target);
-      if(index >= 0){
-        return true;
+  let len = matrix.length;
+  let index = 0;
+
+  let left = 0;
+  let right = matrix[0].length - 1;
+  while (index < len) {
+      let arr = matrix[index];
+      // Check that elements are within the range
+      if (target >= arr[0] && target <= arr[arr.length - 1]) {
+          return binarySearch(arr, target);
+      } else {
+          // Move to the next element
+          index++;
       }
-    }
   }
   return false;
 };
 
-function binarySearch(array, target){
-  let start = 0;
-  let end = array.length - 1;
-  let mid;
-  while(start <= end){
-    mid = Math.floor((start + end)/2);
-    if(array[mid] === target){
-      return mid;
-      /*Si target es menor significa que
-      está el valor del lado izquierdo del arreglo*/
-    }else if(target < array[mid]){
-      end = mid - 1;
-    }else{
-      /*Si no está del lado izquierdo, el elemento
-      debe de estar en el lado derecho en caso de
-      estar presente en el array*/
-      start = mid + 1
-    }
+var binarySearch = function(nums, target) {
+  let left = 0;
+  let right = nums.length - 1;
+  while (left <= right) {
+      let middle = Math.floor((left + right) / 2);
+      if (nums[middle] === target) {
+          return true;
+      } else if (nums[middle] < target) { // Target in right side
+          left = middle + 1;
+      } else { // Target in the left side
+          right = middle - 1;
+      }
   }
-}
-
-// Op2 
+  return false;
+};
 
 /*
 //First find which row should target be
-    for(int i=0;i<row;i++)
-    {
+  for(int i=0;i<row;i++)
+  {
 
-        if(target >= matrix[i][0])
-        {
-            which_row = i;
-        }
+      if(target >= matrix[i][0])
+      {
+          which_row = i;
+      }
 
-    }
+  }
 
-    for(int i =0;i<col;i++)
-    {
+  for(int i =0;i<col;i++)
+  {
 
-        if(target == matrix[which_row][i])
-            return true;
-    }
+      if(target == matrix[which_row][i])
+          return true;
+  }
 
-    return false;
+  return false;
 */
