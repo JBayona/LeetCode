@@ -42,6 +42,8 @@ var minEatingSpeed = function(piles, h) {
       // middle is our new speed
       let middle = Math.floor((left + right) / 2);
       // Get all hours needed to consume all bananas for each middle
+      // Try to set the right boundary to the closest to reach
+      // the condition of hours <= h
       let hours = getHours(piles, middle);
       if (hours <= h) {
           right = middle;
