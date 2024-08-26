@@ -38,7 +38,6 @@ var search = function(nums, target) {
 };
 
 // Recursive
-
 var search = function(nums, target) {
     let mid = 0;
     let start = 0;

@@ -63,8 +63,10 @@ function getMaxInterval(times){
       index = i;
     }
   }
+  console.log(tmpPrefixSum);
   // Get the range
   for(let i = index; i < flat.length - 1; i++) {
+    // Detect when the range is the maximum
     if(tmpPrefixSum[i] >  tmpPrefixSum[i+1]) {
       console.log(`Max range with active call is from range ${flat[i][0]} to ${flat[i+1][0]} with ${max} counts`);
       return;
