@@ -6,6 +6,7 @@ Minimize k , s.t. condition(k) is True
 The following code is the most generalized binary search template:
 */
 
+// https://leetcode.com/problems/koko-eating-bananas/solutions/769702/python-clear-explanation-powerful-ultimate-binary-search-template-solved-many-problems
 
 // For most of the binary search problems, we only need to modify three parts after copy-pasting this template
 // and never need to worry about corner cases and bugs in code any more:
