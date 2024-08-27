@@ -1,6 +1,7 @@
 /*
 Suppose we have a search space. It could be an array, a range, etc. Usually it's sorted
-in ascend order. For most tasks, we can transform the requirement into the following generalized form:
+in ascend order. For most tasks, we can transform the requirement into the following
+generalized form:
 
 Minimize k , s.t. condition(k) is True
 The following code is the most generalized binary search template:
