@@ -38,6 +38,9 @@ var findMin = function(nums) {
     let end = nums.length - 1;
     while(start < end) {
         let mid = Math.floor((start + end) / 2);
+        // The right part is not sorted so we look there as the middle
+        // is greater than the end of the array, so the minimum should be
+        // somewhere in the right side.
         if(nums[mid] > nums[end]) {
             start = mid + 1;
         } else {
@@ -46,6 +49,40 @@ var findMin = function(nums) {
     }
     return nums[start];
 };
+
+function findMin(arr) {
+    let low = 0, high = arr.length - 1;
+    let ans = Infinity;
+    while (low <= high) {
+        let mid = (low + high) / 2;
+
+        // Search space is already sorted,
+        // then arr[low] will always be
+        // the minimum in that search space:
+        if (arr[low] <= arr[high]) {
+            ans = Math.min(ans, arr[low]);
+            break;
+        }
+
+        // If left part is sorted:
+        if (arr[low] <= arr[mid]) {
+            // Keep the minimum:
+            ans = Math.min(ans, arr[low]);
+
+            // Eliminate left half:
+            low = mid + 1;
+
+        } else { // If right part is sorted:
+
+            // Keep the minimum:
+            ans = Math.min(ans, arr[mid]);
+
+            // Eliminate right half:
+            high = mid - 1;
+        }
+    }
+    return ans;
+}
 
 */
 // Time O(LogN)
