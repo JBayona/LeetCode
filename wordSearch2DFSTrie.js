@@ -17,42 +17,20 @@ words = ["oath","pea","eat","rain"]
 Output: ["eat","oath"]
 */
 
-//Optioin 1
+// Time O(N * M * L)
+function trieNode() {
+    this.children = {};
+}
 var findWords = function(board, words) {
     const root = new trieNode();
-    
-    //DFS 
-    const dfs = (node, i, j) => {
-        
-        //Validate position
-        if (!board[i] || !board[i][j]) return;
-        
-        //Set char and reset it (so we don't revisit chars)
-        const char = board[i][j];
-        board[i][j] = "";
-        
-        node = node.children[char];
-        if (node) {
-            //Word found
-            if (node.word) res.add(node.word);
-            
-            //Add neighbors
-            dfs(node, i-1, j);
-            dfs(node, i+1, j);
-            dfs(node, i, j-1);
-            dfs(node, i, j+1);
-        }
-        
-        //Reset "visited" after traversal finishes
-        board[i][j] = char;
-    }
     
     //Create trie search tree
     for (const word of words) {
         let node = root;
         for (let i = 0; i < word.length; i++) {
-            if (!node.children[word[i]]) node.children[word[i]] = new trieNode();
-            node = node.children[word[i]];
+            let c = word[i];
+            node.children[c] = node.children[c] || new trieNode();
+            node = node.children[c];
         }
         node.word = word;
     }    
@@ -61,15 +39,41 @@ var findWords = function(board, words) {
     let res = new Set();
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
-            dfs(root, i, j);
+            dfs(root, i, j, board, res);
         }
     }
     
     return [...res];
 };
 
-function trieNode() {
-    this.children = {};
+//DFS 
+const dfs = (node, i, j, board, res) => {
+    
+    //Validate position
+    if (!board[i] || !board[i][j]) {
+        return;
+    }
+    
+    //Set char and reset it (so we don't revisit chars)
+    const c = board[i][j];
+    board[i][j] = "";
+    
+    node = node.children[c];
+    if (node) {
+        //Word found
+        if (node.word) {
+            res.add(node.word);
+        }
+        
+        //Add neighbors
+        dfs(node, i-1, j, board, res);
+        dfs(node, i+1, j, board, res);
+        dfs(node, i, j-1, board, res);
+        dfs(node, i, j+1, board, res);
+    }
+    
+    //Reset "visited" after traversal finishes
+    board[i][j] = c;
 }
 
 // Option 2
