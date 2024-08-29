@@ -25,57 +25,64 @@ https://leetcode.com/problems/bus-routes/
 
 // Time O(n^2)
 // Space O(n^2)
-var numBusesToDestination = function (routes, S, T) {
+var numBusesToDestination = function(routes, S, T) {
   let hash = {};
-  // Hash that has oon each route which buses it can take
-  for (let i = 0; i < routes.length; i++) {
-    for (let j = 0; j < routes[i].length; j++) {
-      let route = routes[i][j];
-      if (!(route in hash)) {
-        hash[route] = [i];
-      } else {
-        hash[route].push(i);
-      }
-    }
+  let min = Math.min(S, T);
+  let max = Math.max(S, T);
+  for (let i = min; i <= max; i++) {
+      hash[i] = [];
   }
 
-  // hash = { '1': [ 0 ], '2': [ 0 ], '3': [ 1 ], '6': [ 1 ], '7': [ 0, 1 ] }
+  // Hash that has on each route which buses it can take
+  for(let i = 0; i < routes.length; i++) {
+      for(let j = 0; j < routes[i].length; j++) {
+          let route = routes[i][j];
+          if(!(route in hash)) {
+              hash[route] = [i];
+          } else {
+              hash[route].push(i);
+          }
+      }
+  }
 
+  // the value represent the buses it can go to the stops
+  // hash = { '1': [ 0 ], '2': [ 0 ], '3': [ 1 ], '6': [ 1 ], '7': [ 0, 1 ] }
+  
   // Create a set to store the buses that have already been taken
   let visitedBus = new Set();
   // Create a set to store the stops that have already been visited
   let visitedStop = new Set();
   let busesTaken = 0;
-
+  
   // Create a queue to keep track of the stops your can access from the current source
   let queue = [S];
   visitedStop.add(S);
-
-  while (queue.length) {
-    // From the current stop how many stops can you access before hopping on to another bus
-    let routeLength = queue.length;
-    for (let i = 0; i < routeLength; i++) {
-      // Get the current bus stop that you are at
-      let busStop = queue.shift();
-      if (busStop === T) {
-        return busesTaken;
-      }
-      // Loop through the current bus stop to check if you can hop on another bus
-      for (let bus of hash[busStop]) {
-        if (visitedBus.has(bus)) {
-          continue;
-        }
-        for (let stop of routes[bus]) {
-          if (visitedStop.has(stop)) {
-            continue;
+  
+  while(queue.length) {
+      // From the current stop how many stops can you access before hopping on to another bus
+      let routeLength = queue.length;
+      for(let i = 0; i < routeLength; i++) {
+          // Get the current bus stop that you are at
+          let busStop = queue.shift();
+          if (busStop === T) {
+              return busesTaken;
           }
-          queue.push(stop);
-          visitedStop.add(stop);
-        }
-        visitedBus.add(bus);
+          // Loop through the current bus stop to check if you can hop on another bus
+          for(let bus of hash[busStop]) {
+              if (visitedBus.has(bus)) {
+                  continue;
+              }
+              for(let stop of routes[bus]) {
+                  if (visitedStop.has(stop)) {
+                      continue;
+                  }
+                  queue.push(stop);
+                  visitedStop.add(stop);
+              }
+              visitedBus.add(bus);
+          }
       }
-    }
-    busesTaken++;
+      busesTaken++;
   }
   return -1;
 };
