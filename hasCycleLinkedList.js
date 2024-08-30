@@ -30,7 +30,7 @@ var hasCycle = function(head) {
             fast.next = null;
         }
         */
-        // Different to return where the cycle starts
+        // Different problem to return where the cycle starts
         /*
         if(slow == fast) {
             break;
@@ -53,4 +53,38 @@ var hasCycle = function(head) {
     }
     return slow;
     */
+};
+
+// Time O(N)
+// Space O(1)
+var detectCycle = function(head) {
+    // There´s no head
+    if(!head || !head.next) {
+        return null;
+    }
+    let slow = head;
+    let fast = head;
+    // We are only interested in fast because it will
+    // reach faster to null if any and not slow which is behind
+    // while(slow && (fast && fast.next)){
+    while(fast && fast.next){
+        slow = slow.next;
+        fast = fast.next.next;
+        // We detect a cycle
+        if(slow == fast) {
+            break;
+        }
+    }
+    
+    // No loops found
+    if(fast == null || fast.next == null) {
+        return null;
+    }    
+    // Set fast to the head and try to meet slow
+    slow = head;
+    while(slow != fast) {
+        slow = slow.next;
+        fast = fast.next;
+    }
+    return slow;
 };
