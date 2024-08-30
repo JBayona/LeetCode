@@ -37,3 +37,24 @@ var kthSmallest = function (root, k) {
   }
   return -1;
 };
+
+/*
+var kthSmallest = function(root, k) {
+    count = k;
+    result = null;
+    inorder(root);
+    return result;
+};
+
+function inorder(node, sorted) {
+    if(!node) return;
+    inorder(node.left, sorted);
+    
+    count--;
+    if(count===0) {
+        result = node.val;
+        return;
+    }   
+    inorder(node.right, sorted);
+}
+*/
