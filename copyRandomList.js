@@ -14,6 +14,52 @@ it does not point to any node.
 https://leetcode.com/problems/copy-list-with-random-pointer/
 */
 
+// Option 1
+// Time O(N)
+// Space O(N)
+var copyRandomList = function(head) {
+    if (!head) {
+        return null;
+    }
+
+    let oldNode = head;
+    let newNode = new Node(oldNode.val);
+
+    let seen = new Map();
+    // Mark both firs node as visited
+    // Old and new reference
+    seen.set(oldNode, newNode);
+    // Iterate until the node is not null
+    while (oldNode != null) {
+        // Clone nodes
+        newNode.random = getClone(oldNode.random, seen);
+        newNode.next = getClone(oldNode.next, seen);
+        // Move
+        oldNode = oldNode.next;
+        newNode = newNode.next;
+    };
+    // return the result as head has the reference
+    return seen.get(head);
+};
+
+function getClone(node, seen) {
+    // If node exists
+    if (node) {
+        // If visited already
+        if (seen.has(node)) {
+            return seen.get(node);
+        }
+        // If not, create the copy and mark it as visited
+        // Save the reference
+        let newNode = new Node(node.val);
+        seen.set(node, newNode);
+        return newNode;
+    }
+    // Node does not exist
+    return null;
+}
+
+// Option 2
 var copyRandomList = function(head) {
     
     if(!head) {
