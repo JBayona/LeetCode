@@ -36,10 +36,14 @@ const alienOrder = words => {
   for (let word of words) {
     for (let i = 0; i < word.length; i++) {
         let c = word[i];
-        graph[c] = new Array();
+        graph[c] = [];
         count[c] = 0;
     }
   }
+
+  // Form skeleton
+  // graph: { w: [], r: [], t: [], f: [], e: [] }
+  // count/degree: { w: 0, r: 0, t: 0, f: 0, e: 0 }
 
   // 1. Find all edges in the graph
   for (let i = 0; i < words.length - 1; i++) {
@@ -94,9 +98,11 @@ const alienOrder = words => {
     let len = queue.length;
     for (let i = 0; i < len; i++) {
         let node = queue.shift();
+        // Append to the result
         result += node;
         for (let neighbor of graph[node]) {
             count[neighbor]--;
+            // Add to the queue when we find there's already a char with order
             if (count[neighbor] === 0) {
                 queue.push(neighbor);
             }
