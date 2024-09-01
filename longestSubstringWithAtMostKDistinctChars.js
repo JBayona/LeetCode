@@ -13,6 +13,41 @@ https://leetcode.com/problems/longest-substring-with-at-most-k-distinct-characte
 var lengthOfLongestSubstringKDistinct = function (str, k) {
   let hash = {};
   let result = 0;
+
+  let start = 0;
+  let end = 0;
+
+  while (end < str.length) {
+    let c = str[end];
+    if (!(c in hash)) {
+      hash[c] = 0;
+    }
+    hash[c]++;
+
+    if (Object.keys(hash).length <= k) {
+      result = Math.max(result, end - start + 1);
+    } else {
+      // If we have rebased the limit, remove the most left element
+      while (Object.keys(hash).length > k) {
+        let l = str[start];
+        let count = hash[l];
+        if (count === 1) {
+          delete hash[l];
+        } else {
+          hash[l]--;
+        }
+        start++;
+      }
+    }
+    end++;
+  }
+  return result;
+};
+
+// Option 2
+var lengthOfLongestSubstringKDistinct = function (str, k) {
+  let hash = {};
+  let result = 0;
   let start = 0;
 
   for (let i = 0; i < str.length; i++) {
