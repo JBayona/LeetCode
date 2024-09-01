@@ -44,260 +44,270 @@ Q4
  
  */
 
-const axios = require('axios');
+const axios = require("axios");
 
 class City {
-    constructor(name, x, y){
+  constructor(name, x, y) {
     this.name = name;
     this.x = x;
     this.y = y;
-    }
+  }
 }
 
 class Event {
-    constructor(id, name, city, eventDate){
+  constructor(id, name, city, eventDate) {
     this.id = id;
     this.name = name;
     this.city = city;
     this.eventDate = eventDate;
-    }
+  }
 }
 
 class Customer {
-    constructor(id, name, city, birthDate){
+  constructor(id, name, city, birthDate) {
     this.id = id;
     this.name = name;
     this.city = city;
     this.birthDate = birthDate;
-    }
+  }
 }
 
 // Question 3
 function distance(city1, city2) {
-    return Math.sqrt(
-    (city1.x - city2.x) * (city1.x - city2.x) + 
-    (city1.y - city2.y) * (city1.y - city2.y)
-    );
+  return Math.sqrt(
+    (city1.x - city2.x) * (city1.x - city2.x) +
+      (city1.y - city2.y) * (city1.y - city2.y)
+  );
 }
 
 class MarketingEngine {
-    constructor(events) {
-        this.events = events;
-        this.cityToEvents = {};
+  constructor(events) {
+    this.events = events;
+    this.cityToEvents = {};
 
-        /*
+    /*
             ONLY THIS FOR QUESITON 4
         */
-        this.idToEvent = {};
+    this.idToEvent = {};
 
-        // This is not part of question 4 - CODE IT!
-        this.filter(events);
+    // This is not part of question 4 - CODE IT!
+    this.filter(events);
+  }
+  // BE CAREFUL WITH THE ASYNC, THIS IS ONLY IN QUESTION 4
+  async filter(events) {
+    let now = Date.now();
+    // Filter events that are old
+    this.events = this.events.filter((event) => event.eventDate >= now);
+    // Format from city to event
+    for (let event of this.events) {
+      if (!(event.city in this.cityToEvents)) {
+        this.cityToEvents[event.city] = [];
+      }
+      this.cityToEvents[event.city].push(event);
     }
-    // BE CAREFUL WITH THE ASYNC, THIS IS ONLY IN QUESTION 4
-    async filter (events) {
-        let now = Date.now();
-        // Filter events that are old
-        this.events = this.events.filter(event => event.eventDate >= now );
-        // Format from city to event
-        for (let event of this.events) {
-            if (!(event.city in this.cityToEvents)) {
-                this.cityToEvents[event.city] = [];
-            }
-            this.cityToEvents[event.city].push(event);
-        }
-        
-    
-        // QUESTION 2 - DO NOT ADD IT
-        // Format date to event
-        this.sortedDates = this.events.sort((a, b) => a.eventDate - b.eventDate);
-    
-    
-        // QUESTION 4 - DO NOT ADD
-        this.lastPriceCache = Date.now();
-        this.TTL = 86400000; // One day ms
-        this.limit = 5;
-        // STILL QUESTION 4
-        const response = await axios.request("https://sh-mockapi.azurewebsites.net/api/ticketprice");
-        this.priceData = response.data;
-        for (let event of this.priceData) {
-            this.idToEvent[event.Id] = event;
-        }
-    }
-    
-    
-    // Question 1
-    sendCustomerNotification (customer) {
-        let customerCity = customer.city;
-        console.log(`Sending customers notifications to the customer ${customer.name}`);
-        return customerCity in this.cityToEvents ? this.cityToEvents[customerCity] : [];
-    }
-    
-    
-    
-    // Question 2
-    sendCustomerBirthdayNotification(customer) {
-        let customerBirthday = new Date(customer.birthDate);
 
-        let now = new Date();
-        let nextBirthDay = new Date(now.getFullYear(), customerBirthday.getMonth(), customerBirthday.getDate());
-        // Nexy year's birthday
-        if (now > nextBirthDay) {
-            // Add one year to the Birthday if the birthday is already gone
-            nextBirthDay = nextBirthDay.setFullYear(nextBirthDay.getFullYear() + 1);
-            // Birthday for the next year
-            console.log(`${customer.name} next birthday is ${nextBirthDay}`);
-        }
-        
-        // Get the closer event
-        let start = 0;
-        let end = this.sortedDates;
-        let target = nextBirthDay
-        // Binary search to get closer
-        while (start < end) {
-            const mid = Math.fstartor((start + end) / 2);
-            if (arr[mid] < target) {
-            start = mid + 1;
-            } else {
-            end = mid;
-            }
-        }
-        // This will have the closer date and event
-        return this.sortedDates[start];
-    }
-    
-    
-    
-    // Question 3
-    sendCustomerProximityNotification(customer, limit) {    
-        if (!(customer.city in CITY_MAP)) {
-          return `${customerCity} has no events`;
-        }
-    
-        let customerCity = CITY_MAP[customer.city];
-    
-        // Get the array of cities with its values and create a new array
-        // With the city and the distance calculated between the customer city and the city
-        let sortedArr = Object.values(CITY_MAP).map((city) => {
-            return {city: city, distance : distance(customerCity, city)}
-        }).sort((a, b) => a.distance - b.distance);
-        // { city: City { name: 'New York', x: 3572, y: 1455 }, distance: 0 }, { .....}
-        
-        // Get the closests events
-        // console.log(sortedArr);
-        let result = [];
-        // Sorted array has all cities with events that are probably old
-        // and not in our map, that's why we need the empty array
-        for (let prop of sortedArr) {
-          let events = this.cityToEvents[prop.city.name] || [];
-          for (let event of events) {
-            result.push(event);
-            if (result.length === limit) {
-              break;
-            }
-          }
-          // This can be extracted into a function to reduce code duplication
-          if (result.length === limit) {
-            break;
-          }
-        }
-        return result;
-    }
-    
+    // QUESTION 2 - DO NOT ADD IT
+    // Format date to event
+    this.sortedDates = this.events.sort((a, b) => a.eventDate - b.eventDate);
 
-
-      // Question 4
-    async cheapestWithinRatio(customer, radious) {
-        if (!(customer.city in CITY_MAP)) {
-            return `${customerCity} has no events`;
-        }
-        
-        let customerCity = CITY_MAP[customer.city];
-    
-        // Talk about caching here to save constant HTTP calls
-        let now = Date.now();
-    
-        let data;
-        // Data stale older than 1 day - Update cache
-        if (now - this.lastPriceCache < this.TTL) {
-          const response = await axios.request("https://sh-mockapi.azurewebsites.net/api/ticketprice");
-          this.priceData = response.data;
-          for (let event of this.priceData) {
-            this.idToEvent[event.Id] = event;
-          }
-          this.lastPriceCache = now;
-        }
-    
-        // Get cheapest cities in y-mile radious
-        let citiesWithinRadious = Object.values(CITY_MAP).filter(city => {
-          let d = distance(customerCity, city);
-          // console.log(`${city.name}-${d}`);
-          return d <= radious;
-        });
-        // console.log(citiesWithinRadious);
-    
-        let eventIdInRadious = [];
-        for (let city of citiesWithinRadious) {
-          // console.log(city);
-          // We might have some cities that have been filtered so we need to validate that
-          // city to evenents has filtered values depending on date
-          let events = this.cityToEvents[city.name] || [];
-          // console.log(events);
-          for (let event of events) {
-            eventIdInRadious.push(event);
-          }
-        }
-        // console.log("Event in radious");
-        // console.log(eventIdInRadious)
-        // Prices and events
-        let priceAndEvents = [];
-        for (let event of eventIdInRadious) {
-          let price = this.idToEvent[event.id].Price;
-          priceAndEvents.push({event: event, price: price});
-        }
-    
-        // Sort
-        priceAndEvents.sort((a, b) => a. price - b.price);
-    
-        // Cut the array regardless if it's less or not
-        let cut = priceAndEvents.slice(0, 5 + 1);
-        let result = [];
-        for (let prop of cut) {
-          result.push(prop.event);
-        }
-        console.log("EVENT FINAL");
-        console.log(result);
-        return result;
+    // QUESTION 4 - DO NOT ADD
+    this.lastPriceCache = Date.now();
+    this.TTL = 86400000; // One day ms
+    this.limit = 5;
+    // STILL QUESTION 4
+    const response = await axios.request(
+      "https://sh-mockapi.azurewebsites.net/api/ticketprice"
+    );
+    this.priceData = response.data;
+    for (let event of this.priceData) {
+      this.idToEvent[event.Id] = event;
     }
+  }
+
+  // Question 1
+  sendCustomerNotification(customer) {
+    let customerCity = customer.city;
+    console.log(
+      `Sending customers notifications to the customer ${customer.name}`
+    );
+    return customerCity in this.cityToEvents
+      ? this.cityToEvents[customerCity]
+      : [];
+  }
+
+  // Question 2
+  sendCustomerBirthdayNotification(customer) {
+    let customerBirthday = new Date(customer.birthDate);
+
+    let now = new Date();
+    let nextBirthDay = new Date(
+      now.getFullYear(),
+      customerBirthday.getMonth(),
+      customerBirthday.getDate()
+    );
+    // Nexy year's birthday
+    if (now > nextBirthDay) {
+      // Add one year to the Birthday if the birthday is already gone
+      nextBirthDay = nextBirthDay.setFullYear(nextBirthDay.getFullYear() + 1);
+      // Birthday for the next year
+      console.log(`${customer.name} next birthday is ${nextBirthDay}`);
+    }
+
+    // Get the closer event
+    let start = 0;
+    let end = this.sortedDates;
+    let target = nextBirthDay;
+    // Binary search to get closer
+    while (start < end) {
+      const mid = Math.fstartor((start + end) / 2);
+      if (arr[mid] < target) {
+        start = mid + 1;
+      } else {
+        end = mid;
+      }
+    }
+    // This will have the closer date and event
+    return this.sortedDates[start];
+  }
+
+  // Question 3
+  sendCustomerProximityNotification(customer, limit) {
+    if (!(customer.city in CITY_MAP)) {
+      return `${customerCity} has no events`;
+    }
+
+    let customerCity = CITY_MAP[customer.city];
+
+    // Get the array of cities with its values and create a new array
+    // With the city and the distance calculated between the customer city and the city
+    let sortedArr = Object.values(CITY_MAP)
+      .map((city) => {
+        return { city: city, distance: distance(customerCity, city) };
+      })
+      .sort((a, b) => a.distance - b.distance);
+    // { city: City { name: 'New York', x: 3572, y: 1455 }, distance: 0 }, { .....}
+
+    // Get the closests events
+    // console.log(sortedArr);
+    let result = [];
+    // Sorted array has all cities with events that are probably old
+    // and not in our map, that's why we need the empty array
+    for (let prop of sortedArr) {
+      let events = this.cityToEvents[prop.city.name] || [];
+      for (let event of events) {
+        result.push(event);
+        if (result.length === limit) {
+          break;
+        }
+      }
+      // This can be extracted into a function to reduce code duplication
+      if (result.length === limit) {
+        break;
+      }
+    }
+    return result;
+  }
+
+  // Question 4
+  async cheapestWithinRatio(customer, radious) {
+    if (!(customer.city in CITY_MAP)) {
+      return `${customerCity} has no events`;
+    }
+
+    let customerCity = CITY_MAP[customer.city];
+
+    // Talk about caching here to save constant HTTP calls
+    let now = Date.now();
+
+    let data;
+    // Data stale older than 1 day - Update cache
+    if (now - this.lastPriceCache < this.TTL) {
+      const response = await axios.request(
+        "https://sh-mockapi.azurewebsites.net/api/ticketprice"
+      );
+      this.priceData = response.data;
+      for (let event of this.priceData) {
+        this.idToEvent[event.Id] = event;
+      }
+      this.lastPriceCache = now;
+    }
+
+    // Get cheapest cities in y-mile radious
+    let citiesWithinRadious = Object.values(CITY_MAP).filter((city) => {
+      let d = distance(customerCity, city);
+      // console.log(`${city.name}-${d}`);
+      return d <= radious;
+    });
+    // console.log(citiesWithinRadious);
+
+    let eventIdInRadious = [];
+    for (let city of citiesWithinRadious) {
+      // console.log(city);
+      // We might have some cities that have been filtered so we need to validate that
+      // city to evenents has filtered values depending on date
+      let events = this.cityToEvents[city.name] || [];
+      // console.log(events);
+      for (let event of events) {
+        eventIdInRadious.push(event);
+      }
+    }
+    // console.log("Event in radious");
+    // console.log(eventIdInRadious)
+    // Prices and events
+    let priceAndEvents = [];
+    for (let event of eventIdInRadious) {
+      let price = this.idToEvent[event.id].Price;
+      priceAndEvents.push({ event: event, price: price });
+    }
+
+    // Sort
+    priceAndEvents.sort((a, b) => a.price - b.price);
+
+    // Cut the array regardless if it's less or not
+    let cut = priceAndEvents.slice(0, 5 + 1);
+    let result = [];
+    for (let prop of cut) {
+      result.push(prop.event);
+    }
+    console.log("EVENT FINAL");
+    console.log(result);
+    return result;
+  }
 }
-    
+
 // Assume a static number of cities
 // Question 3
 let CITY_MAP = {
-    'New York': new City('New York', 3572, 1455),
-    'Los Angeles': new City('Los Angeles', 462, 975),
-    'Boston': new City('Boston', 3778, 1566),
-    'Chicago': new City('Chicago', 2608, 1525),
-    'San Francisco': new City('San Francisco', 183, 1233),
-    'Washington': new City('Washington', 3358, 1320)
+  "New York": new City("New York", 3572, 1455),
+  "Los Angeles": new City("Los Angeles", 462, 975),
+  Boston: new City("Boston", 3778, 1566),
+  Chicago: new City("Chicago", 2608, 1525),
+  "San Francisco": new City("San Francisco", 183, 1233),
+  Washington: new City("Washington", 3358, 1320),
 };
 
 let customer = new Customer(1, "Amos", "New York", Date.parse("1995-05-11"));
 
 // Date.parse("2023-12-23") converts a string into a unix timestamp
 const events = [
-    new Event(1, "Phantom of the Opera", "New York", Date.parse("2023-12-23")),
-    new Event(2, "Metallica", "Los Angeles", Date.parse("2024-12-02")),
-    new Event(3, "Metallica", "New York", Date.parse("2024-12-06")),
-    new Event(4, "Metallica", "Boston", Date.parse("2024-10-23")),
-    new Event(5, "LadyGaGa", "New York", Date.parse("2023-09-20")),
-    new Event(6, "LadyGaGa", "Boston", Date.parse("2024-08-01")),
-    new Event(7, "LadyGaGa", "Chicago", Date.parse("2024-07-04")),
-    new Event(8, "LadyGaGa", "San Francisco", Date.parse("2024-07-07")),
-    new Event(9, "LadyGaGa", "Washington", Date.parse("2023-05-22")),
-    new Event(10, "Metallica", "Chicago", Date.parse("2024-01-01")),
-    new Event(11, "Phantom of the Opera", "San Francisco", Date.parse("2024-07-04")),
-    new Event(12, "Phantom of the Opera", "Chicago", Date.parse("2025-05-15")),
-]
+  new Event(1, "Phantom of the Opera", "New York", Date.parse("2023-12-23")),
+  new Event(2, "Metallica", "Los Angeles", Date.parse("2024-12-02")),
+  new Event(3, "Metallica", "New York", Date.parse("2024-12-06")),
+  new Event(4, "Metallica", "Boston", Date.parse("2024-10-23")),
+  new Event(5, "LadyGaGa", "New York", Date.parse("2023-09-20")),
+  new Event(6, "LadyGaGa", "Boston", Date.parse("2024-08-01")),
+  new Event(7, "LadyGaGa", "Chicago", Date.parse("2024-07-04")),
+  new Event(8, "LadyGaGa", "San Francisco", Date.parse("2024-07-07")),
+  new Event(9, "LadyGaGa", "Washington", Date.parse("2023-05-22")),
+  new Event(10, "Metallica", "Chicago", Date.parse("2024-01-01")),
+  new Event(
+    11,
+    "Phantom of the Opera",
+    "San Francisco",
+    Date.parse("2024-07-04")
+  ),
+  new Event(12, "Phantom of the Opera", "Chicago", Date.parse("2025-05-15")),
+];
 
 let marketEngine = new MarketingEngine(events);
 
