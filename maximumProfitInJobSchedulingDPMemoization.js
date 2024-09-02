@@ -23,15 +23,16 @@ class JobState {
   }
 }
 
-var jobScheduling = function (startTime, endTime, profit) {
+var jobScheduling = function(startTime, endTime, profit) {
   let n = startTime.length;
   let arr = [];
   // Format the array
   for (let i = 0; i < n; i++) {
-    arr.push(new JobState(startTime[i], endTime[i], profit[i]));
+      arr.push(new JobState(startTime[i], endTime[i], profit[i]));
   }
   // Sort based on timestamp to find easier the overlaps
-  arr.sort((a, b) => a.startTime - b.startTime);
+  arr.sort((a,b) => a.startTime - b.startTime);
+  // To compute the profit, we don't want to compute the results every time
   let dp = new Array(arr.length).fill(-1);
   let maxProfit = helper(0, arr, dp);
   return maxProfit;
@@ -39,13 +40,13 @@ var jobScheduling = function (startTime, endTime, profit) {
 
 function helper(index, arr, dp) {
   // Base cases
-  if (index >= arr.length) {
-    return 0;
+  if(index >= arr.length) {
+      return 0;
   }
 
   // Return already computed results
   if (dp[index] !== -1) {
-    return dp[index];
+      return dp[index];
   }
 
   // Find the next possible non-overlapping index
@@ -64,12 +65,12 @@ function getNextIndex(arr, currentIdx) {
   let end = arr.length - 1;
   // Binary Search
   while (start <= end) {
-    let mid = Math.floor((start + end) / 2);
-    if (arr[mid].startTime < lastJobEndTime) {
-      start = mid + 1;
-    } else {
-      end = mid - 1;
-    }
+      let mid = Math.floor((start + end) / 2);
+      if (arr[mid].startTime < lastJobEndTime) {
+          start = mid + 1;
+      } else {
+          end = mid - 1;
+      }
   }
   return start;
 }
