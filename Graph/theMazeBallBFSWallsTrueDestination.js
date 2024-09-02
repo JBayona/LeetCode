@@ -48,7 +48,7 @@ var hasPath = function (maze, start, destination) {
         let nextCol = y;
 
         // Keep rolling in the current direction until
-        // we have a boundary
+        // we hit a wall
         while (isValid(maze, nextRow + row[i], nextCol + col[i]) && maze[nextRow + row[i]][nextCol + col[i]] === 0) {
           nextRow += row[i];
           nextCol += col[i];
