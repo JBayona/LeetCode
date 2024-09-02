@@ -22,6 +22,8 @@ Explanation:
 https://leetcode.com/problems/next-greater-element-i/
 */
 
+// All the procesing happens on the nums2 array and we only
+// use nums1 to get the result, we use a stack.
 var nextGreaterElement = function(nums1, nums2) {
     let stack = [];
     let hash = {};
@@ -34,10 +36,11 @@ var nextGreaterElement = function(nums1, nums2) {
         }
         stack.push(nums2[i]);
     }
-
-    // At this point we have a map with the next greater element
-    // key is the number and value is the next greater element
-    
+    /*
+    { 
+        '1': 3,
+        '3': 4 }
+    */
     let result = [];
     for(let i = 0; i < nums1.length; i++) {
         let elem = nums1[i];
