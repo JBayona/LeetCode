@@ -76,3 +76,39 @@ MedianFinder.prototype.findMedian = function () {
   // Even heaps
   return (this.smallHeap.front() + this.largeHeap.front()) / 2;
 };
+
+// Java
+/*
+public class MedianFinder {
+    // Smaller elements but we want maxHeap implementation
+    // We want the larger elements
+    PriorityQueue<Integer> maxHeap;
+    // Larger elements but we want minHeap implementation
+    // Get the smallet element from Min heap
+    PriorityQueue<Integer> minHeap;
+
+    public MedianFinder() {
+        minHeap = new PriorityQueue<>();
+        maxHeap = new PriorityQueue<>(new Comparator<Integer>() {
+            public int compare(Integer i1, Integer i2) {
+                return i2 - i1;
+            }
+        });
+    }
+
+    // Adds a number into the data structure.
+    public void addNum(int num) {
+        minHeap.offer(num);
+        maxHeap.offer(minHeap.poll());
+        if (minHeap.size() < maxHeap.size()) {
+            minHeap.offer(maxHeap.poll());
+        }
+    }
+
+    // Returns the median of current data stream
+    public double findMedian() {
+        return minHeap.size() > maxHeap.size() ? minHeap.peek() : (maxHeap.peek() + minHeap.peek()) / 2.0;
+    }
+}
+
+*/
