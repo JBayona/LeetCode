@@ -26,41 +26,51 @@ Output: []
 https://leetcode.com/problems/expression-add-operators/description/
 */
 
-var addOperators = function(num, target) {
+// Time O(2 ^ N)
+var addOperators = function (num, target) {
   let result = [];
-  let start = 0;
+  let index = 0;
+  let str = "";
+  // Get the expressions for each call or variation
   let eval = 0;
+  // We need it due to operators precedence
   let mult = 0;
-  let str = ''
-  dfs(result, str, num, target, start, eval, mult);
+  // We need to carry a separate for mult as we need to take into account
+  // operator precedence
+  dfs(result, str, num, target, index, eval, mult);
   return result;
 };
 
-// Mult it's important to carry it for using the multiply option
-function dfs(result, str, num, target, start, eval, mult) {
+function dfs(result, str, num, target, index, eval, mult) {
   // Base case
-  if(start === num.length) {
-    if(eval === target) {
+  if (index === num.length) {
+    // Check if the current result is a result
+    if (eval === target) {
       result.push(str);
     }
     return;
   }
-
-  for(let i = start; i < num.length; i++) {
-    if(num[start] === '0' && i !== start) break; // Can not be leading 0s, so let's break the recursion
-    // 123 = 1, 12, 123, this is the value of current
-    let current = parseInt(num.substring(start, i + 1));
-          // For the case we just need to add in the string the number
-    if(start === 0) {
-      dfs(result, str + current, num, target, i + 1, current, current);
+  // Exhaust all options
+  for (let i = index; i < num.length; i++) {
+    // Can we have trailing zeroes? "001"
+    // Can not be leading 0s, so let's break the recursion
+    if (num[index] === "0" && i !== index) {
+      break;
+    }
+    // 123 = 1, 12, 123, this is the value of current, + 1 to be inclusive
+    let current = parseInt(num.substring(index, i + 1));
+    // For the case we just need to add in the string the number
+    if (index === 0) {
+      dfs(result, str + current, num, target, i + 1, eval + current, current);
     } else {
       // Get all combinations
-      dfs(result, str + '+' + current, num, target, i + 1, eval + current, current);
-
-      dfs(result, str + '-' + current, num, target, i + 1, eval - current, -current);
-
-      dfs(result, str + '*' + current, num, target, i + 1, eval - mult + mult * current, mult * current);
-   }
+      dfs(result, str + "+" + current, num, target, i + 1, eval + current, current);
+      dfs(result, str + "-" + current, num, target, i + 1, eval - current, -current);
+      // Assume you have a sequence of 1234, you have proceeded to do 1 + 2 + 3 and eval is 6
+      // now assume we insert a * between 3 and 4, this will be 1 + 2 + 3 * 4, it will be
+      // equivalent to do (1 + 2 + 3) - 3 + (3 * 4)
+      dfs(result, str + "*" + current, num, target, i + 1, eval - mult + mult * current, mult * current);
+    }
   }
 }
 
