@@ -24,8 +24,6 @@ countAndSay(4) = RLE of "21" = "1211"
 https://leetcode.com/problems/count-and-say
 */
 
-// Time O(N)
-// Space O(N)
 let memo = {}
 var countAndSay = function(n) {
     if (n in memo) {
@@ -34,10 +32,7 @@ var countAndSay = function(n) {
     if (n === 1) {
         return "1";
     }
-    if (n === 2) {
-        return "11";
-    }
-    let tmp = countAndSay(n- 1);
+    let tmp = countAndSay(n - 1);
     memo[n] = formStr(tmp);
     return memo[n];
 };
@@ -55,3 +50,64 @@ function formStr(str) {
     }
     return tmp;
 }
+
+/*
+Option 2
+var countAndSay = function(n) {
+    if (n === 1) {
+        return "1";
+    }
+
+    let memo = {1: "1"}
+    for (let i = 2; i <= n; i++) {
+        let c = helper(memo[i - 1]);
+        memo[i] = c; 
+    }
+    return memo[n];
+};
+
+function helper(str) {
+    let count = 1;
+    let res = '';
+    for (let i = 0; i < str.length; i++) {
+        if (str[i] === str[i + 1]) {
+            count++;
+        } else {
+            res += (count + str[i]).toString();
+            count = 1;
+        }
+    }
+    return res;
+}
+*/
+
+
+/*
+// Option 3
+var countAndSay = function(n){
+  if(n === 1) return "1";
+  if(n === 2) return "11";
+
+  var str = "11";
+  var currentStr = null; 
+  for(let i = 3; i <= n; i++){
+    str = formStr(str);
+  }
+  return str;
+};
+
+//String compression
+function formStr(str){
+  var count = 1;
+  var tmp = '';
+  for(var i = 0; i < str.length; i++){
+    if(str[i] === str[i+1]){
+      count++;
+    }else{
+      tmp += count + str[i];
+      count = 1;
+    }
+  }
+  return tmp;
+};
+*/
