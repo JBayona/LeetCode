@@ -30,23 +30,26 @@ Thus, there are 5 subarrays having scores less than 5.
 
 https://leetcode.com/problems/count-subarrays-with-score-less-than-k/description/
 */
-
-// Sliding window
+// Sliding Window
 // Time O(N)
-// Space O(N)
+// Space O(1)
 var countSubarrays = function(nums, k) {
     let start = 0;
     let end = 0;
-    let current = 0;
+    let currentSum = 0;
     let result = 0;
     while (end < nums.length) {
-        current += nums[end];
-        // Greater than the cap
-        while (current * (end - start + 1) >= k) {
-            // Move the window
-            current -= nums[start];
+        let num = nums[end];
+        // Add all numbers
+        currentSum += num;
+        // This window is not eligible anymore
+        while (currentSum * (end - start + 1) >= k) {
+            // Move window
+            currentSum -= nums[start];
             start++;
         }
+        // As the subarray is continous, the result would be the number
+        // of positions we have moved further
         result += (end - start + 1);
         end++;
     }
