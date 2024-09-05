@@ -324,5 +324,5 @@ console.log("Notification for events close to customer's location:");
 console.log(marketEngine.sendCustomerProximityNotification(customer, 5));
 
 // Question 4
-console.log("Notification for events close to customer's location:");
+console.log("Notification for cheapest events within ratio:");
 console.log(marketEngine.cheapestWithinRatio(customer, 400));
