@@ -25,61 +25,94 @@ Explanation: The target string can be constructed as follows "xz" + "y" + "xz".
 const shortestWay = (source, target) => {
   let index = 0;
   let result = 0;
-  while(index < target.length) {
+  while (index < target.length) {
     let prev = index;
 
-    for(let i = 0; i < source.length; i++) {
-      if(index < target.length && source[i] === target[index]) {
+    for (let i = 0; i < source.length; i++) {
+      if (index < target.length && source[i] === target[index]) {
         index++;
       }
     }
     // Char not found
-    if(prev === index) {
+    if (prev === index) {
       return -1;
     }
     result++;
   }
   return result;
-}
+};
 
 // Option 2
 const shortestWay = (source, target) => {
   let result = 0;
   let start = 0;
   let end = target.length;
-  while(start < end) {
+  while (start < end) {
     start = longestSubsequence(source, target, start);
     // There's a char not found
-    if(start < 0) {
+    if (start < 0) {
       return -1;
     } else {
       result++;
     }
   }
   return result;
-}
+};
 
 const longestSubsequence = (source, target, initIndex) => {
   const lengthA = source.length;
   const lengthB = target.length;
   let sourceIndex = 0;
   let targetIndex = initIndex;
-  while(sourceIndex < lengthA && targetIndex < lengthB) {
+  while (sourceIndex < lengthA && targetIndex < lengthB) {
     let c1 = source[sourceIndex];
     let c2 = target[targetIndex];
-    if(c1 === c2) {
+    if (c1 === c2) {
       targetIndex++;
     }
     sourceIndex++;
   }
 
   return targetIndex === initIndex ? -1 : targetIndex;
-}
+};
+
+// Option 3
+var shortestWay = function (source, target) {
+  let sourceArr = source.split("");
+  let targetArr = target.split("");
+
+  let hash = {};
+  for (let c of sourceArr) {
+    hash[c] = true;
+  }
+  let index = 0;
+  let result = 1;
+  for (let i = 0; i < targetArr.length; i++) {
+    let c = targetArr[i];
+    // Element not in the target
+    if (!(c in hash)) {
+      return -1;
+    }
+    // Move the index if the element is not found
+    while (index < sourceArr.length && sourceArr[index] !== targetArr[i]) {
+      index++;
+    }
+    if (index === sourceArr.length) {
+      // -1 as we increment below
+      index = -1;
+      result++;
+      // -1 as we don't want to skip this iteration
+      i--;
+    }
+    index++;
+  }
+  return result;
+};
 
 //source = "abc";
 //target = "abcbc"; 2
 // source = "abc";
 // target = "acdbc" -1
 source = "xyz";
-target = "xzyxz" // 3
+target = "xzyxz"; // 3
 console.log(shortestWay(source, target));
