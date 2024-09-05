@@ -27,62 +27,64 @@ The length of words[i] will be in the range [1, 30].
 https://leetcode.com/problems/longest-word-in-dictionary/description/
 */
 
-var longestWord = function(words) {
-  let trie = {children: {}, count: 0, isEndWord: false};
-  let result = {max: ''};
+// Time O(26N) = O(N)
+// Space O(H)
+var longestWord = function (words) {
+  let trie = { children: {}, count: 0, isEndWord: false };
 
   // Create trie
-  for(let i = 0; i < words.length; i++) {
-   let node = trie;
-   let singleWord = words[i];
-   for(let j = 0; j < singleWord.length; j++) {
-    let c = singleWord[j];
-    // If we don´t have the char in the trie, add it in the trie
-    if(!(c in node.children)) {
-     node.children[c] = {children: {}, count: 0, isEndWord: false};
-     node.children[c].count++;
+  for (let word of words) {
+    let node = trie;
+    for (let i = 0; i < word.length; i++) {
+      let c = word[i];
+      // Assign the node or create a node for the given char
+      node.children[c] = node.children[c] || {
+        children: {},
+        count: 0,
+        isEndWord: false,
+      };
+      node.children[c].count++;
+      // Iterate the node
+      node = node.children[c];
     }
-    // Move the move
-    node = node.children[c];
-   }
-   node.isEndWord = true;
-   // Add the complete word also in the final
-   node.word = singleWord;
+    // Mark the end word
+    node.isEndWord = true;
+    // Add the word
+    node.word = word;
   }
-  console.log(trie);
 
   // Find the maximum word
   let node = trie;
+  let result = { max: "" };
   dfs(node, result);
   return result.max;
-
 };
 
 function dfs(node, result) {
   // Base case (no children in the node)
-  if(!Object.keys(node.children).length) {
+  if (!Object.keys(node.children).length) {
     return;
   }
 
   // Iterate for all the alphabet
-  for(let i = 0; i < 26; i++) {
+  for (let i = 0; i < 26; i++) {
     // Generate letters from a - z
-    let letter = String.fromCharCode('a'.charCodeAt(0) + i);
-    // Check if we have a children and is the ending word (verify all childrens from a - z)
-    // node.children[letter].isEndWord will make sure that we analyze only those who have a
-    // letter in all the words in the array, that's the function of isEndWord
-    if(node.children[letter] && node.children[letter].isEndWord) {
-      // If yes, check if the word is greter than our current result
-      // We make sure will be in lexicographical order as we iterate
-      // in alphabetical order
-      if(node.children[letter].word.length > result.max.length) {
+    let letter = String.fromCharCode("a".charCodeAt(0) + i);
+    // Check valid nodes and letters from that node, we need to check
+    // for the end word for each char as we need to get the longest
+    // created by all single elements in the array
+    if (node.children[letter] && node.children[letter].isEndWord) {
+      // Length should be greater and smaller lexicographical smaller
+      // as we are iterating in order, from a to z.
+      if (result.max.length < node.children[letter].word.length) {
         result.max = node.children[letter].word;
       }
+      // Iterate over all possible nodes
       dfs(node.children[letter], result);
     }
   }
 }
 
-words = ["w","wo","wor","worl", "world"];
+words = ["w", "wo", "wor", "worl", "world"];
 // words = ["a", "banana", "app", "appl", "ap", "apply", "apple"];
 console.log(longestWord(words));
