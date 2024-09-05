@@ -155,12 +155,12 @@ class MarketingEngine {
 
     // Get the closer event
     let start = 0;
-    let end = this.sortedDates;
+    let end = this.sortedDates.length;
     let target = nextBirthDay;
     // Binary search to get closer
     while (start < end) {
       const mid = Math.fstartor((start + end) / 2);
-      if (arr[mid] < target) {
+      if (this.sortedDates[mid].eventDate < target) {
         start = mid + 1;
       } else {
         end = mid;
@@ -326,3 +326,248 @@ console.log(marketEngine.sendCustomerProximityNotification(customer, 5));
 // Question 4
 console.log("Notification for cheapest events within ratio:");
 console.log(marketEngine.cheapestWithinRatio(customer, 400));
+
+// INTERVIEW
+
+/**
+ * Build an efficient and robust marketing engine given the basic functionality provided:
+
+  1. Add support for at least three recommendation algorithms based on core customer attributes.
+
+  2. Leverage ticket prices as part of event recommendations.
+
+  3. Consider how you would support evaluation of different recommendation algorithms and implement them accordingly.
+ */
+
+/*
+Intention: Build email engine to take into account customer's properties:
+1. Notification based on customer's location.
+2. Notification event closer to the customer's birthday.
+3. Notification of events based on customer's location (Define closer k or within TBD ratio)
+4. Noticiatios for events within TBD ratio and cheapest tickets/events.  
+
+*/
+
+
+// Example request caller 
+//  For all event prices: <https://sh-mockapi.azurewebsites.net/api/ticketprice>
+//  For a price per event: <https://sh-mockapi.azurewebsites.net/api/ticketprice?eventId={EventId}>
+//  i.e <https://sh-mockapi.azurewebsites.net/api/ticketprice?eventId=42>
+
+const axios = require("axios");
+
+class Event {
+  constructor(id, name, city, eventDate){
+      this.id = id;
+      this.name = name;
+      this.city = city;
+      this.eventDate = eventDate;
+  }
+}
+
+class Customer {
+  constructor(id, name, city, birthDate){
+      this.id = id;
+      this.name = name;
+      this.city = city;
+      this.birthDate = birthDate;
+  }
+}
+
+function distance(city1, city2) {
+  return Math.sqrt(
+    (city1.xCor - city2.xCor) * (city1.xCor - city2.xCor) +
+    (city1.yCor - city2.yCor) * (city1.yCor - city2.yCor)
+  );
+}
+
+const events = [
+  new Event(1, "Phantom of the Opera", "New York", new Date(2024,11,23)),
+  new Event(2, "Metallica", "Los Angeles", new Date(2025,0,2)),
+  new Event(3, "Metallica", "New York", new Date(2024,11,6)),
+  new Event(4, "Metallica", "Boston", new Date(2023,9,23)),
+  new Event(5, "LadyGaGa", "New York", new Date(2024,2,20)),
+  new Event(6, "LadyGaGa", "Boston", new Date(2024,7,1)),
+  new Event(7, "LadyGaGa", "Chicago", new Date(2025,6,4)),
+  new Event(8, "LadyGaGa", "San Francisco", new Date(2023,6,7)),
+  new Event(9, "LadyGaGa", "Washington", new Date(2024,4,22)),
+  new Event(10, "Metallica", "Chicago", new Date(2025,0,1)),
+  new Event(11, "Phantom of the Opera", "San Francisco", new Date(2025,6,4)),
+  new Event(12, "Phantom of the Opera", "Chicago", new Date(2026,5,1))
+];
+
+class City{
+  constructor(name, xCor, yCor){
+      this.name = name;
+      this.xCor = xCor;
+      this.yCor = yCor;
+  }
+}
+
+class MarketingEngine {
+  constructor(events) {
+    this.events = events;
+    this.cityToEvents = {};
+    this.idToEvent = {};
+    this.filter(events);
+  }
+  async filter(events) {
+    // fitler past events
+    this.events = this.events.map((event) => new Event(event.id, event.name, event.city, event.eventDate.getTime())).filter(event => {
+      let now = Date.now();
+      return event.eventDate >= now;
+    });
+
+    // Mapping city to events
+    for (let event of this.events) {
+      if(!(event.city in this.cityToEvents)) {
+        this.cityToEvents[event.city] = [];
+      }
+      this.cityToEvents[event.city].push(event);
+    }
+
+    this.sortedDates = this.events.sort((a, b) => a.eventDate - b.eventDate);
+
+    this.lastPriceCache = Date.now();
+    this.TTL = 86400000; // One day ms
+    this.limit = 5
+    const response = await axios.request(
+      "https://sh-mockapi.azurewebsites.net/api/ticketprice"
+    );
+    this.priceData = response.data;
+    for (let event of this.priceData) {
+      this.idToEvent[event.Id] = event;
+    }
+  }
+  sendCustomerNotificationByCity(customer) {
+    let customerCity = customer.city;
+    let events = customerCity in this.cityToEvents ? this.cityToEvents[customerCity]: [];
+    return this.sendNotification(events, customer);
+  }
+  sendCustomerBirthdayNotification(customer) {
+    // let customerBirthDay = customer.birthDate.getTime();
+    let now = new Date();
+    customer.birthDate.setFullYear(now.getFullYear());
+    let nextBirthDay = new Date(
+      now.getFullYear(),
+      customer.birthDate.getMonth() - 1,
+      customer.birthDate.getDate(),
+    );
+
+    if (now > nextBirthDay) {
+      nextBirthDay = nextBirthDay.setFullYear(nextBirthDay.getFullYear() + 1);
+      console.log(`${customer.name} nextBirthDay is ${new Date(nextBirthDay).toDateString()}`);
+    }
+
+    let start = 0;
+    let end = this.sortedDates.length;
+    let target = nextBirthDay;
+
+    while (start < end) {
+      let mid = Math.floor((start + end) / 2);
+      if (this.sortedDates[mid].eventDate < target) {
+        start = mid + 1;
+      } else {
+        end = mid;
+      }
+    }
+    return this.sendNotification([this.sortedDates[start]], customer);
+  }
+  async cheapestWithinRatio(customer, radious) {
+    if (!(customer.city in cityMap)) {
+      return `No events!`
+    }
+
+    let customerCity = cityMap[customer.city];
+    let now = Date.now();
+
+    let data;
+    // UNTIL THIS POINT THE INTERVIEW WAS ENDED, AS I HAVE TIME I'D LIKE
+    // TO SPEND THE NEXT FEW MORE MINUTES TO GET ID DONE BUT THIS WAS AFTER THE INTERVIEW
+    if (now - this.lastPriceCache < this.TTL) {
+      const response = await axios.request(
+        "https://sh-mockapi.azurewebsites.net/api/ticketprice"
+      );
+      this.priceData = response.data;
+      for (let event of this.priceData) {
+        this.idToEvent[event.Id] = event;
+      }
+      this.lastPrice = now;
+    }
+
+    // Get the cheapest 
+    let citiesWithRadious = Object.values(cityMap).filter(city => {
+      let d = distance(customerCity, city);
+      return d <= radious;
+    });
+
+    let eventIdInR = [];
+    for (let city of citiesWithRadious) {
+      let events = this.cityToEvents[city.name] || [];
+      for (let event of events) {
+        eventIdInR.push(event)
+      }
+    }
+
+    let priceAndEvents = [];
+    for (let event of eventIdInR) {
+      let p = this.idToEvent[event.id].Price;
+      priceAndEvents.push({event: event, price: p});
+    }
+
+    priceAndEvents.sort((a,b) => a.price - b.price);
+    let cut = priceAndEvents.slice(0, 5 + 1);
+    let result = [];
+    for (let prop of cut) {
+      result.push(prop.event);
+    }
+    console.log(this.sendNotification(result, customer));    
+  }
+  sendNotification(events, customer) {
+    if (!events.length) {
+      return "No upcoming events!";
+    }
+
+    let notification = `Hello ${customer.name} there are ${events.length} events for you to look at: \n`;
+
+    for (let event of events) {
+      notification += `- ${event.name} happening on ${new Date(event.eventDate).toDateString()} in ${event.city} \n`
+    }
+    return notification;
+  }
+}
+
+/*-------------------------------------
+      Coordinates are roughly to scale with miles in the USA
+
+         2000 +----------------------+  
+              |                      |  
+              |                      |  
+           Y  |                      |  
+              |                      |  
+              |                      |  
+              |                      |  
+              |                      |  
+           0  +----------------------+  
+              0          X          4000
+
+      ---------------------------------------*/
+
+const cityMap = {
+  'New York': new City('New York', 3572, 1455),
+  'Los Angeles': new City('Los Angeles', 462, 975),
+  'Boston': new City('Boston', 3778, 1566),
+  'Chicago': new City('Chicago', 2608, 1525),
+  'San Francisco': new City('San Francisco', 183, 1233),
+  'Washington': new City('Washington', 3358, 1320)
+}
+
+const customer = new Customer(1, 'John', 'New York', new Date(1995,5,10));
+
+const engine = new MarketingEngine(events);
+console.log('NOTIFICATION 1');
+console.log(engine.sendCustomerNotificationByCity(customer));
+console.log('NOTIFICATION 2');
+console.log(engine.sendCustomerBirthdayNotification(customer));
+console.log('NOTIFICATION 3');
+console.log(engine.cheapestWithinRatio(customer, 400));
