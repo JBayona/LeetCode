@@ -22,25 +22,34 @@ Explanation: The target string can be constructed as follows "xz" + "y" + "xz".
 */
 
 // Option 1
+// Time O(M * N)
+// Space O(1)
 const shortestWay = (source, target) => {
   let index = 0;
   let result = 0;
-  while (index < target.length) {
+  // Iterate for the entire target string
+  while(index < target.length) {
     let prev = index;
 
-    for (let i = 0; i < source.length; i++) {
-      if (index < target.length && source[i] === target[index]) {
+    // We iterate over all source trying to match the chars
+    // and move index if we find any ocurrent
+    for(let i = 0; i < source.length; i++) {
+      if(index < target.length && source[i] === target[index]) {
         index++;
       }
     }
-    // Char not found
-    if (prev === index) {
+    // If char is the same, it means that
+    // we were not able to get manches
+    if(prev === index) {
       return -1;
     }
+    // At this point we increment result as we already
+    // exhaust all sequence on the for loop
     result++;
   }
   return result;
-};
+}
+
 
 // Option 2
 const shortestWay = (source, target) => {
@@ -75,6 +84,7 @@ const longestSubsequence = (source, target, initIndex) => {
 
   return targetIndex === initIndex ? -1 : targetIndex;
 };
+
 
 // Option 3
 var shortestWay = function (source, target) {
