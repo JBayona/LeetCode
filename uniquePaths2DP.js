@@ -7,14 +7,18 @@ An obstacle and space is marked as 1 and 0 respectively in the grid.
 
 https://leetcode.com/problems/unique-paths-ii/
 */
+
 // DP
 // Bottom-up
+// Time O( M * N)
 var uniquePathsWithObstacles = function(obstacleGrid) {
     let m = obstacleGrid.length;
     let n = obstacleGrid[0].length;
     
-    // Set first element
-    // If we have a restriction in the first element, we can do nothing
+    if(obstacleGrid[0][0] === 1) {
+        return 0;
+    } 
+    
     obstacleGrid[0][0] = obstacleGrid[0][0] == 1 ? 0: 1;
     
     for(let i = 0; i < m; i++) {
@@ -34,47 +38,7 @@ var uniquePathsWithObstacles = function(obstacleGrid) {
     return obstacleGrid[m-1][n-1];
 };
 
-// DP
-var uniquePathsWithObstacles = function(obstacleGrid) {
-    let m = obstacleGrid.length;
-    let n = obstacleGrid[0].length;
-    let dp = new Array(m);
-    for(let i = 0; i < m; i++) {
-        dp[i] = new Array(n).fill(0);
-    }
-    
-    // Row
-    for(let i = 0; i < m; i++) {
-        if(obstacleGrid[i][0] === 0) {
-            dp[i][0] = 1;
-        } else {
-            break;
-        }
-    }
-    
-    // Column
-    for(let i = 0; i < n; i++) {
-        if(obstacleGrid[0][i] === 0) {
-            dp[0][i] = 1;
-        } else {
-            break;
-        }
-    }
-    
-    for(let i = 1; i < m; i++) {
-        for(let j = 1; j < n; j++) {
-            if(obstacleGrid[i][j] === 0) {
-                dp[i][j] = dp[i-1][j] + dp[i][j-1];
-            }
-        }
-    }
-    
-    return dp[m-1][n-1];
-};
-
-
-// Option 3
-// DFS + Memoization
+// Recursion working
 var uniquePathsWithObstacles = function(obstacleGrid) {
     let m = obstacleGrid.length;
     let n = obstacleGrid[0].length;
@@ -128,3 +92,38 @@ function isSafe(matrix, visited, row, col) {
         matrix[row][col] !== 1
     )
 }
+
+// Recursion - Time Exceeded
+/*
+var uniquePathsWithObstacles = function(obstacleGrid) {
+    let ROW = obstacleGrid.length;
+    let COL = obstacleGrid[0].length;
+    
+    // Corner case, obstacle is in end location
+    if (obstacleGrid[ROW - 1][COL - 1] === 1 || obstacleGrid[0][0] === 1) {
+        return 0;
+    }
+
+    let count = {n: 0};
+    dfs(obstacleGrid, 0, 0, count);
+    return count.n;
+};
+
+function dfs(grid, row, col, count) {
+    if (row === grid.length - 1 && col === grid[0].length - 1) {
+        count.n++;
+        return;
+    }
+
+    if (row >= grid.length || col >= grid[0].length) {
+        return;
+    }
+
+    if (grid[row][col] === 1) {
+        return;
+    }
+
+    dfs(grid, row + 1, col, count);
+    dfs(grid, row, col + 1, count);
+}
+*/
