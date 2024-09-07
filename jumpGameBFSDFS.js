@@ -65,6 +65,7 @@ var canReach = function (arr, start) {
   return false;
 };
 
+// DFS
 var canReach = function (arr, start) {
   let visited = new Set();
   return dfs(arr, start, visited);
