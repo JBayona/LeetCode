@@ -102,7 +102,10 @@ var suggestedProducts = function (products, searchWord) {
   return t.searchInTrie(searchWord);
 };
 
-// Option 1
+
+
+
+// OPTION 2 
 var suggestedProducts = function (products, searchWord) {
   let trie = { children: {}, count: 0, isWord: false };
   // Add words to trie
@@ -172,7 +175,11 @@ function dfsWithPrefix(current, word, buffer) {
   }
 }
 
-// Option 2
+
+
+
+
+// OPTION 3
 var suggestedProducts = function (products, searchWord) {
   products.sort();
   let list = [];
