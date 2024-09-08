@@ -13,6 +13,11 @@ Output: 1
 https://leetcode.com/problems/meeting-rooms-ii/description/
 */
 // MinHeap
+// 1. Have a priority queue that can help us to get the meeting which
+// ends the earliest time, so we only need the endTime, whenever we find
+// that the next meeting is starting later than the earliest in the heap
+// we can pop it, otherwise we can add it and the number of minimum rooms
+// needed will be the ones under the minheap as we were not able to pop them
 // https://github.com/datastructures-js/priority-queue/blob/v5/README.md
 // Time O(NlogN) -> N for the tasks and LogN is the enqueue & dequeue cost
 // Space O(N)
