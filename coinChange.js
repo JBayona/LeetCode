@@ -55,7 +55,7 @@ var coinChange = function(coins, amount) {
     }
   }
   return dp[amount] === Infinity ? -1 : dp[amount];
-};<
+};
 
 var coinChange = function(coins, amount) {
   if(amount === 0) {
