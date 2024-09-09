@@ -33,6 +33,9 @@ dp = [ 0, Infinity, 1, 1, 2, 2, 2, 3 ]
 
 https://www.programcreek.com/2015/04/leetcode-coin-change-java/
 */
+
+// Time O(N)
+// Space O(1)
 var coinChange = function(coins, amount) {
   if (amount === 0) {
       return 0;
@@ -44,9 +47,10 @@ var coinChange = function(coins, amount) {
   for (let i = 1; i <= amount; i++) {
   for (let coin of coins) {
       if(coin === i) {
-          dp[i] = 1;
+        // Number of coins of the prev amount + the existing coing or the existing coin
+        dp[i] = 1;
       } else if (i > coin) {
-          dp[i] = Math.min(dp[i - coin] + 1, dp[i]);
+        dp[i] = Math.min(dp[i - coin] + 1, dp[i]);
       }
     }
   }
