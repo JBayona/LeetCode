@@ -22,7 +22,6 @@ Output: [[5,6],[7,9]]
  
 https://leetcode.com/problems/employee-free-time
 */
-
 // Option 1 - Min Heap
 // Approach
 // 1. Use a minHeap to get all the schedules, the min heap will
