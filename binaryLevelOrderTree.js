@@ -25,6 +25,7 @@ function Tree(val, left, right) {
 }
 
 // BFS
+// Time O(N)
 var levelOrder = function (root) {
   if (!root) {
     return [];
@@ -49,6 +50,7 @@ var levelOrder = function (root) {
   return result;
 };
 
+// Option 2
 var levelOrderTransversal = function (root) {
   // Base case
   if (!root) {
