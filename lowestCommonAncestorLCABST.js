@@ -19,6 +19,40 @@ https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/des
 https://www.youtube.com/watch?v=TIoCCStdiFo
 */
 
+// Time O(N)
+var lowestCommonAncestor = function(root, p, q) {
+  // Base case
+  if (!root) {
+      return null;
+  }
+
+  // If the root is the same as p, we return p
+  if (root === p) {
+      return p;
+  }
+
+  // If the root is the same as q, return q
+  if (root === q) {
+      return q;
+  }
+
+  // Iterate the nodes to find the LCA
+  let left = lowestCommonAncestor(root.left, p, q);
+  let right = lowestCommonAncestor(root.right, p, q);
+
+  // If both nodes are set, we return root as root is the LCA
+  // otherwise one of those nodes can potentially be the LCA
+  if (left && right) {
+      return root;
+  }
+
+  // If we reach this part is because either left or right is null
+  // in that case, we return the non-null value
+  return left !== null ? left : right;
+};
+
+
+// Option 2
 // Time O(h) with O(h) space for call stack
 var lowestCommonAncestor = function(root, p, q) {
   // Base Case
