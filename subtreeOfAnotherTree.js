@@ -41,29 +41,59 @@ function TreeNode(val, left, right) {
   this.right = right || null;
 }
 
-var isSubtree = function(s, t) {
+// Option 1
+// Time O(M * N)
+var isSubtree = function (p, q) {
+  if (!p) {
+    return false;
+  }
+  // Check if trees are the same
+  if (isSame(p, q)) {
+    return true;
+  }
+  // Check both options
+  return isSubtree(p.left, q) || isSubtree(p.right, q);
+};
+
+function isSame(p, q) {
+  // Both already are null
+  if (p === null && q === null) {
+    return true;
+  }
+
+  // One of the nodes are not null and the other is
+  if (p === null || q === null) {
+    return false;
+  }
+  // Values are different
+  if (p.val !== q.val) {
+    return false;
+  }
+  // Check for sides
+  return isSame(p.left, q.left) && isSame(p.right, q.right);
+}
+
+// Option 2
+var isSubtree = function (s, t) {
   return traverse(s, t);
 };
 
-
 // Consider every node as root of the subtree considered
 function traverse(s, t) {
-  if(!s) {
+  if (!s) {
     return false;
   }
-  
-  return equals(s,t) || traverse(s.left, t) || traverse(s.right, t);
+  // Check for both possible branches
+  return equals(s, t) || traverse(s.left, t) || traverse(s.right, t);
 }
 
 // Check equality
 function equals(s, t) {
-  if(!s && !t) {
+  if (!s && !t) {
     return true;
   }
-  
-  if(!s || !t) {
+  if (!s || !t) {
     return false;
   }
-  
   return s.val === t.val && equals(s.left, t.left) && equals(s.right, t.right);
 }
