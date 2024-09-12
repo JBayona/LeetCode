@@ -8,7 +8,7 @@ descendants (where we allow a node to be a descendant of itself).”
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/
  */
-
+//Time O(N)
 var lowestCommonAncestor = function (root, p, q) {
   // Base case
   if (root === null) {
