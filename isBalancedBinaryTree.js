@@ -17,6 +17,19 @@ function TreeNode(val, left, right) {
 
 // Time O(N)
 // Get the tree length function.
+function isBalanced(tree) {
+  if(!tree) {
+    return true;
+  }
+
+  let leftHeight = heightTree(tree.left);
+  let rightHeight = heightTree(tree.right);
+  if(Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(tree.left) && isBalanced(tree.right)) {
+    return true;
+  }
+  return false;
+}
+
 function heightTree(tree) {
   if(!tree) {
     return 0;
@@ -24,22 +37,6 @@ function heightTree(tree) {
   let left = heightTree(tree.left);
   let right = heightTree(tree.right);
   return 1 + Math.max(left, right);
-}
-
-function isBalanced(tree) {
-  let leftHeight = null; //left height of tree
-  let rightHeight = null; //right height of tree
-
-  if(!tree) {
-    return true;
-  }
-
-  leftHeight = heightTree(tree.left);
-  rightHeight = heightTree(tree.right);
-  if(Math.abs(leftHeight - rightHeight) <= 1 && isBalanced(tree.left) && isBalanced(tree.right)) {
-    return true;
-  }
-  return false;
 }
 
 let tree = new TreeNode(1, new TreeNode(2, new TreeNode(4), new TreeNode(5, new TreeNode(6))), new TreeNode(3,null, new TreeNode(7)));
