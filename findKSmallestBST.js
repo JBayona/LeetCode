@@ -13,56 +13,35 @@ https://leetcode.com/problems/kth-smallest-element-in-a-bst/description/
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/discuss/63783/Two-Easiest-In-Order-Traverse-(Java)
 */
 
-function Node(val,left,right){
-  this.val = val;
-  this.left = left || null;
-  this.right = right || null;
-}
-
-/*Complejidad O(N)*/
-function findKSmallestBST(tree, k){
+var kthSmallest = function (root, k) {
+  let node = root;
   let stack = [];
-  let node = tree;
-  let count = 0;
-  let right;
 
-  // Smallest will always come from left.
-  while(node){
+  // Smallest elements come from left branches
+  while (node) {
     stack.push(node);
     node = node.left;
   }
 
-  while(stack.length > 0){
-    node = stack.pop();
+  let count = 0;
+  while (stack.length) {
+    let node = stack.pop();
     count++;
-    if(count === k){
+    if (count === k) {
       return node.val;
     }
-    right = node.right;
-    while(right){
+    let right = node.right;
+    while (right) {
       stack.push(right);
       right = right.left;
     }
   }
   return -1;
-}
-
-// Recursion with O(N) in space
-var kthSmallest = function(root, k) {
-  let sorted = [];
-  inorder(root, sorted);
-  return sorted[k-1];
 };
 
-function inorder(node, sorted) {
-  if(!node) return;
-  inorder(node.left, sorted);
-  sorted.push(node.val);
-  inorder(node.right, sorted);
-}
-
-// Recursion with constant space
-
+/*
+// Option 2
+// DFS
 var kthSmallest = function(root, k) {
   count = k;
   result = null;
@@ -82,58 +61,27 @@ function inorder(node) {
   
   inorder(node.right);
 }
-
-// Iterative
-
-var kthSmallest = function(root, k) {
-  let stack = [];
-  let node = root;
-  while(true) {
-    if(node !== null) {
-      stack.push(node);
-      node = node.left;
-    } else {
-      // No more elements in the stack
-      if(stack.length === 0) {
-          break;
-      }
-      node = stack.pop();
-      --k;
-      if(k === 0) {
-          return node.val;
-      }
-      stack.push(node.right);
-    }
-  }
-  
-  // Element not found
-  return -1;
-};
-
-// Heap Java
-/*
-class Solution {
-    public int kthSmallest(TreeNode root, int k) {
-        Queue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b-a);
-        preorder(root, maxHeap, k);
-        return maxHeap.poll();
-    }
-    
-    public void preorder(TreeNode node, Queue<Integer> maxHeap, int k) {
-        if(node == null) { 
-            return;
-        }
-        maxHeap.add(node.val);
-        if(maxHeap.size() > k) {
-            maxHeap.poll();
-        }
-        preorder(node.left, maxHeap, k);
-        preorder(node.right, maxHeap, k);
-    }
-}
 */
 
-
-tree = new Node(7, new Node(5, new Node(4, new Node(3)), new Node(6)), new Node(10, new Node(9), new Node(11)));
-k = 4;
-console.log(findKSmallestBST(tree,k));
+// Option 3 = Heap
+/*
+class Solution {
+  public int kthSmallest(TreeNode root, int k) {
+      Queue<Integer> heap = new PriorityQueue<>((a,b) -> b-a);
+      preorder(root, heap, k);
+      return heap.poll();
+  }
+  
+  public void preorder(TreeNode node, Queue<Integer> heap, int k) {
+      if(node == null) {
+          return;
+      }
+      heap.add(node.val);
+      if(heap.size() > k) {
+          heap.poll();
+      }
+      preorder(node.left, heap, k);
+      preorder(node.right, heap, k);
+  }
+}
+*/
