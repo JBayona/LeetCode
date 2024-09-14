@@ -27,55 +27,45 @@ medianFinder.findMedian(); // return 2.0
 https://leetcode.com/problems/find-median-from-data-stream/description
 */
 
-// Adding and removing from the heap is O(logN)
-// For a max heap, getting the max value is O(1)
-// For a min heap, getting the max value is O(1)
-// We will always try to keep them balance
-var MedianFinder = function () {
-  // It has values less or equal the large heal
-  this.smallHeap = new PriorityQueue({
-    compare: (a, b) => b - a,
+// Add element O(logN)
+// Remove element O(logN)
+// Find O(1)
+/*
+    Small Heap.    Large Heap
+    Max heap.      Min Heap
+    [1, 2].        [3, 4]
+        (2 + 3) / 2 = 2.5
+*/
+var MedianFinder = function() {
+  // It has values less or equal the large heap
+  this.maxHeap = new PriorityQueue({
+      compare: (a, b) => b - a
   });
   // These has the values greater or equal the max of the max heap
-  this.largeHeap = new PriorityQueue({
-    compare: (a, b) => a - b,
+  this.minHeap = new PriorityQueue({
+      compare: (a, b) => a - b
   });
 };
 
-/**
- * @param {number} num
- * @return {void}
- */
-MedianFinder.prototype.addNum = function (num) {
-  // Always push to the small heap
-  this.smallHeap.enqueue(num);
-
-  // If the value of the small heap is greater than the large heap, update
-  if (this.smallHeap.front() > this.largeHeap.front()) {
-    this.largeHeap.enqueue(this.smallHeap.dequeue());
-  }
-
-  // Uneven sizes, try to get them as even as possible (difference bigger than 1)
-  if (this.smallHeap.size() > this.largeHeap.size() + 1) {
-    this.largeHeap.enqueue(this.smallHeap.dequeue());
-  } else if (this.largeHeap.size() > this.smallHeap.size() + 1) {
-    this.smallHeap.enqueue(this.largeHeap.dequeue());
+/** 
+* @param {number} num
+* @return {void}
+*/
+MedianFinder.prototype.addNum = function(num) {
+  this.minHeap.enqueue(num);
+  this.maxHeap.enqueue(this.minHeap.dequeue());
+  if (this.minHeap.size() < this.maxHeap.size()) {
+      this.minHeap.enqueue(this.maxHeap.dequeue());
   }
 };
 
 /**
- * @return {number}
- */
-MedianFinder.prototype.findMedian = function () {
-  if (this.smallHeap.size() > this.largeHeap.size()) {
-    return this.smallHeap.front();
-  }
-  if (this.largeHeap.size() > this.smallHeap.size()) {
-    return this.largeHeap.front();
-  }
-  // Even heaps
-  return (this.smallHeap.front() + this.largeHeap.front()) / 2;
+* @return {number}
+*/
+MedianFinder.prototype.findMedian = function() {
+  return this.minHeap.size() > this.maxHeap.size() ? this.minHeap.front() : (this.maxHeap.front() + this.minHeap.front()) / 2.0;
 };
+
 
 // Java
 /*
