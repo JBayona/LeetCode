@@ -24,67 +24,61 @@ var WordDictionary = function() {
     this.trie = {children: {}, count: 0, isWord: false};
 };
 
-/**
- * Adds a word into the data structure. 
+/** 
  * @param {string} word
  * @return {void}
  */
 WordDictionary.prototype.addWord = function(word) {
     let node = this.trie;
-    for(let i = 0; i < word.length; i++) {
-        //Asigna el nodo si lo encuentra o agrega un elemento para agregarlo al trie
-        node.children[word[i]] = node.children[word[i]] || {children: {}, count: 0, isWord: false};
-        // Recorre el nodo
-        node = node.children[word[i]];
-        // Cuenta las veces que se ha visto
+    for (let i = 0; i < word.length; i++) {
+        let c = word[i];
+        // Find the node or create a new node
+        node.children[c] = node.children[c] || {children: {}, count: 0, isWord: false};
+        // Move the node
+        node = node.children[c];
+        // Increment the node count
         node.count++;
     }
-    // Marca el end de la palabra
+    // Set the variable if a node is found
     node.isWord = true;
 };
 
-/**
- * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter. 
+/** 
  * @param {string} word
  * @return {boolean}
  */
 WordDictionary.prototype.search = function(word) {
     let node = this.trie;
-    return this.dfs(word, 0, node);
+    // Run a DFS to find the nodes
+    return this.dfs(word, node, 0);
 };
 
-
-WordDictionary.prototype.dfs = function(word, start, node) {
-    // We need to verify the existence of node cause we
-    // may be sending undefined values checking for the '.'
-    if(start === word.length && node) {
+WordDictionary.prototype.dfs = function(word, node, index) {
+    // If the node has reached the index, check if it's
+    // a word or not
+    if (word.length === index && node) {
         return node.isWord;
     }
-    let c = word[start];
-    if(c === '.') {
+
+    let letter = word[index];
+    // If we have a "." we need to check all possible chars to see if we can find any response
+    // on any of those
+    if (word[index] === '.') {
         // Check all possible letters in the alphabet to find is there is a word
-        // Try to match every possibility iin the word
-        for(let i = 0; i < 26;  i++) {
-            let letter = String.fromCharCode('a'.charCodeAt(0) + i);
-            if(node && node.children[letter] !== null && this.dfs(word, start+1, node.children[letter])) {
-                return true;
-            }
-        }
+		for(let i = 0; i < 26;  i++) {
+			let letter = String.fromCharCode('a'.charCodeAt(0) + i); 
+			if(node && node.children[letter] && this.dfs(word, node.children[letter], index + 1)) {
+				return true;
+			}
+		}
     } else {
-        if(node && node.children[c]){
-            return this.dfs(word, start+1, node.children[c]);
+        // Check if the letter is found and if it's an answer
+        if (node && (letter in node.children)) {
+            return this.dfs(word, node.children[letter], index + 1);
         }
     }
-
     return false;
-}
-/** 
- * Your WordDictionary object will be instantiated and called as such:
- * var obj = Object.create(WordDictionary).createNew()
- * obj.addWord(word)
- * var param_2 = obj.search(word)
- */
-
+};
 
 var obj = new WordDictionary(); // Object.create(WordDictionary); //.createNew();
 obj.addWord("bad")
