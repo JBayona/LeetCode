@@ -21,6 +21,7 @@ https://leetcode.com/problems/k-closest-points-to-origin/
 // https://www.youtube.com/watch?v=eaYX0Ee0Kcg
 // O(N log N)
 
+// Option 1 - Heap
 // Time O(NLogN)
 // Space O(1)
 var kClosest = function(points, k) {
@@ -46,7 +47,7 @@ function calculateDistance(x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
 
-// Option 1 - Sort
+// Option 2 - Sort
 // Reference: https://en.wikipedia.org/wiki/Euclidean_distance
 // https://www.youtube.com/watch?v=eaYX0Ee0Kcg
 // O(N log N)
