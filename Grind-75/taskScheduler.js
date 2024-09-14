@@ -19,52 +19,60 @@ https://www.youtube.com/watch?v=ySTQCRya6B0
 https://leetcode.com/articles/task-scheduler/
 
 */
-class Solution {
-    public int leastInterval(char[] tasks, int n) {
-        // Greedy Approach
-        // https://www.youtube.com/watch?v=ySTQCRya6B0
-        // We donn´t care about which process we are computing
-        // we take the biggest task to reduce the posibility to
-        // reduce the cooling period
-        HashMap<Character, Integer> map = new HashMap<>();
-        for(char c: tasks) {
-            map.put(c, map.getOrDefault(c, 0) + 1);
+
+// Time O(NLogN)
+// Time Space(N)
+var leastInterval = function(tasks, n) {
+    let hash = {};
+    // Greedy Approach
+    // https://www.youtube.com/watch?v=ySTQCRya6B0
+    // We donn´t care about which process we are computing
+    // we take the biggest task to reduce the posibility to
+    // reduce the cooling period
+    // Count the frequency
+    for (let task of tasks) {
+        if (!(task in hash)) {
+            hash[task] = 0;
         }
-        
-        // Get the max element under the maxHeap in constant time
-        // Max heap, the bigger element is the one on the root so we
-        // can access at constant timee.
-        PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b) -> b -a);
-        // Throw all values into the max heap
-        maxHeap.addAll(map.values());
-        
-        int cycles = 0;
-        while(!maxHeap.isEmpty()) {
-            List<Integer> tmp = new ArrayList<>();
-            // Try to run the tasks before the idle time
-            // Prepare the tasks to run during the cycle
-            for(int i = 0; i < n + 1; i++) {
-                if(!maxHeap.isEmpty()) {
-                    tmp.add(maxHeap.remove());
-                }
-            }
-            
-            // Decrement the process and check if we still
-            // need to process more cycles, this cover cases
-            // where A was computed and we still need to compute more
-            for(int i : tmp) {
-                if(--i > 0) {
-                    maxHeap.add(i);
-                }
-            }
-            
-            // n is the cool down
-            // If maxHeap is empty means we were able to process the heap, if not
-            // it means we need to wait for the cooling cycle that´s whys is +1
-            // becuase is inclusive
-            cycles += maxHeap.isEmpty() ? tmp.size() : n + 1;
-        }
-        
-        return cycles;
+        hash[task]++;
     }
-}
+
+    // Get the max element in constant time
+    let maxHeap = new PriorityQueue({
+        compare: (a, b) => b - a
+    });
+
+    // Add them all to the maxHeap
+    for (let prop in hash) {
+        maxHeap.enqueue(hash[prop]);
+    }
+
+    let result = 0;
+    while (!maxHeap.isEmpty()) {
+        let toProcess = [];
+        // Try to run the tasks before the idle time
+        // Prepare the tasks to run during the cycle
+        // + 1 becuase it's inclusive
+        for (let i = 0; i < n + 1; i++) {
+            if(!maxHeap.isEmpty()) {
+                toProcess.push(maxHeap.dequeue());
+            }
+        }
+
+        // Process the tasks and decrement by one
+        for (let process of toProcess) {
+            // Decrement the process, if there are still to process
+            // we push them back to the queue
+            process--;
+            if (process > 0) {
+                maxHeap.enqueue(process);
+            }
+        }
+        // n is the cool down
+        // If maxHeap is empty means we were able to process the heap, if not
+        // it means we need to wait for the cooling cycle that´s whys is +1
+        // becuase is inclusive
+        result += maxHeap.isEmpty() ? toProcess.length : n + 1;
+    }
+    return result;
+};
