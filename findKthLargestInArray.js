@@ -15,6 +15,23 @@ You may assume k is always valid, 1 ≤ k ≤ array's length.
 https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 */
 
+// Time O(N Log N)
+// Space O(N)
+var findKthLargest = function(nums, k) {
+    let minHeap = new PriorityQueue({
+        compare: (a, b) => a - b
+    });
+
+    // Add all to the queue
+    for (let num of nums) {
+        minHeap.enqueue(num);
+        if (minHeap.size()> k){
+            minHeap.dequeue();
+        }
+    }
+    return minHeap.dequeue();
+};
+
 // Quick Select
 //O(N) best case, worst O(N^2)
 var findKthLargest = function(nums, k) {
