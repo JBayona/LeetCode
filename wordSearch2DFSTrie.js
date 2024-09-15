@@ -17,19 +17,18 @@ words = ["oath","pea","eat","rain"]
 Output: ["eat","oath"]
 */
 
+// Optionn 1
 // Time O(N * M * L)
-function trieNode() {
-    this.children = {};
-}
 var findWords = function(board, words) {
-    const root = new trieNode();
+    const root = {children: {}, isWord: null};
     
-    //Create trie search tree
+    // Create trie search tree
+    // Add all words
     for (const word of words) {
         let node = root;
         for (let i = 0; i < word.length; i++) {
             let c = word[i];
-            node.children[c] = node.children[c] || new trieNode();
+            node.children[c] = node.children[c] || {children: {}, isWord: null};
             node = node.children[c];
         }
         node.word = word;
@@ -50,11 +49,11 @@ var findWords = function(board, words) {
 const dfs = (node, i, j, board, res) => {
     
     //Validate position
-    if (!board[i] || !board[i][j]) {
+    if (!isSafe(i, j, board)) {
         return;
     }
     
-    //Set char and reset it (so we don't revisit chars)
+    // Set char and reset it (so we don't revisit chars)
     const c = board[i][j];
     board[i][j] = "";
     
@@ -75,6 +74,17 @@ const dfs = (node, i, j, board, res) => {
     //Reset "visited" after traversal finishes
     board[i][j] = c;
 }
+
+function isSafe(row, col, grid) {
+    let ROW = grid.length;
+    let COL = grid[0].length;
+    return (
+        row >= 0 && row < ROW &&
+        col >= 0 && col < COL
+    );
+}
+
+
 
 // Option 2
 trie = {children:{}, count: 0, isWord: false};
