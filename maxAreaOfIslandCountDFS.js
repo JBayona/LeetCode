@@ -23,7 +23,8 @@ Note: The length of each dimension in the given grid does not exceed 50.
 
 https://leetcode.com/problems/max-area-of-island/
 */
-
+// Time O(M * N)
+// Space O(M * N)
 var maxAreaOfIsland = function(grid) {
     let ROW = grid.length;
     let COL = grid[0].length;
