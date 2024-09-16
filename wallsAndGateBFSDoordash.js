@@ -55,6 +55,51 @@ function isSafe(row, col, grid) {
 }
 
 
+// OPTION 2
+var wallsAndGates = function(rooms) {
+    let ROW = rooms.length;
+    let COL = rooms[0].length;
+
+    let queue = [];
+    for (let i = 0; i < ROW; i++) {
+        for (let j = 0; j < COL; j++) {
+            // Found a gate
+            if (rooms[i][j] === 0) {
+                queue.push({row: i, col: j, d: 1});
+            }
+        }
+    }
+
+    let rowK = [0, -1, 0, 1];
+    let colK = [-1, 0, 1, 0];
+
+    while (queue.length) {
+        let len = queue.length;
+        for (let i = 0; i < len; i++) {
+            let {row, col, d} = queue.shift();
+            for (let j = 0;  j < 4; j++) {
+                let nextRow = row + rowK[j];
+                let nextCol = col + colK[j];
+                if (isSafe(rooms, nextRow, nextCol) && d < rooms[nextRow][nextCol]) {
+                    rooms[nextRow][nextCol] = d;
+                    queue.push({row: nextRow, col: nextCol, d: d + 1});
+                }
+            }
+        }
+    }
+    return rooms;
+};
+
+function isSafe(grid, row, col) {
+    let ROW = grid.length;
+    let COL = grid[0].length;
+    return (
+        row >= 0 && row < ROW &&
+        col >= 0 && col < COL
+    );
+}
+
+
 rooms = [[Infinity,-1,0,Infinity],[Infinity,Infinity,Infinity,-1],[Infinity,-1,Infinity,-1],[0,-1,Infinity,Infinity]];
 // rooms = [[-1]];
 console.log(wallsAndGates(rooms));
