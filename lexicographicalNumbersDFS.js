@@ -12,7 +12,6 @@ Output: [1,2]
 
 https://leetcode.com/problems/lexicographical-numbers/description/
 */
-
 // Go deep for each level and try to get all numbers without breaking the limit
 // For example for 1390, desired output is 1, 10, 100, 1000, 1001, 1002
 // ..., 1009, 101, 1010, 1011, 1012,..., 1019, 102, 1020, 1021, 1022...,1029,
