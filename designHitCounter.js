@@ -52,3 +52,38 @@ HitCounter.prototype.getHits = function(timestamp) {
     // the previous elements.
     return this.ranges.length - res - 1;
 };
+
+// Option 2
+// Two Pointers.
+var HitCounter = function() {
+    this.ranges = [];  
+    this.left = 0;
+    this.right = 0;
+};
+
+/** 
+ * @param {number} timestamp
+ * @return {void}
+ */
+HitCounter.prototype.hit = function(timestamp) {
+    // We know that the hit are based on timestamp and they will be increasing
+    this.ranges[this.right++] = timestamp;
+};
+
+/** 
+ * @param {number} timestamp
+ * @return {number}
+ */
+HitCounter.prototype.getHits = function(timestamp) {
+    while (this.left < this.right && this.ranges[this.left] <= (timestamp - 300)) {
+        this.left++;
+    }
+    return this.left === this.right ? 0 : this.right - this.left;
+};
+
+/** 
+ * Your HitCounter object will be instantiated and called as such:
+ * var obj = new HitCounter()
+ * obj.hit(timestamp)
+ * var param_2 = obj.getHits(timestamp)
+ */
