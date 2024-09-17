@@ -31,7 +31,8 @@ hitCounter.getHits(301); // get hits at timestamp 301, return 3.
 https://leetcode.com/problems/design-hit-counter/description
 */
 
-// Option 1
+// OPTION 1
+
 // Binary Search
 HitCounter.prototype.getHits = function(timestamp) {
     // Get all the hits from the past 300 seconds (5 minutes)
@@ -53,7 +54,8 @@ HitCounter.prototype.getHits = function(timestamp) {
     return this.ranges.length - res - 1;
 };
 
-// Option 2
+// OPTION 2
+
 // Two Pointers.
 var HitCounter = function() {
     this.ranges = [];  
@@ -79,6 +81,38 @@ HitCounter.prototype.getHits = function(timestamp) {
         this.left++;
     }
     return this.left === this.right ? 0 : this.right - this.left;
+};
+
+/** 
+ * Your HitCounter object will be instantiated and called as such:
+ * var obj = new HitCounter()
+ * obj.hit(timestamp)
+ * var param_2 = obj.getHits(timestamp)
+ */
+
+// OPTION 3
+
+var HitCounter = function() {
+    this.stack = [];
+};
+
+/** 
+ * @param {number} timestamp
+ * @return {void}
+ */
+HitCounter.prototype.hit = function(timestamp) {
+    this.stack.push(timestamp);
+};
+
+/** 
+ * @param {number} timestamp
+ * @return {number}
+ */
+HitCounter.prototype.getHits = function(timestamp) {
+    while (this.stack.length && (timestamp - this.stack[0]) >= 300) {
+        this.stack.shift();
+    }
+    return this.stack.length;
 };
 
 /** 
