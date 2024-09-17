@@ -33,66 +33,56 @@ grid[i][j] is only 0, 1, or 2.
 https://leetcode.com/problems/rotting-oranges/
 */
 
-// BFS
+// Time O(M * N)
+// Space O(M * N)
 var orangesRotting = function (grid) {
   let ROW = grid.length;
   let COL = grid[0].length;
-  let countOranges = 0;
 
-  let queue = [];
-  let visited = new Array(ROW).fill(false);
-  for (let i = 0; i < visited.length; i++) {
+  let visited = new Array(ROW);
+  for (let i = 0; i < ROW; i++) {
     visited[i] = new Array(COL).fill(false);
   }
 
-  // Fill initial visited
+  let queue = [];
+  let freshOranges = 0;
+  // Identify fresh and rotten oranges
   for (let i = 0; i < ROW; i++) {
     for (let j = 0; j < COL; j++) {
-      // For rotten oranges, we need to identify them
-      if (grid[i][j] === 2) {
+      if (grid[i][j] === 1) {
+        freshOranges++;
+      } else if (grid[i][j] === 2) {
         queue.push({ row: i, col: j });
-        // Set 0 as there's no distance to reach a rotten orange
-        visited[i][j] = 2;
-      } else if (grid[i][j] === 1) {
-        // Oranges in good state
-        countOranges++;
+        visited[i][j] = true;
       }
     }
   }
 
-  //  Directions
-  let rowK = [-1, 0, 0, 1];
-  let colK = [0, -1, 1, 0];
+  let rowK = [0, -1, 0, 1];
+  let colK = [-1, 0, 1, 0];
 
-  let minutesPassed = 0;
-
-  // Launch BFS
-  while (queue.length && countOranges > 0) {
-    let size = queue.length;
-    // Get elements for every level
-    for (let n = 0; n < size; n++) {
-      let node = queue.shift();
-      let x = node.row;
-      let y = node.col;
-
-      // Visit all adjacent nodes
-      // Run BFS from the rotten oranges position
-      for (let i = 0; i < 4; i++) {
-        let newRow = x + rowK[i];
-        let newCol = y + colK[i];
-        if (isSafe(grid, visited, newRow, newCol)) {
-          // Update the fresh orange count
-          countOranges--;
-          // Mark orange as rotten or visited
-          visited[newRow][newCol] = 2;
-          // From where we are coming
-          queue.push({ row: newRow, col: newCol });
+  let minutes = 0;
+  // Important to have freshOranges in the loop as we might
+  // be counting already rotten oranges, we don't need to count those.
+  while (queue.length && freshOranges > 0) {
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+      let { row, col } = queue.shift();
+      for (let j = 0; j < 4; j++) {
+        let nextRow = row + rowK[j];
+        let nextCol = col + colK[j];
+        if (isSafe(grid, visited, nextRow, nextCol)) {
+          // Decrement fresh orange
+          freshOranges--;
+          visited[nextRow][nextCol] = true;
+          queue.push({ row: nextRow, col: nextCol });
         }
       }
     }
-    minutesPassed++;
+    // Each minute has passed
+    minutes++;
   }
-  return countOranges === 0 ? minutesPassed : -1;
+  return freshOranges === 0 ? minutes : -1;
 };
 
 function isSafe(grid, visited, row, col) {
@@ -103,7 +93,7 @@ function isSafe(grid, visited, row, col) {
     row < ROW &&
     col >= 0 &&
     col < COL &&
-    grid[row][col] === 1 &&
-    visited[row][col] === false
+    visited[row][col] === false &&
+    grid[row][col] === 1 // add fresh oranges at will be expired
   );
 }
