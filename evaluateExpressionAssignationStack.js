@@ -100,5 +100,6 @@ function computeCommand(exp, map) {
 
 // Example usage
 // const expression = "( LET X ( ADD 5 2 ) ) ( MULT X 3 )";
+// const expression = "( ADD 5 2 )";
 const expression = "( LET X ( ADD 5 2 ) ) ( LET Y ( MULT 8 3 ) ) ( MULT X Y )";
 console.log(evaluateExpression(expression)); // Output: 21
