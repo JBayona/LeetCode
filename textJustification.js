@@ -115,3 +115,77 @@ function formatLine(line, currentLength, maxWidth, numWords) {
     str += line[line.length - 1];
     return str;
 }
+
+
+
+// OPTION 2
+var fullJustify = function(words, maxWidth) {
+    let result = [];
+    let charCount = 0;
+    let gaps = 0;
+    let wordsCounted = 0;
+    let spacesNeeded = 0;
+    let tmp = [];
+    
+    for(let i = 0 ; i < words.length; i++) {
+        charCount += words[i].length;
+        
+        if(charCount + gaps <= maxWidth){
+            tmp.push(words[i]);
+            wordsCounted++;
+            //At least we need one blank space per word.
+            gaps = wordsCounted >= 1 ? wordsCounted : 0;
+        }
+        
+        // If there's the last word
+        if(i === words.length - 1) {
+            spacesNeeded = maxWidth - charCount;
+            let line = addSpaces(tmp, spacesNeeded, true);
+            result.push(line);
+        } else if(charCount + gaps + words[i+1].length > maxWidth){ // We can not insert more words, format is needed
+            spacesNeeded = maxWidth - charCount;
+            let line = addSpaces(tmp, spacesNeeded, false);
+            result.push(line);
+            // Clean
+            tmp = [];
+            gaps = 0;
+            charCount = 0;
+            wordsCounted = 0;
+        }
+    }
+    return result;
+};
+
+function addSpaces(array, spacesNeeded, isLast) {
+    let line = '';
+    let spaces = 0;
+    // Define how many gaps we have available to fill according to the line
+    let numberOfElements = isLast ? array.length : array.length - 1;
+    let spaceNeeded = spacesNeeded;
+    
+    for(let i = 0; i < array.length; i++) {
+        // Left justified, single space between words, remaining spaces at the  final
+        if(isLast) {
+            // For the last word and last line we need to insert the remaining spaces to the right
+            if(i === array.length - 1) {
+                // Try to get how many available space we need
+                spaces = numberOfElements > 0 ? Math.ceil(spaceNeeded/numberOfElements): spaceNeeded;
+                line += array[i] + ' '.repeat(spaces);
+                spaceNeeded -= spaces;
+                numberOfElements--;
+            } else {
+                // Insert only one space in the last line if we still have words
+                line += array[i] + ' ';
+                spaceNeeded -=1; 
+                numberOfElements--;
+            }
+        } else {
+            // Try to distributed as evenly as we can
+            spaces = numberOfElements > 0 ? Math.ceil(spaceNeeded/numberOfElements): spaceNeeded;
+            line += array[i] + ' '.repeat(spaces);
+            spaceNeeded -= spaces;
+            numberOfElements--;
+        }
+    }
+    return line;
+}
