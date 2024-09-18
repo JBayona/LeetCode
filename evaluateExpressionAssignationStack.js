@@ -31,7 +31,7 @@ function parseExpression(tokens) {
     return expressions;
 }
 
-// Parser to build a syntax tree from the token list
+// Parser to build a SYNTAX TREE from the token list
 /*
 Result
 [
