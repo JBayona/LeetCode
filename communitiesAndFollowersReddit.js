@@ -54,19 +54,50 @@ let followers = {
     F3: new Set(["C1", "C4"]),
   };
   
-  // 1st Part
-  function getRelatedCommunities(c) {
-      let result = new Set();
-      for (let follower of followers[c]) {
-          for (let community of communities[follower]) {
-              // Don't add the same parent
-              if (c !== community) {
-                  result.add(community);
-              }
-          }
+
+// 1st Part
+function getRelatedCommunities(c) {
+  let result = new Set();
+  for (let follower of followers[c]) {
+    for (let community of communities[follower]) {
+      // Don't add the same parent
+      if (c !== community) {
+        result.add(community);
       }
-      return result;
+    }
   }
-  
-  console.log(getRelatedCommunities("C4"));  // [C1]
-  console.log(getRelatedCommunities("C2"));  // [C1]
+  return result;
+}
+
+console.log(getRelatedCommunities("C4")); // [C1]
+console.log(getRelatedCommunities("C2")); // [C1, C3]
+
+// 2nd Part
+function resolveCommunities2(community, degree = 1) {
+  let result = new Set();
+  getRelatedCommunities2(community, community, degree, result);
+  // Alternativelly, we can remove the if (community !== original) from
+  // the function below and here do:
+  // result.delete(community);
+  return result;
+}
+
+function getRelatedCommunities2(original, c, degree = 1, result) {
+  for (let follower of followers[c]) {
+    for (let community of communities[follower]) {
+      // Don't add the same parent
+      if (degree === 1) {
+        if (community !== original) {
+          result.add(community);
+        }
+      } else {
+        // Recursion
+        getRelatedCommunities2(original, community, --degree, result);
+      }
+    }
+  }
+}
+
+console.log(resolveCommunities2("C4", 1)); // [C1]
+console.log(resolveCommunities2("C4", 2)); // [C1, C2]
+console.log(resolveCommunities2("C2", 2)); // [C1, C3, C4]
