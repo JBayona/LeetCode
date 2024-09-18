@@ -56,73 +56,62 @@ Output:
 https://leetcode.com/problems/text-justification/
 */
 
+// Greedy
+// Time O(N)
 var fullJustify = function(words, maxWidth) {
     let result = [];
-    let charCount = 0;
-    let gaps = 0;
-    let wordsCounted = 0;
-    let spacesNeeded = 0;
-    let tmp = [];
-    
-    for(let i = 0 ; i < words.length; i++) {
-        charCount += words[i].length;
-        
-        if(charCount + gaps <= maxWidth){
-            tmp.push(words[i]);
-            wordsCounted++;
-            //At least we need one blank space per word.
-            gaps = wordsCounted >= 1 ? wordsCounted : 0;
-        }
-        
-        // If there's the last word
-        if(i === words.length - 1) {
-            spacesNeeded = maxWidth - charCount;
-            let line = addSpaces(tmp, spacesNeeded, true);
-            result.push(line);
-        } else if(charCount + gaps + words[i+1].length > maxWidth){ // We can not insert more words, format is needed
-            spacesNeeded = maxWidth - charCount;
-            let line = addSpaces(tmp, spacesNeeded, false);
-            result.push(line);
+    let currentLength = 0;
+    let numWords = 0;
+    let line = [];
+
+    for (let word of words) {
+        // Number of words is used to consider spaces
+        if (currentLength + word.length + numWords <= maxWidth) {
+            line.push(word)
+            currentLength += word.length;
+            numWords++;
+        } else {
+            // Create a line
+            result.push(formatLine(line, currentLength, maxWidth, numWords));
             // Clean
-            tmp = [];
-            gaps = 0;
-            charCount = 0;
-            wordsCounted = 0;
+            line = [];
+            // The prev word does not fit
+            line.push(word);
+            currentLength = word.length;
+            numWords = 1;
         }
     }
+
+    // Handle the last line (if any)
+    let lastLine = line.join(" ");
+    let padding = maxWidth - lastLine.length;
+    lastLine += " ".repeat(padding);
+    result.push(lastLine);
     return result;
 };
 
-function addSpaces(array, spacesNeeded, isLast) {
-    let line = '';
-    let spaces = 0;
-    // Define how many gaps we have available to fill according to the line
-    let numberOfElements = isLast ? array.length : array.length - 1;
-    let spaceNeeded = spacesNeeded;
-    
-    for(let i = 0; i < array.length; i++) {
-        // Left justified, single space between words, remaining spaces at the  final
-        if(isLast) {
-            // For the last word and last line we need to insert the remaining spaces to the right
-            if(i === array.length - 1) {
-                // Try to get how many available space we need
-                spaces = numberOfElements > 0 ? Math.ceil(spaceNeeded/numberOfElements): spaceNeeded;
-                line += array[i] + ' '.repeat(spaces);
-                spaceNeeded -= spaces;
-                numberOfElements--;
-            } else {
-                // Insert only one space in the last line if we still have words
-                line += array[i] + ' ';
-                spaceNeeded -=1; 
-                numberOfElements--;
-            }
-        } else {
-            // Try to distributed as evenly as we can
-            spaces = numberOfElements > 0 ? Math.ceil(spaceNeeded/numberOfElements): spaceNeeded;
-            line += array[i] + ' '.repeat(spaces);
-            spaceNeeded -= spaces;
-            numberOfElements--;
+function formatLine(line, currentLength, maxWidth, numWords) {
+    // If only one word, left justify
+    if (numWords === 1) {
+        return line[0] + " ".repeat(maxWidth - line[0].length);
+    }
+
+    let totalSpaces = maxWidth - currentLength;
+    let spacesBetweenWords = numWords - 1;
+    let extraSpacesNeeded = totalSpaces % spacesBetweenWords;
+    let spaces = totalSpaces / spacesBetweenWords;
+    let str = '';
+    // Do not consider the last line as we are considering spaces between words
+    for (let i = 0; i < line.length - 1; i++) {
+        str += line[i];
+        // Add the space between each word added
+        str += " ".repeat(spaces);
+        if (extraSpacesNeeded) {
+            str += " ";
+            extraSpacesNeeded--;
         }
     }
-    return line;
+    // Add the last line
+    str += line[line.length - 1];
+    return str;
 }
