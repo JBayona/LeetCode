@@ -29,28 +29,30 @@ https://leetcode.com/problems/surrounded-regions/
 // Space O(M * N)
 var solve = function(board) {
   if(!board.length) {
-    return board;
+      return board;
   }
   let ROW = board.length;
   let COL = board[0].length;
   
   for(let i = 0; i < ROW; i++) {
-    for(let j = 0; j < COL; j++) {
-      // Run DFS in borders only
-      if(board[i][j] === 'O' && (i === 0 || i == ROW - 1 || j === 0 || j === COL - 1)) {
-        dfs(board, i, j);
+      for(let j = 0; j < COL; j++) {
+          // Run DFS in borders only
+          // Only when "O" is on the border, all connected components with "0" will be marked
+          // for "*" and then changed to "O"
+          if(board[i][j] === 'O' && (i === 0 || i == ROW - 1 || j === 0 || j === COL - 1)) {
+              dfs(board, i, j);
+          }
       }
-    }
   }
   
   for(let i = 0; i < ROW; i++) {
-    for(let j = 0; j < COL; j++) {
-      if(board[i][j] === '*') {
-        board[i][j] = 'O';
-      } else {
-        board[i][j] = 'X';
+      for(let j = 0; j < COL; j++) {
+          if(board[i][j] === '*') {
+              board[i][j] = 'O';
+          } else {
+              board[i][j] = 'X';
+          }
       }
-    }
   }
   return board;
 };
@@ -60,8 +62,9 @@ function dfs(board, row, col) {
   if(!isSafe(board, row, col)) {
       return;
   }
+  
   if(board[row][col] === 'X' || board[row][col] === '*') {
-    return;
+      return;
   }
   
   // Means we have a 'O';
@@ -76,7 +79,7 @@ function isSafe(board, row, col) {
   let ROW = board.length;
   let COL = board[0].length;
   return (
-    row >= 0 && row < ROW &&
-    col >= 0 && col < COL
+      row >= 0 && row < ROW &&
+      col >= 0 && col < COL
   );
 }
