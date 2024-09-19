@@ -113,6 +113,72 @@ function dfs(graph, visited, node, parent) {
 }
 */
 
+
+
+// Union Find
+// Time complexity: O(E).
+var validTree = function(n, edges) {
+  let parent = {};
+  let size = [];
+
+  // Set parent nodes to itself first
+  for(let c of edges) {
+    let [from, to] = c;
+
+    // Set root to all nodes
+    if(!(from in parent)) {
+      parent[from] = from;
+    }
+    // Set root to all nodes
+    if(!(to in parent)) {
+      parent[to] = to;
+    }
+  }
+
+  //{0:0, 1:1, 2:2, 3:3, 4:4}
+  console.log(parent);
+
+  for(let c of edges) {
+    let [from, to] = c;
+    let parent1 = findParent(from, parent);
+    let parent2 = findParent(to, parent);
+
+    // Si ambos padres son el mismo, significa que hay
+    // un ciclo, la conexión es redundante.
+    if(parent1 === parent2) {
+      return false;
+    }
+    // Union - Set ambos nodos son un padre común ya que
+    // ambos están conectados
+    // Une cada conexión
+    union(from, to, parent);
+  }
+
+  console.log('Union Find:');
+  console.log(parent);
+  return edges.length == n - 1;
+
+}
+
+// El valor del map es el padre
+// En este caso usamos el node A como el padre
+function union(nodeA, nodeB, parent) {
+  let parentA = findParent(nodeA, parent);
+  let parentB = findParent(nodeB, parent);
+  parent[parentB] = parentA;
+}
+
+// Correr recursivamente todos los niveles hasta encontrar
+// el padre, el padre es aquel que key y value es el mismo
+function findParent(node, parent) {
+  if(parent[node] === node) {
+    return node;
+  }
+  return findParent(parent[node], parent);
+}
+
+
+
 // BFS
 // Time: O(V) - V number of vertices
 // Space: O(V)
