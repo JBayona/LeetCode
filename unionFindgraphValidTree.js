@@ -21,8 +21,9 @@ Multiple approaches:
 -https://zhuhan0.blogspot.com/2017/07/leetcode-261-graph-valid-tree.html
 
 Para ser un árbol válido debe cumplir con las siguientes características:
-1. Estar conectado.
-2. No debe haber ciclos.
+// 1. Edges should be equal to number of nodes - 1
+// 2. No cycles in the tree.
+// 3. All components should have been visited (no isolated nodes)
 */
 
 // Union Find
