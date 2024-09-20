@@ -21,6 +21,11 @@ var findCircleNum = function (isConnected) {
     parent[i] = i;
   }
 
+  // We assume each city is on its own area, whenever we are able to connect them
+  // we rest by 1 the number of provinces, alternativelly we can check for the map and count
+  // how many keys have the same value
+  // let components = isConnected.length;
+
   // Union find
   for (let i = 0; i < isConnected.length; i++) {
     for (let j = i + 1; j < isConnected[i].length; j++) {
@@ -31,6 +36,7 @@ var findCircleNum = function (isConnected) {
         // If the parent is not the same, join them
         if (parentA !== parentB) {
           union(i, j, parent);
+          // components--;
         }
       }
     }
