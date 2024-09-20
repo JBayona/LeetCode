@@ -30,4 +30,4 @@ function reversecount(s) {
     }
   }
   
-  console.log(reversecount("1211"));
+console.log(reversecount("1211"));
