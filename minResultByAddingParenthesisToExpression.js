@@ -14,7 +14,6 @@ The input has been generated such that the original value of expression, and the
 of expression after adding any pair of parentheses that meets the requirements
 fits within a signed 32-bit integer.
 
-
 Example 1:
 Input: expression = "247+38"
 Output: "2(47+38)"
