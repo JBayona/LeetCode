@@ -10,13 +10,15 @@ Empty cells are indicated by the character '.'.
 
 https://leetcode.com/problems/sudoku-solver/
 */
-
+// Time O(9*(M * N))
+// Space O(9*(M * N))
 var solveSudoku = function(board) {
     solve(board, 0, 0);
 };
 
-var solve = function(board, row, col){   
-    for(let i=row; i<9; i++, col=0){
+var solve = function(board, row, col){ 
+    col = 0;  
+    for(let i=row; i<9; i++){
         for(let j=col; j<9; j++){
             // We are only interested on those which have no numbers
             if(board[i][j] !== '.') continue;
