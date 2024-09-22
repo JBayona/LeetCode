@@ -33,99 +33,95 @@ podemos hacer partición del grafo.
 // DFS
 // Time complexity: O(V+E)
 // Space complexity: O(V)
-var possibleBipartition = function(N, dislikes) {
-    let graph = new Array(N);
-    for(let i = 0; i < graph.length; i++) {
-        graph[i] = [];
+var possibleBipartition = function (N, dislikes) {
+  let graph = new Array(N);
+  for (let i = 0; i < graph.length; i++) {
+    graph[i] = [];
+  }
+
+  // Fill undirected graph
+  for (let d of dislikes) {
+    // Zero index
+    let a = d[0] - 1;
+    let b = d[1] - 1;
+    graph[a].push(b);
+    graph[b].push(a);
+  }
+  // 0 unvisited, 1 group A, -1 group B
+  let colors = new Array(N).fill(0);
+  for (let i = 0; i < N; i++) {
+    if (colors[i] === 0 && !dfs(graph, colors, i, 1)) {
+      return false;
     }
-    
-    // Fill undirected graph
-    for(let d of dislikes) {
-        // Zero index
-        let a = d[0] - 1;
-        let b = d[1] - 1;
-        graph[a].push(b);
-        graph[b].push(a);
-    }
-    // 0 unvisited, 1 group A, -1 group B
-    let colors = new Array(N).fill(0);
-    for(let i = 0; i < N; i++) {
-        if(colors[i] === 0 && !dfs(graph, colors, i, 1)) {
-            return false;
-        }
-    }
-    return true;
+  }
+  return true;
 };
 
 function dfs(graph, colors, node, color) {
-    // If the color is the same as the other group
-    // This means we can not do a bipartition in our graph
-    if(colors[node] === -color) {
-        return false
+  // Mark node as visited
+  colors[node] = color;
+  for (let neighbor of graph[node]) {
+    // if the next node has the same color, then return false
+    // it means two connected nodes has the same label
+    if (colors[neighbor] == colors[node]) {
+      return false;
     }
-    // Node has been visited
-    if(colors[node] !== 0) {
-        return true;
+    // if the next node hasn't been checked, check it can be successfully
+    if (colors[neighbor] == 0 && !dfs(graph, colors, neighbor, -color)) {
+      return false;
     }
-    // Mark as visited
-    colors[node] = color;
-    for(let i = 0; i < graph[node].length; i++) {
-        let nextNode = graph[node][i];
-        if(!dfs(graph, colors, nextNode, -color)) {
-            return false;
-        }
-    }
-    return true;
+  }
+  return true;
 }
 
 // BFS
 // Time complexity: O(V+E)
 // Space complexity: O(V)
-var possibleBipartition = function(N, dislikes) {
-    let graph = new Array(N);
-    for(let i = 0; i < graph.length; i++) {
-        graph[i] = [];
-    }
-    
-    // Fill undirected graph
-    for(let d of dislikes) {
-        // Zero index
-        let a = d[0] - 1;
-        let b = d[1] - 1;
-        graph[a].push(b);
-        graph[b].push(a);
-    }
-    // 0 unvisited, 1 group A, -1 group B
-    let colors = new Array(N).fill(0);
-    
-    let queue = [];
-    
-    for(let i = 0; i < N; i++) {
-        // Unvisited nodes
-        if(colors[i] === 0) {
-            queue.push(i);
+var possibleBipartition = function (N, dislikes) {
+  let graph = new Array(N);
+  for (let i = 0; i < graph.length; i++) {
+    graph[i] = [];
+  }
+
+  // Fill undirected graph
+  for (let d of dislikes) {
+    // Zero index
+    let a = d[0] - 1;
+    let b = d[1] - 1;
+    graph[a].push(b);
+    graph[b].push(a);
+  }
+  // 0 unvisited, 1 group A, -1 group B
+  let colors = new Array(N).fill(0);
+
+  let queue = [];
+
+  for (let i = 0; i < N; i++) {
+    // Unvisited nodes
+    if (colors[i] === 0) {
+      queue.push(i);
+      // Mark as visited
+      colors[i] = 1;
+
+      while (queue.length) {
+        let node = queue.shift();
+        let nextColor = -colors[node];
+        // Look for the connections of the node
+        for (let i = 0; i < graph[node].length; i++) {
+          let nextNode = graph[node][i];
+          // Check if it's not visited
+          if (colors[nextNode] === 0) {
+            queue.push(nextNode);
             // Mark as visited
-            colors[i] = 1;
-            
-            while(queue.length) {
-                let node = queue.shift();
-                let nextColor = -colors[node];
-                // Look for the connections of the node
-                for(let i = 0; i < graph[node].length; i++) {
-                    let nextNode = graph[node][i];
-                    // Check if it's not visited
-                    if(colors[nextNode] === 0) {
-                        queue.push(nextNode);
-                        // Mark as visited
-                        colors[nextNode] = nextColor;
-                    } else if(colors[node] === colors[nextNode]) {
-                        // If we have the same color as the prev node, it means
-                        // it's not a bipartite graph
-                        return false;
-                    }
-                }
-            }
+            colors[nextNode] = nextColor;
+          } else if (colors[node] === colors[nextNode]) {
+            // If we have the same color as the prev node, it means
+            // it's not a bipartite graph
+            return false;
+          }
         }
+      }
     }
-    return true;
+  }
+  return true;
 };
