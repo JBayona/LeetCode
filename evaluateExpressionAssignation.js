@@ -9,6 +9,8 @@ Write an algorithm in javascript with the following requirements:
 
 // Time O(2^N)
 function evaluateExpression(expression) {
+    // Map is the variable that will help us to track expressions
+    // and its results.
     let map = {};
 
     // Get all tokens with separaring with blank spaces
