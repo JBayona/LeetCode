@@ -1,6 +1,5 @@
 /*
 You are given an array words of size n consisting of non-empty strings.
-
 We define the score of a string word as the number of strings words[i] such that word
 is a prefix of words[i].
 
