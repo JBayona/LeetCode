@@ -34,15 +34,46 @@ https://leetcode.com/problems/find-the-length-of-the-longest-common-prefix/descr
 // Prefixes betweem two sets and get the longest one
 // Time O(N)
 // Space O(N)
-var longestCommonPrefix = function (arr1, arr2) {
+// Approach, get all prefixes and find the common
+// Prefixes betweem two sets and get the longest one
+// Time O(N)
+// Space O(N)
+// Option 1
+var longestCommonPrefix = function(arr1, arr2) {
+  // Step 1 - build prefixes for arr 1
+  let prefixesA = new Set();
+  for (let n of arr1) {
+      while (n > 0) {
+          prefixesA.add(n);
+          n = (n / 10) | 0;
+      }
+  }
+
+  // Step 2 - build prefixes for arr2 and try to find max
+  let result = 0;
+  let prefixesB = new Set();
+  for (let n of arr2) {
+      while (n > 0) {
+          if (prefixesA.has(n)) {
+              result = Math.max(result, n);
+          }
+          n = (n / 10) | 0;
+      }
+  }
+  // If it's zero return 0 as converting to string it will be "1"
+  return result === 0 ? 0 : result.toString().length;
+};
+
+// Option 2
+var longestCommonPrefix = function(arr1, arr2) {
   let prefixesA = getPrefixes(arr1);
   let prefixesB = getPrefixes(arr2);
 
   let result = 0;
   for (let prefix of prefixesA) {
-    if (prefixesB.has(prefix)) {
-      result = Math.max(result, prefix);
-    }
+      if (prefixesB.has(prefix)) {
+          result = Math.max(result, prefix);
+      }
   }
   // If it's zero return 0 as converting to string it will be "1"
   return result === 0 ? 0 : result.toString().length;
@@ -51,37 +82,39 @@ var longestCommonPrefix = function (arr1, arr2) {
 function getPrefixes(arr) {
   let set = new Set();
   for (let n of arr) {
-    while (n > 0) {
-      set.add(n);
-      n = (n / 10) | 0;
-    }
+      while (n > 0) {
+          set.add(n);
+          n = (n / 10) | 0;
+      }
   }
   return set;
 }
 
-// Option 2
-var longestCommonPrefix = function (arr1, arr2) {
+
+// Option 3
+var longestCommonPrefix = function(arr1, arr2) {
   let prefixesA = getPrefixes(arr1);
   let prefixesB = getPrefixes(arr2);
 
   let result = 0;
   for (let prefix of prefixesA) {
-    if (prefixesB.has(prefix)) {
-      result = Math.max(result, prefix.length);
-    }
+      if (prefixesB.has(prefix)) {
+          result = Math.max(result, prefix.length);
+      }
   }
   return result;
 };
 
+
 function getPrefixes(arr) {
   let set = new Set();
   for (let word of arr) {
-    let prefix = "";
-    let str = word.toString();
-    for (let i = 0; i < str.length; i++) {
-      prefix += str[i];
-      set.add(prefix);
-    }
+      let prefix = '';
+      let str = word.toString();
+      for (let i = 0; i < str.length; i++) {
+          prefix += str[i];
+          set.add(prefix);
+      }
   }
   return set;
 }
