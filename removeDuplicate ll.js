@@ -10,26 +10,20 @@ It doesn't matter what you leave beyond the new length.
 
 https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/
 */
-
+// Time O(N)
 var removeDuplicates = function(nums) {
-  let index = 1;
-  let duplicate = false;
-
-  for(let i = 1; i < nums.length; i++){
-    if(duplicate && nums[i] === nums[i-1]){
-      continue;
-    }
-
-    if(nums[i] === nums[i-1]){
-      duplicate = true;
-    }else{
-      duplicate = false;
-    }
-
-    nums[index] = nums[i];
-    index++;
+  if (nums.length <= 2) {
+      return nums.length;
   }
-  //return nums;
+  // We don't care about the first two elements
+  // as they might be or might not be duplicated
+  let index = 2;
+  for (let i = 2; i < nums.length; i++) {
+      if (nums[index - 2] !== nums[i]) {
+          nums[index] = nums[i];
+          index++;
+      }
+  }
   return index;
 };
 
