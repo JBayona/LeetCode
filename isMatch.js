@@ -22,63 +22,25 @@ isMatch("aab", "c*a*b") → true
 https://leetcode.com/problems/regular-expression-matching/#/description
 */
 
+// Time O(2^N)
 var isMatch = function(s, p) {
-    // s - string
-    // p - pattern
-    // If boths string are empty
-    if(p.length === 0) {
+    // Base case: if pattern is empty, the string must also be empty to match
+    if (p.length === 0){
         return s.length === 0;
     }
-    if(p.length === 1) {
-        return s === p || (p === '.' && s.length === 1);
-    } else {
-        if(s.length === 0) {
-            // if string is cero, we can suppress by using the *
-            // but we need to make sure that we can remove "p"
-            return p[1] === "*" && isMatch(s, p.substring(2));
-        } else {
-            let useFirst = false;
-            if(s[0] === p[0] || p[0] === '.') {
-                if(p[1] === '*') {
-                    useFirst = isMatch(s.substring(1), p);
-                } else {
-                    useFirst = isMatch(s.substring(1), p.substring(1));
-                }
-            }
-            return useFirst || (p[1] === '*' && isMatch(s, p.substring(2)));
-        }
-    }
-};
 
-var isMatch = function(s, p) {
-    var lenS = s.length,
-        lenP = p.length;
-    
-    if (p.length === 0) {
-        /*Aquí vamos a determinar si ambos son vacios que significa true, de lo contrario si "s" es mayor a cero y "p" que es 
-        nuestra regex no, es mayor a cero, significa que no hemos hecho match*/
-        return s.length === 0;
-    }
-    
-    //Vamos a verificar si nuestro segundo caracter es "*"
-    if (p.charAt(1) === '*') {
-        /*Volveremos a llamar la función recursiva quitando el regex por ejemplo c*, si quitando el caracter tiene 
-        la misma letra inicial o el punto, podemos recortar ambas cadenas, eso va a pasar en el else de abajo, si no
-        tienen las mismas cadenas, vamos a eliminar la primer letra de nuestra "s" que es nuestra cadena original, esto
-        es porque podemos tener ninguna o muchas repeticiones y las iremos elimando hasta que podamos verificar si hace
-        match o no */
-        return isMatch(s, p.substr(2)) || s.length > 0 && (s.charAt(0) === p.charAt(0) || p.charAt(0) === '.') && isMatch(s.substr(1), p);
-    } else {
-        /*if s.length - falsy (evaluado a false en boolean) regresa false, de lo contrario verifica la cadena 
-        (s.charAt(0) === p.charAt(0) || p.charAt(0) === '.') y si es true regresa isMatch(s.substr(1), p.substr(1))
-        */
-        /*return a && b means
-          if (a) return b;
-            else return a;
-        */
-        return s.length > 0 && (s.charAt(0) === p.charAt(0) || p.charAt(0) === '.') && isMatch(s.substr(1), p.substr(1));
-    }
+    // Check if the first character matches (considering '.' as a wildcard)
+    let firstMatch = s.length > 0 && (s[0] === p[0] || p[0] === '.');
 
+    // Handle '*' in the pattern
+    if (p.length >= 2 && p[1] === '*') {
+        // Case 1: '*' means we skip the "x*" part in the pattern
+        // Case 2: '*' means we keep the first character if there's a match and continue matching
+        return (isMatch(s, p.substring(2)) || (firstMatch && isMatch(s.substring(1), p)));
+    } else {
+        // Normal case: match one character and move to the next
+        return firstMatch && isMatch(s.substring(1), p.substring(1));
+    }
 };
 
 /*
