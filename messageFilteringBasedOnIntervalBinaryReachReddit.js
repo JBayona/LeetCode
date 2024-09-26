@@ -37,6 +37,9 @@ class MessageStore {
     filterMessages(start, end) {
       const startIdx = this.binarySearch(start);
       const endIdx = this.binarySearch(end);
+
+      console.log(startIdx);
+      console.log(endIdx);
   
       let result = [];
   
