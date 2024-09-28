@@ -30,12 +30,10 @@ A solution set is:
 https://leetcode.com/problems/combination-sum-ii/description/
 */
 
-/**
- * @param {number[]} candidates
- * @param {number} target
- * @return {number[][]}
- */
+// Time O(2^N)
+// Space O(N)
 var combinationSum2 = function(candidates, target) {
+    // Sorted to avoid get duplicates
     candidates.sort((a,b) => a - b);
     
     let result = [];
@@ -61,20 +59,20 @@ function helper(array, target, tmp, result, start) {
     
     // Recur for all remaining elements that have values
     // smaller than our targets
-    let prev = -1;
     for(let i = start; i < array.length; i++) {
-        if(prev !== array[i]) {
-            // Skip numbers that are greater than our target
-            if(target < array[i]) {
-                return;
-            }
-            tmp.push(array[i]);
-            // Cambiandolo i por start, te da todas las posibles combinaciones, permutando el número
-            // i.e [2,2,3], [3,2,2], [2,3,2], [7]
-            helper(array, target - array[i], tmp.concat(), result, i+1);
-            tmp.pop();
-            prev= array[i];
+        // Skip duplicates
+        if (i > start && array[i] === array[i - 1]) {
+            continue;
         }
-        
+        // Skip numbers that are greater than our target
+        if(target < array[i]) {
+            return;
+        }
+        tmp.push(array[i]);
+        // Cambiandolo i por start, te da todas las posibles combinaciones, permutando el número
+        // i.e [2,2,3], [3,2,2], [2,3,2], [7]
+        // THE I + 1 IS GOING TO GIVE US UNIQUE COMBINATIONS
+        helper(array, target - array[i], tmp.concat(), result, i+1);
+        tmp.pop();
     }
 }
