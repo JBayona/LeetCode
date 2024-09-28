@@ -18,51 +18,35 @@ If nums = [1,2,2], a solution is:
 https://leetcode.com/problems/subsets-ii/description/
 */
 
-// Opción 1
-var subsetsWithDup = function(nums) {
+// Time O(2^N)
+// Space O(N)
+var subsetsWithDup = function (nums) {
+  if (nums.length === 0) {
+    return [];
+  }
+  // Sort the array, that way we won't
+  // get duplicate elements
+  nums.sort((a, b) => a - b);
   let result = [];
-  // Sort to make easier to detect duplicates
-  nums.sort((a,b) => a-b);
-  dfs(result, [], 0, nums.length, nums);
+  let tmp = [];
+  let start = 0;
+  helper(nums, tmp, result, start);
   return result;
 };
 
-function dfs(result, tmp, start, end, nums) {
+function helper(nums, tmp, result, start) {
   result.push(tmp);
-  for(let i = start; i < end; i++) {
+  for (let i = start; i < nums.length; i++) {
     // Skip duplicates
-    if(i > start && nums[i] === nums[i-1]) {
-        continue;
+    if (i > start && nums[i] === nums[i - 1]) {
+      continue;
     }
     tmp.push(nums[i]);
-    dfs(result, tmp.concat(), i + 1, end, nums);
+    helper(nums, tmp.concat(), result, i + 1);
+    // Backtrack
     tmp.pop();
   }
 }
 
-// Opción 2
-var subsetsWithDup = function(nums) {
-  var result = [];
-  if(nums.length === 0) return result;
-  //In case is not sorted
-  /*Asi no habra duplicados*/
-  nums.sort((a,b) => a-b);
-  helper(result, [], 0, nums.length-1, nums);
-  return result;
-};
-
-function helper(result, currArr, start, end, nums){
-  result.push(currArr);
-  for(let i = start; i <= end; i++){
-    //Skip duplicates
-    if(i > start && nums[i] === nums[i-1]){
-      continue;
-    }
-    currArr.push(nums[i]);
-    helper(result, currArr.concat(), i+1, end, nums);
-    currArr.pop();
-  }
-}
-
-nums = [1,2,2]
+nums = [1, 2, 2];
 console.log(subsetsWithDup(nums));
