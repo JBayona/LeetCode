@@ -34,6 +34,7 @@ const findPossiblePalindrome = (str, result, tmp, index) => {
             tmp.push(str.substring(index, i + 1));
             findPossiblePalindrome(str, result, tmp, i + 1);
             // Remove the string that we already check in our combinations
+            // Backtrack
             tmp.pop();
         }
     }
