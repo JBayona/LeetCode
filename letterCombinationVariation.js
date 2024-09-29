@@ -33,9 +33,8 @@ function vanity(codes, vanity) {
   // Get the number sequence of all the codes and add them into a set
   // This step will get us the code mapping to the numbers, example
   // TWLO code will be mapped to 8956
-  for (let i = 0; i < codes.length; i++) {
+  for (let code of codes) {
     let numberSequence = "";
-    let code = codes[i];
     for (let j = 0; j < code.length; j++) {
       let c = code[j].toLowerCase();
       for (let prop in map) {
