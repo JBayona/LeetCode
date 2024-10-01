@@ -10,90 +10,73 @@ https://leetcode.com/problems/n-queens/submissions/
 https://www.youtube.com/watch?v=xouin83ebxE
 */
 
-class Solution {
-  class Position {
-      int row, col;
-      Position(int row, int col) {
-          this.row = row;
-          this.col = col;
-      }
-  }
+// Time O(N!)
+// Space O(N)
+var solveNQueens = function(n) {
+    let ROW = n;
+    let COL = n;
+    let board = new Array(n);
+    for (let i = 0; i < ROW; i++) {
+        board[i] = new Array(COL).fill(false);
+    }
+    return queens(board, 0)
+};
 
-  public Position[] solveNQueenOneSolution(int n) {
-      Position[] positions = new Position[n];
-      boolean hasSolution = solveNQueenOneSolutionUtil(n, 0, positions);
-      if (hasSolution) {
-          return positions;
-      } else {
-          return new Position[0];
-      }
-  }
-  
-  private boolean solveNQueenOneSolutionUtil(int n, int row, Position[] positions) {
-      if (n == row) {
-          return true;
-      }
-      int col;
-      for (col = 0; col < n; col++) {
-          boolean foundSafe = true;
+function queens(board, row) {
+    let list = [];
+    if (row === board.length) {
+        list.push(addRow(board));
+        return list;
+    }
+    // Place all the queens and check for every row and col
+    for (let col = 0; col < board.length; col++) {
+        // Place and check if it's safe to place the queen
+        if (isSafe(board, row, col)) {
+            board[row][col] = true;
+            list.push(...queens(board, row + 1));
+            // Backtrack
+            board[row][col] = false;
+        }
+    }
+    return list;
+}
 
-          //check if this row and col is not under attack from any previous queen.
-          for (int queen = 0; queen < row; queen++) {
-              if (positions[queen].col == col || positions[queen].row - positions[queen].col == row - col ||
-                      positions[queen].row + positions[queen].col == row + col) {
-                  foundSafe = false;
-                  break;
-              }
-          }
-          if (foundSafe) {
-              positions[row] = new Position(row, col);
-              if (solveNQueenOneSolutionUtil(n, row + 1, positions)) {
-                  return true;
-              }
-          }
-      }
-      return false;
-  }
-  
-  public List<List<String>> solveNQueens(int n) {
-      List<List<String>> result = new ArrayList<>();
-      Position[] positions = new Position[n];
-      solve(0, positions, result, n);
-      return result;
-  }
+function isSafe(board, row, col) {
+    // Check vertical row
+    for (let i = 0; i < row; i++) {
+        if(board[i][col]) {
+            return false;
+        }
+    }
+    // Check for diagonal left
+    let maxLeft = Math.min(row, col);
+    for (let i = 1; i < maxLeft + 1; i++) {
+        if (board[row - i][col - i]) {
+            return false;
+        }
+    }
+    // Check for diagonal right
+    let maxRight = Math.min(row, board.length - col - 1);
+    for (let i = 1; i < maxRight + 1; i++) {
+        if (board[row - i][col + i]) {
+            return false;
+        }
+    }
+    return true;
+}
 
-  public void solve(int current, Position[] positions, List<List<String>> result, int n) {
-      if (n == current) {
-          StringBuffer buff = new StringBuffer();
-          List<String> oneResult = new ArrayList<>();
-          for (Position p : positions) {
-              for (int i = 0; i < n; i++) {
-                  if (p.col == i) {
-                      buff.append("Q");
-                  } else {
-                      buff.append(".");
-                  }
-              }
-              oneResult.add(buff.toString());
-              buff = new StringBuffer();
-
-          }
-          result.add(oneResult);
-          return;
-      }
-
-      for (int i = 0; i < n; i++) {
-          boolean foundSafe = true;
-          for (int j = 0; j < current; j++) {
-              if (positions[j].col == i || positions[j].col - positions[j].row == i - current || positions[j].row + positions[j].col == i + current) {
-                  foundSafe = false;
-                  break;
-              }
-          }
-          if (foundSafe) {
-              positions[current] = new Position(current, i);
-              solve(current + 1, positions, result, n);
-          }
-      }
-  }
+function addRow(board) {
+    let answer = [];
+    for (let i = 0; i < board.length; i++) {
+        let s = '';
+        for (let j = 0; j < board[i].length; j++) {
+            if (board[i][j]) {
+                s += 'Q';
+            } else {
+                s += '.';
+            }
+        }
+        answer.push(s);
+    }
+    return answer;
 }
