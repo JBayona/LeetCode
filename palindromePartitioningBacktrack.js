@@ -10,6 +10,7 @@ Output:
 ]
 https://leetcode.com/problems/palindrome-partitioning/
 */
+
 // Time O(n^2)
 var partition = function(s) {
     let result = [];
