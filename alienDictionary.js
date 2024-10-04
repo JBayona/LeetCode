@@ -33,6 +33,7 @@ const alienOrder = words => {
   // the ones with zero is the roots
   let count = {}
 
+  // Initialize everything in zero
   for (let word of words) {
     for (let i = 0; i < word.length; i++) {
         let c = word[i];
