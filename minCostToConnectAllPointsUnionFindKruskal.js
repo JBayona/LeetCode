@@ -10,12 +10,24 @@ is exactly one simple path between any two points.
 
 https://leetcode.com/problems/min-cost-to-connect-all-points/
 */
-
+// Time O(M * N)
+// Space O(M * N)
 var minCostConnectPoints = function (points) {
+  // Compute the Manhattan distance from all points
+  // to all points
+  /*
+  [
+   [ 0, 1, 4 ],  [ 0, 2, 13 ],
+   [ 0, 3, 7 ],  [ 0, 4, 7 ],
+   [ 1, 2, 9 ],  [ 1, 3, 3 ],
+   [ 1, 4, 7 ],  [ 2, 3, 10 ],
+   [ 2, 4, 14 ], [ 3, 4, 4 ]
+  ]
+  */
   let computed = computeManhattanDistance(points);
-  // Rank edges by weights
+  // Rank edges by weights, that will minimize
+  // the cost
   computed.sort((a, b) => a[2] - b[2]);
-  console.log(computed);
   //[from, to, weight (Manhattan distance)]
   /*
   [
@@ -26,13 +38,16 @@ var minCostConnectPoints = function (points) {
   [ 0, 2, 13 ], [ 2, 4, 14 ]
 ]
   */
+
   // Union find
   let parent = {};
   for (let i = 0; i < points.length; i++) {
     parent[i] = i;
   }
   // {0:0, 1:1, 2:2, 3:3, 4:4}
+
   let cost = 0;
+  // Look for all points
   for (let edge of computed) {
     let [x, y, val] = edge;
     // If they are not connected, we need to connect them
@@ -48,7 +63,6 @@ var minCostConnectPoints = function (points) {
 };
 
 function computeManhattanDistance(points) {
-  // let computed = new Array(points.length);
   let computed = [];
   // Get Manhattan distance
   for (let i = 0; i < points.length; i++) {
