@@ -36,7 +36,7 @@ var lastStoneWeight = function(stones) {
     // We can have two rocks with the same size and all rocks
     // are smashed, there are no more rocks to analyze
     // This can be translated to while(maxHeap.size() > 1)
-    while (maxHeap.size() !== 1 && !maxHeap.isEmpty()) {
+    while (maxHeap.size() > 1) {
         // Potentially weighter
         let stoneA = maxHeap.dequeue();
         let stoneB = maxHeap.dequeue();
