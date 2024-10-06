@@ -8,7 +8,6 @@ that CPU are doing different tasks or just be idle.
 You need to return the least number of intervals the CPU will take to finish all the given tasks.
 
 Example:
-
 Input: tasks = ["A","A","A","B","B","B"], n = 2
 Output: 8
 Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.
