@@ -24,7 +24,6 @@ Therefore, person #1 only need to give person #0 $4, and all debt is settled.
 
 https://leetcode.com/problems/optimal-account-balancing/description
 */
-
 // Time O(2^N)
 // Approach
 // Find the balance for each user by adding / resting the money "from" to "to"
