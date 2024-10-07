@@ -23,6 +23,21 @@ Explanation: We cannot do any operations on the string so the length remains the
 
 https://leetcode.com/problems/minimum-string-length-after-removing-substrings/description
 */
+// Option 1 - Stack
+var minLength = function (s) {
+  let stack = [];
+  for (let i = 0; i < s.length; i++) {
+    let c = s[i];
+    if (c === "B" && stack[stack.length - 1] === "A") {
+      stack.pop();
+    } else if (c === "D" && stack[stack.length - 1] === "C") {
+      stack.pop();
+    } else {
+      stack.push(c);
+    }
+  }
+  return stack.length;
+};
 
 // Option 2 Recursion
 var minLength = function (s) {
