@@ -1,7 +1,7 @@
 /*
 Detect a cycle in directed graph
 */
-
+// Time O(V + E)
 function hasCycleDirectedGraph(n, edges) {
   let graph = [];
   // Create graph
