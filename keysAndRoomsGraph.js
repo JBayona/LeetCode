@@ -26,13 +26,30 @@ https://leetcode.com/problems/keys-and-rooms/description/?envType=study-plan-v2&
 */
 
 // Time O (V + E) where V are vertices and E are edges
-var canVisitAllRooms = function (graph) {
+var canVisitAllRooms = function (rooms) {
   let visited = new Array(graph.length).fill(false);
   // Start with room 0 as the room is unlocked by default
   dfs(0, visited, graph);
   // All visited should be set to true
-  return visited.every((n) => n === true);
+  for (let i = 0; i < rooms.length; i++) {
+    if (visited[i] === false) {
+      return false;
+    }
+  }
+  return true;
 };
+
+function dfs(node, visited, rooms) {
+  // Room has been visited already
+  if (visited[node]) {
+    return;
+  }
+  // Mark as visited
+  visited[node] = true;
+  for (let r of rooms[node]) {
+    dfs(r, visited, rooms);
+  }
+}
 
 function dfs(node, visited, graph) {
   visited[node] = true;
