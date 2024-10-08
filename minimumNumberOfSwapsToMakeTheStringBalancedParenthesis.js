@@ -35,7 +35,6 @@ Explanation: The string is already balanced.
 https://leetcode.com/problems/minimum-number-of-swaps-to-make-the-string-balanced/description
 */
 
-// Option 2
 // Time O(N)
 var minSwaps = function (s) {
   let stack = [];
@@ -50,4 +49,21 @@ var minSwaps = function (s) {
   // The stack has the number of unbalanced parenthesis, so the minimum swaps we need to do
   // is the length of the stack / 2
   return stack.length / 2;
+};
+
+// Improved
+// Time O(N)
+var minSwaps = function (s) {
+  let open = 0;
+  for (let i = 0; i < s.length; i++) {
+    let c = s[i];
+    if (c === "[") {
+      open++;
+    } else if (c === "]" && open > 0) {
+      open--;
+    }
+  }
+  // Equivalent to the stack but with constant
+  // is the length of the stack / 2
+  return Math.floor((open + 1) / 2);
 };
