@@ -31,6 +31,7 @@ const splitMsg = (text, maxWidth) => {
   
   for (let word of words) {
       // We can fit words into a message
+      // currentLength + word.length + numWords + limitCounter <= maxWidth
       if(currentLength + word.length + numWords <= maxWidth) {
           line.push(word);
           currentLength += word.length;
