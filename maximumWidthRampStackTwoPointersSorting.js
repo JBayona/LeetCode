@@ -18,6 +18,31 @@ Explanation: The maximum width ramp is achieved at (i, j) = (2, 9): nums[2] = 1 
 https://leetcode.com/problems/maximum-width-ramp/description
 */
 
+// Option 2
+// Sorting
+var maxWidthRamp = function (nums) {
+  let index = [];
+  for (let i = 0; i < nums.length; i++) {
+    index[i] = i;
+  }
+
+  // Custom sort based on values
+  // index is sorted by the indexes of the elements with lower value
+  // if the values are the same, it's honored
+  index.sort((a, b) => (nums[a] !== nums[b] ? nums[a] - nums[b] : a - b));
+
+  // Minimum index encountered so far, a big index to start the base case
+  let minIndex = Infinity;
+  let result = 0;
+  // Calculate maximum width ramp
+  for (let i = 0; i < index.length; i++) {
+    result = Math.max(result, index[i] - minIndex);
+    minIndex = Math.min(minIndex, index[i]);
+  }
+
+  return result;
+};
+
 // Brute Force
 var maxWidthRamp = function (nums) {
   let result = 0;
