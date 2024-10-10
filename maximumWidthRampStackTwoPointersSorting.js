@@ -18,6 +18,35 @@ Explanation: The maximum width ramp is achieved at (i, j) = (2, 9): nums[2] = 1 
 https://leetcode.com/problems/maximum-width-ramp/description
 */
 
+// Option 1
+// Monotonic stack
+// Approach:
+// Build a monotonic stack with decreasing element indexes
+// Traverse from nums right to left, this will already guarantee that i < j and
+// if the number of right is greater than the top of the stack, we try to maximize results
+// Time O(N)
+var maxWidthRamp = function (nums) {
+  let stack = [];
+  // Push a monotonic stack, whenever the stack is empty or we have smaller
+  // values that the top of the stack
+  for (let i = 0; i < nums.length; i++) {
+    if (stack.length === 0 || nums[i] < nums[stack[stack.length - 1]]) {
+      stack.push(i);
+    }
+  }
+
+  // Get the maximum element traversing from right to left making sure that j > i and
+  // whenever we find a max, we try to update the result
+  let result = 0;
+  for (let i = nums.length - 1; i >= 0; i--) {
+    while (stack.length && nums[i] >= nums[stack[stack.length - 1]]) {
+      let pop = stack.pop();
+      result = Math.max(result, i - pop);
+    }
+  }
+  return result;
+};
+
 // Option 2
 // Sorting
 var maxWidthRamp = function (nums) {
