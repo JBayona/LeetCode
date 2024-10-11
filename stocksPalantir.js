@@ -29,6 +29,7 @@ const getPortafolio = (port) => {
           let arr = date.split('/');
           let month = Number(arr[0]);
           let day = Number(arr[1]);
+          // Track the dates we want to get the result
           dates.add(date);
           // Javascript dates are 0-index based
           let numDaysOfMonth = getDaysInMonth(2024, month - 1);
