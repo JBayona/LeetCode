@@ -13,6 +13,7 @@
 // Output:
 //     [(5/1, 300), (5/5, 450), (5/8, 400)]
 
+// Option 1
 const getPortafolio = (port) => {
   let hash = {};
   let dates = new Set();
