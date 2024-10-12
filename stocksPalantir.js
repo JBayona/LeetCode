@@ -13,8 +13,47 @@
 
 // Output:
 //     [(5/1, 300), (5/5, 450), (5/8, 400)]
-// Option 1
 const getPortafolio = (port) => {
+  let data = [];
+  let dates = new Set();
+  for (let i = 0; i < port.length; i++) {
+    let stock = port[i];
+    let hash = {};
+    for (let row of stock) {
+      let [dt, p] = row;
+      hash[dt] = p;
+      dates.add(dt);
+    }
+    data.push(hash);
+  }
+  console.log(data);
+  console.log(dates);
+
+  let lastSeen = new Array(dates.size).fill(null);
+  let index = 0;
+  let result = [];
+  for (let date of dates) {
+    let sum = 0;
+    let index = 0;
+    for (let row of data) {
+      // Exact date match
+      if (date in row) {
+        sum += row[date];
+        // Save the last seen on each stock
+        lastSeen[index] = date;
+      } else if(lastSeen[index] !== null && lastSeen[index] in row) {
+        let prev = lastSeen[index];
+        sum += row[prev];
+      }
+      index++;
+    }
+    result.push([date, sum]);
+  }
+  return result
+} 
+
+// Option 1
+const getPortafolio2 = (port) => {
   let hash = {};
   let dates = new Set();
   for (let i = 0; i < port.length; i++) {
