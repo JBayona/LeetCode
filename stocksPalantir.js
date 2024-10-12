@@ -42,6 +42,7 @@ const getPortafolio = (port) => {
         // Save the last seen on each stock
         lastSeen[index] = date;
       } else if(lastSeen[index] !== null && lastSeen[index] in row) {
+        // If there´s no exact match, take the last value
         let prev = lastSeen[index];
         sum += row[prev];
       }
