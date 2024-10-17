@@ -22,7 +22,6 @@ Explanation: It is the only correct answer in this case.
 
 https://leetcode.com/problems/longest-happy-string/
 */
-
 // Time O(Log M) creating and fetch is O(1)
 // Space O(N)
 var longestDiverseString = function (a, b, c) {
