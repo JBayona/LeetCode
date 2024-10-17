@@ -16,7 +16,6 @@ Explanation: No swap.
 
 https://leetcode.com/problems/maximum-swap/
 */
-
 // Time O(N)
 // Space O(1)
 // 1. Find the increasing pivot point
