@@ -4,7 +4,6 @@ Given a binary tree, write a function to get the maximum width of the given tree
 The width of one level is defined as the length between the end-nodes (the leftmost and right most non-null nodes in the level, where the null nodes between the end-nodes are also counted into the length calculation.
 
 Example 1:
-
 Input: 
 
            1
