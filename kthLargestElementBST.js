@@ -1,6 +1,5 @@
 // Find the Kth largest element of a BST
 
-
 // Approach populate the left pointers of the leaf nodes to appropriate parents.
 // Hence, we won't need a stack to store the elements and eliminate the O(N) space by storing the pointers
 // When there is no right element, it means we are at kth largest element currently, and subsequently we
@@ -46,4 +45,30 @@ function kthLargest(root, k) {
   }
 
   return result;
+}
+
+// Time O(N)
+// Space O(1)
+function kthLargest(root, k) {
+  const stack = [];
+  let current = root;
+  let count = 0;
+
+  while (current || stack.length) {
+    // Traverse to the rightmost node
+    while (current) {
+      stack.push(current);
+      current = current.right;
+    }
+
+    // Process the node
+    current = stack.pop();
+    count++;
+    if (count === k) {
+      return current.val;
+    }
+
+    // Move to the left subtree
+    current = current.left;
+  }
 }
