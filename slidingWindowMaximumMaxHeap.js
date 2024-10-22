@@ -55,3 +55,35 @@ var maxSlidingWindow = function(nums, k) {
   }
   return result;
 };
+
+// Run two loops. In the outer loop, take all subarrays of size K.
+// In the inner loop, get the maximum of the current subarray.
+//  O((n-k+1)*k) which can also be written as O(N * K).
+var maxSlidingWindow = function(nums, k) {
+    let result = [];
+    let max = Number.MIN_SAFE_INTEGER;
+    for(let i = 0; i < nums.length - k + 1; i++) {
+        max = nums[i];
+        for(let j = i; j < i + k; j++) {
+            max = Math.max(max, nums[j]);
+        }
+        result.push(max);
+    }
+    return result;
+};
+
+// Brute force
+// Time O(N^2)
+var maxSlidingWindow = function(nums, k) {
+    let result = [];
+    let max = Number.MIN_SAFE_INTEGER;
+    // There are n - k + 1 windows
+    for(let i = 0; i < nums.length - k + 1; i++) {
+        max = nums[i];
+        for(let j = 1 ; j < k; j++) {
+            max = Math.max(max, nums[i + j]);
+        }
+        result.push(max);
+    }
+    return result;
+};
