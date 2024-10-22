@@ -51,3 +51,47 @@ var kthLargestLevelSum = function (root, k) {
   }
   return maxHeap.dequeue();
 };
+
+
+// Option 2
+var kthLargestLevelSum = function (root, k) {
+  if (!root) {
+    return -1;
+  }
+
+  let maxHeap = new PriorityQueue({
+    compare: (a, b) => b - a,
+  });
+
+  let queue = [];
+  queue.push(root);
+  while (queue.length) {
+    let len = queue.length;
+    let sum = 0;
+    for (let i = 0; i < len; i++) {
+      let node = queue.shift();
+      sum += node.val;
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+    maxHeap.enqueue(sum);
+    //
+  }
+
+  // If the levels are less than K, return -1
+  if (maxHeap.size() < k) {
+    return -1;
+  }
+
+  // Get the Kth largest by level
+  let count = 0;
+  while (count < k - 1) {
+    maxHeap.dequeue();
+    count++;
+  }
+  return maxHeap.dequeue();
+};
