@@ -34,7 +34,6 @@ var MyCalendar = function () {
   this.bookings = []; // List to store all the booked events
 };
 
-
 MyCalendar.prototype.book = function (start, end) {
   // Check for overlaps with previously booked events
   for (let event of this.bookings) {
@@ -48,4 +47,48 @@ MyCalendar.prototype.book = function (start, end) {
   // No overlap, add the event to the bookings
   this.bookings.push([start, end]);
   return true;
+};
+
+// Option 2
+var MyCalendar = function () {
+  this.root = null;
+};
+
+class Node {
+  constructor(start, end, left = null, right = null) {
+    this.start = start;
+    this.end = end;
+    this.left = left;
+    this.right = right;
+  }
+  insert(node) {
+    if (this.start >= node.end) {
+      // This should be at the left
+      if (!this.left) {
+        this.left = node;
+        return true;
+      } else {
+        return this.left.insert(node);
+      }
+    } else if (this.end <= node.start) {
+      if (!this.right) {
+        this.right = node;
+        return true;
+      } else {
+        return this.right.insert(node);
+      }
+    } else {
+      return false;
+    }
+  }
+}
+
+MyCalendar.prototype.book = function (start, end) {
+  // First element
+  if (!this.root) {
+    this.root = new Node(start, end);
+    return true;
+  }
+
+  return this.root.insert(new Node(start, end));
 };
