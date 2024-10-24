@@ -30,6 +30,8 @@ In total, you spent $17 and covered all the days of your travel.
 
 https://leetcode.com/problems/minimum-cost-for-tickets/description
 */
+// Time O(N)
+// Space O(N)
 var mincostTickets = function (days, costs) {
   // index of ticket
   const [_1day, _7day, _30day] = [0, 1, 2];
