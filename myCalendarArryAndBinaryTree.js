@@ -30,108 +30,22 @@ https://leetcode.com/problems/my-calendar-i/
 */
 
 // Option 1
-var MyCalendar = function() {
-    this.arr = [];
+var MyCalendar = function () {
+  this.bookings = []; // List to store all the booked events
 };
 
-/** 
- * @param {number} start 
- * @param {number} end
- */
-function Interval(start, end) {
-    this.start = start;
-    this.end = end;
-}
 
-/** 
- * @param {number} start 
- * @param {number} end
- * @return {boolean}
- */
-MyCalendar.prototype.book = function(start, end) {
-    // First element or second element
-    if (!this.arr.length || this.arr[this.arr.length - 1].end <= start) {
-        this.arr.push(new Interval(start, end));
-        return true;
+MyCalendar.prototype.book = function (start, end) {
+  // Check for overlaps with previously booked events
+  for (let event of this.bookings) {
+    let [existingStart, existingEnd] = event;
+
+    // If there is an overlap, return false
+    if (start < existingEnd && end > existingStart) {
+      return false;
     }
-    
-    // The element should be in the first position
-    if (this.arr[0].start >= end) {
-        this.arr.unshift(new Interval(start, end));
-        return true;
-    }
-    
-    for(let i = 1; i < this.arr.length; i++) {
-        // Insert in the correct order
-        if (this.arr[i - 1].end <= start && this.arr[i].start >= end) {
-            this.arr.splice(i, 0, new Interval(start, end));
-            return true;
-        }
-    }
-    return false;
+  }
+  // No overlap, add the event to the bookings
+  this.bookings.push([start, end]);
+  return true;
 };
-
-/** 
- * Your MyCalendar object will be instantiated and called as such:
- * var obj = new MyCalendar()
- * var param_1 = obj.book(start,end)
- */
-
-// Option 2
-var MyCalendar = function() {
-    this.root = null;
-};
-
-/** 
- * @param {number} start 
- * @param {number} end
- */
-class Node {
-    constructor (start, end, left = null, right = null) {
-        this.start = start;
-        this.end = end;
-        this.left = left;
-        this.right = right;   
-    }
-    insert (node) {
-        if (this.start >= node.end) {
-            // This should be at the left
-            if (!this.left) {
-                this.left = node;
-                return true;
-            } else {
-                return this.left.insert(node);
-            }
-        } else if (this.end <= node.start) {
-            if (!this.right) {
-                this.right = node;
-                return true;
-            } else {
-                return this.right.insert(node);
-            }
-        } else {
-            return false;
-        }
-    }
-}
-
-/** 
- * @param {number} start 
- * @param {number} end
- * @return {boolean}
- */
-MyCalendar.prototype.book = function(start, end) {
-    // First element
-    if (!this.root) {
-        this.root = new Node(start, end);
-        return true;
-    }
-    
-    return this.root.insert(new Node(start, end)); 
-};
-
-/** 
- * Your MyCalendar object will be instantiated and called as such:
- * var obj = new MyCalendar()
- * var param_1 = obj.book(start,end)
- */
