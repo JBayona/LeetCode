@@ -18,57 +18,65 @@ https://leetcode.com/problems/number-of-matching-subsequences/
 */
 
 // Option 1
-var numMatchingSubseq = function(s, words) {
-    let result = 0;
-    for(let i = 0; i < words.length; i++) {
-        if(isSubsequence(words[i], s)) {
-            result++;
-        }
+var numMatchingSubseq = function (s, words) {
+  let result = 0;
+  for (let i = 0; i < words.length; i++) {
+    if (isSubsequence(words[i], s)) {
+      result++;
     }
-    return result;
+  }
+  return result;
 };
 
 // Time O(N) Where N is the length of T
 // Space O(1)
 // Check if "s" is a subsequence of "t"
-var isSubsequence = function(s, t) {
-    let index = 0;
-    for(let i = 0; i < t.length; i++) {
-        if(index < s.length && t[i] === s[index]) {
-            index++;
-        }
+var isSubsequence = function (s, t) {
+  let index = 0;
+  for (let i = 0; i < t.length; i++) {
+    if (index < s.length && t[i] === s[index]) {
+      index++;
     }
-    if(index === s.length) {
-        return true;
-    }
-    return false;
-}
-
-// Option 2
-var numMatchingSubseq = function(s, words) {
-    let result = 0;
-    for(let word of words) {
-        let start = 0;
-        let found = true;
-        for(c of word) {
-            let location = find(c, s, start);
-            // Not found
-            if(location < 0) {
-                found = false;
-                break;
-            }
-            start = location + 1;
-        }
-        if(found) {
-            result++;
-        }
-    }
-    return result;
+  }
+  if (index === s.length) {
+    return true;
+  }
+  return false;
 };
 
-// Find match based on initial position to end of string.
-function find(subsequence, str, start) {
-    let init = start || 0;
-    let s = str.slice(init);
-    return s.search(subsequence);
-}
+// Option 2
+var numMatchingSubseq = function (s, words) {
+  let map = {};
+  for (let i = 0; i < s.length; i++) {
+    let c = s[i];
+    if (!(c in map)) {
+      map[c] = [];
+    }
+  }
+
+  for (let word of words) {
+    let start = word[0];
+    if (start in map) {
+      map[start].push(word);
+    }
+  }
+
+  let result = 0;
+  for (let i = 0; i < s.length; i++) {
+    let c = s[i];
+    let arr = map[c];
+    let len = arr.length;
+    for (let j = 0; j < len; j++) {
+      let str = arr.shift();
+      // break down the word
+      if (str.substring(1).length === 0) {
+        result++;
+      } else {
+        if (str[1] in map) {
+          map[str[1]].push(str.substring(1));
+        }
+      }
+    }
+  }
+  return result;
+};
