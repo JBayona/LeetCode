@@ -24,31 +24,20 @@ Explanation: We can not enter room number 2 since the only key that unlocks it i
 
 https://leetcode.com/problems/keys-and-rooms/description/?envType=study-plan-v2&envId=graph-theory
 */
+
 // Time O (V + E) where V are vertices and E are edges
-var canVisitAllRooms = function (rooms) {
+var canVisitAllRooms = function (graph) {
   let visited = new Array(graph.length).fill(false);
   // Start with room 0 as the room is unlocked by default
   dfs(0, visited, graph);
   // All visited should be set to true
-  for (let i = 0; i < rooms.length; i++) {
+  for (let i = 0; i < graph.length; i++) {
     if (visited[i] === false) {
       return false;
     }
   }
   return true;
 };
-
-function dfs(node, visited, rooms) {
-  // Room has been visited already
-  if (visited[node]) {
-    return;
-  }
-  // Mark as visited
-  visited[node] = true;
-  for (let r of rooms[node]) {
-    dfs(r, visited, rooms);
-  }
-}
 
 function dfs(node, visited, graph) {
   visited[node] = true;
@@ -58,6 +47,19 @@ function dfs(node, visited, graph) {
     }
   }
 }
+
+// function dfs(node, visited, rooms) {
+//   // Room has been visited already
+//   if (visited[node]) {
+//     return;
+//   }
+//   // Mark as visited
+//   visited[node] = true;
+//   for (let r of rooms[node]) {
+//     dfs(r, visited, rooms);
+//   }
+// }
+
 
 // BFS
 // Time O (V + E) where V are vertices and E are edges
