@@ -17,6 +17,7 @@ https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-
 // that are not originall so we can identify how to come back, if we are
 // traversing from the original node, it means we are moving away, we need
 // the opposite direction, that's why we need to come back
+// We count for the routes that are moving away as we need to come back
 // Time O(V + E)
 var minReorder = function (n, connections) {
   let graph = {};
