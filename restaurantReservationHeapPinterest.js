@@ -140,7 +140,6 @@ class ReservationScheduler {
   init(reservations) {
     let heap = new PriorityQueue((a, b) => a.time - b.time);
     for (let reservation in reservations) {
-      console;
       let start = reservations[reservation].start;
       let end = reservations[reservation].end;
       let ppl = reservations[reservation].ppl;
