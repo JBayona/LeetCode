@@ -160,7 +160,7 @@ class ReservationScheduler {
     let intervals = [];
     while (!this.heap.isEmpty()) {
       let reservation = this.heap.dequeue();
-      // whille the time is within the boundaries and we still have capacity
+      // while the time is within the boundaries and we still have capacity
       if (reservation.time >= prev && reservation.time < this.close && currCap >= n) {
         intervals.push([prev, reservation.time]);
       }
