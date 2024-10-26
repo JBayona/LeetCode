@@ -161,6 +161,8 @@ class ReservationScheduler {
     while (!this.heap.isEmpty()) {
       let reservation = this.heap.dequeue();
       // while the time is within the boundaries and we still have capacity
+      // current cap specifies how many people we can receive and "n" is the number
+      // of ppl we want to find place
       if (reservation.time >= prev && reservation.time < this.close && currCap >= n) {
         intervals.push([prev, reservation.time]);
       }
