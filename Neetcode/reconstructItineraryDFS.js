@@ -62,7 +62,11 @@ function dfs(current, graph, result) {
   // Append the current airport to the result after all destinations are 
   // visited
   result.push(current);
-}var findItinerary = function (tickets) {
+}
+
+
+
+var findItinerary = function (tickets) {
   const graph = {};
 
   // Populate the flight map with each departure and arrival
