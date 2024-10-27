@@ -18,7 +18,6 @@ we can observe that for each pair,
 first element takes even position and second element takes odd position
 for example, 1 is appeared as a pair,
 so it takes 0 and 1 positions. similarly for all the pairs also.
-
 this pattern will be missed when single element is appeared in the array.
 
 From these points, we can implement algorithm.
