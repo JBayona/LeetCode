@@ -11,7 +11,6 @@ has no children.)
 
 https://leetcode.com/problems/smallest-string-starting-from-leaf/
 */
-
 // Option 1
 var smallestFromLeaf = function(root) {
     if(!root) {
