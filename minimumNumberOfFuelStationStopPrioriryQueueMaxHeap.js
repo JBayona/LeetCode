@@ -16,7 +16,6 @@ If it cannot reach the destination, return -1.
 Note that if the car reaches a gas station with 0 fuel left, the car can still refuel there.
 If the car reaches the destination with 0 fuel left, it is still considered to have arrived.
 
-
 Example 1:
 Input: target = 1, startFuel = 1, stations = []
 Output: 0
