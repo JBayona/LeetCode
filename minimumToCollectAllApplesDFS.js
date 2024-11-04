@@ -23,7 +23,6 @@ Output: 0
 
 https://leetcode.com/problems/minimum-time-to-collect-all-apples-in-a-tree/description/
 */
-
 /*
  You need to consume 2 seconds to simply collect an apple node (come and go)
 Consider a node:
