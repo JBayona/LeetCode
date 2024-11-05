@@ -32,6 +32,7 @@ we don't need to waste time on this node.
 we need to consume 2 seconds on this node anyway
 3. Collect node 0 does not need to consume any time
  */
+
 var minTime = function (n, edges, hasApple) {
   let visited = new Set();
   let graph = buildGraph(edges);
