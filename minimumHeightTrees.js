@@ -21,6 +21,7 @@ Output: [1]
 
 https://leetcode.com/problems/minimum-height-trees/
 */
+
 // Reference: https://www.youtube.com/watch?v=ivl6BHJVcB0
 var findMinHeightTrees = function (n, edges) {
   if (edges.length === 0) {
