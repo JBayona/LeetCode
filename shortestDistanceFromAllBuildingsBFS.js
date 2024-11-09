@@ -17,7 +17,7 @@ Note: There will be at least one building. If it is not possible to build such h
 https://tenderleo.gitbooks.io/leetcode-solutions-/GoogleHard/317.html
 https://medium.com/@null00/leetcode-shortest-distance-from-all-buildings-ff07c5bea11c
 */
-
+// Time O(M * N)
 function shortestDistanceFromAllBuildings(grid) {
   let ROW = grid.length;
   let COL = grid[0].length;
