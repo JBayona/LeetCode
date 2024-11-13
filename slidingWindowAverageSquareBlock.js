@@ -61,7 +61,6 @@ function toFormat(num) {
 // console.log(slidingWindow(array, size));
 
 // Part 2
-
 // We’ve added a percent threshold parameter. All other inputs remain the same.
 // Percent threshold is a floating point value representing a percentage (e.g. 0.05 is 5%), and it defines a range of +/- that percentage from 100. So a 5% threshold defines a range from 95-105%.
 
