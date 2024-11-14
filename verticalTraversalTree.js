@@ -88,12 +88,21 @@ var verticalTraversal = function(root) {
     let nodeCoordinates = {};
     preorder(root, nodeCoordinates, 0, 0);
     
+    /*
+    {
+    '0': [ { y: 0, val: 3 }, { y: -2, val: 15 } ],
+    '1': [ { y: -1, val: 20 } ],
+    '2': [ { y: -2, val: 7 } ],
+    '-1': [ { y: -1, val: 9 } ]
+    }
+    */
+    
     // Sort keys based on "x" as it's the key on the hash
     let sorkedKeysArray = Object.keys(nodeCoordinates)
         .map((element => Number(element))).sort((a,b) => a - b);
 
-    console.log(sorkedKeysArray);
-    console.log(nodeCoordinates);
+    // console.log(sorkedKeysArray);
+    // console.log(nodeCoordinates);
     
     let result = [];
     // Get elements in the array and
@@ -125,11 +134,10 @@ function preorder(node, nodeCoordinates, x, y) {
         return;
     }
     
-    if(x in nodeCoordinates) {
-        nodeCoordinates[x].push({y, val: node.val});
-    } else {
-        nodeCoordinates[x] = [{y, val: node.val}];
+    if(!(x in nodeCoordinates)) {
+        nodeCoordinates[x] = [];
     }
+    nodeCoordinates[x].push({y, val: node.val});
     // x and y based on the cartesian plane, the root node is 0,0
     preorder(node.left, nodeCoordinates, x - 1, y - 1);
     preorder(node.right, nodeCoordinates, x + 1, y - 1);
