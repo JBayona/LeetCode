@@ -34,7 +34,7 @@ Each node's value will be between 0 and 1000.
 https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/
 */
 
-// Time Complexity: O(NlogN), where NN is the number of nodes in the given tree.
+// Time O(V + E)
 // Space Complexity: O(N)
 
 // Option 1
