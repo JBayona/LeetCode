@@ -17,7 +17,6 @@ Output: [1,2,3,4]
 
 https://leetcode.com/problems/find-k-closest-elements/
 */
-
 // Time O(N)
 var findClosestElements = function (arr, k, x) {
   let start = 0;
