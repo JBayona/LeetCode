@@ -22,7 +22,6 @@ have finished course 1. So it is impossible.
 
 https://leetcode.com/problems/course-schedule/
 */
-
 // Time O(V+E) – where VV is the number of vertices and EE is the number of edges in the graph.
 // Space O(V+E) – where VV is the number of vertices and EE is the number of edges in the graph.
 // Directed Graph
