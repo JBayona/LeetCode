@@ -23,6 +23,7 @@ Explanation: You can swap s[0] = 'a' and s[1] = 'a' to get "aa", which is equal 
 
 https://leetcode.com/problems/buddy-strings/description 
 */
+
 // Time O(N)
 // Space O(1)
 var buddyStrings = function (s, goal) {
