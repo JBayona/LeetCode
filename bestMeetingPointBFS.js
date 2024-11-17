@@ -92,5 +92,5 @@ function isSafe(grid, row, col) {
   return (
       row >= 0 && row < ROW &&
       col >= 0 && col < COL
-);
+  );
 }
