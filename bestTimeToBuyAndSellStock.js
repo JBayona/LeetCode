@@ -24,7 +24,6 @@ var maxProfit = function(prices) {
     if (!prices.length) {
         return 0;
     }
-
     let result = 0;
     let min = Infinity;
     for (let i = 0; i < prices.length; i++) {
