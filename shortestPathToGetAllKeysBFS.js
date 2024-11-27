@@ -1,6 +1,5 @@
 /*
 You are given an m x n grid grid where:
-
 '.' is an empty cell.
 '#' is a wall.
 '@' is the starting point.
