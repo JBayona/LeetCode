@@ -30,7 +30,6 @@ Explanation: There is no path from the top left to the bottom-right cell.
 
 https://leetcode.com/problems/minimum-time-to-visit-a-cell-in-a-grid
 */
-
 // Time: MN Log(MN)
 // Space: MN
 var minimumTime = function (grid) {
