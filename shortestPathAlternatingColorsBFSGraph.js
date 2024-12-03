@@ -33,6 +33,7 @@ var shortestAlternatingPaths = function(n, redEdges, blueEdges) {
       let [from, to] = edge;
       graph[from].push({node: to, color: 0});
   }
+  
   // Create graph in blue edges
   for (let edge of blueEdges) {
       let [from, to] = edge;
