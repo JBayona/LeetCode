@@ -25,6 +25,7 @@ Explanation: "you" is not a prefix of any word in the sentence.
 
 https://leetcode.com/problems/check-if-a-word-occurs-as-a-prefix-of-any-word-in-a-sentence/description
 */
+
 // Time O(N)
 // Space O(1)
 var isPrefixOfWord = function (sentence, searchWord) {
