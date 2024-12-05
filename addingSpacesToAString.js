@@ -27,6 +27,7 @@ Output: " s p a c i n g"
 Explanation:
 We are also able to place spaces before the first character of the string.
 */
+
 // Option 1
 // Time O(N)
 // Space O(N)
