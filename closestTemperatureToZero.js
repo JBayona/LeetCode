@@ -2,7 +2,8 @@
 How to get the closest element to zero in an array. If both are the same, return the element
 which is possitive
 */
-
+// Time O(N)
+// Space O(N)
 function closestToZero(arr) {
   if (arr.length === 0) return null; // Handle empty array case
 
