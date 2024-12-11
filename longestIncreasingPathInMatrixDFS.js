@@ -5,6 +5,7 @@ move outside the boundary (i.e., wrap-around is not allowed).
 
 https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
 */
+
 // Time O(M * N)
 // Space O(M * N)
 var longestIncreasingPath = function(matrix) {
