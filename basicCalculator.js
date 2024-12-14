@@ -16,7 +16,6 @@ Output: 23
 
 https://leetcode.com/problems/basic-calculator/
 */
-
 // Option 1
 var calculate = function (s) {
   let resultStack = [];
