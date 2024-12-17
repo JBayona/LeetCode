@@ -21,7 +21,6 @@ Do not use the eval built-in library function.
 
 https://leetcode.com/problems/basic-calculator-ii/
 */
-
 var calculate = function(s) {
     if(!s) {
         return 0;
