@@ -1,7 +1,6 @@
 /*
-You are given a string s and an integer repeatLimit. Construct a new string repeatLimitedString using the
-characters of s such that no letter appears more than repeatLimit times in a row. You do not have to use
-all characters from s.
+You are given a string s and an integer repeatLimit. Construct a new string repeatLimitedString
+using the characters of s such that no letter appears more than repeatLimit times in a row. You do not have to use all characters from s.
 
 Return the lexicographically largest repeatLimitedString possible.
 A string a is lexicographically larger than a string b if in the first position where a and b differ
