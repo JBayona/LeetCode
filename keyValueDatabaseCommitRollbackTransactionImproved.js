@@ -6,7 +6,6 @@ Part 1:Create an in-memory database that accepts the following commands:
 3. void unset(String name): Delete the record <name>, making it just like that record was never set.
 4: int numWithValue(String value): Return the number of records that are currently set to. If no records equal that value, return 0.
 */
-
 /*
 Part 2: Implement the save point and rollback behavior by implementing the following commands:
 1. void begin(): Start a new transaction.
@@ -25,7 +24,6 @@ NOTE - FOR THE TRANSACTION SUPPORT, WE ALWAYS MODIFY THE VALUE TO THE CURRENT DA
 AS THE OPERATIONS WILL BE PERFORMED DIRECTLY TO THE HASH, BUT WE MAINTAIN A COPY OF THE CURRENT STATE
 SO WE HAVE THE OPTION TO ROLLBACK WHEN NEEDED.
 */
-
 // Part 1:
 class Database {
   constructor() {
