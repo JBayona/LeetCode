@@ -30,30 +30,25 @@ Check https://github.com/wey068/Facebook-Interview-Coding/blob/master/494.%20Tar
 // DFS + Memoization
 // Time O(2^N)
 // Space O(2^N)
-var findTargetSumWays = function(nums, S) {
-  // Index
-  let i = 0;
+var findTargetSumWays = function (nums, target) {
+  let index = 0;
   let memo = {};
-  return dfs(nums, S, i, memo);
+  return dfs(nums, target, index, memo);
 };
 
-function dfs(nums, sum, i, memo) {
-  // Generate the key
-  let key = i + ":" + sum;
-  if(key in memo) {
-   return memo[key];
+function dfs(nums, target, index, memo) {
+  let key = index + ":" + target;
+  if (key in memo) {
+    return memo[key];
   }
 
-  // Count the number of ways if the sum is equal to 0, we should use the number of element in our input array
-  if(i === nums.length) {
-   return sum === 0 ? 1 : 0;
+  if (index === nums.length) {
+    return target === 0 ? 1 : 0;
   }
 
   // Invert the signs here to reach the 0 depending if we need to add or substract
-  let add = dfs(nums, sum - nums[i], i + 1, memo);
-  let minus = dfs(nums, sum + nums[i], i + 1, memo);
-
-  // Save our partial response
+  let add = dfs(nums, target + nums[index], index + 1, memo);
+  let minus = dfs(nums, target - nums[index], index + 1, memo);
   memo[key] = add + minus;
   return add + minus;
 }
