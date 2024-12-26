@@ -28,6 +28,8 @@ Check https://github.com/wey068/Facebook-Interview-Coding/blob/master/494.%20Tar
 */
 
 // DFS + Memoization
+// Time O(2^N)
+// Space O(2^N)
 var findTargetSumWays = function(nums, S) {
   // Index
   let i = 0;
