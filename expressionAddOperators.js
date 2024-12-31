@@ -72,6 +72,7 @@ function dfs(result, str, num, target, index, eval, mult) {
   }
 }
 
+
 num = "123";
 target = 6;
 console.log(addOperators(num, target));
