@@ -1,6 +1,7 @@
 /*
 Problem: Design an algorithm to encode a list of strings to a string. The encoded string is
-then sent over the network and is decoded back to the original list of strings. Please implement encode and decode
+then sent over the network and is decoded back to the original list of strings.
+Please implement encode and decode
 
 Example(s):
 
@@ -14,7 +15,6 @@ method is: “we:;say:;:::;yes”
 
 https://leetcode.com/problems/encode-and-decode-strings/
 */
-
 
 /**
  * Encodes a list of strings to a single string.
