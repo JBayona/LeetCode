@@ -35,7 +35,7 @@ var topKFrequent = function(nums, k) {
         compare: (a, b) => a.count - b.count
     });
     
-    // Insert and remove if the size becomes larget than the desire
+    // Insert and remove if the size becomes larger than the desire
     // size, we only want size k, removes the smallets ones
     for (let prop in hash) {
         heap.enqueue({number: prop, count: hash[prop]});
