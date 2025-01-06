@@ -15,6 +15,37 @@ Output: false
 https://leetcode.com/problems/valid-anagram/description/
 */
 
+// Time O(N)
+// Space O(N)
+var isAnagram = function (s, t) {
+  if (s.length !== t.length) {
+    return false;
+  }
+
+  let counter = getFrequency(s);
+
+  for (let i = 0; i < t.length; i++) {
+    let c = t[i];
+    if (!(c in counter) || counter[c] === 0) {
+      return false;
+    }
+    counter[c]--;
+  }
+  return true;
+};
+
+function getFrequency(str) {
+  let map = {};
+  for (let i = 0; i < str.length; i++) {
+    let c = str[i];
+    if (!(c in map)) {
+      map[c] = 0;
+    }
+    map[c]++;
+  }
+  return map;
+}
+
 var isAnagram = function (s, t) {
   let map1 = getFrequency(s);
   let map2 = getFrequency(t);
