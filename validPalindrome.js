@@ -12,7 +12,6 @@ Input: "race a car"
 Output: false
 
 https://leetcode.com/problems/valid-palindrome/description/
-
 */
 /**
  * @param {string} s
