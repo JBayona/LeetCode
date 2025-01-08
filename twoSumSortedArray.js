@@ -19,7 +19,6 @@ Explanation: The sum of 2 and 7 is 9. Therefore index1 = 1, index2 = 2.
 
 https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
 */
-
 /**
  * @param {number[]} numbers
  * @param {number} target
