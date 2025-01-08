@@ -11,6 +11,7 @@ For example:
 Given [100,4,200,1,3,2] the longest consecutive sequence is [1,2,3,4];
 So, the result is 4
 /
+
 /*
   1 2 3 4.     100.       200
 |------------------------------|
