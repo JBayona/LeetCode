@@ -13,6 +13,7 @@ This particular chain requires 19 steps before it hits 1.
 The Collatz conjecture says that all such chains will in fact hit 1 eventually.
 Calling 1 the end of a chain, for what integer less than a million is the Collatz chain the longest?
 */
+
 // Time O(N)
 // Space O(1)
 const collatz = function (limit) {
