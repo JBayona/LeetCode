@@ -1,6 +1,5 @@
 /*
 Take a positive integer, like 9, and apply the following rule:
-
 if its odd multiply it by 3 and add 1
 if its even, divide it in half.
 For example, applying this rule to 9 yields 28
