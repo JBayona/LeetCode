@@ -21,6 +21,8 @@ Answer = 632 + 6357 + 6354 + 654 = 13997
 
 https://www.geeksforgeeks.org/sum-numbers-formed-root-leaf-paths/
 */
+// Time O(N)
+// Space O(N)
 function TreeNode(val, left, right) {
   this.val = val;
   this.left = left || null;
