@@ -20,25 +20,25 @@ https://leetcode.com/problems/contains-duplicate/
 */
 // Time O(N)
 // Space O(N)
-var containsDuplicate = function(nums) {
-    let set = new Set(nums);
-    return set.size !== nums.length ? true : false;
+var containsDuplicate = function (nums) {
+  let set = new Set(nums);
+  return set.size !== nums.length ? true : false;
 };
 
 // Option 2
-var containsDuplicate = function(nums) {
-	let hash = {};
+var containsDuplicate = function (nums) {
+  let hash = {};
 
-	if(nums.length === 0) {
-        return false;
-	}
+  if (nums.length === 0) {
+    return false;
+  }
 
-	for(let i = 0; i < nums.length; i++) {
-        if(nums[i] in hash) {
-            return true;
-        } else {
-            hash[nums[i]] = true;
-        }
-	}
-	return false;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] in hash) {
+      return true;
+    } else {
+      hash[nums[i]] = true;
+    }
+  }
+  return false;
 };
