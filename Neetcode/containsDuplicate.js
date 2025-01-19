@@ -25,6 +25,7 @@ var containsDuplicate = function(nums) {
     return set.size !== nums.length ? true : false;
 };
 
+// Option 2
 var containsDuplicate = function(nums) {
 	let hash = {};
 
