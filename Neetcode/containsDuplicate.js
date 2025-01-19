@@ -18,7 +18,8 @@ Output: true
 
 https://leetcode.com/problems/contains-duplicate/
 */
-
+// Time O(N)
+// Space O(N)
 var containsDuplicate = function(nums) {
     let set = new Set(nums);
     return set.size !== nums.length ? true : false;
