@@ -16,6 +16,8 @@ So, the result is 4
   1 2 3 4.     100.       200
 |------------------------------|
 */
+// Time O(N)
+// Space O(N)
 var longestConsecutive = function (nums) {
   let result = 0;
   let set = new Set(nums);
