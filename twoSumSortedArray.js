@@ -24,6 +24,8 @@ https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/description/
  * @param {number} target
  * @return {number[]}
  */
+// Time O(N)
+// Space O(N)
 var twoSum = function(numbers, target) {
     let left = 0;
     let right = numbers.length - 1;
