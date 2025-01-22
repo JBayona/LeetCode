@@ -13,7 +13,6 @@ Output: 9
 
 https://leetcode.com/problems/trapping-rain-water/description/
 */
-
 // Time O(N)
 // Space O(N
 var trap = function (array) {
