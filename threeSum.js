@@ -110,7 +110,7 @@ var threeSum = function (nums) {
   return result;
 };
 
-// Option 1
+// Option 2
 var threeSum = function (nums) {
   // Sort the array to handle easier
   nums.sort((a, b) => a - b);
@@ -145,7 +145,7 @@ var threeSum = function (nums) {
   return result;
 };
 
-// Option 2
+// Option 3
 function threeSum(nums) {
   //Ordena los elementos de menor a mayor, con esto evitamos números repetidos.
   nums.sort((a, b) => a - b);
