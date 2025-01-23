@@ -24,6 +24,8 @@ The substring "BBBB" has the longest repeating letters, which is 4.
  https://leetcode.com/problems/longest-repeating-character-replacement/
 */
 // Option 1
+// Time O(N)
+// Space O(N)
 var characterReplacement = function (s, k) {
   let hash = {};
   let mostFreqChar = 0;
