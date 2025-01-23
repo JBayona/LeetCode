@@ -24,6 +24,7 @@ https://leetcode.com/problems/find-all-anagrams-in-a-string/discuss/92007/slidin
 */
 // Option 1
 // Time O(N)
+// Space O(N)
 var lengthOfLongestSubstring = function (s) {
   if (!s.length) {
     return 0;
