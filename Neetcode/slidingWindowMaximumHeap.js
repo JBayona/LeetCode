@@ -5,8 +5,8 @@ Each time the sliding window moves right by one position. Return the max sliding
 
 Follow up:
 Could you solve it in linear time?
-Example:
 
+Example:
 Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3
 Output: [3,3,5,5,6,7] 
 Explanation: 
@@ -29,7 +29,6 @@ Constraints:
 
 https://leetcode.com/problems/sliding-window-maximum/
 */
-
 // Time O(NLog N)
 var maxSlidingWindow = function(nums, k) {
     let result = [];
