@@ -31,6 +31,8 @@ Explanation:
 
 https://leetcode.com/problems/evaluate-reverse-polish-notation/
 */
+// Time O(N)
+// Space O(N)
 var evalRPN = function(tokens) {
     let stack = [];
     for(let i = 0; i < tokens.length; i++) {
