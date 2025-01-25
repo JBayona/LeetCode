@@ -12,7 +12,7 @@ For example, given n = 3, a solution set is:
 
 https://leetcode.com/problems/generate-parentheses/description/
 */
-
+// Time O(N)
 var generateParenthesis = function(n) {
     let result = [];
     helper(n, n, '', result);
