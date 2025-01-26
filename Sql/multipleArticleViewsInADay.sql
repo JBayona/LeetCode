@@ -25,3 +25,15 @@ WHERE viewer_id IN (
     HAVING COUNT(DISTINCT article_id) > 1
 )
 ORDER BY viewer_id;
+
+-- Option 2
+WITH MULTIPLE_VIEWERS AS (
+  SELECT viewer_id
+  FROM playground.views
+  GROUP BY viewer_id, view_date
+  HAVING COUNT(DISTINCT article_id) > 1
+)
+SELECT DISTINCT viewer_id
+FROM MULTIPLE_VIEWERS
+WHERE viwer_id IN (MULTIPLE_VIEWERS)
+ORDER BY viewer_id
