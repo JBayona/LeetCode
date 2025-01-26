@@ -35,7 +35,6 @@ Then, the fleet at 4 (speed 2) and the car at position 5 (speed 1) become one fl
 
 https://leetcode.com/problems/car-fleet/description/
 */
-
 // Time O(NLogN)
 // Approach
 // 1. Sort the cards in descending order of position
