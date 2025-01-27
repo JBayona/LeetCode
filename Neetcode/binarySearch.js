@@ -18,7 +18,6 @@ https://leetcode.com/problems/binary-search/description/
 Binary Search Algorithm
 Time Complexity O(log(N))
 */
-
 var search = function(nums, target) {
     let mid = 0;
     let start = 0;
