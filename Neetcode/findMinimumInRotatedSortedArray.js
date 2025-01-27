@@ -28,7 +28,6 @@ Explanation: The original array was [11,13,15,17] and it was rotated 4 times.
 
 https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
 */
-
 // Time O(LogN)
 // if nums[min] > nums: it's sure that min element is in the left part of array
 // else we know min element is in the right side
