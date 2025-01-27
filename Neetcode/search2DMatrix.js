@@ -15,6 +15,7 @@ Output: false
 
 https://leetcode.com/problems/search-a-2d-matrix/
 */
+
 // Time: O(NLog(M))
 var searchMatrix = function(matrix, target) {
   let len = matrix.length;
