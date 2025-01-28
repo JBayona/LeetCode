@@ -6,6 +6,7 @@ function ListNode(val, next) {
   this.val = val;
   this.next = next || null;
 }
+
 // Iterative
 // Time O(N)
 function reverseList(list) {
