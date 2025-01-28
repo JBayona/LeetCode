@@ -4,7 +4,6 @@ After removing the second node from the end, the linked list becomes 1->2->3->5.
 
 https://leetcode.com/problems/remove-nth-node-from-end-of-list/
 */
-
 function ListNode(val, node){
   this.val = val;
   this.next = node ? node : null;
