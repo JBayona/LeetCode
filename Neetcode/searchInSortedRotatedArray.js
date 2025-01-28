@@ -7,6 +7,7 @@ You may assume no duplicate exists in the array.
 https://leetcode.com/problems/search-in-rotated-sorted-array/description/
 */
 // Option 1
+// Time O(NLogN)
 var search = function (nums, target) {
   // Find the pivot where the rotation ends
   let pivot = find(nums, 0, nums.length - 1);
