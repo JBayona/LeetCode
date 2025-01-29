@@ -5,7 +5,6 @@ have the same value.
 
 https://leetcode.com/problems/same-tree/description/
 */
-
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
