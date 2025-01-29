@@ -14,7 +14,8 @@ Note: The length of path between two nodes is represented by the number of edges
 
 https://leetcode.com/problems/diameter-of-binary-tree/
 */
-
+// Time O(N)
+// Space O(1)
 var diameterOfBinaryTree = function(root) {
   if(!root) {
     return 0;
