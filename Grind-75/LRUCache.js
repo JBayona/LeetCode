@@ -12,6 +12,18 @@ https://leetcode.com/problems/lru-cache/description/
 */
 
 /**
+
+General idea:
+1. The head always has the most recent nodde.
+2. Whenever we apply an operation on the node, we need to update the pointers
+3. The map is used to store the key and the node
+4. The node has a key, value, prev and next pointers
+5. The head node has prev as null
+6. The end node has next as null
+7. The head node is the most recent node
+8. The end node is the least recent node
+9. The size is the capacity of the cache
+
 - HEAD node has prev as null
 - END/TAIL node has next as null
         HEAD                          END
@@ -39,9 +51,9 @@ class Node {
 /*Utility functions*/
 LRUCache.prototype.remove = function (node) {
   /*
-        If node.prev is not null, that means that the node to
-        remove is not the head node, so we need to update the
-        pointers
+          If node.prev is not null, that means that the node to
+          remove is not the head node, so we need to update the
+          pointers
         */
   // Update node's prev pointers
   if (node.prev !== null) {
@@ -66,12 +78,16 @@ LRUCache.prototype.remove = function (node) {
 };
 
 LRUCache.prototype.setHead = function (node) {
-  /*Cada que creamos un nueno nodo, el next debe
-      apuntar al head, que es el nodo anterior
-      mas "actual"*/
+  /*
+          Cada que creamos un nueno nodo, el next debe
+          apuntar al head, que es el nodo anterior
+          mas "actual
+        "*/
   node.next = this.head;
-  /*El prev es null porque no hay nodos mas
-      recuentes en ese momento*/
+  /*
+          El prev es null porque no hay nodos mas
+          recuentes en ese momento
+        */
   node.prev = null;
   // As we have a new node, we need to update
   // the "old new" node to point to the new node
@@ -80,9 +96,11 @@ LRUCache.prototype.setHead = function (node) {
   }
   /*El nuevo head es nuestro nodo*/
   this.head = node;
-  /*Si es el primer nodo, entonces end
-      debe tener el head también que es el
-      mismo nodo*/
+  /*
+          Si es el primer nodo, entonces end
+          debe tener el head también que es el
+          mismo nodo
+        */
   if (this.end === null) {
     this.end = this.head;
   }
