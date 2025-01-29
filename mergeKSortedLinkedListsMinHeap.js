@@ -2,7 +2,6 @@
 Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity.
 
 Example:
-
 Input:
 [
   1->4->5,
