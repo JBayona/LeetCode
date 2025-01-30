@@ -20,7 +20,6 @@ Binary tree [1,2,3], return false.
 
 https://leetcode.com/problems/validate-binary-search-tree/description/
 */
-
 // Time O(N)
 var isValidBST = function(root) {
   return isValid(root, -Infinity, Infinity);
