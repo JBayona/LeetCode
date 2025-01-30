@@ -25,7 +25,6 @@ Explanation: Root is considered as good.
 
 https://leetcode.com/problems/count-good-nodes-in-binary-tree/
 */
-
 // DFS
 var goodNodes = function(root) {
     let max = {n: 0};
