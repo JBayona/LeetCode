@@ -6,7 +6,6 @@ You may assume that duplicates do not exist in the tree.
 https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/description/
 http://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-traversal/
 */
-
 // You may think why do we need both the preorder and inorder arrays?
 // Because if we simply have only 1 of them, we don't know whether the elements are
 // left or right children. Image a preorder of: [1,2,3]
