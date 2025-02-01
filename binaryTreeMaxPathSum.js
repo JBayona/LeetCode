@@ -21,6 +21,7 @@ Output: 42
 
 https://leetcode.com/problems/binary-tree-maximum-path-sum/
 */
+
 // Opción 1
 var maxPathSum = function(root) {
     // Result
