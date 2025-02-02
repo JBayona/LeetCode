@@ -32,7 +32,6 @@ Example 2:
 Input:
 ["KthLargest", "add", "add", "add", "add"]
 [[4, [7, 7, 7, 7, 8, 3]], [2], [10], [9], [9]]
-
 Output: [null, 7, 7, 7, 8]
 
 Explanation:
