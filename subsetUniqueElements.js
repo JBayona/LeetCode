@@ -19,7 +19,6 @@ If nums = [1,2,3], a solution is:
 
 https://leetcode.com/problems/subsets/description/
 */
-
 // Time O(N 2^N)
 // Space O(N)
 var subsets = function (nums) {
@@ -39,7 +38,7 @@ function helper(nums, result, tmp, index) {
   }
 }
 
-// Time O(N×2^N)
+// Time O(N * 2^N)
 // Space O(N)
 var subsets = function (nums) {
   let tmp = [];
