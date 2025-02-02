@@ -19,7 +19,6 @@ we combine 1 and 1 to get 0 so the array converts to [1] then that's the value o
 
 https://leetcode.com/problems/last-stone-weight/
 */
-
 // Max heap, min heap
 // Insert N(Log N)
 // Read O(1)
