@@ -5,7 +5,6 @@ Note: The solution set must not contain duplicate subsets.
 
 For example,
 If nums = [1,2,2], a solution is:
-
 [
   [2],
   [1],
@@ -17,7 +16,6 @@ If nums = [1,2,2], a solution is:
 
 https://leetcode.com/problems/subsets-ii/description/
 */
-
 // Time O(2^N)
 // Space O(N)
 var subsetsWithDup = function (nums) {
