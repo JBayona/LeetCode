@@ -29,7 +29,6 @@ A solution set is:
 
 https://leetcode.com/problems/combination-sum-ii/description/
 */
-
 // Time O(2^N)
 // Space O(N)
 var combinationSum2 = function(candidates, target) {
@@ -72,7 +71,7 @@ function helper(array, target, tmp, result, start) {
         // Cambiandolo i por start, te da todas las posibles combinaciones, permutando el número
         // i.e [2,2,3], [3,2,2], [2,3,2], [7]
         // THE I + 1 IS GOING TO GIVE US UNIQUE COMBINATIONS
-        helper(array, target - array[i], tmp.concat(), result, i+1);
+        helper(array, target - array[i], tmp.concat(), result, i + 1);
         tmp.pop();
     }
 }
