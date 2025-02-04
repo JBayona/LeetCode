@@ -16,18 +16,18 @@ word = "ABCB", -> returns false.
 
 https://leetcode.com/problems/word-search/description/
 */
-// Time O(M * N)
-// Space O(M * N)
-var exist = function(board, word) {
-  if(!board.length || !word) {
-      return false;
+
+var exist = function (board, word) {
+  if (!board.length || !word) {
+    return false;
   }
-  
-  for(let i = 0; i < board.length; i++) {
-    for(let j = 0; j < board[i].length; j++) {
-      // Check if we find the first letter of the word
-      if(board[i][j] === word[0]) {
-        if(dfs(board, word, i, j, 0)) {
+
+  let ROW = board.length;
+  let COL = board[0].length;
+  for (let i = 0; i < ROW; i++) {
+    for (let j = 0; j < COL; j++) {
+      if (board[i][j] === word[0]) {
+        if (dfs(board, word, i, j, 0)) {
           return true;
         }
       }
@@ -36,46 +36,45 @@ var exist = function(board, word) {
   return false;
 };
 
-function dfs(board, word, row, col, count) {
-  // We found the word
-  // Break condition
-  if(count === word.length) {
+function dfs(board, word, row, col, index) {
+  // If the word is found
+  if (index === word.length) {
     return true;
   }
 
-  // We are out of limits
-  if(!isSafe(board, word, row, col, count)) {
+  // If the move is not valid
+  if (!isSafe(board, word, row, col, index)) {
     return false;
   }
-  
-  // The same letter can be used only once
-  let tmp = board[row][col];
-  board[row][col] = ' '; // Just set empty space to not use it again
 
-  let found = dfs(board, word, row + 1, col, count + 1) ||
-              dfs(board, word, row - 1, col, count + 1) ||
-              dfs(board, word, row, col + 1, count + 1) ||
-              dfs(board, word, row, col - 1, count + 1)
-  
-  // Reset the letter
+  let tmp = board[row][col];
+  board[row][col] = " ";
+  let isFound =
+    dfs(board, word, row + 1, col, index + 1) ||
+    dfs(board, word, row, col + 1, index + 1) ||
+    dfs(board, word, row - 1, col, index + 1) ||
+    dfs(board, word, row, col - 1, index + 1);
+
   board[row][col] = tmp;
-  return found;
+  return isFound;
 }
 
-function isSafe(board, word, row, col, count) {
+function isSafe(board, word, row, col, index) {
   let ROW = board.length;
   let COL = board[0].length;
   return (
-    row >= 0 && row < ROW &&
-    col >= 0 && col < COL &&
-    board[row][col] === word[count]
+    row >= 0 &&
+    row < ROW &&
+    col >= 0 &&
+    col < COL &&
+    board[row][col] === word[index]
   );
 }
 
 board = [
-    ["A","B","C","E"],
-    ["S","F","C","S"],
-    ["A","D","E","E"]
+  ["A", "B", "C", "E"],
+  ["S", "F", "C", "S"],
+  ["A", "D", "E", "E"],
 ];
 // word = "ABCCED"
 word = "SEE";
