@@ -9,32 +9,53 @@ You may assume all four edges of the grid are all surrounded by water.
 https://leetcode.com/problems/number-of-islands/description/
 */
 
+// Time O(M * N)
+// Space O(M * N)
 var numIslands = function(grid) {
-  if(grid.length === 0) return 0;
-  grid = grid.map(item => [...item].map(Number));
-  let row = grid.length;
-  let column = grid[0].length;
-  let count = 0;
-  /*Matrix to define visited cells, at the
-  ver beginnig all are unvisited*/
-  let visited = []
-  for(let i = 0; i < row; i++){
-    visited[i] = new Array(column).fill(false);
+  let ROW = grid.length;
+  let COL = grid[0].length;
+
+  let visited = new Array(ROW);
+  for (let i = 0 ; i < ROW; i++) {
+    visited[i] = new Array(COL).fill(false);
   }
 
-  for(let i = 0; i < row; i++){
-    for(let j = 0; j < column; j++){
-      /*Si tenemos un uno y no ha sido visitado*/
-      if(grid[i][j] === 1 && !visited[i][j]){
+  let result = 0;
+  for (let i = 0; i < ROW; i++) {
+    for (let j = 0; j < COL; j++) {
+      if (grid[i][j] === '1' && visited[i][j] === false) {
         visited[i][j] = true;
-        dfs(grid, i, j, visited);
-        /*Estamos contando componentes*/
-        count++;
+        dfs(grid, visited, i, j);
+        result++;
       }
     }
   }
-  return count;
+  return result;
 };
+
+function dfs(grid, visited, row, col) {
+  let rowK = [0, -1, 0, 1];
+  let colK = [-1, 0, 1, 0];
+  for (let i = 0; i < 4; i++) {
+    let nextRow = row + rowK[i];
+    let nextCol = col + colK[i];
+    if (isSafe(grid, visited, nextRow, nextCol)) {
+      visited[nextRow][nextCol] = true;
+      dfs(grid, visited, nextRow, nextCol);
+    }
+  }
+}
+
+function isSafe(grid, visited, row, col) {
+  let ROW = grid.length;
+  let COL = grid[0].length;
+  return (
+    row >= 0 && row < ROW &&
+    col >= 0 && col < COL &&
+    visited[row][col] === false &&
+    grid[row][col] === "1"
+  );
+}
 
 /*Función para hacer DFS a una matriz, considera a sus 8 vecinos*/
 function dfs(grid, row, column, visited){
