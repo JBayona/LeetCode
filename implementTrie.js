@@ -23,7 +23,6 @@ Time:
 
 Space:
 - O(m * n)
-
 n is the number of words and m is the length of the words
 */
 var Trie = function() {
