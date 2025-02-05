@@ -20,72 +20,89 @@ https://leetcode.com/problems/add-and-search-word-data-structure-design/descript
 /**
  * Initialize your data structure here.
  */
-var WordDictionary = function() {
-    this.trie = {children: {}, count: 0, isWord: false};
+
+var WordDictionary = function () {
+  this.trie = { children: {}, count: 0, isWord: false };
 };
 
-/** 
+/**
+ * Adds a word into the data structure.
  * @param {string} word
  * @return {void}
  */
-WordDictionary.prototype.addWord = function(word) {
-    let node = this.trie;
-    for (let i = 0; i < word.length; i++) {
-        let c = word[i];
-        // Find the node or create a new node
-        node.children[c] = node.children[c] || {children: {}, count: 0, isWord: false};
-        // Move the node
-        node = node.children[c];
-        // Increment the node count
-        node.count++;
-    }
-    // Set the variable if a node is found
-    node.isWord = true;
+WordDictionary.prototype.addWord = function (word) {
+  let node = this.trie;
+  for (let i = 0; i < word.length; i++) {
+    //Asigna el nodo si lo encuentra o agrega un elemento para agregarlo al trie
+    node.children[word[i]] = node.children[word[i]] || {
+      children: {},
+      count: 0,
+      isWord: false,
+    };
+    // Recorre el nodo
+    node = node.children[word[i]];
+    // Cuenta las veces que se ha visto
+    node.count++;
+  }
+  // Marca el end de la palabra
+  node.isWord = true;
 };
 
-/** 
+/**
+ * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
  * @param {string} word
  * @return {boolean}
  */
-WordDictionary.prototype.search = function(word) {
-    let node = this.trie;
-    // Run a DFS to find the nodes
-    return this.dfs(word, node, 0);
+WordDictionary.prototype.search = function (word) {
+  let node = this.trie;
+  return this.dfs(word, 0, node);
 };
 
-WordDictionary.prototype.dfs = function(word, node, index) {
-    // If the node has reached the index, check if it's
-    // a word or not
-    if (word.length === index && node) {
-        return node.isWord;
+// da
+/*
+{
+ d: {
+    a: {
+        d
     }
+ }
 
-    let letter = word[index];
-    // If we have a "." we need to check all possible chars to see if we can find any response
-    // on any of those
-    if (word[index] === '.') {
-        // Check all possible letters in the alphabet to find is there is a word
-		for(let i = 0; i < 26;  i++) {
-			let letter = String.fromCharCode('a'.charCodeAt(0) + i); 
-			if(node && node.children[letter] && this.dfs(word, node.children[letter], index + 1)) {
-				return true;
-			}
-		}
-    } else {
-        // Check if the letter is found and if it's an answer
-        if (node && (letter in node.children)) {
-            return this.dfs(word, node.children[letter], index + 1);
-        }
+}
+*/
+WordDictionary.prototype.dfs = function (word, start, node) {
+  // We need to verify the existence of node cause we
+  // may be sending undefined values checking for the '.'
+  if (start === word.length && node) {
+    return node.isWord;
+  }
+  let c = word[start];
+  if (c === ".") {
+    // Check all possible letters in the alphabet to find is there is a word
+    for (let i = 0; i < 26; i++) {
+      let letter = String.fromCharCode("a".charCodeAt(0) + i);
+      if (
+        node &&
+        node.children[letter] &&
+        this.dfs(word, start + 1, node.children[letter])
+      ) {
+        return true;
+      }
     }
-    return false;
+  } else {
+    if (node && node.children[c]) {
+      return this.dfs(word, start + 1, node.children[c]);
+    }
+  }
+
+  return false;
 };
 
 var obj = new WordDictionary(); // Object.create(WordDictionary); //.createNew();
-obj.addWord("bad")
-obj.addWord("dad")
-obj.addWord("mad")
+obj.addWord("bad");
+obj.addWord("dad");
+obj.addWord("mad");
 console.log(obj);
-console.log(obj.search("pad")) // -> false
-console.log(obj.search("bad")) // -> true
-console.log(obj.search(".ad")) // -> true
-console.log(obj.search("b..")) // -> true
+console.log(obj.search("pad")); // -> false
+console.log(obj.search("bad")); // -> true
+console.log(obj.search(".ad")); // -> true
+console.log(obj.search("b..")); // -> true
