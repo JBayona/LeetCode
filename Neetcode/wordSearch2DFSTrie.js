@@ -17,152 +17,73 @@ words = ["oath","pea","eat","rain"]
 Output: ["eat","oath"]
 */
 
-// Optionn 1
-// Time O(N * M * L)
-var findWords = function(board, words) {
-    const root = {children: {}, isWord: null};
-    
-    // Create trie search tree
-    // Add all words
-    for (const word of words) {
-        let node = root;
-        for (let i = 0; i < word.length; i++) {
-            let c = word[i];
-            node.children[c] = node.children[c] || {children: {}, isWord: null};
-            node = node.children[c];
-        }
-        node.word = word;
-    }    
-        
-    //Iterate board
-    let res = new Set();
-    for (let i = 0; i < board.length; i++) {
-        for (let j = 0; j < board[i].length; j++) {
-            dfs(root, i, j, board, res);
-        }
+// Time O(M∗N∗4^L)
+// Space O(M * N)
+function trieNode() {
+  this.children = {};
+}
+
+var findWords = function (board, words) {
+  const root = new trieNode();
+
+  //Create trie search tree
+  for (const word of words) {
+    let node = root;
+    for (let i = 0; i < word.length; i++) {
+      // If the node is not there, create it
+      if (!node.children[word[i]]) {
+        node.children[word[i]] = new trieNode();
+      }
+      // Iterate the node
+      node = node.children[word[i]];
     }
-    
-    return [...res];
+    node.word = word;
+  }
+
+  //Iterate board
+  let res = new Set();
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      dfs(board, root, i, j, res);
+    }
+  }
+  return [...res];
 };
 
-//DFS 
-const dfs = (node, i, j, board, res) => {
-    
-    //Validate position
-    if (!isSafe(i, j, board)) {
-        return;
+//DFS
+function dfs(board, node, row, col, res) {
+  //Validate position
+  if (!board[row] || !board[row][col]) return;
+
+  //Set char and reset it (so we don't revisit chars)
+  const char = board[row][col];
+  board[row][col] = "";
+
+  node = node.children[char];
+  if (node) {
+    //Word found
+    if (node.word) {
+      res.add(node.word);
     }
-    
-    // Set char and reset it (so we don't revisit chars)
-    const c = board[i][j];
-    board[i][j] = "";
-    
-    node = node.children[c];
-    if (node) {
-        //Word found
-        if (node.word) {
-            res.add(node.word);
-        }
-        
-        //Add neighbors
-        dfs(node, i-1, j, board, res);
-        dfs(node, i+1, j, board, res);
-        dfs(node, i, j-1, board, res);
-        dfs(node, i, j+1, board, res);
-    }
-    
-    //Reset "visited" after traversal finishes
-    board[i][j] = c;
-}
 
-function isSafe(row, col, grid) {
-    let ROW = grid.length;
-    let COL = grid[0].length;
-    return (
-        row >= 0 && row < ROW &&
-        col >= 0 && col < COL
-    );
-}
+    //Add neighbors
+    dfs(board, node, row - 1, col, res);
+    dfs(board, node, row + 1, col, res);
+    dfs(board, node, row, col - 1, res);
+    dfs(board, node, row, col + 1, res);
+  }
 
-
-
-// Option 2
-trie = {children:{}, count: 0, isWord: false};
-var findWords = function(board, words) {
-    // Create trie
-    createTrie(words);
-    
-    let result = new Set();
-    let ROW = board.length;
-    let COL = board[0].length;
-    for(let i = 0; i < ROW; i++) {
-        for(let j = 0; j < COL; j++) {
-            dfs(trie, board, i, j, result);
-        }
-    }
-    return [...result];
-};
-
-function dfs(node, board, row, col, result) {
-    // Validate position
-    if(!isSafe(board, row, col)) {
-        return;
-    }
-    
-    //Set char and reset it (so we don't revisit chars)
-    const char = board[row][col];
-    board[row][col] = "";
-    
-    // Check the trie and iterate
-    node = node.children[char];
-    if(node) {
-        // Word found
-        if(node.isWord) {
-            result.add(node.word);
-        }
-        // Visit neighbors
-        dfs(node, board, row - 1, col, result);
-        dfs(node, board, row + 1, col, result);
-        dfs(node, board, row, col - 1, result);
-        dfs(node, board, row, col + 1, result);
-    }
-    
-    //Reset "visited" after traversal finishes
-    board[row][col] = char;
-}
-
-function createTrie(words) {
-    for(let word of words) {
-        let node = trie;
-        // Add words to trie
-        for(let i = 0; i < word.length; i++) {
-            let c = word[i];
-            node.children[c] = node.children[i] || {children:{}, count: 0, isWord: false};
-            // Traverse the node
-            node = node.children[c];
-            node.count++;
-        }
-        node.isWord = true;
-        node.word = word;
-    }
-}
-
-function isSafe(board, row, col) {
-    let ROW = board.length;
-    let COL = board[0].length;
-    return (
-        row >= 0 && row < ROW &&
-        col >= 0 && col < COL
-    );
+  //Reset "visited" after traversal finishes
+  board[row][col] = char;
 }
 
 let board = [
-    ['o','a','a','n'],
-    ['e','t','a','e'],
-    ['i','h','k','r'],
-    ['i','f','l','v']
+  ["o", "a", "a", "n"],
+  ["e", "t", "a", "e"],
+  ["i", "h", "k", "r"],
+  ["i", "f", "l", "v"],
 ];
-let words = ["oath","pea","eat","rain"];
+let words = ["oath", "pea", "eat", "rain"];
 // let board = [["a","b"]];
 // let words = ["ab"];
-console.log(findWords(board,words));
+console.log(findWords(board, words));
