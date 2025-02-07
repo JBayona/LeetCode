@@ -25,7 +25,6 @@ Note: The information about the tree serialization is only meant so that you can
 output if you get a wrong answer. You don't need to understand the serialization to solve the problem.
 
 https://leetcode.com/problems/clone-graph/
-
 */
 // Time O(M * N)
 var cloneGraph = function(node) {
