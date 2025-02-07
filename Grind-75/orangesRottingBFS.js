@@ -33,6 +33,59 @@ grid[i][j] is only 0, 1, or 2.
 https://leetcode.com/problems/rotting-oranges/
 */
 
+// Option 1
+// Time O(M * N)
+// Space O(M * N)
+var orangesRotting = function (grid) {
+  let ROW = grid.length;
+  let COL = grid[0].length;
+
+  let queue = [];
+  let freshOrange = 0;
+  for (let i = 0; i < ROW; i++) {
+    for (let j = 0; j < COL; j++) {
+      // Identify fresh and rotten oranges
+      if (grid[i][j] === 2) {
+        queue.push({ row: i, col: j });
+      } else if (grid[i][j] === 1) {
+        freshOrange++;
+      }
+    }
+  }
+
+  let rowK = [0, -1, 0, 1];
+  let colK = [-1, 0, 1, 0];
+
+  let time = 0;
+  // Important to have freshOranges in the loop as we might
+  // be counting already rotten oranges, we don't need to count those.
+  while (queue.length && freshOrange > 0) {
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+      let { row, col } = queue.shift();
+      for (let j = 0; j < 4; j++) {
+        let nextRow = row + rowK[j];
+        let nextCol = col + colK[j];
+        if (isSafe(grid, nextRow, nextCol) && grid[nextRow][nextCol] === 1) {
+          // Mark the orange as rotten to avoid cycle
+          grid[nextRow][nextCol] = 2;
+          freshOrange--;
+          queue.push({ row: nextRow, col: nextCol });
+        }
+      }
+    }
+    time++;
+  }
+  return freshOrange === 0 ? time : -1;
+};
+
+function isSafe(grid, row, col) {
+  let ROW = grid.length;
+  let COL = grid[0].length;
+  return row >= 0 && row < ROW && col >= 0 && col < COL;
+}
+
+// Option 2
 // Time O(M * N)
 // Space O(M * N)
 var orangesRotting = function (grid) {
