@@ -66,7 +66,6 @@ function isSafe(row, col, grid) {
     );
 }
 
-
 // OPTION 2
 var wallsAndGates = function(rooms) {
     let ROW = rooms.length;
