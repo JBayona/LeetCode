@@ -29,8 +29,8 @@ You may assume that there are no duplicate edges in the input prerequisites.
 
 https://leetcode.com/problems/course-schedule-ii/
 */
-// Time O(V+E) – where V is the number of vertices and E is the number of edges in the graph.
-// Space O(V+E) – where V is the number of vertices and E is the number of edges in the graph.
+// Time O(V+E) where V is the number of vertices and E is the number of edges in the graph.
+// Space O(V+E) where V is the number of vertices and E is the number of edges in the graph.
 // Directed Graph
 var findOrder = function(numCourses, prerequisites) {
     let graph = [];
