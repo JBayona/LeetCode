@@ -5,8 +5,7 @@ touches the right and bottom edges. Water can only flow in four
 directions (up, down, left, or right) from a cell to another one with height equal or lower.
 
 Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
- 
-Example:
+ Example:
 Given the following 5x5 matrix:
   Pacific ~   ~   ~   ~   ~ 
        ~  1   2   2   3  (5) *
@@ -17,7 +16,6 @@ Given the following 5x5 matrix:
           *   *   *   *   * Atlantic
 
 Return:
-
 [[0, 4], [1, 3], [1, 4], [2, 2], [3, 0], [3, 1], [4, 0]] (positions with parentheses in above matrix).
 
 https://leetcode.com/problems/pacific-atlantic-water-flow/
