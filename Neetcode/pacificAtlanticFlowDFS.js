@@ -5,7 +5,6 @@ touches the right and bottom edges. Water can only flow in four
 directions (up, down, left, or right) from a cell to another one with height equal or lower.
 
 Find the list of grid coordinates where water can flow to both the Pacific and Atlantic ocean.
- 
 Example:
 Given the following 5x5 matrix:
   Pacific ~   ~   ~   ~   ~ 
