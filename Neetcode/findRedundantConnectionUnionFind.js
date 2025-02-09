@@ -40,76 +40,45 @@ https://leetcode.com/problems/redundant-connection/
 */
 
 // Time O(N)
-// Union find
 var findRedundantConnection = function(edges) {
+    // Set the parent to its own node
     let parent = {};
-    
-    // Set parent nodes to itself
-    for(let i = 0; i < edges.length; i++) {
-        let nodes = edges[i];
-        let fromNode = nodes[0];
-        let toNode = nodes[1];
-        
-        // Set root to all nodes
-        if(!(fromNode in parent)) {
-            parent[fromNode] = fromNode;
+    for (let node of edges) {
+        let [from, to] = node;
+        if (!(from in parent)) {
+            parent[from] = from;
         }
-        
-        if(!(toNode in parent)) {
-            parent[toNode] = toNode;
-        }   
+        if (!(to in parent)) {
+            parent[to] = to;
+        }
     }
-    
-    console.log('Beginning');
-    console.log(parent); // {1:1, 2:2, 3:3}
-    
-    for(let i = 0; i < edges.length; i++) {
-        let nodes = edges[i];
-        let fromNode = nodes[0];
-        let toNode = nodes[1];
-        let parent1 = findParent(fromNode, parent);
-        let parent2 = findParent(toNode, parent);
 
-        console.log('HERE');
-        console.log('DE ', fromNode);
-        console.log('TO ', toNode);
-        console.log('PARENT 1', parent1);
-        console.log('PARENT 2', parent2);
-        
-        // If both parents are the same, we have found the redundant connection
-        // Cuando encuentra que en los dos nodos el root es el mismo
-        // entonces esa es la conexión que está de más
-        if(parent1 === parent2) {
-            return nodes;
+    for (let node of edges) {
+        let [from, to] = node;
+        let parentA = findParent(from, parent);
+        let parentB = findParent(to, parent);
+
+        // This node is redundant connection
+        if (parentA === parentB) {
+            return [from, to];
         }
-        
-        // Union - set boths nodes with one common parent as they are connected
-        union(fromNode, toNode, parent);
-        console.log(parent); // { '1': 2, '2': 1, '3': 1 }
+        // Union
+        union(from, to, parent);
     }
+    return [];
 };
-/*
-  1
- / \
-2 - 3
-{1: 1, 2: 2, 3: 3}
-{1: 1, 2: 1, 3: 3}
-{1: 1, 2: 1, 3: 1}
-*/
 
-// Use node A to set it as parent
+function findParent(node, parent) {
+    if (parent[node] === node) {
+        return parent[node];
+    }
+    return findParent(parent[node], parent);
+}
+
 function union(nodeA, nodeB, parent) {
     let parentA = findParent(nodeA, parent);
     let parentB = findParent(nodeB, parent);
     parent[parentB] = parentA;
-}
-
-// Se va recursivamente a todos los niveles hasta encontrar al padre
-function findParent(node, parent) {
-    if(parent[node] === node) {
-        return node;
-    }
-    return findParent(parent[node], parent);
 }
 
 // DFS
