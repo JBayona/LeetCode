@@ -33,41 +33,35 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 https://leetcode.com/problems/word-ladder/
 */
 
-// BFS
+// Time O(V + E)
+// Space O(V + E)
 var ladderLength = function (beginWord, endWord, wordList) {
+  if (beginWord === endWord) {
+    return 0;
+  }
+
   let visited = new Set();
-
-  // Set initial state of the queue
-  let queue = [{ word: beginWord, level: 1 }];
-
-  // BFS
+  let words = new Set(wordList);
+  let queue = [{ word: beginWord, d: 1 }];
   while (queue.length) {
-    let { word, level } = queue.shift();
-    // If we reach the word we were looking
-    if (word === endWord) {
-      return level;
-    }
-    // Look over all available words
-    for (let i = 0; i < wordList.length; i++) {
-      let wordTmp = wordList[i];
-      // We saw the word before
-      if (visited.has(wordTmp)) {
-        continue;
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+      let { word, d } = queue.shift();
+      if (word === endWord) {
+        return d;
       }
-      // Compute how many chars are different on the
-      // same position
-      let charDiff = 0;
+      // Try to replace each character, one by one with every char in the abc
       for (let j = 0; j < word.length; j++) {
-        if (word[j] !== wordTmp[j]) {
-          charDiff++;
+        for (let k = 0; k < 26; k++) {
+          let c = String.fromCharCode(97 + k);
+          let tmpWord = word.substring(0, j) + c + word.substring(j + 1);
+
+          if (!words.has(tmpWord) || visited.has(tmpWord)) {
+            continue;
+          }
+          visited.add(tmpWord);
+          queue.push({ word: tmpWord, d: d + 1 });
         }
-      }
-      // If diff is only one, add it into the queue
-      if (charDiff === 1) {
-        queue.push({ word: wordTmp, level: level + 1 });
-        // Visit the queue as we want to make sure we already
-        // compute it on the queue
-        visited.add(wordTmp);
       }
     }
   }
