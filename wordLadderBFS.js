@@ -32,6 +32,42 @@ Explanation: The endWord "cog" is not in wordList, therefore no possible transfo
 https://leetcode.com/problems/word-ladder/
 */
 
+// Option 1
+// Time O(V + E)
+// Space O(V + E)
+var ladderLength = function (beginWord, endWord, wordList) {
+  if (beginWord === endWord) {
+    return 0;
+  }
+
+  let visited = new Set();
+  let words = new Set(wordList);
+  let queue = [{ word: beginWord, d: 1 }];
+  while (queue.length) {
+    let len = queue.length;
+    for (let i = 0; i < len; i++) {
+      let { word, d } = queue.shift();
+      if (word === endWord) {
+        return d;
+      }
+      // Try to replace each character, one by one with every char in the abc
+      for (let j = 0; j < word.length; j++) {
+        for (let k = 0; k < 26; k++) {
+          let c = String.fromCharCode(97 + k);
+          let tmpWord = word.substring(0, j) + c + word.substring(j + 1);
+
+          if (!words.has(tmpWord) || visited.has(tmpWord)) {
+            continue;
+          }
+          visited.add(tmpWord);
+          queue.push({ word: tmpWord, d: d + 1 });
+        }
+      }
+    }
+  }
+  return 0;
+};
+
 // Time O(M * N)
 // Space O(M * N)
 var ladderLength = function (beginWord, endWord, wordList) {
