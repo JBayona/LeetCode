@@ -19,7 +19,6 @@ Output: -1
 
 https://leetcode.com/problems/network-delay-time/description/
 */
-
 // Time (O((V + E) log V)), where (V) is the number of nodes and (E) is the number of edges
 var networkDelayTime = function(times, n, k) {
     let graph = {};
