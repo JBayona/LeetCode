@@ -25,7 +25,6 @@ vertices as keys and vertices they're sourcing to as values. Both would take O(V
 
 https://leetcode.com/problems/alien-dictionary/description/
 */
-
 // Option 1
 const alienOrder = words => {
   let graph = {};
