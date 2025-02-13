@@ -13,7 +13,6 @@ Explanation: Intervals [1,4] and [4,5] are considered overlapping.
 
 https://leetcode.com/problems/merge-intervals/
 */
-
 /**
  * @param {number[][]} intervals
  * @return {number[][]}
