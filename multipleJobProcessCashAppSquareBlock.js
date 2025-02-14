@@ -1,6 +1,7 @@
 // Global  minimum value
 // Stream/chunkks of data, result computing
 // Overall result
+
 class Process {
     constructor() {
       this.list = new Set();
