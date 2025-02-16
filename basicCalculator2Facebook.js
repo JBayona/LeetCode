@@ -1,5 +1,6 @@
 /*
 Implement a basic calculator to evaluate a simple expression string.
+
 The expression string contains only non-negative integers, +, -, *, / operators and empty spaces .
 The integer division should truncate toward zero.
 
@@ -20,6 +21,17 @@ You may assume that the given expression is always valid.
 Do not use the eval built-in library function.
 
 https://leetcode.com/problems/basic-calculator-ii/
+*/
+// Approach: Separate the solution from terms
+// Time O(N)
+/*
+5 - 3 + 7 * 2 - 6 / 3. We have four terms:
+1. 5
+2. -3
+3. 7 * 2 = 14
+4. -6 / 3 = -2
+
+Add them all
 */
 var calculate = function(s) {
     if(!s) {
@@ -42,6 +54,7 @@ var calculate = function(s) {
             // For consecutive digits 98 => 9x10 + 8 = 98
             num = num * 10 + Number(elem);
         }
+        // Separate the solution from terms
         if(isNaN(elem) || i === s.length - 1) {
             // Push the initial number into the stack
             switch(sign) {
@@ -64,6 +77,7 @@ var calculate = function(s) {
     }
     console.log(stack);
     let result = 0;
+    // Add all terms
     result = stack.reduce((a, b) => a + b);
     return result;
 };
