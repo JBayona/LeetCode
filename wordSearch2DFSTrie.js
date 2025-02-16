@@ -15,6 +15,8 @@ board = [
 ]
 words = ["oath","pea","eat","rain"]
 Output: ["eat","oath"]
+
+https://leetcode.com/problems/word-search-ii/description/
 */
 
 // Time O(M∗N∗4^L)
