@@ -17,6 +17,7 @@ Output: 23
 https://leetcode.com/problems/basic-calculator/
 */
 // Option 1
+// Time O(N)
 var calculate = function (s) {
   let resultStack = [];
   let signStack = [];
@@ -101,5 +102,64 @@ var calculate = function (s) {
       result = resultStack.pop() + result * stack.pop();
     }
   }
+  return result;
+};
+
+// Option 3
+// Time exceeded for long inputs
+// Time O(2^N)
+var calculate = function (s) {
+  // Remove white spaces, this will prevent weird scenarios
+  s = s.replace(/\s+/g, "");
+  return helper(s.split(""));
+};
+
+var helper = function (tokens) {
+  if (tokens.length === 0) {
+    return 0;
+  }
+  // Remove spaces around string
+  let stack = [];
+  let num = 0;
+  let sign = "+";
+
+  while (tokens.length) {
+    let elem = tokens.shift();
+    // No blank space needed
+    if (elem === " ") {
+      continue;
+    }
+    // If it´s a digit
+    if (!isNaN(elem)) {
+      // For consecutive digits 98 => 9x10 + 8 = 98
+      num = num * 10 + Number(elem);
+    }
+
+    if (elem === "(") {
+      // Remove the open parenthesis
+      num = helper(tokens);
+    }
+
+    if (isNaN(elem) || tokens.length === 0) {
+      // Push the initial number into the stack
+      switch (sign) {
+        case "+":
+          stack.push(num);
+          break;
+        case "-":
+          stack.push(-num);
+          break;
+      }
+      sign = elem;
+      num = 0;
+    }
+
+    // Break for as we already computed the element
+    if (elem === ")") {
+      break;
+    }
+  }
+  let result = 0;
+  result = stack.reduce((a, b) => a + b);
   return result;
 };
