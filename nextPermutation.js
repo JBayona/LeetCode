@@ -13,7 +13,6 @@ Here are some examples. Inputs are in the left-hand column and its corresponding
 https://leetcode.com/problems/next-permutation/description/
 */
 
-
 // Time O(n)
 /*
 the key to this problem is to realize that the next permutation is to
@@ -39,39 +38,32 @@ the corner case where is the last permutation, we will know that by realizing
 that the number is perfectly ordered ascending from back to front, so
 we can just reverse.
 */
+
 // Time O(N)
-var nextPermutation = function(nums) {
-  if(!nums) {
-      return null;
+function nextPermutation(nums) {
+  let i = nums.length - 2;
+
+  // Step 1: Find the first decreasing element from the right
+  while (i >= 0 && nums[i] >= nums[i + 1]) {
+    i--;
   }
-  
-  let left = null;
-  let right = null;
-  // Find left index (first decrease element backwards)
-  for(let i = nums.length - 2; i >= 0; i--) {
-      if(left === null && nums[i] < nums[i + 1]) {
-          left = i;
-          break;
-      }
+
+  // i has the first decreading element from rigght to left
+  // we need to validate we can find it
+  if (i >= 0) {
+    let j = nums.length - 1;
+    // Step 2: Find the next larger element to swap with
+    while (nums[j] <= nums[i]) {
+      j--;
+    }
+    // Swap nums[i] and nums[j]
+    swap(i, j, nums);
   }
-  
-  // Find right index, first greater after the decrease pattern
-  for(let i = nums.length - 1; i >= left; i--) {
-      if(right === null && nums[i] > nums[left]) {
-          right = i;
-          break;
-      }
-  }
-  
-  // If the array is already in decreasing sequence
-  if(right === null) {
-      nums.reverse();
-      return;
-  }
-  // Swap left and right index
-  swap(left, right, nums);
-  // Reverse after left
-  reverse(left + 1, nums);
+
+  // Step 3: Reverse the part after index i
+  let left = i + 1,
+    right = nums.length - 1;
+  reverse(left, right, nums);
 }
 
 function swap(start, end, nums) {
@@ -80,57 +72,13 @@ function swap(start, end, nums) {
   nums[end] = tmp;
 }
 
-function reverse(start, nums) {
-  let end = nums.length - 1;
-  while(start < end) {
-      swap(start, end, nums);
-      start++;
-      end--;
+function reverse(start, end, nums) {
+  while (start < end) {
+    swap(start, end, nums);
+    start++;
+    end--;
   }
 }
 
-// Another option
-var nextPermutation = function(nums){
-  var i = nums.length - 2;
-  /*Checamos de atras hacia adelante, cada numero en
-  nums[i+1] debe ser menor o igual a i, si esto se
-  cumple decrementamos el i*/
-  while(i >= 0 && nums[i + 1] <= nums[i]){
-    i--;
-  }
-  if(i >= 0){
-    //Empieza a verificar desde atras del arreglo
-    var j = nums.length - 1;
-    /*Checando desde atras buscamos el primer elemento
-    que sea mayor a nuestro elemento que quedamos con el 
-    index i, cuando lo encontramos no decrementamos j y
-    hacemos swao de nums[i] con nums[j]*/
-    while(j >=0 && nums[j] <= nums[i]){
-      j--;
-    }
-    /*Hacemos el swap cuando encontramos el primer numero
-    mayor de atras hacia adelante con el num[i]*/
-    //Swap
-    [nums[i],nums[j]] = [nums[j],nums[i]];
-  }
-
-  /*Ya que encontramos el primer elemento mas grande atras para adelante 
-  y hacemos swap, hacemos un reverse del array de i + 1 que fue el elemento
-  que hicimos swap al final*/
-  console.log(reverseArray(nums, i + 1));
-}
-
-function reverseArray(arr, start){
-  var i = start;
-  var j = arr.length - 1;
-  while(i < j){
-    //Swap
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-    i++;
-    j--;
-  }
-  return arr;
-}
-
-var array = [1,5,8,4,7,6,5,3,1];
+var array = [1, 5, 8, 4, 7, 6, 5, 3, 1];
 console.log(nextPermutation(array));
