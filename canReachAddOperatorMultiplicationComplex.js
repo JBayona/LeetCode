@@ -3,7 +3,6 @@ Given an array of non-negative integers and a value target, the task is to check
 is a subset of the given array whose either addition or multiplication is equal to the given target. 
 There's no constraint on the order, it could either start from left to right or viceversa
 */
-
 /**
  * [1, 2, 3]
  *  -> [1]+[2]+[3]
