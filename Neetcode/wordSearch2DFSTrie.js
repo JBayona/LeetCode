@@ -19,32 +19,35 @@ Output: ["eat","oath"]
 
 // Time O(M∗N∗4^L)
 // Space O(M * N)
-function trieNode() {
-  this.children = {};
+function Trie() {
+  this.trie = { children: {}, isWord: false, count: {}, value: null };
 }
 
 var findWords = function (board, words) {
-  const root = new trieNode();
-
-  //Create trie search tree
+  const root = new Trie();
   for (const word of words) {
-    let node = root;
+    let node = root.trie;
     for (let i = 0; i < word.length; i++) {
-      // If the node is not there, create it
-      if (!node.children[word[i]]) {
-        node.children[word[i]] = new trieNode();
-      }
-      // Iterate the node
-      node = node.children[word[i]];
+      let c = word[i];
+      node.children[c] = node.children[c] || {
+        children: {},
+        isWord: false,
+        count: {},
+        value: null,
+      };
+      // Move the node
+      node = node.children[c];
+      node.count++;
     }
     node.word = word;
+    node.isWord = true;
   }
 
   //Iterate board
   let res = new Set();
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      dfs(board, root, i, j, res);
+      dfs(board, root.trie, i, j, res);
     }
   }
   return [...res];
