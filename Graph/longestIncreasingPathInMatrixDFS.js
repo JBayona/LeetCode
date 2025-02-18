@@ -9,6 +9,10 @@ https://leetcode.com/problems/longest-increasing-path-in-a-matrix/description/
 
 // Time O(M * N)
 // Space O(M * N)
+// Approach, run a DFS on every element of the matrix to always try to
+// increment the lenght of the path. As we might have elements that length
+// has been processed previously, we can use memoization to hold values.
+// For each iteration try to get the max path.
 var longestIncreasingPath = function(matrix) {
     let ROW = matrix.length;
     let COL = matrix[0].length;
