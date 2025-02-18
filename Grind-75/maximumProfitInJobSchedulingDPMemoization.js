@@ -9,6 +9,7 @@ If you choose a job that ends at time X you will be able to start another job th
 
 https://leetcode.com/problems/maximum-profit-in-job-scheduling/description/
 */
+
 // Time: O(NLogN)
 // Step 1: Sort based on start time to find the next one easier
 // Step 2: DP with Memoization. Recursive function that calculates the maximum
