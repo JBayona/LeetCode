@@ -27,7 +27,6 @@ Explanation:
 The node with value 5 and the node with value 6 have the same position according to the given scheme.
 However, in the report "[1,5,6]", the node value of 5 comes first since 5 is smaller than 6.
  
-
 Note:
 The tree will have between 1 and 1000 nodes.
 Each node's value will be between 0 and 1000.
