@@ -4,7 +4,6 @@ The task is to find the node with minimum absolute difference with given target 
 
 https://www.geeksforgeeks.org/find-closest-element-binary-search-tree/
 */
-
 function TreeNode(val, left, right) {
   this.val = val;
   this.left = left || null;
