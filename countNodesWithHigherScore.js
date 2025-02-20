@@ -12,7 +12,6 @@ Return the number of nodes that have the highest score.
 
 https://leetcode.com/problems/count-nodes-with-the-highest-score/
 */
-
 // Approach, create the tree and get compute on a DFS
 // all the results and maintain a max
 // Time O(N)
