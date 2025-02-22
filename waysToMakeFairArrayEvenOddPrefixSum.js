@@ -1,6 +1,5 @@
 /*
 You are given an integer array nums. You can choose exactly one index (0-indexed) and remove the element.
-
 Notice that the index of the elements may change after the removal.
 For example, if nums = [6,1,7,4,1]:
 
