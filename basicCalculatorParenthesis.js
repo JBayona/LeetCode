@@ -65,6 +65,7 @@ var calculate = function (s) {
   return result;
 };
 
+
 // Option 2
 var calculate = function (s) {
   let result = 0;
