@@ -29,6 +29,7 @@ var buddyStrings = function (s, goal) {
   if (s.length != goal.length) {
     return false;
   }
+  // The swap can be between two elements only
   let diff = [];
   for (let i = 0; i < s.length; i++) {
     if (s[i] !== goal[i]) {
@@ -43,6 +44,7 @@ var buddyStrings = function (s, goal) {
   if (!diff.length) {
     return s.length !== new Set(s).size;
   }
+  // Check if the swap is correct and we can make it
   let [i, j] = diff;
   return s[i] === goal[j] && goal[i] === s[j];
 };
