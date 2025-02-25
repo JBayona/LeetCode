@@ -23,8 +23,8 @@ Output: 21
 
 https://leetcode.com/problems/basic-calculator-iii/description/
 */
-
 // Time O(2^N)
+// Space O(N)
 var calculate = function (s) {
   return helper(s.split(""));
 };
@@ -36,6 +36,10 @@ var helper = function (tokens) {
   // Remove spaces around string
   let stack = [];
   let num = 0;
+  // Having + initially will have us to always perform the
+  // operations once the elements are added into the stack
+  // i.e 3*14/7 -> [3] num = 14, sign = * then ..
+  // stack [42] and sign is updated to /
   let sign = "+";
 
   while (tokens.length) {
@@ -68,7 +72,7 @@ var helper = function (tokens) {
           stack.push(stack.pop() * num);
           break;
         case "/":
-          stack.push(parseInt(stack.pop() / num));
+          stack.push(Math.trunc(stack.pop() / num));
           break;
       }
       sign = elem;
