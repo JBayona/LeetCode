@@ -20,7 +20,6 @@ Explanation: Can't change any 0 to 1, only one island with area = 4.
 
 https://leetcode.com/problems/making-a-large-island/description/
 */
-
 // Time O(N^2)
 // Space O(1)
 // Color each island differently and try to connect
