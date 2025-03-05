@@ -18,6 +18,8 @@ https://leetcode.com/problems/merge-intervals/
  * @return {number[][]}
  */
 
+// Time O(NLogN)
+// Space O(N)
 // Option 1
 var merge = function (intervals) {
   if (!intervals.length) {
@@ -45,30 +47,33 @@ var merge = function (intervals) {
 };
 
 // Option 2
+// Time O(LogN)
+// Min Heap
 var merge = function (intervals) {
   if (!intervals.length) {
     return [];
   }
 
-  intervals = intervals.sort((a, b) => a[0] - b[0]);
-  let prev = intervals[0];
-  let result = [];
-  for (let i = 1; i < intervals.length; i++) {
-    let current = intervals[i];
-    // No overlap exist
-    if (current[0] > prev[1]) {
-      result.push(prev);
-      prev = current;
-    } else {
-      // Overlap exists
-      // Get the first range, and the max of the current end or prev end
-      let merged = [prev[0], Math.max(current[1], prev[1])];
-      prev = merged;
-    }
+  const minHeap = new PriorityQueue((compare = (a, b) => a[0] - b[0]));
+
+  // Add everything to the heap
+  for (let interval of intervals) {
+    minHeap.enqueue(interval);
   }
 
-  // Add the last one
-  result.push(prev);
+  let result = [];
+  while (!minHeap.isEmpty()) {
+    let current = minHeap.dequeue();
+    // Check if there's override with the next element
+    while (!minHeap.isEmpty() && current[1] >= minHeap.front()[0]) {
+      // Remove it from queue as it has an overlap
+      let tmp = minHeap.dequeue();
+      current[0] = Math.min(tmp[0], current[0]);
+      current[1] = Math.max(tmp[1], current[1]);
+    }
+    // At this point the overlap is resolved
+    result.push(current);
+  }
   return result;
 };
 
