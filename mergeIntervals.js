@@ -18,6 +18,8 @@ https://leetcode.com/problems/merge-intervals/
  * @return {number[][]}
  */
 
+// Time O(NLogN)
+// Space O(N)
 // Option 1
 var merge = function (intervals) {
   if (!intervals.length) {
@@ -41,6 +43,37 @@ var merge = function (intervals) {
   }
   // The last missing one
   result.push(prev);
+  return result;
+};
+
+// Option 2
+// Time O(LogN)
+// Min Heap
+var merge = function (intervals) {
+  if (!intervals.length) {
+    return [];
+  }
+
+  const minHeap = new PriorityQueue((compare = (a, b) => a[0] - b[0]));
+
+  // Add everything to the heap
+  for (let interval of intervals) {
+    minHeap.enqueue(interval);
+  }
+
+  let result = [];
+  while (!minHeap.isEmpty()) {
+    let current = minHeap.dequeue();
+    // Check if there's override with the next element
+    while (!minHeap.isEmpty() && current[1] >= minHeap.front()[0]) {
+      // Remove it from queue as it has an overlap
+      let tmp = minHeap.dequeue();
+      current[0] = Math.min(tmp[0], current[0]);
+      current[1] = Math.max(tmp[1], current[1]);
+    }
+    // At this point the overlap is resolved
+    result.push(current);
+  }
   return result;
 };
 
