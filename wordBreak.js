@@ -50,26 +50,33 @@ var wordBreak = function (s, wordDict) {
 };
 
 /*
-function wordBreak(str, array) {
-  let dp = new Array(str.length + 1).fill(false);
-  // Initial state
-  dp[0] = true;
-  for(let i = 0; i < str.length; i++) {
-      for(let j = 0; j <= i; j++) {
-          if(!dp[j]) {
-              continue;
-          }
-          // if i = 3, j will be 0, 1, 2, 3
-          if(array.includes(str.substring(j, i + 1))) {
-              dp[i + 1] = true;
-              break;
-          }
-      }
-  }
-  // The last element will be the result
-  return dp[str.length];
-}
+This problem can be solved using dynamic programming. The idea is to create
+a boolean DP array where dp[i] represents whether the substring s[0:i]
+can be segmented using words from wordDict.
+
+Approach:
+1. Initialize a DP array dp of size len(s) + 1 with dp[0] = true (empty string can be segmented).
+2. Iterate through s and check all possible substrings.
+3. If dp[j] is true (meaning s[0:j] can be formed), check if s[j:i] is in wordDict.
+4. If found, set dp[i] = true and break.
 */
+
+function wordBreak(s, wordDict) {
+  let wordSet = new Set(wordDict);
+  let dp = new Array(s.length + 1).fill(false);
+  dp[0] = true;
+
+  for (let i = 1; i <= s.length; i++) {
+    for (let j = 0; j < i; j++) {
+      if (dp[j] && wordSet.has(s.substring(j, i))) {
+        dp[i] = true;
+        break;
+      }
+    }
+  }
+
+  return dp[s.length];
+}
 
 /*
 // Recursion approach
