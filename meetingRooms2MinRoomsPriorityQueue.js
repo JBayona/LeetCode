@@ -12,6 +12,7 @@ Output: 1
 
 https://leetcode.com/problems/meeting-rooms-ii/description/
 */
+
 // Approach
 // 1. Have a priority queue that can help us to get the meeting which
 // ends the earliest time, so we only need the endTime, whenever we find
