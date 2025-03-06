@@ -17,7 +17,6 @@ https://leetcode.com/problems/merge-intervals/
  * @param {number[][]} intervals
  * @return {number[][]}
  */
-
 // Time O(NLogN)
 // Space O(N)
 // Option 1
