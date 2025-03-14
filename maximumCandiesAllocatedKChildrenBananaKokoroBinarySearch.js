@@ -6,7 +6,6 @@ You are also given an integer k. You should allocate piles of candies to k child
 number of candies. Each child can be allocated candies from only one pile of candies and some piles of candies may go unused.
 
 Return the maximum number of candies each child can get.
-
 Example 1:
 Input: candies = [5,8,6], k = 3
 Output: 5
