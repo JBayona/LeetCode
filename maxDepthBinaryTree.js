@@ -17,6 +17,7 @@ function Tree(val, left, right) {
   this.left = left ? left : null;
   this.right = right ? right : null;
 }
+
 // Time O(N)
 // Space O(1)
 var maxDepth = function (root) {
