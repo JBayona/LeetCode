@@ -9,6 +9,7 @@ An empty tree is height-balanced. A non-empty binary tree T is balanced if:
 
 https://leetcode.com/problems/balanced-binary-tree/description/
 */
+
 function TreeNode(val, left, right) {
   this.val = val || null;
   this.left = left || null;
@@ -18,6 +19,8 @@ function TreeNode(val, left, right) {
 // Time O(N)
 // Get the tree length function.
 function isBalanced(tree) {
+  // If we reach this point, it means we were able to make it until
+  // the leaf node, which is true, otherwise the recursion would have stop.
   if(!tree) {
     return true;
   }
