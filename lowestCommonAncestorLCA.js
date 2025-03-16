@@ -8,6 +8,7 @@ descendants (where we allow a node to be a descendant of itself)."
 
 https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/description/
  */
+
 //Time O(N)
 var lowestCommonAncestor = function (root, p, q) {
   // Base case
@@ -16,13 +17,13 @@ var lowestCommonAncestor = function (root, p, q) {
   }
 
   // If we found a node while traversing, return it
-  if (root.val === p.val) {
-    return root;
+  if (root === p) {
+    return p;
   }
 
   // If we found a node while traversing, return it
-  if (root.val === q.val) {
-    return root;
+  if (root === q) {
+    return q;
   }
 
   let left = lowestCommonAncestor(root.left, p, q);
@@ -37,5 +38,5 @@ var lowestCommonAncestor = function (root, p, q) {
 
   // If we reach this point it means that we have null in left or right node
   // so let's return to the parent the one is not null
-  return left ? left : right;
+  return left !== null ? left : right;
 };
