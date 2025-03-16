@@ -19,28 +19,43 @@ https://leetcode.com/problems/same-tree/description/
  * @return {boolean}
  */
 
- // Option 1
-var isSameTree = function(p, q) {
-    if(p === null && q === null) {
-        return true;
-    }
-    if(p === null || q === null) {
-        return false;
-    }
-    if(p.val !== q.val) {
-        return false;
-    }
-    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+var isSameTree = function (p, q) {
+  // Both are null
+  if (!p && !q) {
+    return true;
+  }
+  // One of those are null
+  if (!p || !q) {
+    return false;
+  }
+  if (p.val !== q.val) {
+    return false;
+  }
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 };
 
- // Opción 2
-var isSameTree = function(p, q) {
-    return checkTree(p,q);
+// Option 1
+var isSameTree = function (p, q) {
+  if (p === null && q === null) {
+    return true;
+  }
+  if (p === null || q === null) {
+    return false;
+  }
+  if (p.val !== q.val) {
+    return false;
+  }
+  return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
 };
 
-function checkTree(p,q){
-    if(p === null && q === null) return true;
-    if(p === null || q === null) return false;
-    if(p.val !==  q.val)return false;
-    return checkTree(p.left, q.left) && checkTree(p.right, q.right); 
+// Opción 2
+var isSameTree = function (p, q) {
+  return checkTree(p, q);
+};
+
+function checkTree(p, q) {
+  if (p === null && q === null) return true;
+  if (p === null || q === null) return false;
+  if (p.val !== q.val) return false;
+  return checkTree(p.left, q.left) && checkTree(p.right, q.right);
 }
