@@ -19,32 +19,60 @@ return its bottom-up level order traversal as:
 https://leetcode.com/problems/binary-tree-level-order-traversal-ii/description/
 */
 
-function TreeNode(val, left, right){
+function TreeNode(val, left, right) {
   this.val = val;
   this.left = left || null;
   this.right = right || null;
 }
 
-function printByLevel(tree){
+// Option 1
+var levelOrderBottom = function (root) {
+  if (!root) {
+    return [];
+  }
+  let result = [];
+  let tmp = [];
+  let queue = [];
+  queue.push(root);
+  while (queue.length) {
+    let size = queue.length;
+    for (let i = 0; i < size; i++) {
+      let node = queue.shift();
+      tmp.push(node.val);
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+    result.unshift(tmp);
+    tmp = [];
+  }
+  return result;
+};
+
+// Option 2
+function printByLevel(tree) {
   let levelCount = 1;
   let currentCount = 0;
   let result = [];
   let tmp = [];
   let queue = [];
   queue.push(tree);
-  while(queue.length){
-    while(levelCount > 0){
+  while (queue.length) {
+    while (levelCount > 0) {
       let node = queue.shift();
       tmp.push(node.val);
-      if(node.left){
+      if (node.left) {
         queue.push(node.left);
         currentCount++;
       }
-      if(node.right){
+      if (node.right) {
         queue.push(node.right);
         currentCount++;
       }
-      levelCount -=1;
+      levelCount -= 1;
     }
     result.unshift(tmp);
     tmp = [];
@@ -54,5 +82,9 @@ function printByLevel(tree){
   return result;
 }
 
-tree = new TreeNode(3, new TreeNode(9), new TreeNode(20, new TreeNode(15), new TreeNode(7)));
-console.log(printByLevel(tree));  
+tree = new TreeNode(
+  3,
+  new TreeNode(9),
+  new TreeNode(20, new TreeNode(15), new TreeNode(7))
+);
+console.log(printByLevel(tree));
