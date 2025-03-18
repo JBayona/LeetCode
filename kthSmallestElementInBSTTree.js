@@ -11,6 +11,7 @@ Input: root = [5,3,6,2,4,null,null,1], k = 3
 Output: 3
 https://leetcode.com/problems/kth-smallest-element-in-a-bst/
 */
+// Time O(N)
 var kthSmallest = function(root, k) {
   let node = root;
   let stack = [];
