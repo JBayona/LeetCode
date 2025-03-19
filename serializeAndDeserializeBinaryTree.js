@@ -61,7 +61,7 @@ var deserialize = function (data) {
   return preorder();
 };
 
-// BST
+// BFS
 var serialize = function (root) {
   if (!root) return "";
   let queue = [];
