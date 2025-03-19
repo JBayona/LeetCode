@@ -31,37 +31,41 @@ There are 4 possible ways to get the max path.
 3. Node itself + max path coming from right child.
 4. Node itself + max path coming from right child + max path coming from left child.
 */
-var maxPathSum = function(root) {
-    let result = {val: -10e5};
-    findMaxPathSum(root, result);
-    return result.val;
+
+// We can use depth-first search (DFS) approach with recursion. The idea is to calculate the maximum path sum
+// that can be obtained from each subtree while keeping track of the maximum path sum globally.
+// Time O(N)
+// Space O(H) where H is the height of the tree
+var maxPathSum = function (root) {
+  let result = { val: -10e5 };
+  findMaxPathSum(root, result);
+  return result.val;
 };
 
 function findMaxPathSum(node, result) {
-    // Base case
-    if(!node) {
-        return 0;
-    }
-    
-    let left = findMaxPathSum(node.left, result);
-    let right = findMaxPathSum(node.right, result);
-    
-    // Get the max path from the parent call of root.
-    // Could be the single root or the single root + max of left or right
-    let max_single = Math.max(Math.max(left, right) + node.val, node.val);
-    
-    // Max top
-    // Max also could also be a subtree that includes root also
-    let max_top = Math.max(max_single, left + right + node.val);
-    
-    // Update the current max we have found
-    result.val = Math.max(result.val, max_top);
-    
-    // Return result of each subtree so we can compute this process
-    // for all following nodes
-    return max_single;
-}
+  // Base case
+  if (!node) {
+    return 0;
+  }
 
+  let left = findMaxPathSum(node.left, result);
+  let right = findMaxPathSum(node.right, result);
+
+  // Get the max path from the parent call of root.
+  // Could be the single root or the single root + max of left or right
+  let max_single = Math.max(Math.max(left, right) + node.val, node.val);
+
+  // Max top
+  // Max also could also be a subtree that includes root also
+  let max_top = Math.max(max_single, left + right + node.val);
+
+  // Update the current max we have found
+  result.val = Math.max(result.val, max_top);
+
+  // Return result of each subtree so we can compute this process
+  // for all following nodes
+  return max_single;
+}
 
 /*
 Retornamos en cada nodo la mayor suma del subtree, hay cuatro formas de obtener el maximo pat
@@ -81,7 +85,7 @@ function Node(data, left, right) {
 function findMaxPath(node, result) {
   // Check if null is not null so we can compute childrens
   // Base case
-  if(!node) {
+  if (!node) {
     return 0;
   }
 
@@ -105,14 +109,18 @@ function findMaxPath(node, result) {
   return max_single_node;
 }
 
-function findMaxPathSum(root){
+function findMaxPathSum(root) {
   // Result
-  result = {val: -10e5}; //Min negative positive value
+  result = { val: -10e5 }; //Min negative positive value
   //Main function
   findMaxPath(root, result);
   return result.val;
 }
 
-root = new Node(10, new Node(2, new Node(20), new Node(1)), new Node(10, null, new Node(-25, new Node(3), new Node(4))));
+root = new Node(
+  10,
+  new Node(2, new Node(20), new Node(1)),
+  new Node(10, null, new Node(-25, new Node(3), new Node(4)))
+);
 //root = new Node(-3, null, null);
 console.log(findMaxPathSum(root));
