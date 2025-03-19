@@ -73,9 +73,8 @@ KthLargest.prototype.add = function(val) {
     if (this.heap.size() > this.k) {
         this.heap.dequeue();
         return this.heap.front();
-    } else {
-        return this.heap.front();
     }
+    return this.heap.front();
 };
 
 /** 
