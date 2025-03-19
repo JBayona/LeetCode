@@ -21,6 +21,7 @@ http://www.geeksforgeeks.org/construct-tree-from-given-inorder-and-preorder-trav
 // inorder = [9,3,15,20,7]
 // [   9,  3, 15, 20, 7]
 // <- left   right ->
+// Time O(N)
 var buildTree = function(preorder, inorder) {
   if(preorder.length === 0 || inorder.length === 0) return null;
   let n = preorder.length;
