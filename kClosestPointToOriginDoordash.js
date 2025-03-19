@@ -1,4 +1,3 @@
-
 // # Prompt
 // # Given a restaurant geolocation ( longitude / latitude). Find at most 3 closest drivers near the restaurant who can be assigned for delivery.
 
