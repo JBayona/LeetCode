@@ -24,7 +24,11 @@ Output: 42
 
 https://leetcode.com/problems/binary-tree-maximum-path-sum/
 */
-// Opción 1
+
+// We can use depth-first search (DFS) approach with recursion. The idea is to calculate the maximum path sum
+// that can be obtained from each subtree while keeping track of the maximum path sum globally.
+// Time O(N)
+// Space O(H) where H is the height of the tree
 var maxPathSum = function(root) {
     // Result
     let result = {val: -10e5};
