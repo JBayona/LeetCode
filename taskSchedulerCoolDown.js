@@ -15,8 +15,8 @@ Explanation: A -> B -> idle -> A -> B -> idle -> A -> B.
 Greedy Approach
 https://www.youtube.com/watch?v=ySTQCRya6B0
 https://leetcode.com/articles/task-scheduler/
-
 */
+
 // Time O(NLogN)
 // Time Space(N)
 // The general idea is that for each task (single task) we need to wait "n"
