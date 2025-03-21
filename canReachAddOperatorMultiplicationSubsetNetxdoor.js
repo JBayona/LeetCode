@@ -19,12 +19,12 @@ function canReachTargetSubset(nums, target) {
 }
 
 function generateSubsets(nums, index, subsets) {
-  // Base case, return the subste
+  // Base case, return the subset
   if (index === nums.length) {
     return subsets;
   }
 
-  // Create all combination of substes by using the addition and the multiplication
+  // Create all combination of subset by using the addition and the multiplication
   let newSubsets = new Set(subsets);
   for (let subset of subsets) {
     newSubsets.add(subset * nums[index]);
