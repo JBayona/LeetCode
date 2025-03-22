@@ -10,8 +10,7 @@ There's no constraint on the order, it could either start from left to right or 
  *  -> [1*3]+[2]
  *  -> [1*2]+[3]
  *  -> [1]+[2*3]
- */
-
+/
 // Time O(2^n)
 function canReachTargetSubset(nums, target) {
   const subsets = generateSubsets(nums, 0, new Set([1])); // Start with 1 to avoid multiplication by 0
