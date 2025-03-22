@@ -52,11 +52,12 @@ function helper(array, target, tmp, result, start) {
         // Cambiandolo i por start, te da todas las posibles combinaciones, permutando el número
         // i.e [2,2,3], [3,2,2], [2,3,2], [7]
         // SENDING ONLY "I" IS MAKING US TO USE THE ELEMENT UNLIMITED TIMES.
-        helper(array, target - array[i], tmp.concat(), result, i); // Cambiandolo a start, te da todas las posibles combinaciones (permutaciones)
+        // Cambiandolo a start, te da todas las posibles combinaciones (permutaciones)
+        // As the number can be choosen an unlimited times, we use "i" instead of "i + 1"
+        helper(array, target - array[i], tmp.concat(), result, i);
         tmp.pop();
     }
 }
-
 
 // Option 2
 // Time O(2^N)
