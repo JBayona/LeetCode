@@ -43,6 +43,31 @@ function dfs(result, tmp, nums, set) {
   }
 }
 
+// Option 2
+// Time O(N!)
+// Space O(N)
+function permute(nums) {
+  let result = [];
+  backtrack([], nums, result);
+  return result;
+}
+
+function backtrack(tmp, remaining, result) {
+  if (remaining.length === 0) {
+    result.push([...tmp]);
+    return;
+  }
+
+  for (let i = 0; i < remaining.length; i++) {
+    tmp.push(remaining[i]);
+    backtrack(
+      tmp,
+      [...remaining.slice(0, i), ...remaining.slice(i + 1)],
+      result
+    );
+    tmp.pop();
+  }
+}
 
 // Option 3
 // Time O(N!)
