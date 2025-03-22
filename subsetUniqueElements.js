@@ -58,5 +58,6 @@ function helper(index, tmp, result, nums) {
   }
 }
 
+
 nums = [1, 2, 3];
 console.log(subsets(nums));
