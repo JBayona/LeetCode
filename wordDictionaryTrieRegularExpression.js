@@ -22,78 +22,66 @@ https://leetcode.com/problems/add-and-search-word-data-structure-design/descript
  */
 
 var WordDictionary = function () {
-  this.trie = { children: {}, count: 0, isWord: false };
+  this.trie = { children: {}, isWord: 0, count: 0 };
 };
 
 /**
- * Adds a word into the data structure.
  * @param {string} word
  * @return {void}
  */
 WordDictionary.prototype.addWord = function (word) {
   let node = this.trie;
   for (let i = 0; i < word.length; i++) {
-    //Asigna el nodo si lo encuentra o agrega un elemento para agregarlo al trie
-    node.children[word[i]] = node.children[word[i]] || {
+    let c = word[i];
+    // Assign either the existing node or the new node
+    node.children[c] = node.children[c] || {
       children: {},
-      count: 0,
       isWord: false,
+      count: 0,
     };
-    // Recorre el nodo
-    node = node.children[word[i]];
-    // Cuenta las veces que se ha visto
+    // Advance the node
+    node = node.children[c];
+    // Increment the node
     node.count++;
   }
-  // Marca el end de la palabra
+  // Mark the end of the node
   node.isWord = true;
 };
 
 /**
- * Returns if the word is in the data structure. A word could contain the dot character '.' to represent any one letter.
  * @param {string} word
  * @return {boolean}
  */
 WordDictionary.prototype.search = function (word) {
   let node = this.trie;
-  return this.dfs(word, 0, node);
+  return this.dfs(node, word, 0);
 };
 
-// da
-/*
-{
- d: {
-    a: {
-        d
-    }
- }
-
-}
-*/
-WordDictionary.prototype.dfs = function (word, start, node) {
-  // We need to verify the existence of node cause we
-  // may be sending undefined values checking for the '.'
-  if (start === word.length && node) {
+WordDictionary.prototype.dfs = function (node, word, index) {
+  // We need to verify the existence of the node cause the node
+  // might or might not be a final word
+  if (index === word.length) {
     return node.isWord;
   }
-  let c = word[start];
-  if (c === ".") {
-    // Check all possible letters in the alphabet to find is there is a word
+
+  let c = word[index];
+  // If the character is in the trie, it must be able to resolve a result
+  if (c in node.children) {
+    let newNode = node.children[c];
+    return this.dfs(newNode, word, index + 1);
+  } else if (c === ".") {
+    // If there's a ".", try to match any existent character we should be able
+    // to resolve, exhaust all the possibilities, a,b, c, ...., z.
     for (let i = 0; i < 26; i++) {
-      let letter = String.fromCharCode("a".charCodeAt(0) + i);
-      if (
-        node &&
-        node.children[letter] &&
-        this.dfs(word, start + 1, node.children[letter])
-      ) {
+      // Try to match any letter from a, b, ..., z
+      let char = String.fromCharCode(i + "a".charCodeAt(0));
+      // We only want to resolve if it's true so we can exhaust all different options
+      if (char in node.children && this.dfs(node.children[char], word, index + 1)) {
         return true;
       }
     }
-  } else {
-    if (node && node.children[c]) {
-      return this.dfs(word, start + 1, node.children[c]);
-    }
   }
-
+  // None of them matched, so it's not possible
   return false;
 };
 
