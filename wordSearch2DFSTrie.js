@@ -21,65 +21,83 @@ https://leetcode.com/problems/word-search-ii/description/
 
 // Time O(M * N * 4^L)
 // Space O(M * N)
+
+// Time O(M * N * 4^L)
+// Space O(M * N)
 function Trie() {
-  this.trie = { children: {}, isWord: false, count: {}, value: null };
+  this.trie = { children: {}, count: 0, isWord: false };
 }
 
 var findWords = function (board, words) {
-  const root = new Trie();
-  for (const word of words) {
+  let root = new Trie();
+
+  // Add all words into the trie
+  for (let word of words) {
+    // We need to point to root everytime to traverse the trie
     let node = root.trie;
-    for (let i = 0; i < word.length; i++) {
-      let c = word[i];
-      node.children[c] = node.children[c] || {
-        children: {},
-        isWord: false,
-        count: {},
-        value: null,
-      };
-      // Move the node
-      node = node.children[c];
-      node.count++;
-    }
-    node.word = word;
-    node.isWord = true;
+    addWord(node, word);
   }
 
-  //Iterate board
-  let res = new Set();
-  for (let i = 0; i < board.length; i++) {
-    for (let j = 0; j < board[i].length; j++) {
-      dfs(board, root.trie, i, j, res);
+  let ROW = board.length;
+  let COL = board[0].length;
+  let t = root.trie;
+
+  let set = new Set();
+  for (let i = 0; i < ROW; i++) {
+    for (let j = 0; j < COL; j++) {
+      dfs(t, board, i, j, set);
     }
   }
-  return [...res];
+
+  return [...set];
 };
 
-//DFS
-function dfs(board, node, row, col, res) {
-  //Validate position
-  if (!board[row] || !board[row][col]) return;
-
-  //Set char and reset it (so we don't revisit chars)
-  const char = board[row][col];
-  board[row][col] = "";
-
-  node = node.children[char];
-  if (node) {
-    //Word found
-    if (node.word) {
-      res.add(node.word);
-    }
-
-    //Add neighbors
-    dfs(board, node, row - 1, col, res);
-    dfs(board, node, row + 1, col, res);
-    dfs(board, node, row, col - 1, res);
-    dfs(board, node, row, col + 1, res);
+function dfs(node, board, row, col, result) {
+  // Out of boundaries
+  if (!isSafe(board, row, col)) {
+    return;
   }
 
-  //Reset "visited" after traversal finishes
-  board[row][col] = char;
+  let c = board[row][col];
+  board[row][col] = " ";
+
+  let n = node.children[c];
+  if (n) {
+    // Check if a word is found
+    if (n.word) {
+      result.add(n.word);
+    }
+
+    // Check all 4 directions
+    dfs(n, board, row + 1, col, result);
+    dfs(n, board, row, col + 1, result);
+    dfs(n, board, row - 1, col, result);
+    dfs(n, board, row, col - 1, result);
+  }
+  // Revert the character to the normal
+  board[row][col] = c;
+}
+
+function isSafe(board, row, col) {
+  let ROW = board.length;
+  let COL = board[0].length;
+  return row >= 0 && row < ROW && col >= 0 && col < COL;
+}
+
+function addWord(trie, word) {
+  let node = trie;
+  for (let i = 0; i < word.length; i++) {
+    let c = word[i];
+    node.children[c] = node.children[c] || {
+      children: {},
+      count: 0,
+      isWord: true,
+    };
+    node = node.children[c];
+    node.count++;
+  }
+  node.isWord = true;
+  node.word = word;
 }
 
 let board = [
