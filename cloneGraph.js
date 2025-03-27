@@ -26,6 +26,7 @@ output if you get a wrong answer. You don't need to understand the serialization
 
 https://leetcode.com/problems/clone-graph/
 */
+
 // Time O(M * N)
 var cloneGraph = function(node) {
     let map = {};
