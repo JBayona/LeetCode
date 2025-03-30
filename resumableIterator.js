@@ -18,6 +18,11 @@ class ResumableIterator {
   hasNext() {
     return this.index < this.data.length;
   }
+  setIndex(index) {
+    if (this.index >= 0 && index <= this.data.length) {
+      this.index = index;
+    }
+  }
 }
 
 
