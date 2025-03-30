@@ -33,22 +33,19 @@ https://leetcode.com/problems/course-schedule-ii/
 // Space O(V+E) – where V is the number of vertices and E is the number of edges in the graph.
 // Directed Graph
 var findOrder = function(numCourses, prerequisites) {
-    let graph = [];
+    let graph = {};
     // Create graph
     for(let i = 0; i < numCourses; i++) {
         graph[i] = [];
     }
 
     // Fill directed graph
-    for(let i = 0; i < prerequisites.length; i++) {
-        let node = prerequisites[i];
-        let from = node[0];
-        let to = node[1];
+    for (let prereq of prerequisites) {
+        let [from, to] = prereq;
         graph[from].push(to);
     }
 
     result = [];
-    
     // states:
     // 0 - no visited
     // 1 = visited but not processed (viisted in current DFS)
@@ -75,11 +72,9 @@ function dfsHasCycle(graph, node, states){
 
     // Processing in current dfs
     states[node] = 1;
-    let neighbors = graph[node];
-    for(let i = 0; i < neighbors.length; i++) {
-        let vertex = neighbors[i];
+    for (let neighbor of graph[node]) {
         // Has a cycle
-        if(dfsHasCycle(graph, vertex, states)) {
+        if(dfsHasCycle(graph, neighbor, states)) {
             return true;
         }
     }
