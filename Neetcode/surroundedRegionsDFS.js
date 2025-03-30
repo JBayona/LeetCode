@@ -22,29 +22,32 @@ border will be flipped to 'X'. Two cells are connected if they are adjacent cell
 https://leetcode.com/problems/surrounded-regions/
 */
 
+// Approach, we need to run a DFS only on the border of the grid whenever
+// we find there's a "O", if we find it, we ran a DFS and we mark to "*"
+// whenever the cell is valid, otherwise everything else will be a cross.
+// We convert all "O" to "*" which is what we want to keep.
 // Time O(M * N)
 // Space O(M * N)
 var solve = function (board) {
   if (!board.length) {
-    return board;
+    return [];
   }
+
   let ROW = board.length;
   let COL = board[0].length;
-
   for (let i = 0; i < ROW; i++) {
     for (let j = 0; j < COL; j++) {
-      // Run DFS in borders only
-      // Only when "O" is on the border, all connected components with "0" will be marked
-      // for "*" and then changed to "O"
+      // Run DFS only on borders and when there's a "O"
       if (
         board[i][j] === "O" &&
-        (i === 0 || i == ROW - 1 || j === 0 || j === COL - 1)
+        (i === 0 || i === ROW - 1 || j === 0 || j === COL - 1)
       ) {
         dfs(board, i, j);
       }
     }
   }
 
+  // Convert the grid into the desidre format
   for (let i = 0; i < ROW; i++) {
     for (let j = 0; j < COL; j++) {
       if (board[i][j] === "*") {
@@ -57,26 +60,28 @@ var solve = function (board) {
   return board;
 };
 
-function dfs(board, row, col) {
-  // Not safe
-  if (!isSafe(board, row, col)) {
+function dfs(grid, row, col) {
+  // Out of boundaries
+  if (!isSafe(grid, row, col)) {
     return;
   }
 
-  if (board[row][col] === "X" || board[row][col] === "*") {
+  // The cell is not valid or it has been coverted before
+  if (grid[row][col] === "X" || grid[row][col] === "*") {
     return;
   }
 
-  // Means we have a 'O';
-  board[row][col] = "*";
-  dfs(board, row + 1, col);
-  dfs(board, row - 1, col);
-  dfs(board, row, col + 1);
-  dfs(board, row, col - 1);
+  grid[row][col] = "*";
+  dfs(grid, row + 1, col);
+  dfs(grid, row, col + 1);
+  dfs(grid, row - 1, col);
+  dfs(grid, row, col - 1);
 }
 
-function isSafe(board, row, col) {
-  let ROW = board.length;
-  let COL = board[0].length;
-  return row >= 0 && row < ROW && col >= 0 && col < COL;
+function isSafe(grid, row, col) {
+  let ROW = grid.length;
+  let COL = grid[0].length;
+  return (
+    row >= 0 && row < ROW && col >= 0 && col < COL && grid[row][col] === "O"
+  );
 }
