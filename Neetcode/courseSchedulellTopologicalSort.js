@@ -32,59 +32,60 @@ https://leetcode.com/problems/course-schedule-ii/
 // Time O(V+E) – where V is the number of vertices and E is the number of edges in the graph.
 // Space O(V+E) – where V is the number of vertices and E is the number of edges in the graph.
 // Directed Graph
-var findOrder = function (numCourses, prerequisites) {
-  let graph = {};
-  // Create graph
-  for (let i = 0; i < numCourses; i++) {
-    graph[i] = [];
-  }
-
-  // Fill directed graph
-  for (let prereq of prerequisites) {
-    let [from, to] = prereq;
-    graph[from].push(to);
-  }
-
-  result = [];
-  // states:
-  // 0 - no visited
-  // 1 = visited but not processed (viisted in current DFS)
-  // 2 = processed
-  let states = new Array(numCourses).fill(0);
-
-  for (let i = 0; i < numCourses; i++) {
-    // Check that there is no cycle
-    // If there's a cycle, just return empty array
-    if (dfsHasCycle(graph, i, states)) {
-      return [];
+var findOrder = function(numCourses, prerequisites) {
+    let graph = {};
+    // Create graph
+    for(let i = 0; i < numCourses; i++) {
+        graph[i] = [];
     }
-  }
-  // At this point there's no cycle
-  return result;
+
+    // Fill directed graph
+    for (let prereq of prerequisites) {
+        let [from, to] = prereq;
+        graph[from].push(to);
+    }
+
+    result = [];
+    // states:
+    // 0 - no visited
+    // 1 = visited but not processed (viisted in current DFS)
+    // 2 = processed
+    let states = new Array(numCourses).fill(0);
+    
+    for(let i = 0; i < numCourses; i++) {
+        // Check that there is no cycle
+        // If there's a cycle, just return empty array
+        if(dfsHasCycle(graph, i, states)) {
+            return []
+        }
+    }
+    // At this point there's no cycle
+    return result;
+
 };
 
-function dfsHasCycle(graph, node, states) {
-  // It will be a cycle is it's different than 2
-  if (states[node] > 0) {
-    return states[node] !== 2;
-  }
-
-  // Processing in current dfs
-  states[node] = 1;
-  for (let neighbor of graph[node]) {
-    // Has a cycle
-    if (dfsHasCycle(graph, neighbor, states)) {
-      return true;
+function dfsHasCycle(graph, node, states){
+    // It will be a cycle is it's different than 2
+    if (states[node] > 0) {
+        return states[node] !== 2;
     }
-  }
-  // Processed
-  states[node] = 2;
-  // Add to the result
-  // This result is required to course[1] should be before course[0]
-  // If we want to have the opposite we just need to reverse the
-  // order of how do we insert the elements in the result, so
-  // it should be result.unshift(node) if we want to happen first
-  // course[0] than course[1]
-  result.push(node);
-  return false;
+
+    // Processing in current dfs
+    states[node] = 1;
+    for (let neighbor of graph[node]) {
+        // Has a cycle
+        if(dfsHasCycle(graph, neighbor, states)) {
+            return true;
+        }
+    }
+    // Processed
+    states[node] = 2;
+    // Add to the result
+    // This result is required to course[1] should be before course[0]
+    // If we want to have the opposite we just need to reverse the
+    // order of how do we insert the elements in the result, so
+    // it should be result.unshift(node) if we want to happen first
+    // course[0] than course[1]
+    result.push(node);
+    return false;
 }
