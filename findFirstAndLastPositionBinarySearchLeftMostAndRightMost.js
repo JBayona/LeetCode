@@ -13,6 +13,39 @@ https://leetcode.com/problems/search-for-a-range/description/
 
 */
 
+// Option 1
+function searchRange(nums, target) {
+  return [findElement(nums, target, true), findElement(nums, target, false)];
+}
+
+function findElement(nums, target, isFirst) {
+  let len = nums.length;
+  let start = 0;
+  let end = len - 1;
+  let mid = 0;
+  let bound = -1;
+  /*Una vez que encontramos el numero deseado solo
+  decrementamos el end hasta que sea mayor que start
+  para romper el ciclo y verificar el resultado*/
+  while (start <= end) {
+    mid = Math.floor((start + end) / 2);
+    if (nums[mid] === target) {
+      bound = mid;
+      if (isFirst) {
+        end = mid - 1; // Search on the left
+      } else {
+        start = mid + 1; // Search on the right
+      }
+    } else if (nums[mid] > target) {
+      end = mid - 1;
+    } else if (nums[mid] < target) {
+      start = mid + 1;
+    }
+  }
+  return bound;
+}
+
+// Option 2
 function searchRange(nums, target) {
   return [findLeftMost(nums, target), findRightMost(nums, target)];
 }
