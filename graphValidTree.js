@@ -25,7 +25,6 @@ Para ser un árbol válido debe cumplir con las siguientes características:
 // 2. No cycles in the tree.
 // 3. All components should have been visited (no isolated nodes)
 */
-
 // DFS
 // Time: O(V + E) - V number of vertices
 // Space: O(V)
