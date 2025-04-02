@@ -10,7 +10,6 @@ Given [5, 7, 7, 8, 8, 10] and target value 8,
 return [3, 4].
 
 https://leetcode.com/problems/search-for-a-range/description/
-
 */
 
 // Option 1
