@@ -16,6 +16,7 @@ https://leetcode.com/problems/min-cost-to-connect-all-points/
 // for each calculation record the node analyze to avoid cycles
 // Time O(V^2 LogV)
 // Space O(N)
+// BFS
 var minCostConnectPoints = function (points) {
   let minHeap = new PriorityQueue({
     compare: (a, b) => a.weight - b.weight,
