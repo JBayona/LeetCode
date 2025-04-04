@@ -32,9 +32,9 @@ var networkDelayTime = function(times, n, k) {
         graph[from].push({node: to, time: t});
     }
 
-    let heap = new PriorityQueue({
-        compare: (a, b) => a.time - b.time
-    });
+    let heap = new PriorityQueue(
+        compare = (a, b) => a.time - b.time
+    );
 
     const visit = new Set();
     let result = 0;
@@ -53,5 +53,6 @@ var networkDelayTime = function(times, n, k) {
             }
         }
     }
+    // Check if all nodes have been visited
     return visit.size === n ? result : -1;
 };
