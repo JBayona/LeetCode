@@ -10,6 +10,7 @@ is exactly one simple path between any two points.
 
 https://leetcode.com/problems/min-cost-to-connect-all-points/
 */
+
 // Option 1
 // Approach - Start from the zero index and use a minHeap to get the minimum costs
 // calculate the distance across all nodes across all points and get the minimum distance
