@@ -16,32 +16,31 @@ https://leetcode.com/problems/insert-interval/
 */
 
 // Time O(N)
+// Space O(N)
 var insert = function (intervals, newInterval) {
+  let index = 0;
   let result = [];
-  let i = 0;
-  // Here we handle all of the non overlapping cases that we are sure
-  // There's no overlap if the current interval end is less that the start
-  // of the new interval
-  while (i < intervals.length && intervals[i][1] < newInterval[0]) {
-    result.push(intervals[i++]);
+
+  // Insert all non-overlapping elements in the intervals
+  // If there are no overlapping elements, the interval in the index first position
+  // should be greater than the current new interval to insert
+  while (index < intervals.length && intervals[index][1] < newInterval[0]) {
+    result.push(intervals[index++]);
   }
 
-  // Combine all of the intervals, here we have an overlap
-  // We want the new interval to be always greater, we are forcing the
-  // interval start to be greater than the overlap to continue adding
-  // more elements if any
-  while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
-    newInterval[0] = Math.min(intervals[i][0], newInterval[0]);
-    newInterval[1] = Math.max(intervals[i][1], newInterval[1]);
-    i++;
+  // At this point we can potentially have overlapping elements, we combine them
+  // until there's no overlap (intervals[index][0] should be greater than the ending of the new interval)
+  while (index < intervals.length && intervals[index][0] <= newInterval[1]) {
+    newInterval[0] = Math.min(intervals[index][0], newInterval[0]);
+    newInterval[1] = Math.max(intervals[index][1], newInterval[1]);
+    index++;
   }
-
-  //Add the result of the overlapping combined
+  // Add the combined element
   result.push(newInterval);
 
-  // Add the rest of the cases we don´t match the conditions above
-  while (i < intervals.length) {
-    result.push(intervals[i++]);
+  // Insert all elements there migth be left in the intervals array
+  while (index < intervals.length) {
+    result.push(intervals[index++]);
   }
 
   return result;
