@@ -19,7 +19,6 @@ Explanation: You don't need to remove any of the intervals since they're already
 
 https://leetcode.com/problems/non-overlapping-intervals/
 */
-
 // Time O(N)
 var eraseOverlapIntervals = function(intervals) {
     // Sorted based on the start interval
