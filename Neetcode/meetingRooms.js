@@ -24,6 +24,31 @@ var canAttendMeetings = function(intervals) {
 return true;
 };
 
+
+// Time O(N Log N + N) // Creation (N) + Insertion (N Log N)
+// Space O(N)
+var canAttendMeetings = function(intervals) {
+  // Create min heap
+  let heap = new PriorityQueue(
+      compare = (a, b) => a[0] - b[0]
+  );
+
+  // Add all intervals to the min heap
+  for (let interval of intervals) {
+      heap.enqueue(interval);
+  }
+
+  while (!heap.isEmpty()) {
+      let interval = heap.dequeue();
+      // If there's a conflict early return false
+      if (!heap.isEmpty() && interval[1] > heap.front()[0]) {
+          return false;
+      }
+  }
+  return true;
+};
+
+// Option 3
 var canAttendMeetings = function(intervals) {
     // Sort the intervals per end time so we can check if collapses
     let sorted = intervals.sort((a,b) => a.end - b.end);
