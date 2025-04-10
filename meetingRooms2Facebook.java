@@ -2,7 +2,6 @@
 Given an array of meeting intervals consisting of start and end times [[s1, e1]. [s2, e2]..]
 (s < e), find the minimum number of conference rooms required
 """
-
 // Solution O(N Log N) + O (K Log N)
 import java.util.*;
 class Solution {
