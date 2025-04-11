@@ -35,6 +35,7 @@ var minMeetingRooms = function(intervals) {
     let minHeap = new PriorityQueue({
         compare: (a, b) => a - b
     });
+
     // Add the first meeting to the heap
     minHeap.enqueue(intervals[0][1]);
     for(let i = 1; i < intervals.length; i++) {
