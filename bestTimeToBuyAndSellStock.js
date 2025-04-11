@@ -61,8 +61,7 @@ var maxProfit = function(prices) {
 };
 
 // Option 2
-var maxProfit = function(prices) {
-    
+var maxProfit = function(prices) {    
     if(!prices.length) {
         return 0;
     }
