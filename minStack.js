@@ -17,7 +17,6 @@ minStack.getMin();   --> Returns -2.
 
 https://leetcode.com/problems/min-stack/description/
 */
-
 /**
  * initialize your data structure here.
  */
