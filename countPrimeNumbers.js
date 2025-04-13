@@ -1,84 +1,78 @@
 /*
-Serialization is the process of converting a data structure or object into a sequence of bits so that it can be stored in a file or memory buffer, or transmitted across a network connection link to be reconstructed later in the same or another computer environment.
+Given an integer n, return the number of prime numbers that are strictly less than n.
 
-Design an algorithm to serialize and deserialize a binary tree. There is no restriction on how your serialization/deserialization algorithm should work. You just need to ensure that a binary tree can be serialized to a string and this string can be deserialized to the original tree structure.
+Example 1:
+Input: n = 10
+Output: 4
+Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
 
-Example: 
+Example 2:
+Input: n = 0
+Output: 0
+Example 3:
 
-You may serialize the following tree:
+Input: n = 1
+Output: 0
 
-    1
-   / \
-  2   3
-     / \
-    4   5
-
-as "[1,2,3,null,null,4,5]"
-Clarification: The above format is the same as how LeetCode serializes a binary tree. You do not necessarily need to follow this format, so please be creative and come up with different approaches yourself.
-
-Note: Do not use class member/global/static variables to store states. Your serialize and deserialize algorithms should be stateless.
-
-https://leetcode.com/problems/serialize-and-deserialize-binary-tree/
+https://leetcode.com/problems/count-primes/description/
 */
 
-function TreeNode(val, left, right) {
-  this.val = val;
-  this.left = left || null;
-  this.right = right || null;
+// Sieve of Eratosthenes algorithm
+var countPrimes = function (n) {
+  // We need the numbers less than n
+  if (n <= 2) return 0;
+
+  // init an array to track prime numbers
+  // At the very beginning we set all numbers as primer numbers
+  let primes = new Array(n);
+  for (let i = 2; i < n; i++) {
+    primes[i] = true;
+  }
+
+  // Just to avoid overflow
+  for (let i = 2; (i <= Math.sqrt(n - 1)) | 0; i++) {
+    // or for (int i = 2; i <= n-1; i++) {
+    if (primes[i]) {
+      // remove all from 2, 4, 6, 8, 10, 12, .... n
+      // then all from 3, 6, 9, 12, 15, 18,....
+      // then all from 4, 8, 12, 16, 20, ....
+      // then all from 5, 10, 15, 25, 30, 35 ... n
+      for (let j = i + i; j < n; j += i) primes[j] = false;
+    }
+  }
+
+  // The remaining numbers will be the prime numbers
+
+  // Check the numbers of prime numbers
+  let count = 0;
+  for (let i = 2; i < n; i++) {
+    if (primes[i]) {
+      count++;
+    }
+  }
+
+  return count;
+};
+
+// Option 2 (Time exceeded)
+var countPrimes = function (n) {
+  let count = 0;
+  for (let i = 2; i < n; i++) {
+    if (isPrime(i)) {
+      count++;
+    }
+  }
+  return count;
+};
+
+function isPrime(n) {
+  if (n < 2) {
+    return false;
+  }
+  for (let i = 2; i * i <= n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return true;
 }
-
-// BST
-var serialize = function(root) {
-  if(!root) return '';
-  let queue = [];
-  let result = '';
-
-  queue.push(root);
-
-  while(queue.length) {
-    let node = queue.shift();
-
-    if(!node) {
-      result = result + 'null ';
-      continue;
-    }
-
-    result = result + node.val + ' ';
-    // Do not check for existence so we can print null too
-    queue.push(node.left);
-    queue.push(node.right);
-  }
-
-  return result.trim();
-};
-
-var deserialize = function(data) {
-  if (data === "") return null;
-  let queue = [];
-
-  let values = data.split(" ");
-  let root = new TreeNode(parseInt(values[0]));
-  queue.push(root);
-
-  for (let i = 1; i < values.length; i++) {
-    let parent = queue.shift();
-    if (values[i] !== "null") {
-      let left = new TreeNode(parseInt(values[i]));
-      parent.left = left;
-      queue.push(left);
-    }
-    if (values[++i] !== "null") {
-      let right = new TreeNode(parseInt(values[i]));
-      parent.right = right;
-      queue.push(right);
-    }
-  }
-  return root;
-};
-
-
-tree = new TreeNode(1, new TreeNode(2), new TreeNode(3, new TreeNode(4), new TreeNode(5)));
-let str = serialize(tree)
-console.log(serialize(str));
-let treeNew = deserialize(str);
-console.log(treeNew);
