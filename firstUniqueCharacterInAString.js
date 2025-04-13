@@ -15,6 +15,7 @@ Output: -1
 
 https://leetcode.com/problems/first-unique-character-in-a-string/
 */
+
 // Option 1
 // Time O(N)
 // Space O(1)
