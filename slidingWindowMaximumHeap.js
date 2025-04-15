@@ -22,14 +22,12 @@ Window position                Max
  
 
 Constraints:
-
 1 <= nums.length <= 10^5
 -10^4 <= nums[i] <= 10^4
 1 <= k <= nums.length
 
 https://leetcode.com/problems/sliding-window-maximum/
 */
-
 // Time O(NLog N)
 var maxSlidingWindow = function(nums, k) {
     let result = [];
