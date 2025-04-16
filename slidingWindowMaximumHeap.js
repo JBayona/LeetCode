@@ -28,6 +28,7 @@ Constraints:
 
 https://leetcode.com/problems/sliding-window-maximum/
 */
+
 // Time O(NLog N)
 var maxSlidingWindow = function(nums, k) {
     let result = [];
