@@ -23,7 +23,6 @@ Output: [1]
 
 https://leetcode.com/problems/sliding-window-maximum/description/
 */
-
 // Time O(NLog N)
 var maxSlidingWindow = function(nums, k) {
   let result = [];
