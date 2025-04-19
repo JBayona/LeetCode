@@ -42,6 +42,7 @@ def dfs(grid, visited, row, col):
     colK = [-1, 0, 1, 0]
 
     count = 1
+    
     for i in range(4):
         nextRow = row + rowK[i]
         nextCol = col + colK[i]
