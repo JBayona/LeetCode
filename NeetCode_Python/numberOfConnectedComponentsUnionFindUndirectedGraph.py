@@ -1,43 +1,46 @@
 """
-You have a graph of n nodes. You are given an integer n and an array edges where edges[i] = [ai, bi]
-indicates that there is an edge between ai and bi in the graph.
+In this problem, a tree is an undirected graph that is connected and has no cycles.
 
-Return the number of connected components in the graph.
+You are given a graph that started as a tree with n nodes labeled from 1 to n, with one additional edge added.
+The added edge has two different vertices chosen from 1 to n, and was not an edge that already existed.
+The graph is represented as an array edges of length n where edges[i] = [ai, bi] indicates that there is an edge
+between nodes ai and bi in the graph.
 
-https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/description/
+Return an edge that can be removed so that the resulting graph is a tree of n nodes. If there are multiple answers
+return the answer that occurs last in the input.
+
+https://leetcode.com/problems/redundant-connection/description/
 """
 
 # // Time O(V + E)
 # // Space O(V + E)
 class Solution:
-    def countComponents(self, n: int, edges: List[List[int]]) -> int:
+    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
         parent = {}
-        # Set parent to itself
         for edge in edges:
-            f, to = edge
-            if f not in parent:
-                parent[f] = f
-            if to not in parent:
-                parent[to] = to
+            fromNode, toNode = edge
+            if fromNode not in parent:
+                parent[fromNode] = fromNode
+            if toNode not in parent:
+                parent[toNode] = toNode
         
-        # Union Find
-        connectedComponents = n
         for edge in edges:
-            f, to = edge
-            parentA = self.findParent(f, parent)
-            parentB = self.findParent(to, parent)
+            fromNode, toNode = edge
+            parentA = self.findParent(fromNode, parent)
+            parentB = self.findParent(toNode, parent)
 
-            if parentA != parentB:
-                connectedComponents -=1
-                self.union(parentA, parentB, parent)
+            if parentA == parentB:
+                return [fromNode, toNode]
+            
+            # Union
+            self.union(parentA, parentB, parent)
         
-        return connectedComponents
-
+        return []
+    
     def findParent(self, node, parent):
         if parent[node] == node:
             return node
         return self.findParent(parent[node], parent)
-    
+        
     def union(self, parentA, parentB, parent):
         parent[parentB] = parentA
-        
