@@ -15,6 +15,7 @@ Example 1:
 Input: [[1,2], [1,3], [2,3]]
 Output: [2,3]
 Explanation: The given undirected graph will be like this:
+
   1
  / \
 2 - 3
