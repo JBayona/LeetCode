@@ -18,6 +18,7 @@ Explanation: In this case, no transaction is done, i.e. max profit = 0.
 
 https://leetcode.com/problems/best-time-to-buy-and-sell-stock/description/
 */
+
 // Time O(N)
 // Space O(1)
 var maxProfit = function(prices) {
