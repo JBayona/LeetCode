@@ -67,7 +67,7 @@ function findLongestNameChain(players) {
 function dfs(path, visited, map, maxChain) {
     const lastPlayer = path[path.length - 1];
     // index 0 = first name, index 1 = last name
-    // Connect the last name  with the first name of the next player
+    // Connect the last name  with the first name of the next players
     const nextPlayers = map[lastPlayer[1]] || [];
 
     let extended = false;
