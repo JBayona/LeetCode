@@ -88,6 +88,7 @@ function dfs(path, visited, map, maxChain) {
     }
 
     // We should check if the current chain is longer than any we’ve seen before (maxChain).
+    // extendes flag let us know that we have been able to extend the path
     if (!extended && path.length > maxChain.length) {
         maxChain.length = 0;
         maxChain.push(...path);
