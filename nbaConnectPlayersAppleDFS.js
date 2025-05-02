@@ -22,6 +22,7 @@
  * OUTPUT:
       Chris Paul George Hill
  */
+
 // Time complexity: O(n^2)
 // Space complexity: O(n)
 function findLongestNameChain(players) {
