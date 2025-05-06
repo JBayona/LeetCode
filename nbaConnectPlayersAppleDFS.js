@@ -78,6 +78,7 @@ function dfs(path, visited, map, maxChain) {
             visited.add(key);
             path.push(next);
             dfs(path, visited, map, maxChain);
+            // The backtrack is needed to collect the largest set in the path and look for all elements
             // Backtrack
             // Remove the last player from the path
             // Remove the last player from the visited set
