@@ -19,7 +19,7 @@ function binarySearchMatch(arr, target) {
 
 // 2) First Occurence >= target
 // Finds the first index where the element is greater than or equal to the target.
-function binarySearchMatch(arr, target) {
+function binarySearchFirstGreaterOrEqual(arr, target) {
     let left = 0;
     let right = arr.length;
     while (left < right) {
@@ -38,7 +38,7 @@ function binarySearchMatch(arr, target) {
 
 // 3) First Occurence > target
 // Finds the first index where the element is strictly greater than the target.
-function binarySearchMatch(arr, target) {
+function binarySearchFirstGreater(arr, target) {
     let left = 0;
     let right = arr.length;
     while (left < right) {
@@ -57,7 +57,7 @@ function binarySearchMatch(arr, target) {
 
 // 4) First First Occurence of Target
 // Like standard binary search but continues searching to the left after finding the target.
-function binarySearchMatch(arr, target) {
+function binarySearchContinueMatch(arr, target) {
     let left = 0;
     let right = arr.length - 1;
     let result = null;
