@@ -54,3 +54,24 @@ function binarySearchMatch(arr, target) {
 }
 // Used when array has duplicates.
 // Returns insertion position.
+
+// 4) First First Occurence of Target
+// Like standard binary search but continues searching to the left after finding the target.
+function binarySearchMatch(arr, target) {
+    let left = 0;
+    let right = arr.length - 1;
+    let result = null;
+    while (left <= right) {
+        let mid = Math.floor((left + right) / 2);
+        // mid = left + (right - left) // 2  # avoids overflow
+        if (arr[mid] === target) {
+            result = mid;
+            right = mid - 1; // Continue to left
+        }else if (arr[mid] < target) {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
+        }
+    }
+    return result;
+}
