@@ -22,7 +22,6 @@ have finished course 1. So it is impossible.
 
 https://leetcode.com/problems/course-schedule/
 */
-
 // Time O(V + E)
 // Space O(V + E)
 var canFinish = function(numCourses, prerequisites) {
