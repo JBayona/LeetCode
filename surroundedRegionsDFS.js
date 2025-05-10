@@ -22,6 +22,7 @@ border will be flipped to 'X'. Two cells are connected if they are adjacent cell
 
 https://leetcode.com/problems/surrounded-regions/
 */
+
 // Approach, we need to run a DFS only on the border of the grid whenever
 // we find there's a "O", if we find it, we ran a DFS and we mark to "*"
 // whenever the cell is valid, otherwise everything else will be a cross.
