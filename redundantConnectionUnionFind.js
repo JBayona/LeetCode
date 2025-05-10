@@ -38,7 +38,6 @@ For the directed graph follow up please see Redundant Connection II). We apologi
 
 https://leetcode.com/problems/redundant-connection/
 */
-
 // Union find
 // Time O(N)
 var findRedundantConnection = function(edges) {
