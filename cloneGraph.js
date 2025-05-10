@@ -15,6 +15,7 @@ Second node is labeled as 1. Connect node 1 to node 2.
 Third node is labeled as 2. Connect node 2 to node 2 (itself), thus forming a self-cycle.
  
 Visually, the graph looks like the following:
+      
        1
       / \
      /   \
