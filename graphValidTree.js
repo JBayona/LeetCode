@@ -109,8 +109,6 @@ function dfs(graph, visited, node, parent) {
 }
 */
 
-
-
 // Union Find
 // Time complexity: O(V + E)
 var validTree = function(n, edges) {
