@@ -1,4 +1,4 @@
-// 1) Standar and Exact Match
+// 1) Standard and Exact Match
 function binarySearchMatch(arr, target) {
     let left = 0;
     let right = arr.length - 1;
