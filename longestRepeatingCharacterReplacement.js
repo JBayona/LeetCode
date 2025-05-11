@@ -32,7 +32,6 @@ var characterReplacement = function (s, k) {
   let left = 0;
   let right = 0;
   let result = 0;
-
   while (right < s.length) {
     let c = s[right];
     if (!(c in hash)) {
