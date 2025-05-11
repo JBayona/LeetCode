@@ -9,8 +9,8 @@ Example:
 
 Input: nums = [1,3,-1,-3,5,3,6,7], and k = 3
 Output: [3,3,5,5,6,7] 
-Explanation: 
 
+Explanation: 
 Window position                Max
 ---------------               -----
 [1  3  -1] -3  5  3  6  7       3
