@@ -71,6 +71,7 @@ var checkInclusion = function(s1, s2) {
     return false;
 };
 
+
 // Another option
 // Time O(N)
  // Space O(1)
