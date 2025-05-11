@@ -2,7 +2,6 @@
 Given a string, generate all its substrings
 Example: 456 substrings are => 4, 45, 456, 5, 56, 6
 */
-
 // Time complexity: O(n^2)
 // Space complexity: O(n^2) for storing substrings
 // where n is the length of the string
