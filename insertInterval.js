@@ -14,6 +14,7 @@ Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 
 https://leetcode.com/problems/insert-interval/
 */
+
 // Time O(N)
 // Space O(N)
 var insert = function (intervals, newInterval) {
