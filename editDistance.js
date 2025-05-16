@@ -26,7 +26,6 @@ exection -> execution (insert 'u')
 
 https://leetcode.com/problems/edit-distance/description/
 */
-
 /*
    X   h    o.    r.     s.     e
 
@@ -37,7 +36,6 @@ r  1   1.   2.    2.     3.     4
 o  2   2.   1.    2      3.     4
 
 s  3   3.   2.    2.     2.     3
-
 */
 var minDistance = function(word1, word2) {
     // create dp table
