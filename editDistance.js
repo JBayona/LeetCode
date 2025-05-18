@@ -37,6 +37,7 @@ o  2   2.   1.    2      3.     4
 
 s  3   3.   2.    2.     2.     3
 */
+
 var minDistance = function(word1, word2) {
     // create dp table
     let dp = new Array(word1.length + 1);
