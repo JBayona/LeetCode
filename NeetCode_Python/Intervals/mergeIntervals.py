@@ -1,17 +1,3 @@
-# Given an array of intervals where intervals[i] = [starti, endi], merge all
-# overlapping intervals, and return an array of the non-overlapping intervals that cover all
-# the intervals in the input.
-
-# Example 1:
-# Input: intervals = [[1,3],[2,6],[8,10],[15,18]]
-# Output: [[1,6],[8,10],[15,18]]
-# Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
-
-# Example 2:
-# Input: intervals = [[1,4],[4,5]]
-# Output: [[1,5]]
-# Explanation: Intervals [1,4] and [4,5] are considered overlapping.
-
 # Time O(NLogN)
 # Soace O(N)
 class Solution:
@@ -35,7 +21,43 @@ class Solution:
                 # Overlap
                 prev[0] = min(prev[0], current[0])
                 prev[1] = max(prev[1], current[1])
-
+        
         # Add missing element
         result.append(prev)
+        return result
+
+# Min Heap
+# Time O(NLogN)
+# Space O(N)
+from heapq import heappush, heappop
+
+class Solution:
+    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+        if not len(intervals):
+            return []
+
+        minHeap = []
+
+        # In python we need to use the fist key as the priority in order
+        # to implement a min heap, we need to manipulate the data
+        for interval in intervals:
+            heappush(minHeap, (interval[0], interval)) # Use the first element as priority
+
+
+        result = []
+        while minHeap:
+            _, current = heappop(minHeap)
+            # minHeap[0] it's the "peak"
+            # The minHeap[0][1][0] represents the below
+            # print minHeap[0] -> (0, [1,2]) Tupple
+            # print minHeap[0][1] -> [1,2] Removing the sorting index preference
+            # print minHeap[0][1][0] -> 1 Element of the list
+            while minHeap and current[1] >= minHeap[0][1][0]:
+                _, tmp = heappop(minHeap)
+                current[0] = min(current[0], tmp[0])
+                current[1] = max(current[1], tmp[1])
+            
+            # Add the element
+            result.append(current)
+        
         return result
