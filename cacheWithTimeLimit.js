@@ -41,6 +41,7 @@ At t=250, count() returns 0 because the cache is empty.
 
 https://leetcode.com/problems/cache-with-time-limit/description/
 */
+// Time O(N)
 var TimeLimitedCache = function () {
   this.hash = {};
 };
