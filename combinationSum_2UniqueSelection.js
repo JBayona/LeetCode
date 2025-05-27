@@ -58,6 +58,9 @@ function helper(array, target, tmp, result, start) {
     // smaller than our targets
     for(let i = start; i < array.length; i++) {
         // Skip duplicates
+        // For example After sorting: [1, 1, 2] You could generate:
+        // [1,2] from the first 1 and [1,2] again from the second 1
+        // Without the if (i > start && ...) check, you'd add duplicate [1,2] to the result.
         if (i > start && array[i] === array[i - 1]) {
             continue;
         }
@@ -69,7 +72,7 @@ function helper(array, target, tmp, result, start) {
         // Cambiandolo i por start, te da todas las posibles combinaciones, permutando el número
         // i.e [2,2,3], [3,2,2], [2,3,2], [7]
         // THE I + 1 IS GOING TO GIVE US UNIQUE COMBINATIONS
-        helper(array, target - array[i], tmp.concat(), result, i + 1);
+        helper(array, target - array[i], tmp.concat(), result, i+1);
         tmp.pop();
     }
 }
