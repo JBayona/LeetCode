@@ -16,7 +16,6 @@ A solution set is:
 
 https://leetcode.com/problems/combination-sum/description/
 */
-
 // Time O(2^N)
 // Space O(N)
 var combinationSum = function (candidates, target) {
