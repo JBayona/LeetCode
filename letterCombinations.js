@@ -4,7 +4,6 @@ A mapping of digit to letters (just like on the telephone buttons) is given belo
 
 https://leetcode.com/problems/letter-combinations-of-a-phone-number/#/description
 */
-
 // Time O(4^N) where NN is the length of the digits and 4 can be the max letters we coulld have
 // Space O(N) account for the recursion stack
 var letterCombinations = function(digits) {
