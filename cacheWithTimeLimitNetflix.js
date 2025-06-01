@@ -1,4 +1,5 @@
 /*
+
 Write a class that allows getting and setting key-value pairs, however a time until expiration is associated with each key.
 
 The class has three public methods:
@@ -43,7 +44,7 @@ At t=250, count() returns 0 because the cache is empty.
 
 https://leetcode.com/problems/cache-with-time-limit/description/
 */
-
+// Time O(N)
 var TimeLimitedCache = function () {
   this.hash = {};
 };
