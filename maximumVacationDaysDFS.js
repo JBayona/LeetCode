@@ -92,3 +92,40 @@ function dfs(flights, days, currentCity, weekNumber) {
     }
     return maxVac;
 }
+
+// Improved with Memoization
+// Time O(n^2K) Depth of Recursion tree will be k and each node contains n branches in the worst case.
+// // Here n represents the number of cities and k is the total number of weeks.
+// Space O(k). The depth of the recursion tree is k.
+var maxVacationDays = function(flights, days) {
+    let currentCity = 0;
+    let weekNumber = 0;
+    let memo = {}
+    return dfs(flights, days, currentCity, weekNumber, memo);
+};
+
+function dfs(flights, days, currentCity, weekNumber, memo) {
+    // It checks whether you've already processed all weeks
+    // days[0].length if the number of weeks. If weekNumber == days[0].length
+    // means all weeks have gone and there are no weeks left
+    if (weekNumber === days[0].length) {
+        return 0;
+    }
+
+    let key = `${currentCity}-${weekNumber}`;
+    if (key in memo) {
+        return memo[key];
+    }
+
+    let maxVac = 0;
+    for (let i = 0; i < flights.length; i++) {
+        // Check if we can fly to a differetn city or stay
+        if (flights[currentCity][i] === 1 || i === currentCity) {
+            let vac = days[i][weekNumber] + dfs(flights, days, i, weekNumber + 1, memo);
+            // Try to maximize
+            maxVac = Math.max(maxVac, vac);
+        }
+    }
+    memo[key] = maxVac;
+    return maxVac;
+}
