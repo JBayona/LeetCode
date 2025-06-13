@@ -11,44 +11,50 @@ So, the result is 4
   1 2 3 4.     100.       200
 |------------------------------|
 */
-var longestConsecutive = function(nums) {
-  let result = 0;
-  let set = new Set(nums);
-  for (let num of nums) {
-      // Find the start of the element in the sequence
-      // The start is the one not found in the array, that
-      // will always be a start
-      if (!set.has(num - 1)) {
-          let len = 1;
-          while (set.has(num + len)) {
-              len++;
-          }
-          result = Math.max(result, len);
+// Time O(N)
+// Space O(N)
+var longestConsecutive = function (nums) {
+  const numSet = new Set(nums);
+  let longest = 0;
+
+  for (const num of numSet) {
+    // Only start counting if it's the beginning of a sequence
+    // Find the first element of the sequence
+    if (!numSet.has(num - 1)) {
+      let currentNum = num;
+      let count = 1;
+
+      while (numSet.has(currentNum + 1)) {
+        currentNum++;
+        count++;
       }
+      longest = Math.max(longest, count);
+    }
   }
-  return result;
+  return longest;
 };
 
 // Time O(NLogN)
-var longestConsecutive = function(nums) {
+var longestConsecutive = function (nums) {
   if (!nums.length) {
-      return 0;
+    return 0;
   }
   // There can always be a single sequence
   let result = 1;
   nums.sort((a, b) => a - b);
   let len = 1;
   for (let i = 0; i < nums.length - 1; i++) {
-      // Check numbers are consecutive
-      if (nums[i] + 1 == nums[i + 1]) {
-          len++;
-          result = Math.max(len, result);
-      } else if (nums[i] === nums[i + 1]) { // If numbers are the same, continue
-         continue;
-      } else {
-          // Start of a new sequence
-          len = 1;
-      }
+    // Check numbers are consecutive
+    if (nums[i] + 1 == nums[i + 1]) {
+      len++;
+      result = Math.max(len, result);
+    } else if (nums[i] === nums[i + 1]) {
+      // If numbers are the same, continue
+      continue;
+    } else {
+      // Start of a new sequence
+      len = 1;
+    }
   }
   return result;
 };
