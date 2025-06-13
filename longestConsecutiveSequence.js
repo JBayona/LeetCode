@@ -18,22 +18,27 @@ So, the result is 4
 */
 // Time O(N)
 // Space O(N)
+// Time O(N)
+// Space O(N)
 var longestConsecutive = function (nums) {
-  let result = 0;
-  let set = new Set(nums);
-  for (let num of nums) {
-    // Find the start of the element in the sequence
-    // The start is the one not found in the array, that
-    // will always be a start
-    if (!set.has(num - 1)) {
-      let len = 1;
-      while (set.has(num + len)) {
-        len++;
+  const numSet = new Set(nums);
+  let longest = 0;
+
+  for (const num of numSet) {
+    // Only start counting if it's the beginning of a sequence
+    // Find the first element of the sequence
+    if (!numSet.has(num - 1)) {
+      let currentNum = num;
+      let count = 1;
+
+      while (numSet.has(currentNum + 1)) {
+        currentNum++;
+        count++;
       }
-      result = Math.max(result, len);
+      longest = Math.max(longest, count);
     }
   }
-  return result;
+  return longest;
 };
 
 // Time O(NLogN)
