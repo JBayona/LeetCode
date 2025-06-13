@@ -21,7 +21,6 @@ Output: [0,1]
 
 https://leetcode.com/problems/two-sum/
 */
-
 // Time O(N)
 // Space O(N)
 var twoSum = function(nums, target) {
