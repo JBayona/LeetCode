@@ -13,7 +13,7 @@ A solution set is:
 
 https://leetcode.com/problems/3sum/#/description
 */
-// Time O(N)
+// Time O(N^2)
 // Space O(N)
 var threeSum = function (nums) {
   // Sort the numbers, increasing order
