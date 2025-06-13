@@ -18,7 +18,6 @@ Output: true
 
 https://leetcode.com/problems/contains-duplicate/
 */
-
 var containsDuplicate = function (nums) {
   let set = new Set(nums);
   return set.size !== nums.length ? true : false;
