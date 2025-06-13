@@ -11,7 +11,6 @@ You may assume that each input would have exactly one solution and you may
 not use the same element twice.
 
 Example:
-
 Input: numbers = [2,7,11,15], target = 9
 Output: [1,2]
 
