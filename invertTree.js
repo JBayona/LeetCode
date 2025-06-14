@@ -34,6 +34,7 @@ var invertTree = function (root) {
   return root;
 };
 
+
 // Iterative BFS
 var invertTree = function (root) {
   if (!root) {
