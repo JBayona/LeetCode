@@ -9,7 +9,6 @@ An empty tree is height-balanced. A non-empty binary tree T is balanced if:
 
 https://leetcode.com/problems/balanced-binary-tree/description/
 */
-
 function TreeNode(val, left, right) {
   this.val = val || null;
   this.left = left || null;
