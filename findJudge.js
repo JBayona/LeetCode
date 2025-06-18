@@ -47,6 +47,7 @@ Ya que hicimos este conteo, finalmente debemos verificar si el número de votos 
 N - 1, si sí, hemos encontrado al juez, en caso contrario no lo hemos encontrado y regresamos
 -1
 */
+// Time O(N)
 var findJudge = function(N, trust) {
     // To find the town judge minimum people need to trust N - 1
     if(trust.length < N - 1) {
