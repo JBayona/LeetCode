@@ -17,7 +17,6 @@ impossible to reach the last index.
 
 https://leetcode.com/problems/jump-game/description/
 */
-
 // Time O(N)
 // Space O(1)
 var canJump = function (nums) {
