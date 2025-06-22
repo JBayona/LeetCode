@@ -16,6 +16,7 @@ Output: []
 
 https://leetcode.com/problems/binary-tree-level-order-traversal/description/
 */
+
 // Time O(N)
 // Space O(1)
 var levelOrder = function (root) {
