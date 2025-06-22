@@ -42,6 +42,18 @@ var rightSideView = function(root) {
     return result;
 };
 
+/*
+       1
+     /   \
+    2     3
+     \     \
+      5     4
+
+Level 0 → Node 1 → result = [1]
+Level 1 → Node 3 (right first) → result = [1, 3]
+Level 2 → Node 4 (right child of 3) → result = [1, 3, 4]
+*/
+
 // DFS Postorder
 // Time O(N)
 // Space O(1)
@@ -59,9 +71,12 @@ function dfs(root, level, result) {
   if (!root) {
     return;
   }
+  // If this is the first node we're visiting at this level,
+  // it's the rightmost node at that level (because we go right first!)
   if (level === result.length) {
     result.push(root.val);
   }
+  // First go right, then left
   dfs(root.right, level + 1, result);
   dfs(root.left, level + 1, result);
 }
