@@ -81,7 +81,6 @@ function dfs(root, depth, hash, result) {
   dfs(root.left, depth + 1, hash, result);
 }
 
-
 // DFS Postorder
 // Time O(N)
 // Space O(1)
