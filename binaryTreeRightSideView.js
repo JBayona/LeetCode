@@ -20,7 +20,6 @@ Output: []
 
 https://leetcode.com/problems/binary-tree-right-side-view/description/
 */
-
 // Time O(N)
 // Space O(1)
 var rightSideView = function(root) {
