@@ -26,7 +26,6 @@ logger.shouldPrintMessage(11, "foo"); // 11 >= 11, return true, next allowed tim
 
 https://leetcode.com/problems/logger-rate-limiter/description
 */
-
 var Logger = function () {
   this.map = {};
 };
