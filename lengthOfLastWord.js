@@ -9,7 +9,6 @@ For example,
 Given s = "Hello World",
 return 5.
 
-
 https://leetcode.com/problems/length-of-last-word/description/
 */
 
