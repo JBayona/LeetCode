@@ -31,7 +31,6 @@ Explanation: Node values in the level 1 should be even integers.
 
 https://leetcode.com/problems/even-odd-tree/description
 */
-
 /**
  * Definition for a binary tree node.
  * function TreeNode(val, left, right) {
