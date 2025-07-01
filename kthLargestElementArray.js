@@ -1,8 +1,6 @@
 /*
 Given an integer array nums and an integer k, return the kth largest element in the array.
-
 Note that it is the kth largest element in the sorted order, not the kth distinct element.
-
 Can you solve it without sorting?
 
 Example 1:
@@ -15,7 +13,6 @@ Output: 4
 
 https://leetcode.com/problems/kth-largest-element-in-an-array/description/
 */
-
 // Time O(N Log N)
 // Space O(N)
 var findKthLargest = function (nums, k) {
