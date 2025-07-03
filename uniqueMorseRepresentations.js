@@ -4,7 +4,6 @@ as follows: "a" maps to ".-", "b" maps to "-...", "c" maps to "-.-.", and so on.
 
 https://leetcode.com/problems/unique-morse-code-words/description/
 */
-
 /**
  * @param {string[]} words
  * @return {number}
