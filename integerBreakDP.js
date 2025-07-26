@@ -15,7 +15,6 @@ Explanation: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36.
 
 https://leetcode.com/problems/integer-break/
 */
-
 // e.x) 6 = 2 + 4 => you can use dp[2](break 2) or 2(2 itself) and
 // the same as with 4. Iterate from 1 to n - 1.
 
