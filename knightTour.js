@@ -1,7 +1,6 @@
 /*
 https://www.geeksforgeeks.org/the-knights-tour-problem-backtracking-1/
 */
-
 function knightTour() {
     // Board of 8x8
     let board = new Array(8).fill(-1);
