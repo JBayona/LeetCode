@@ -4,6 +4,7 @@ traversing through blank cells only. You can traverse up, down, right and left.
 
 https://www.geeksforgeeks.org/find-whether-path-two-cells-matrix/
 */
+
 function canReach(grid) {
   let row = grid.length;
   let col = grid[0].length;
