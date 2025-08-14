@@ -8,7 +8,8 @@ https://leetcode.com/problems/unique-morse-code-words/description/
  * @param {string[]} words
  * @return {number}
  */
- // Opción 1
+
+ // Option 1
 var uniqueMorseRepresentations = function(words) {
     let hash = {};
     let morseCode;
