@@ -1,5 +1,6 @@
 var readline = require('readline');
 
+
 class Database{
 	constructor() {
 		this.datastore = {};
