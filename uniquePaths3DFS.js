@@ -10,6 +10,7 @@ over every non-obstacle square exactly once.
 
 https://leetcode.com/problems/unique-paths-iii/
 */
+
 // Approach:
 // 1. Find the start and end point.
 // 2. Count all each paths using DFS
