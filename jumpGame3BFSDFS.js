@@ -6,7 +6,6 @@ When you are at index i, you can jump to i + arr[i] or i - arr[i], check if you 
 Notice that you can not jump outside of the array at any time.
 
 Example 1:
-
 Input: arr = [4,2,3,0,3,1,2], start = 5
 Output: true
 Explanation: 
