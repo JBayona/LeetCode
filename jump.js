@@ -1,12 +1,9 @@
 /*
 Given an array of non-negative integers, you are initially positioned at the first index of the array.
-
 Each element in the array represents your maximum jump length at that position.
-
 Your goal is to reach the last index in the minimum number of jumps.
 
 Example:
-
 Input: [2,3,1,1,4]
 Output: 2
 Explanation: The minimum number of jumps to reach the last index is 2.
