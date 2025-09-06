@@ -3,7 +3,6 @@ We are located into a position, the "+" represents a wall where we cannot move,
 we can move only using '.'. Find the minimum nunber of moves to reach out of
 the wall, which is the boundaries.
 */
-
 // BFS
 // Time (O * M )
 // Space (O * M )
