@@ -17,6 +17,94 @@ What if the inputs contain unicode characters? How would you adapt your solution
 https://leetcode.com/problems/valid-anagram/description/
 */
 
+// Time O(N)
+// Space O(N)
+var isAnagram = function(s, t) {
+    if (s.length !== t.length) {
+        return false;
+    }
+
+    let counter = getFrequency(s);
+
+    for (let i = 0; i < t.length; i++) {
+        let c = t[i];
+        if (!(c in counter) || counter[c] === 0) {
+            return false;
+        }
+        counter[c]--;
+    }
+    return true;
+};
+
+function getFrequency(str) {
+    let map = {};
+    for (let i = 0; i < str.length; i++) {
+        let c = str[i];
+        if (!(c in map)) {
+            map[c] = 0;
+        }
+        map[c]++;
+    }
+    return map;
+}
+
+
+// Option 2
+/*
+var isAnagram = function(s, t) {
+    let map1 = getFrequency(s);
+    let map2 = getFrequency(t);
+
+    if (Object.keys(map1).length !== Object.keys(map2).length) {
+        return false;
+    }
+
+    for (let prop in map1) {
+        if(map1[prop] !== map2[prop]) {
+            return false;
+        }
+    }
+    return true;
+};
+
+function getFrequency(str) {
+    let map = {};
+    for (let i = 0; i < str.length; i++) {
+        let c = str[i];
+        if (!(c in map)) {
+            map[c] = 0;
+        }
+        map[c]++;
+    }
+    return map;
+}
+
+/*
+// Time O(N) Space O(N)
+var isAnagram = function(s, t) {
+  let array1 = new Array(26).fill(0);
+  let array2 = new Array(26).fill(0);
+  
+  for(let i = 0; i < s.length; i++) {
+      let index = s[i].charCodeAt(0) - 'a'.charCodeAt(0);
+      array1[index]++;
+  }
+  
+  for(let i = 0; i < t.length; i++) {
+      let index = t[i].charCodeAt(0) - 'a'.charCodeAt(0);
+      array2[index]++;
+  }
+  
+  for(let i = 0; i < 26; i++) {
+      if(array1[i] !== array2[i]) {
+          return false;
+      }
+  }
+  
+  return true;
+};
+*/
+
 // Time O(N) Space O(N)
 var isAnagram = function(s, t) {
   let array1 = new Array(26).fill(0);
