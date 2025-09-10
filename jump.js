@@ -26,6 +26,7 @@ https://www.youtube.com/watch?v=jH_5ypQggWg
 * Space complexity O(n) to maintain result and min jumps
 * Time complexity O(n^2)
 */
+
 var jump = function(nums) {
     let min_jumps = new Array(nums.length).fill(Number.MAX_SAFE_INTEGER);
     let path_jump = new Array(nums.length).fill(0);
