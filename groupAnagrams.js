@@ -15,6 +15,7 @@ https://leetcode.com/problems/group-anagrams/description/
  * @param {string[]} strs
  * @return {string[][]}
  */
+
 var groupAnagrams = function(strs) {
     var map = {};
     var result = [];
