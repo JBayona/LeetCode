@@ -7,7 +7,6 @@ path = "/a/./b/../../c/", => "/c"
 
 https://leetcode.com/problems/simplify-path/description/
 */
-
 /*
 Did you consider the case where path = "/../"?
 In this case, you should return "/".
