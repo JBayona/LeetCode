@@ -7,7 +7,6 @@ Return true if there is a cycle in the linked list. Otherwise, return false.
 
 https://leetcode.com/problems/linked-list-cycle/description/
 */
-
 var hasCycle = function(head) {
   if (!head) {
       return false;
