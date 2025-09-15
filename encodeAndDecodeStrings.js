@@ -15,6 +15,7 @@ method is: “we:;say:;:::;yes”
 
 https://leetcode.com/problems/encode-and-decode-strings/
 */
+
 /**
  * Encodes a list of strings to a single string.
  *
