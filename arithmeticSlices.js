@@ -18,9 +18,7 @@ A[P], A[p + 1], ..., A[Q - 1], A[Q] is arithmetic. In particular, this means tha
 
 The function should return the number of arithmetic slices in the array A.
 
-
 Example:
-
 A = [1, 2, 3, 4]
 
 return: 3, for 3 arithmetic slices in A: [1, 2, 3], [2, 3, 4] and [1, 2, 3, 4] itself.
