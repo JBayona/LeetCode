@@ -17,7 +17,6 @@ return its zigzag level order traversal as:
 
 https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/
 */
-
 // Option 1
 var zigzagLevelOrder = function(root) {
     if(!root) {
