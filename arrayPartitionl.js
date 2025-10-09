@@ -18,7 +18,6 @@ https://leetcode.com/problems/array-partition-i/description/
 */
 
 // Op 1
-
 var arrayPairSum = function(nums) {
     let sorted = nums.sort((a,b) => a - b);
     console.log(sorted);
