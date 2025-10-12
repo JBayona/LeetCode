@@ -12,7 +12,6 @@ Output: [4,9,9,49,121]
 https://leetcode.com/problems/squares-of-a-sorted-array/
 
 */
-
 // Option 1
 var sortedSquares = function(A) {
     let result = new Array(A.length).fill(0);
