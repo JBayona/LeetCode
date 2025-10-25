@@ -13,6 +13,7 @@ In this case, you should return "/".
 Another corner case is the path might contain multiple slashes '/' together, such as "/home//foo/".
 In this case, you should ignore redundant slashes and return "/home/foo".
 */
+
 var simplifyPath = function(str) {
     let stack = [];
     let result = '';
