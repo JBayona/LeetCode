@@ -19,7 +19,6 @@ Notice that the vowel o is counted twice.
 
 https://leetcode.com/problems/determine-if-string-halves-are-alike/description/
 */
-
 /**
  * @param {string} s
  * @return {boolean}
