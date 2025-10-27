@@ -16,6 +16,26 @@ https://leetcode.com/problems/group-anagrams/description/
  * @return {string[][]}
  */
 
+// Time O(N)
+// Space O(N)
+var groupAnagrams = function(strs) {
+    let hash = {};
+    for (let str of strs) {
+        let sorted = str.split('').sort().join('');
+        if (!(sorted in hash)) {
+            hash[sorted] = [];
+        }
+        hash[sorted].push(str);
+    }
+
+    // Format output
+    let result = [];
+    for (prop in hash) {
+        result.push(hash[prop]);
+    }
+    return result;
+};
+
 var groupAnagrams = function(strs) {
     var map = {};
     var result = [];
