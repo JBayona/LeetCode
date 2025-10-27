@@ -15,6 +15,39 @@ https://leetcode.com/problems/top-k-frequent-elements/
 https://github.com/datastructures-js/priority-queue/blob/v5/README.md#size
 */
 
+// Min heap
+// Counting frequencies  + Building the heap + Heapify
+// Time complexity = O(n) + O(m log k ) + O(k log k) = O(n log k)
+// Space O(n)
+var topKFrequent = function(nums, k) {
+    let hash = {};
+
+    // Count frequency of elements
+    for (let n of nums) {
+        if (!(n in hash)) {
+            hash[n] = 0;
+        }
+        hash[n]++;
+    }
+
+    let heap = new PriorityQueue((a, b) => a.count - b.count);
+
+    // Add all to the heap
+    for (let prop in hash) {
+        heap.enqueue({n: Number(prop), count: hash[prop]});
+        if (heap.size() > k) {
+            heap.dequeue();
+        }
+    }
+
+    // Format results
+    let result = [];
+    while (!heap.isEmpty()) {
+        result.push(heap.dequeue().n);
+    }
+    return result;
+};
+
 // Time O(NLogN) Heap operations
 // Space O(N)
 var topKFrequent = function(nums, k) {
