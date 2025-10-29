@@ -29,7 +29,6 @@ Explanation: We define the gray code sequence to begin with 0.
 
 https://leetcode.com/problems/gray-code/
 */
-
 // Time O(1)
 // Space O(1)
 
