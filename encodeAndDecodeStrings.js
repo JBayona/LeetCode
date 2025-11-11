@@ -21,6 +21,7 @@ https://leetcode.com/problems/encode-and-decode-strings/
  * @param {string[]} strs
  * @return {string}
  */
+
 var encode = function(strs) {
     let encoded = '';
     for (let str of strs) {
