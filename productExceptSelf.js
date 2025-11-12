@@ -8,6 +8,7 @@ Could you solve it with constant space complexity? (Note: The output array does 
 
 https://leetcode.com/problems/product-of-array-except-self/description/
 */
+
 //O(n)
 var productExceptSelf = function(nums) {
     let left = [];
