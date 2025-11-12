@@ -58,6 +58,31 @@ var lengthOfLongestSubstring = function (s) {
 };
 
 // Sliding Window
+// Time O(N)
+// Space O(N)
+var lengthOfLongestSubstring = function(s) {
+    let start = 0;
+    let end = 0;  
+    let hash = {};
+    let max = 0;
+    while (end < s.length) {
+        let c = s[end];
+        // Repeated char, we need to remove
+        while (c in hash && hash[c] > 0) {
+            let l = s[start];
+            hash[l]--;
+            start++;
+        }
+        // Update the value and try to get the max
+        hash[c] = 1;
+        max = Math.max(max, end - start + 1);
+        end++;
+    }
+    return max;
+};
+
+
+// Sliding Window
 /*
 Sliding window, si no encontramos repetimos, avanzamos el tail del windows, si encontramos un
 repetido, avanzamos el head del window
