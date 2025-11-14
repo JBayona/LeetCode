@@ -19,6 +19,7 @@ Output: 2
 
 https://leetcode.com/problems/jump-game-ii
 */
+
 // Time O(N)
 // Space O(1)
 var jump = function (nums) {
