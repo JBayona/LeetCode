@@ -23,7 +23,6 @@ You may assume pattern contains only lowercase letters, and str contains lowerca
 
 https://leetcode.com/problems/word-pattern/
 */
-
 var wordPattern = function(pattern, str) {
     let strArray = str.split(' ');
     
