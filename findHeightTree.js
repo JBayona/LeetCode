@@ -8,7 +8,6 @@ function findHeight(t){
   return getHeight(t);
 }
 
-
 /*Recursion*/
 function getHeight(t){
   if(t === null){
