@@ -6,7 +6,6 @@ According to the definition of h-index on Wikipedia: "A scientist has index h if
 papers have at least h citations each, and the other N − h papers have no more than h citations each."
 
 Example:
-
 Input: citations = [3,0,6,1,5]
 Output: 3 
 Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of them had 
