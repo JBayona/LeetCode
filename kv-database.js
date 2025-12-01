@@ -1,5 +1,6 @@
 var readline = require('readline');
 
+
 // Class.
 class Database{
 	constructor() {
