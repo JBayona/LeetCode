@@ -25,7 +25,6 @@ https://leetcode.com/problems/house-robber/description/
 */
 
 // Max sum non consecutive array
-
 /**
  * @param {number[]} nums
  * @return {number}

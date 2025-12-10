@@ -15,6 +15,7 @@ return true, as there exist a root-to-leaf path 5->4->11->2 which sum is 22.
 
 https://leetcode.com/problems/path-sum/description/
 */
+
 function TreeNode(val, left,right){
     this.val = val;
     this.left = left || null;
