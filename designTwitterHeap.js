@@ -3,7 +3,6 @@ Design a simplified version of Twitter where users can post tweets, follow/unfol
 to see the 10 most recent tweets in the user's news feed.
 
 Implement the Twitter class:
-
 Twitter() Initializes your twitter object.
 void postTweet(int userId, int tweetId) Composes a new tweet with ID tweetId by the user userId. Each call
 to this function will be made with a unique tweetId.
