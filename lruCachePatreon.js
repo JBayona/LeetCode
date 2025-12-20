@@ -11,7 +11,6 @@ Could you do both operations in O(1) time complexity?
 https://leetcode.com/problems/lru-cache/description/
 */
 /**
-
 General idea:
 1. The head always has the most recent nodde.
 2. Whenever we apply an operation on the node, we need to update the pointers
