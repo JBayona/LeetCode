@@ -3,6 +3,7 @@
 // square(x) = ax^2
 // lineal(x) = x + c
 // constant(c) = c
+
 function applyFunction(quadraticFunction, x) {
   if (!quadraticFunction) {
     return -1;
