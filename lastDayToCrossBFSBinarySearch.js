@@ -18,12 +18,6 @@ https://leetcode.com/problems/last-day-where-you-can-still-cross/description/?en
 // Time For Binary Search O(log(row×col)) + BFS O(row×col) = O((row×col)log(row×col))
 // Space O(row × col)
 
-/**
- * @param {number} row
- * @param {number} col
- * @param {number[][]} cells
- * @return {number}
- */
 // This problem is monotonic, if you can cross one day, it won't be possible later
 // if you can cross on a day d, you might be able to cross on a day later, so this
 // point us to binary search
