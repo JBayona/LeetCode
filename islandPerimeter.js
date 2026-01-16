@@ -12,7 +12,6 @@ Input:
  [1,1,0,0]]
 
 Output: 16
-
 Explanation: The perimeter is the 16 yellow stripes in the image below:
 */
 // Option 1
