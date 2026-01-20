@@ -17,7 +17,6 @@ Output: true
 
 https://leetcode.com/problems/contains-duplicate/
 */
-
 // Time O(N)
 var containsDuplicate = function(nums) {
     return nums.length !== new Set(nums).size
