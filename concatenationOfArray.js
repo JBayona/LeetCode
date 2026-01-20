@@ -22,10 +22,29 @@ Explanation: The array ans is formed as follows:
 https://leetcode.com/problems/concatenation-of-array/description/
 */
 
-/**
- * @param {number[]} nums
- * @return {number[]}
- */
+// Option 1
+// Time O(N)
+// Space O(1)
+// Optimization, we need to create an array with twice of
+// of the size and we need to add the element on the position
+// on i + n
+var getConcatenation = function (nums) {
+  let arr = new Array(nums.length * 2).fill(0);
+  let len = nums.length;
+  for (let i = 0; i < nums.length; i++) {
+    arr[i] = nums[i]; // First Element
+    arr[i + len] = nums[i]; // Second Element
+  }
+  return arr;
+};
+
+//Get the index with the floor and retrieve the element from the array
+function getElement(arr, index) {
+  let len = arr.length;
+  return arr[index % len];
+}
+
+// Option 2
 // Time O(N)
 // Space O(1)
 var getConcatenation = function (nums) {
