@@ -15,6 +15,7 @@ https://leetcode.com/problems/longest-common-prefix/#/description
 // Time O(S) where S is the sum of all characters
 // Space O(1)
 var longestCommonPrefix = function(strs) {
+    // Take the first string as base.
     let prefix = strs[0];
     for(let index=1; index < strs.length; index++){
         // If index is -1 it means that the string has not been found so we need to cut by one character each time until
