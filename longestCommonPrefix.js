@@ -10,6 +10,22 @@ Output : "ap"
 
 https://leetcode.com/problems/longest-common-prefix/#/description
 */
+
+// Option 1
+// Time O(S) where S is the sum of all characters
+// Space O(1)
+var longestCommonPrefix = function(strs) {
+    let prefix = strs[0];
+    for(let index=1; index < strs.length; index++){
+        // If index is -1 it means that the string has not been found so we need to cut by one character each time until
+        // we find a valid string, we are cutting from the end.
+        while(strs[index].indexOf(prefix) !== 0){
+            prefix = prefix.substring(0, prefix.length - 1);
+        }
+    }
+    return prefix;
+}
+
 var longestCommonPrefix = function (strs) {
   if (strs.length == 0 || strs == "") return "";
   var currentChar = "";
