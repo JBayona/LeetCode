@@ -12,7 +12,7 @@ Input
 Output
 [null, null, null, true, false, null, true, null, false]
 
-Explanation
+Explanation:
 MyHashSet myHashSet = new MyHashSet();
 myHashSet.add(1);      // set = [1]
 myHashSet.add(2);      // set = [1, 2]
