@@ -7,7 +7,6 @@ Return the sum of these numbers. The answer is guaranteed to fit in a 32-bits in
 
 https://leetcode.com/problems/sum-of-root-to-leaf-binary-numbers/
 */
-
 // Option 1
 var sumRootToLeaf = function(root) {
     let answer = {num: 0}
