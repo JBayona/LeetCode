@@ -28,6 +28,37 @@ myHashMap.get(2);    // return -1 (i.e., not found), The map is now [[1,1]]
 
 https://leetcode.com/problems/design-hashmap/
 */
+/*
+Size = 5
+[
+  [],  // 0
+  [],  // 1
+  [],  // 2
+  [],  // 3
+  []   // 4
+]
+
+put(1, 10) -> 1 % 5 = 1
+Updated:
+[
+  [],
+  [[1, 10]],  // bucket 1
+  [],
+  [],
+  []
+]
+put(6, 20) -> 6 % 5 = 1
+[
+  [],
+  [[1, 10], [6, 20]],  // collision handled
+  [],
+  [],
+  []
+]
+
+When looking into the element we iterate over the bucket and if we find the value of the key we are done
+*/
+
 var MyHashMap = function () {
   // The bigger si bucket size, the less colissions we could have
   this.bucketSize = 1000;
