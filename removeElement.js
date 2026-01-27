@@ -11,6 +11,7 @@ Your function should return length = 2, with the first two elements of nums bein
 https://leetcode.com/problems/remove-element/description/
 
 */
+
 // Option 1
 // Time O(N)
 // Space O(1)
