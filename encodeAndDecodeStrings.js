@@ -22,6 +22,8 @@ https://leetcode.com/problems/encode-and-decode-strings/
  * @return {string}
  */
 
+// Time O(N)
+// Space O(1)
 var encode = function(strs) {
     let encoded = '';
     for (let str of strs) {
