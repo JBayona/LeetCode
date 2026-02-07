@@ -62,23 +62,26 @@ Computed:
 [13, 22, 26, 34, 49]
 [14, 23, 30, 38, 58]
 */
+
 var NumMatrix = function(matrix) {
     // Copy the matrix
     this.matrix = matrix;
     for(let i = 0; i < matrix.length; i++) {
         for(let j = 0; j < matrix[0].length; j++) {
             let sum = 0;
-            // Prefix sum by row
+            // Prefix sum by row (add previous element)
             if(j > 0) {
                 sum += this.matrix[i][j-1];
             }
-            // Prefix sum by col
+            // Prefix sum by col (add previous element)
             if(i > 0) {
                 sum += this.matrix[i-1][j];
             }
             // Sum the actual element
             sum += this.matrix[i][j];
             // We already considered this element in prev sum, so let's decrease it
+            // The previous sum adds all elements but fur boundaries we dont
+            // hit this condition as there are no previous value to sum
             if(i > 0 && j > 0) {
                 sum -= matrix[i-1][j-1];
             }
