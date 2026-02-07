@@ -4,7 +4,6 @@
 // One order sequence
 // 1 3 5 18 (ascending sequence)
 // 7 4 2 1 (descending sequence)
-
 // Two order sequence:
 // 5 3 1 5 6 7
 // 5 8 19 14 4 1
