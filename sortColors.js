@@ -14,7 +14,6 @@ Could you come up with an one-pass algorithm using only constant space?
 
 https://leetcode.com/problems/sort-colors/description/
 */
-
 // Time: O(N)
 // Space: O(1)
 var sortColors = function (nums) {
