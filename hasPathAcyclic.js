@@ -3,6 +3,7 @@ Has path, given a graph and a source and destination node. Find if it´s possibl
 to destination.
 Assume the graph is acyclic.
 */
+
 // DFS
 const hasPathDFS = (graph, src, dst) => {
   if(src === dst) {
