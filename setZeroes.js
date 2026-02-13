@@ -4,6 +4,7 @@ click to show follow up.
 
 https://leetcode.com/problems/set-matrix-zeroes/description/
 */
+
 var setZeroes = function(matrix) {
     let row = new Array(matrix.length).fill(false);
     let col = new Array(matrix[0].length).fill(false);
