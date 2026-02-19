@@ -1,3 +1,4 @@
+# Segment text.
 def segments(message):
     limit = 160
     additional = 5
