@@ -6,7 +6,6 @@ Input  : arr[] = {100, 200, 300, 400}
          k = 2
 Output : 700
 */
-
 function slidingWindowBruteForce(array, k) {
   // Brute force
   let result = 0;
