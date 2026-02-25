@@ -7,6 +7,7 @@ export async function getProjectTree() {
   const doc = parser.parseFromString(xmlStr, "application/xml")
   return createProjectItem(doc.documentElement)
 }
+
 // xml.getAttribute(<attribute name>)
 // xml.children
 // Array.from(xml.children)
