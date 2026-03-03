@@ -6,7 +6,6 @@ Return the decimal value of the number in the linked list.
 
 Example 1:
 
-
 Input: head = [1,0,1]
 Output: 5
 Explanation: (101) in base 2 = (5) in base 10
