@@ -14,7 +14,6 @@
 //     (1, 3), (2, 3), (3, 6), (5, 6),
 //     (5, 7), (4, 5), (4, 8), (4, 9), (9, 11)
 // ]
-
 // Write a function that takes this data as input and return two collections: one containing
 // all individuals with zero know parents, and one containing
 // all individuals with exactly one parent
