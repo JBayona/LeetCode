@@ -14,6 +14,7 @@ Input:
 Output: 16
 Explanation: The perimeter is the 16 yellow stripes in the image below:
 */
+
 // Option 1
 var islandPerimeter = function (grid) {
   let result = 0;
