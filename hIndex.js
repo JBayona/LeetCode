@@ -15,8 +15,7 @@ Explanation: [3,0,6,1,5] means the researcher has 5 papers in total and each of 
 Note: If there are several possible values for h, the maximum one is taken as the h-index.
 
 https://leetcode.com/problems/h-index/
-*/
-var hIndex = function(citations) {
+*/var hIndex = function(citations) {
   citations.sort((a,b) => a - b);
   for(let i = 0; i < citations.length; i++)
     if(citations[i] >= citations.length - i)
