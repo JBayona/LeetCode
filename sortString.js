@@ -26,7 +26,6 @@ Output: "ops"
 
 https://leetcode.com/problems/increasing-decreasing-string/
 */
-
 var sortString = function(s) {
     let array = new Array(26).fill(0);
     let result = {val: ''}
