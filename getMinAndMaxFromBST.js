@@ -18,7 +18,6 @@ function getMax(node){
   return max;
 }
 
-
 /*
        3
     6     8
