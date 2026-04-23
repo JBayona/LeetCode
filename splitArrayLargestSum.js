@@ -21,7 +21,6 @@ Output: 4
 
 https://leetcode.com/problems/split-array-largest-sum/
 */
-
 // Binary Search
 // Time: O(NLogN)
 var splitArray = function(nums, m) {
