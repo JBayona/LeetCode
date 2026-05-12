@@ -16,7 +16,6 @@ https://leetcode.com/problems/integer-break/
 */
 // e.x) 6 = 2 + 4 => you can use dp[2](break 2) or 2(2 itself) and
 // the same as with 4. Iterate from 1 to n - 1.
-
 let integerBreak = (n) => {
     const dp = new Array(n + 1).fill(0)
     dp[2] = 1
