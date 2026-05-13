@@ -43,7 +43,6 @@ kthLargest.add(9); // return 8
 
 https://leetcode.com/problems/kth-largest-element-in-a-stream/description/
 */
-
 /**
  * @param {number} k
  * @param {number[]} nums
