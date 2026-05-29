@@ -7,7 +7,6 @@ if h of his/her N papers have at least h citations each, and the other N − h p
 have no more than h citations each."
 
 Example:
-
 Input: citations = [0,1,3,5,6]
 Output: 3 
 Explanation: [0,1,3,5,6] means the researcher has 5 papers in total and each of them had 
