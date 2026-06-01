@@ -18,7 +18,6 @@ Note:
 If there are several possible values for h, the maximum one is taken as the h-index.
 
 Follow up:
-
 This is a follow up problem to H-Index, where citations is now guaranteed to be sorted in ascending order.
 Could you solve it in logarithmic time complexity?
 
