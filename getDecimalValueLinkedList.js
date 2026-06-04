@@ -27,7 +27,6 @@ Output: 0
 
 https://leetcode.com/problems/convert-binary-number-in-a-linked-list-to-integer/
 */
-
 var getDecimalValue = function(head) {
     let count = -1;
     let sum = 0;
