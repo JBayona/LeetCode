@@ -8,7 +8,6 @@ item or don’t pick it (0-1 property).
 https://www.geeksforgeeks.org/0-1-knapsack-problem-dp-10/
 https://www.youtube.com/watch?v=8LusJS5-AGo
 */
-
 // DP
 const knapsack01 = function(val, weight, W) {
     let dp = new Array(val.length + 1);
