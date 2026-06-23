@@ -16,6 +16,7 @@ Note: If there are several possible values for h, the maximum one is taken as th
 
 https://leetcode.com/problems/h-index/
 */
+
 var hIndex = function(citations) {
   citations.sort((a,b) => a - b);
   for(let i = 0; i < citations.length; i++)
