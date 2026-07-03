@@ -25,7 +25,6 @@ myHashSet.contains(2); // return False, (already removed)
 
 https://leetcode.com/problems/design-hashset/description/
 */
-
 // Time O(1)
 // Space O(N)
 var MyHashSet = function () {
