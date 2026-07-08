@@ -19,7 +19,6 @@ The divisor will never be 0.
 Assume we are dealing with an environment which could only store integers within the 32-bit signed integer range: [−231,  231 − 1]. For the purpose of this problem, assume that your function returns 231 − 1 when the division result overflows.
 
 https://leetcode.com/problems/divide-two-integers/description/
-
 */
 // Option 1
 // The implementation above is very inneficient especially when the
