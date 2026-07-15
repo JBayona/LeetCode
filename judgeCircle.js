@@ -15,7 +15,6 @@ Output: false
 
 https://leetcode.com/problems/judge-route-circle/description/
 */
-
 /**
  * @param {string} moves
  * @return {boolean}
