@@ -10,7 +10,6 @@ There is only one duplicate number in the array, but it could be repeated more t
 
 https://leetcode.com/problems/find-the-duplicate-number/description/
 */
-
 /**
  * @param {number[]} nums
  * @return {number}
