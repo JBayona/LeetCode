@@ -16,6 +16,7 @@ Explanation: The perimeter is the 16 yellow stripes in the image below:
 */
 
 // Option 1
+// Time O(N * M) N = rows x M = cols
 var islandPerimeter = function (grid) {
   let result = 0;
   for (let i = 0; i < grid.length; i++) {
@@ -45,6 +46,7 @@ var islandPerimeter = function (grid) {
 };
 
 // Option 2
+// Time O(N * M) N = rows x M = cols
 var islandPerimeter = function (grid) {
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[0].length; j++) {
