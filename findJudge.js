@@ -1,7 +1,6 @@
 /*
 In a town, there are N people labelled from 1 to N.  There is a rumor that one of
 these people is secretly the town judge.
-
 If the town judge exists, then:
 
 The town judge trusts nobody.
@@ -48,6 +47,7 @@ N - 1, si sí, hemos encontrado al juez, en caso contrario no lo hemos encontrad
 -1
 */
 // Time O(N)
+// Space O(1)
 var findJudge = function(N, trust) {
     // To find the town judge minimum people need to trust N - 1
     if(trust.length < N - 1) {
