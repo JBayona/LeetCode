@@ -7,7 +7,6 @@ You may assume all four edges of the grid are all surrounded by water.
 
 https://leetcode.com/problems/number-of-islands/description/
 */
-
 // Time O(M * N)
 // Space O(M * N)
 var numIslands = function(grid) {
