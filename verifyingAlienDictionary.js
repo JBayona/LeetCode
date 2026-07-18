@@ -26,37 +26,49 @@ the blank character which is less than any other character (More info).
 https://leetcode.com/problems/verifying-an-alien-dictionary/
 */
 
-var isAlienSorted = function(words, order) {
-    let map = {};
-    // Set map
-    for(let i = 0; i < order.length; i++) {
-        let c = order[i];
-        map[c] = i;
+/**
+ * @param {string[]} words
+ * @param {string} order
+ * @return {boolean}
+ */
+// Time: O(26 + N * M)$, which simplifies to O(N * M).
+// Space O(26) -> O(C)
+var isAlienSorted = function (words, order) {
+  let map = {};
+  // Set map
+  for (let i = 0; i < order.length; i++) {
+    let c = order[i];
+    map[c] = i;
+  }
+
+  console.log(map);
+  // Compare two by two strings
+  for (let i = 1; i < words.length; i++) {
+    let word1 = words[i - 1];
+    let word2 = words[i];
+    if (!compareStrings(word1, word2, map)) {
+      return false;
     }
-    
-    for(let i = 1; i < words.length; i++) {
-        let word1 = words[i-1];
-        let word2 = words[i];
-        if(!compareStrings(word1, word2, map)) {
-            return false;
-        }
-    }
-    return true;
+  }
+  return true;
 };
 
 function compareStrings(word1, word2, map) {
-    let i = 0;
-    let j = 0;
-    while(i < word1.length && j < word2.length && word1[i] === word2[j]) {
-        i++;
-        j++;
-    }
-    // The first one is shorter
-    if(i === word1.length) {
-        return true;
-    } else if(j === word2.length) { // The second string is larger
-        return false;
-    } else {
-        return map[word1[i]] < map[word2[j]];
-    }
+  let i = 0;
+  let j = 0;
+
+  // Skip similar characters, we don't need to compare them.
+  while (i < word1.length && j < word2.length && word1[i] === word2[j]) {
+    i++;
+    j++;
+  }
+  // The first one is shorter
+  if (i === word1.length) {
+    return true;
+  } else if (j === word2.length) {
+    // The second string is shorter, second string should be bigger
+    return false;
+  } else {
+    return map[word1[i]] < map[word2[j]];
+  }
 }
