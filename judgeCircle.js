@@ -19,6 +19,7 @@ https://leetcode.com/problems/judge-route-circle/description/
  * @param {string} moves
  * @return {boolean}
  */
+
 var judgeCircle = function(moves) {
     let x = 0;
     let y = 0;
