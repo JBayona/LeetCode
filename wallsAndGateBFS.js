@@ -15,7 +15,6 @@ be filled with INF.
 
 https://leetcode.com/problems/walls-and-gates/description/
 */
-
 // Time O (V + E)
 // Space O (V + E)
 var wallsAndGates = function(rooms) {
