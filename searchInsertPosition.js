@@ -20,7 +20,6 @@ Output: 0
 
 https://leetcode.com/problems/search-insert-position/
 */
-
 // Option 1
 // The problem is about find first element in array nums that
 // are greater or equal to target. If doesn't found, return nums.length.
