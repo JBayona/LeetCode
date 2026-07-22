@@ -16,7 +16,6 @@ Output: false
 
 https://leetcode.com/problems/detect-capital/description/
 */
-
 var detectCapitalUse = function (word) {
   let capitalCount = 0;
   for (let i = 0; i < word.length; i++) {
