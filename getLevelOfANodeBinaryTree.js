@@ -14,7 +14,6 @@ function TreeNode(val, left, right) {
     this.right = right || null;
 }
 
-
 // Time complexity is O(n) where n is the number of nodes
 var getLevel = function(tree, value) {
     // Root has 1 as default value
