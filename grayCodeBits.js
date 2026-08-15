@@ -1,6 +1,5 @@
 /*
 The gray code is a binary numeral system where two successive values differ in only one bit.
-
 Given a non-negative integer n representing the total number of bits in the code, print the sequence of gray code. A gray code sequence must begin with 0.
 
 Example 1:
@@ -31,7 +30,6 @@ https://leetcode.com/problems/gray-code/
 */
 // Time O(1)
 // Space O(1)
-
 /*
 XOR, números iguales se hacen 0 y los diferentes 1
 
