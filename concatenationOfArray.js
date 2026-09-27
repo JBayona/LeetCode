@@ -60,3 +60,8 @@ function getElement(arr, index) {
   let len = arr.length;
   return arr[index % len];
 }
+
+// Option 3.
+var getConcatenation = function(nums) {
+    return nums.concat(nums);
+};
