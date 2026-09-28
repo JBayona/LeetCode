@@ -45,3 +45,18 @@ var containsDuplicate = function (nums) {
   }
   return false;
 };
+
+// Standard solution
+// Time O(N)
+// Space O(N)
+var containsDuplicate = function(nums) {
+    let hash = {};
+    for (let i = 0; i < nums.length; i++) {
+        let n = nums[i];
+        if (n in hash) {
+            return true;
+        }
+        hash[n] = true;
+    }
+    return false;
+};
