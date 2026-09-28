@@ -13,6 +13,7 @@ Output: false
 
 https://leetcode.com/problems/valid-anagram/description/
 */
+
 // Time O(N)
 // Space O(N)
 var isAnagram = function(s, t) {
@@ -104,3 +105,27 @@ function getFrequency(str) {
   }
   return map;
 }
+
+// Time O(N) Space O(N)
+var isAnagram = function(s, t) {
+  let array1 = new Array(26).fill(0);
+  let array2 = new Array(26).fill(0);
+  
+  for(let i = 0; i < s.length; i++) {
+      let index = s[i].charCodeAt(0) - 'a'.charCodeAt(0);
+      array1[index]++;
+  }
+  
+  for(let i = 0; i < t.length; i++) {
+      let index = t[i].charCodeAt(0) - 'a'.charCodeAt(0);
+      array2[index]++;
+  }
+  
+  for(let i = 0; i < 26; i++) {
+      if(array1[i] !== array2[i]) {
+          return false;
+      }
+  }
+  
+  return true;
+};
