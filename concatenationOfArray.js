@@ -21,6 +21,7 @@ Explanation: The array ans is formed as follows:
 
 https://leetcode.com/problems/concatenation-of-array/description/
 */
+
 // Option 1
 // Time O(N)
 // Space O(1)
