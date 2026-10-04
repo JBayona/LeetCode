@@ -76,17 +76,135 @@ class Autocomplete {
 
     // Option 1 (N Log N): Sort the counts and return the results
     let suggestions = Object.entries(node.count).sort((a, b) => b[1] - a[1]).map(([word, frequency]) => [word, frequency]);
-    return suggestions;
+
+    // Option 2 (N): Use a priority queue to get the top K suggestions based on the counts
+    // Add all elements in the Max Queue
+    // Ascending order (Min Queue)`
+    // let queue = new PriorityQueue((a, b) => a.frequency - b.frequency);
+    // Descending order (Max Queue)
+    let queue = new PriorityQueue((a, b) => b.frequency - a.frequency);
+    for (let [word, frequency] of Object.entries(node.count)) {
+      queue.enqueue({ word: word, frequency: frequency });
+    }
+
+    // Time Complexity: O(N log K) where N is the number of words in the trie and K is the number of suggestions we want to return
+    let result = [];
+    while (!queue.isEmpty()) {
+      result.push(queue.dequeue());
+    }
+
+    return result;
+  }
+}
+
+class PriorityQueue {
+  constructor(comparator = (a, b) => a - b) {
+    this.heap = [];
+    this.comparator = comparator;
+  }
+
+  // Helper method to get the parent index
+  parentIndex(index) {
+    return Math.floor((index - 1) / 2);
+  }
+
+  // Helper method to get the left child index
+  leftChildIndex(index) {
+    return 2 * index + 1;
+  }
+
+  // Helper method to get the right child index
+  rightChildIndex(index) {
+    return 2 * index + 2;
+  }
+
+  // Helper method to swap two elements in the heap
+  swap(index1, index2) {
+    [this.heap[index1], this.heap[index2]] = [this.heap[index2], this.heap[index1]];
+  }
+
+  // Method to insert an element
+  enqueue(element) {
+    this.heap.push(element);
+    this.bubbleUp();
+  }
+
+  // Method to remove and return the element with the highest priority
+  dequeue() {
+    if (this.isEmpty()) return null;
+
+    if (this.heap.length === 1) {
+      return this.heap.pop();
+    }
+
+    const root = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.bubbleDown();
+
+    return root;
+  }
+
+  // Method to move the last element up to maintain the heap property
+  bubbleUp() {
+    let index = this.heap.length - 1;
+
+    while (index > 0) {
+      const parentIdx = this.parentIndex(index);
+
+      if (this.comparator(this.heap[index], this.heap[parentIdx]) >= 0) {
+        break;
+      }
+
+      this.swap(index, parentIdx);
+      index = parentIdx;
+    }
+  }
+
+  // Method to move the root element down to maintain the heap property
+  bubbleDown() {
+    let index = 0;
+
+    while (this.leftChildIndex(index) < this.heap.length) {
+      const leftChildIdx = this.leftChildIndex(index);
+      const rightChildIdx = this.rightChildIndex(index);
+      let smallerChildIdx = leftChildIdx;
+
+      if (rightChildIdx < this.heap.length && this.comparator(this.heap[rightChildIdx], this.heap[leftChildIdx]) < 0) {
+        smallerChildIdx = rightChildIdx;
+      }
+
+      if (this.comparator(this.heap[index], this.heap[smallerChildIdx]) <= 0) {
+        break;
+      }
+
+      this.swap(index, smallerChildIdx);
+      index = smallerChildIdx;
+    }
+  }
+
+  // Method to check if the priority queue is empty
+  isEmpty() {
+    return this.heap.length === 0;
+  }
+
+  // Method to get the element with the highest priority without removing it
+  front() {
+    return this.isEmpty() ? null : this.heap[0];
+  }
+
+  // Method to get the size of the priority queue
+  size() {
+    return this.heap.length;
   }
 }
 
 input = [
-  ['chilli pepper', 1000],
+  ['chilli pepper chicken and beans', 50],
   ['chilli pepper chicken', 500],
+  ['chilli pepper eggs', 100],
   ['chilli pepper pork', 300],
   ['chilli pepper egg', 200],
-  ['chilli pepper eggs', 100],
-  ['chilli pepper chicken and beans', 50],
+  ['chilli pepper', 1000]
 ];
 
 let obj = new Autocomplete(input);
