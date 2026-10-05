@@ -93,6 +93,9 @@ class Autocomplete {
       result.push(queue.dequeue());
     }
 
+    // Add this line to start from the scratch for the next prefix search and don't persist state
+    this.prefix = '';
+
     return result;
   }
 }
@@ -209,3 +212,8 @@ input = [
 
 let obj = new Autocomplete(input);
 console.log(obj.getSuggestions('chilli pepper')); // should return the suggestions for 'chilli pepper'
+obj.addWord('chilli pepper chicken seaweed', 70);
+console.log(obj.getSuggestions('chilli pepper'));
+obj.addWord('chilli pepper chicken jelly', 3000);
+obj.addWord('chilli pepper chicken ham', 400);
+console.log(obj.getSuggestions('chilli pepper'));
