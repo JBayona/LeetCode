@@ -68,6 +68,39 @@ function Node(val, next, prev) {
   this.val = val;
 }
 
+/*
+  1. Room Initialization (Empty Room: 0 participants)
+  ---------------------------------------------------
+  Both dummy nodes point directly to one another:
+
+     +---------------+                   +---------------+
+     |  Dummy HEAD   | ──── .next ─────> |  Dummy TAIL   |
+     |   (val: 0)    | <─── .prev ────── |   (val: 0)    |
+     +---------------+                   +---------------+
+         |                                   |
+       .prev = null                        .next = null
+
+
+  2. After Adding Participant 0
+  -----------------------------
+  Participant 0 is spliced cleanly between HEAD and TAIL:
+
+     +---------------+                   +---------------+                   +---------------+
+     |  Dummy HEAD   | ──── .next ─────> |    Node P0    | ──── .next ─────> |  Dummy TAIL   |
+     |   (val: 0)    | <─── .prev ────── |   (val: 0)    | <─── .prev ────── |   (val: 0)    |
+     +---------------+                   +---------------+                   +---------------+
+
+
+  3. Populated Room (Multiple Participants: P0, P1, P2)
+  -----------------------------------------------------
+  Order of entry flows from HEAD (earliest) to TAIL (most recent):
+
+     +----------+         +---------+         +---------+         +---------+         +----------+
+     |  Dummy   | ─next─> | Node P0 | ─next─> | Node P1 | ─next─> | Node P2 | ─next─> |  Dummy   |
+     |   HEAD   | <─prev─ | (first) | <─prev─ | (mid)   | <─prev─ | (last)  | <─prev─ |   TAIL   |
+     +----------+         +---------+         +---------+         +---------+         +----------+
+*/
+
 function Room() {
   // List of participants in the order in which they entered the room
   // initialized with a dummy head and tail
