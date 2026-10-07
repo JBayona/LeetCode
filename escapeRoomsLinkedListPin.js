@@ -74,6 +74,8 @@ function Room() {
   this.head = new Node(0);
   this.tail = new Node(0);
   // Initialize to an empty list with dummy head and tail
+  // link them together the double linked list so we add
+  // elements to the end of the list and remove them from the middle of the list
   this.head.next = this.tail;
   this.tail.prev = this.head;
 
