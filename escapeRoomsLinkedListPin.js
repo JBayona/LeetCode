@@ -69,7 +69,8 @@ function Node(val, next, prev) {
 }
 
 function Room() {
-  // List of participants in the order in which they entered the room, initialized with a dummy head and tail
+  // List of participants in the order in which they entered the room
+  // initialized with a dummy head and tail
   this.head = new Node(0);
   this.tail = new Node(0);
   // Initialize to an empty list with dummy head and tail
