@@ -121,6 +121,7 @@ class Solution {
   constructor(n, m) {
     this.rooms = [];
     // Create a room for each of the N rooms
+    // each room has its own double linked lists depending on the number of participants in that room
     for (let i = 0; i < n; i++) {
       this.rooms.push(new Room());
     }
@@ -209,6 +210,37 @@ console.log(`count in room 1: ${obj.getCount(1)}`); // 3
 obj.increment(1);
 console.log(obj.top(3)); // [3, 1, 4] or [3, 1, 2]
 
+
+/*
+  Initial State of Room 0 (After constructor runs with n=4 rooms, m=5 participants: P0 to P4)
+  ==========================================================================================
+
+  rooms[0] Doubly-Linked List:
+  ----------------------------
+  +----------+         +---------+         +---------+         +---------+         +---------+         +---------+         +----------+
+  |  Dummy   | ─next─> | Node P0 | ─next─> | Node P1 | ─next─> | Node P2 | ─next─> | Node P3 | ─next─> | Node P4 | ─next─> |  Dummy   |
+  |   HEAD   | <─prev─ | (val=0) | <─prev─ | (val=1) | <─prev─ | (val=2) | <─prev─ | (val=3) | <─prev─ | (val=4) | <─prev─ |   TAIL   |
+  +----------+         +---------+         +---------+         +---------+         +---------+         +---------+         +----------+
+      |                                                                                                                         |
+    .prev = null                                                                                                              .next = null
+
+
+  rooms[0].idToNode Mapping (O(1) direct lookup to any node in room 0):
+  ---------------------------------------------------------------------
+  {
+    0: -> [Node P0],
+    1: -> [Node P1],
+    2: -> [Node P2],
+    3: -> [Node P3],
+    4: -> [Node P4]
+  }
+
+
+  Global Tracking:
+  ----------------
+  this.currentRoom = { 0: 0, 1: 0, 2: 0, 3: 0, 4: 0 }  (All participants start in room 0)
+  rooms[1], rooms[2], rooms[3] = Empty (HEAD <-> TAIL directly)
+*/
 
 /*
   Intermediate State Diagram
