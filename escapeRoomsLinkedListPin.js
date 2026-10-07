@@ -208,3 +208,52 @@ obj.increment(3);
 console.log(`count in room 1: ${obj.getCount(1)}`); // 3
 obj.increment(1);
 console.log(obj.top(3)); // [3, 1, 4] or [3, 1, 2]
+
+
+/*
+  Intermediate State Diagram
+  ==========================
+  Example scenario from the prompt:
+    - R0 has P1 remaining
+    - R1 has P0 (entered first) and P3 (entered second)
+    - R2 is empty
+    - R3 has P2
+
+  this.rooms Array:
+  -----------------
+
+  rooms[0]  (1 participant: P1)
+  +----------+         +---------+         +----------+
+  |  Dummy   | ─next─> | Node P1 | ─next─> |  Dummy   |
+  |   HEAD   | <─prev─ | (val=1) | <─prev─ |   TAIL   |
+  +----------+         +---------+         +----------+
+
+  rooms[1]  (2 participants: P0 arrived before P3)
+  +----------+         +---------+         +---------+         +----------+
+  |  Dummy   | ─next─> | Node P0 | ─next─> | Node P3 | ─next─> |  Dummy   |
+  |   HEAD   | <─prev─ | (val=0) | <─prev─ | (val=3) | <─prev─ |   TAIL   |
+  +----------+         +---------+         +---------+         +----------+
+                        ^ Earliest          ^ Latest
+                          arrival             arrival
+
+  rooms[2]  (0 participants: EMPTY)
+  +----------+                             +----------+
+  |  Dummy   | ────────── .next ─────────> |  Dummy   |
+  |   HEAD   | <───────── .prev ────────── |   TAIL   |
+  +----------+                             +----------+
+
+  rooms[3]  (1 participant: P2)
+  +----------+         +---------+         +----------+
+  |  Dummy   | ─next─> | Node P2 | ─next─> |  Dummy   |
+  |   HEAD   | <─prev─ | (val=2) | <─prev─ |   TAIL   |
+  +----------+         +---------+         +----------+
+
+
+  How `top(2)` reads this:
+  -----------------------
+  Scans rooms from right to left (R3 -> R2 -> R1 -> R0):
+    1. Inspect R3: reads [P2]
+    2. Inspect R2: empty (HEAD.next is TAIL), skips immediately
+    3. Inspect R1: reads HEAD to TAIL -> takes [P0]
+    Result: [P2, P0]
+*/
