@@ -6,7 +6,6 @@ Given s = "hello", return "olleh".
 
 https://leetcode.com/problems/reverse-string/description/
 */
-
 // Option 1
 // Time O(N)
 var reverseString = function(s) {
