@@ -18,7 +18,6 @@ You will need to write a utility function that will get called each time a parti
 You don't have to worry about how this function is called, you just need to write the body of the function. Ideally, this utility function should run in O(1).
 
 Example:
-
 Initial state
 
 |---P0—P1—P2—P3—|---------------------|---------------------|--------------------|
