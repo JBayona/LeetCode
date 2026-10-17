@@ -1,5 +1,4 @@
 // Find the second largest
-
 function findSecondLargest(arr) {
   let largest = Number.MIN_SAFE_INTEGER;
   let second = Number.MIN_SAFE_INTEGER;
