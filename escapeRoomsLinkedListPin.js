@@ -45,6 +45,7 @@ If they need help here's some functions signatures to get them started:
 // 4) initialize(numPlayer, numRooms)
 
 Follow-up Questions / Variations
+
 If the answer to the first question isn't optimal regarding time complexity, ask how they would change the logic (using extra space is allowed)
 For the second question, ask about alternative approaches to get the result (for example, they can keep track of which rooms currently have participants in them, to speed up the lookup).
 Leaning more on a light system design question for the most advanced candidates, you can ask how they would build a simple notification system to notify that a participant moved to a new room,
