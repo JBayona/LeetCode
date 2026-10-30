@@ -60,6 +60,7 @@ Example Solutions
 This is a complete Python example solution - once the candidate has the right idea, some of the classes and initializations can be pasted directly into Coderpad,
 to focus on the more interesting parts. I added comments on possible variations or why certain choices were made.
 */
+
 function Node(val, next, prev) {
   this.next = next || null;
   this.prev = prev || null;
