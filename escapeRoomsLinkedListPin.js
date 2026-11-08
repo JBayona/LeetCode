@@ -22,6 +22,7 @@ Initial state
 
 |---P0—P1—P2—P3—|---------------------|---------------------|--------------------|
               R0                             R1                    R2                     R3
+
 We call these functions to get to the Intermediate state below:
 increment(P2)
 increment(P2)
