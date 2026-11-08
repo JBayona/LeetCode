@@ -19,7 +19,6 @@ You don't have to worry about how this function is called, you just need to writ
 
 Example:
 Initial state
-
 |---P0—P1—P2—P3—|---------------------|---------------------|--------------------|
               R0                             R1                    R2                     R3
 
