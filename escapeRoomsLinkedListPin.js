@@ -6,7 +6,6 @@ through each of the rooms after solving the corresponding puzzle. We can assume 
 they each have to figure out the puzzle before being able to move on to the next room, so each participant progresses independently.
 
 Instructions
-
 Explain the problem and the variables at stake (this will be important later to understand the time and space complexity of the problem).
 You can paste the questions section below (including diagram), but don't provide any method signature or sample input / output, as this is expected to be discussed with the candidate.
 
