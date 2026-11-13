@@ -13,7 +13,6 @@ Explanation: 2 does not exist in nums so return -1
 
 https://leetcode.com/problems/binary-search/description/
 */
-
 /*
 Binary Search Algorithm
 Time Complexity O(log(N))
