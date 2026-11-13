@@ -51,6 +51,31 @@ var binarySearch = function(nums, target) {
   return false;
 };
 
+
+// Time O(M + N)
+// We follow a stair-case approach where we can start from top right or bottom left
+// the idea is to either remove an entire row or column until we find the element
+// Time O(N + M)
+// Time O(1)
+var searchMatrix = function(matrix, target) {
+    let row = 0;
+    let col = matrix[0].length - 1;
+
+    while (row < matrix.length && col >= 0) {
+        if (matrix[row][col] === target) {
+            return true;
+        } else if (matrix[row][col] > target) {
+            col--;
+        } else {
+            row++;
+        }
+    }
+    return false;
+};
+
+
+
+
 /*
 //First find which row should target be
   for(int i=0;i<row;i++)
