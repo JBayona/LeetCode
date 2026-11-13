@@ -74,6 +74,31 @@ var searchMatrix = function(matrix, target) {
 };
 
 
+// Time O(Log M * N)
+// Space O(1)
+// treats the 2D matrix as a single, flattened 1D sorted array of length M * M
+// We can treat this as a long line, if we divide the elements by the columns
+// we get how many rows we have, and if we use a module, we get the column where
+// the element is.
+var searchMatrix = function(matrix, target) {
+    let start = 0;
+    let end = (matrix.length * matrix[0].length) - 1;
+
+    while (start <= end) {
+        let mid = Math.floor((start + end) / 2);
+        let n = matrix[Math.floor(mid / matrix[0].length)][Math.floor(mid % matrix[0].length)];
+
+        if (n === target) {
+            return true;
+        }
+        if (target < n) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
+        }
+    }
+    return false;
+};
 
 
 /*
