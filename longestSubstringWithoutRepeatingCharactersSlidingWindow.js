@@ -58,6 +58,7 @@ var lengthOfLongestSubstring = function (s) {
   return result;
 };
 
+// Option 2
 // Sliding Window
 // Time O(N)
 // Space O(N)
