@@ -1,4 +1,5 @@
 /*
+
 Overview
 Imagine that you are building a leaderboard for an Escape Room Center.
 There are N escape rooms and M participants. When the game starts, each participant is in the first room and progresses
